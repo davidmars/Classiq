@@ -10,7 +10,7 @@ Classiq est un framework WYSIWYG qui fonctionne avec Pov, Webpack, Composer et R
 ### à quoi ressemble un projet réalisé avec Classiq?
 à un site internet full Ajax éditable en Wysiwyg.
 
-### Quels languages sont utilisés?
+### Quels langages sont utilisés?
 - PHP
 - Javascript
 - HTML
