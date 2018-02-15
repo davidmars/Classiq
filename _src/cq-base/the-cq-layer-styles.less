@@ -1,0 +1,71 @@
+// tous les éléments qui sont dans:
+// #the-cq-layer qui est un réel id unique où on place tous les éléments principaux (context menu, popins, big menu etc...
+// #cq-style qui lui est utilisé pour les éléments dans le dom classique qui doit ressembler à Classiq
+#the-cq-layer,#cq-style{
+
+  fieldset{
+    min-width: auto;
+  }
+
+  //tests only
+  //outline: 1px dotted red;
+
+  [text-center]{
+    text-align: center;
+  }
+  [text-right]{
+    text-align: right;
+  }
+  [text-left]{
+    text-align: left;
+  }
+  [text-justify]{
+    text-align: justify;
+  }
+  [text-middle]{
+    display: flex;
+    align-items: center;
+    >*{
+      margin:5px;
+      &:first-child{
+        margin-left: 0;
+      }
+    }
+
+  }
+
+  h1,h2,h3,h4{
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+
+
+
+
+
+  hr{
+    border: none !important;
+    border-top-style: solid !important;
+    border-top-width: 1px !important;
+  }
+
+  .wysiwyg-container{
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .wysiwyg-pad-x{
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .wysiwyg-pad-y{
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .wysiwyg-pad-xy{
+    padding: 15px;
+  }
+
+}

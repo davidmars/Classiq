@@ -1,0 +1,10 @@
+<div cq-notification class="cq-th-{{theme}}" cq-notification-about-uid="{{uid}}">
+
+    <div class="icon"></div>
+    <main>
+        {{message}}
+    </main>
+    <div cq-progress-bar value="0" min="0" max="100">
+        <div class="bar"></div>
+    </div>
+</div>

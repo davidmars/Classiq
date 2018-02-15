@@ -1,0 +1,47 @@
+#the-cq-layer{
+  z-index: 10000;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  #the-cq-notifier{
+    z-index: var(--cq-z-notify);
+  }
+}
+
+
+
+
+@import "cq-base/cq-variables";
+@import "cq-base/cq-colors";
+@import "cq-base/svg";
+@import "cq-base/cq-txt-align";
+@import "cq-base/cq-pos-abs";
+@import "cq-base/cq-motion";
+@import "cq-base/cq-unstyled";
+@import "cq-base/cq-fieldset";
+
+@import "pov-api.less";
+
+@import "cq-fields/wysiwyg-var.less";
+@import "wysiwyg-loading.less";
+@import "cq-progress-circle/cq-progress-circle.less";
+
+@import "cq-base/defaults.less";
+@import "cq-base/the-cq-layer-styles.less";
+
+
+@import "unique-instances/the-cq-selection.less";
+@import "cq-fields/fld.less";
+@import "cq-toolbar/cq-toolbar.less";
+
+
+@import "records/preview-record";
+
+@import "unique-instances/cq-big-menu/cq-big-menu.less";
+@import "unique-instances/cq-context-menu/cq-context-menu.less";
+
+@import "cq-base/perfect-scrollbar.less";
+
+
+

@@ -1,0 +1,37 @@
+#the-cq-layer{
+  .input-file-wrap {
+
+    //comme un bouton
+    &.btn{
+      border-radius: 500px;
+      box-shadow: var(--cq-shadow-btn);
+      cursor: pointer;
+      &:hover{
+        box-shadow: var(--cq-shadow-btn-hover);
+      }
+    }
+
+    .cq-btn{
+      box-shadow: none;
+      border: none;
+    }
+
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    overflow: hidden;
+    button{
+      cursor: pointer;
+    }
+    input[type=file] {
+      position: absolute;
+      top: 0;
+      z-index: 1;
+      width: 100%;
+      opacity: 0;
+      cursor: pointer;
+      left: 0;
+      font-size: 500px;
+    }
+  }
+}

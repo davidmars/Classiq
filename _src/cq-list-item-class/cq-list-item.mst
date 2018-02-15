@@ -1,0 +1,5 @@
+<a class="cq-list-item" href="#">
+    <span class="start"></span>
+    <span class="end"></span>
+    <span>Exemple de texte super long</span>
+</a>

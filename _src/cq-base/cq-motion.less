@@ -1,0 +1,88 @@
+.cq-no-transition{
+  transition: none !important;
+  *{
+    transition: none !important;
+  }
+}
+
+.cq-motion{
+  width: var(--svg-size);
+  height: var(--svg-size);
+
+  &.alternate{ //affiche en alternance le premier puis le second element dans le conteneur
+    position: relative;
+    >*{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+    >:nth-child(odd) {
+      animation:cq-keys-fade-alternate-1 1s infinite alternate-reverse;
+    }
+    >:nth-child(even) {
+      animation:cq-keys-fade-alternate-2 1s infinite alternate-reverse;
+    }
+  }
+}
+
+@keyframes cq-keys-fade-alternate-1
+{
+  0%   {opacity:1}
+  40% { opacity:1}
+  50% { opacity:0}
+  100% { opacity:0}
+}
+@keyframes cq-keys-fade-alternate-2
+{
+  0%   {opacity:0}
+  50%   {opacity:0}
+  60% {opacity:1}
+  100% { opacity:1}
+}
+
+
+//les keyframes sont terminés par -keys
+//les classes sont terminées par -motion
+
+//---blink--------------------------------------------------------------
+
+.cq-motion-blink{
+  animation: cq-keys-blink 0.2s infinite alternate;
+}
+@keyframes cq-keys-blink {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity : 0.5;
+  }
+}
+
+
+//---blink color--------------------------------------------------------
+
+.cq-motion-blink-color{
+  animation: cq-keys-blink-color 0.5s infinite alternate;
+}
+@keyframes cq-keys-blink-color {
+  0% {
+    filter: contrast(0.5) sepia(0);
+  }
+  100% {
+    filter: contrast(1) sepia(0);
+  }
+}
+
+//---turn--------------------------------------------------------
+
+.cq-motion-turn{
+  animation: cq-keys-turn 3s infinite linear;
+}
+@keyframes cq-keys-turn {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

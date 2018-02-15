@@ -1,0 +1,15 @@
+<div cq-panel-section>
+
+    <nav>
+        <button cq-panel-section-toggle="a">A</button>
+        <button cq-panel-section-toggle="b">B</button>
+        <button cq-panel-section-toggle="c" class="active">C</button>
+    </nav>
+
+    <main>
+        <section cq-panel-is-section="a">AAAAAAA</section>
+        <section cq-panel-is-section="b">BBBBBBB</section>
+        <section cq-panel-is-section="c" class="active" id="c">CCCCCCC qui est visible</section>
+    </main>
+
+</div>

@@ -1,0 +1,23 @@
+svg{
+  &.wysiwyg-progress-circle{
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: var(--cq-z-loadings);
+    circle {
+      stroke-dashoffset: 0;
+      stroke: var(--cq-color-txt-disabled, #dddddd);
+      stroke-width: 5px;
+      transition: stroke-dashoffset 0.2s;
+    }
+    .progress {
+      .cq-motion-turn;
+      stroke: var(--cq-color-success,#0f0);
+      stroke-width: 3px;
+      transform-origin:center;
+      transform: rotate(-90deg);
+    }
+  }
+}
+

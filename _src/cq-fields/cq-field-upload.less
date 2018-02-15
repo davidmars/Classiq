@@ -1,0 +1,16 @@
+.cq-field-upload{
+
+  [cq-progress-bar]{
+    display: none;
+    margin-bottom: var(--cq-box-padding);
+  }
+
+  &[state="uploading"]{
+    [cq-progress-bar]{
+      display: block;
+    }
+  }
+  &[state="error"]{
+    color:var(--cq-color-danger);
+  }
+}

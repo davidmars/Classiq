@@ -1,0 +1,61 @@
+
+.cq-drag-btn{
+
+  box-shadow: var(--cq-shadow-btn);
+  &:hover{
+    box-shadow: var(--cq-shadow-btn-hover);
+  }
+  border-radius: 100%;
+  background-color: var(--cq-color-bg);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+  cursor: move;
+
+  --cq-pos-left:-40px;
+  --cq-pos-top: 5px;
+
+  &:after{
+    mask-image: url("up-down.svg");
+    background-color: var(--cq-color-txt-disabled,#ff0);
+    mask-position: center;
+    mask-size: contain;
+    content:"" ;
+    width: 24px;
+    height: 24px;
+    display: block;
+    z-index: 1;
+    position: relative;
+  }
+  &:before{
+    display: block;
+    position: absolute;
+    z-index: 0;
+    height: 50px;
+    width: 50px;
+    background-color: rgba(0, 0, 0, 0);
+    content: "";
+  }
+  &:hover{
+    &:after{
+      background-color: var(--cq-color-txt,#ff0);
+    }
+  }
+}
+
+[cq-blocks]{
+  >*{
+    .cq-drag-btn{
+      opacity: 0;
+    }
+    &:hover{
+      .cq-drag-btn{
+        opacity: 1;
+      }
+    }
+  }
+}

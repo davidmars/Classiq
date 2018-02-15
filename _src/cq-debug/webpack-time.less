@@ -1,0 +1,20 @@
+@webpackTime:"";
+.webpack-time{
+  font-family: monospace;
+  font-size: 10px;
+  background-color: rgba(255, 0, 0, 0.5);
+  color: #fff;
+  display: block;
+  min-width: 1px;
+  min-height: 1px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 100000000;
+  &:before{
+    display: inline-block;
+    content: '@{webpackTime}';
+    //content:'test';
+  }
+
+}

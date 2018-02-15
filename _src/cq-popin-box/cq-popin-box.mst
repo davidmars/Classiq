@@ -1,0 +1,20 @@
+<div cq-popin-box class=" {{popinSize}} {{popinOpen}}">
+    <nav>
+        <h4>{{navTitle}}</h4>
+        <a href="#hide-stuff">
+            <svg class="svg svg-cq-close wysiwyg-icon">
+                <use class="svg svg-cq-close" href="#cq-close"></use>
+            </svg>
+        </a>
+    </nav>
+    <main>
+        {{content}}
+    </main>
+    <footer>
+        <div>{{footerText}}</div>
+        <div>
+            <a class="cq-btn cq-th-white" href="#">cancel</a>
+            <a class="cq-btn cq-th-white" href="#">ok</a>
+        </div>
+    </footer>
+</div>

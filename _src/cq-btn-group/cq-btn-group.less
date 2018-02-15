@@ -1,0 +1,88 @@
+#the-cq-layer{
+  [cq-btn-group]{
+    .input-file-wrap {
+      display: flex;
+    }
+  }
+}
+[cq-btn-group]{
+
+  --btn-size:40px;
+  --svg-size:20px;
+
+  &[size="small"]{
+    --btn-size:30px;
+    --svg-size:15px;
+  }
+  &[size="normal"]{
+    --btn-size:40px;
+    --svg-size:20px;
+  }
+  &[size="big"]{
+    --btn-size:60px;
+    --svg-size:20px;
+  }
+
+
+  overflow: hidden;
+  border-radius: var(--btn-size);
+  box-shadow: var(--cq-shadow-btn);
+  transition: all 0.1s;
+
+  min-width: 10px;
+  min-height: 10px;
+  display: flex;
+
+  &.empty{
+    border: 1px solid red;
+    //opacity: 0.2;
+    display: none;
+  }
+
+  >a{
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+
+    &:hover{
+      background-color: var(--cq-color-selected);
+      color: #fff;
+    }
+    &.first,&.last{
+      width: calc( 1.1 * var(--btn-size));
+    }
+
+    &.first{
+      //justify-content: flex-end;
+      padding-left: 6%;
+
+    }
+    &.last{
+      padding-right: 6%;
+    }
+
+    &.first.last{
+      align-items: center;
+      width:  var(--btn-size);
+      height: var(--btn-size);
+    }
+
+  }
+  >*{
+    border-right: 1px solid var(--cq-color-fld-bdr);
+    margin-right: -1px;
+    flex-shrink: 0;
+    padding: 2px;
+    height: var(--btn-size);
+    width: var(--btn-size);
+    position: relative;
+    >svg{
+      width: var(--svg-size);
+      height: var(--svg-size);
+    }
+  }
+
+
+
+}

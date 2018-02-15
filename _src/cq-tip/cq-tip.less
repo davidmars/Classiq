@@ -1,0 +1,77 @@
+[cq-tip]{
+
+  display: inline-block;
+  position: relative;
+  width: 1px;
+  height: 1em;
+  background-color: transparent !important;
+  color: transparent;
+
+  --size:16px;
+  --pos:-13px;
+
+  //redéfinit les position pour cq-pos-abs
+  --cq-pos-bottom:3px;
+  --cq-pos-right:9px;
+
+  &:before{
+    position: absolute;
+    top: calc(0.5 * var(--pos));
+    left: var(--pos);
+    display: flex;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 100%;
+    justify-content: center;
+    align-items: center;
+    vertical-align: center;
+    text-align: center;
+    line-height: 1;
+    content: attr(data-count);
+    font-size: 10px !important;
+    font-style: normal !important;
+    background-color: var(--cq-color-bg,#ddd);
+    color: var(--cq-color-txt,#fff);
+    transition: all 0.2s ease-in-out;
+    overflow: hidden;
+  }
+  &[data-count='0']{
+    &:before{
+      transform:scale(0);
+    }
+  }
+
+  &.inline{
+    display: inline-flex;
+    width: var(--size);
+    height: 100%;
+    margin: 5px;
+    &:before{
+      position: static;
+
+    }
+  }
+  &.normal{
+    display: inline-block;
+    width: var(--size);
+    height: auto;
+    &:before{
+      position: static;
+    }
+  }
+
+
+}
+
+fieldset.has-cq-tip{
+  position: relative;
+  [cq-tip]{
+    position: absolute;
+    right: 0;
+    top: 0;
+    &:before{
+      top:0;
+      right: 0;
+    }
+  }
+}

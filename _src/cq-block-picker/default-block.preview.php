@@ -1,0 +1,9 @@
+<?php
+if(is_string($vv)){
+    $label=$vv;
+}else{
+    $label="...";
+}
+?>
+<label><?=$label?></label>
+<?=pov()->svg->use("cq-plus")?>

@@ -1,0 +1,93 @@
+@import "fonts/proxima-nova-regular.less";
+@import "fonts/proxima-nova-thin.less";
+
+html{
+
+  //families
+  --cq-typo-sans: "Proxima Nova", cursive, "Helvetica Neue",Helvetica,"Franklin Gothic Medium","Franklin Gothic","ITC Franklin Gothic",Arial,sans-serif;
+  --cq-typo-sans-alt:'proxima_nova_ltthin', cursive, "Century Gothic",CenturyGothic,AppleGothic,sans-serif;
+  --cq-typo-mono:monaco,Consolas,"Lucida Console", monospace;
+
+  //sizes
+  --cq-typo-size:14px;
+  --cq-typo-size-h1:3em;
+  --cq-typo-size-h2:2.5em;
+  --cq-typo-size-h3:2em;
+  --cq-typo-size-h4:1.8em;
+
+  //weight
+  --cq-typo-weight-headings:100;
+}
+
+#the-cq-layer,#cq-style{
+
+  font-size: var(--cq-typo-size);
+  line-height: 1.5;
+  letter-spacing: normal;
+  font-family: var(--cq-typo-sans);
+
+  //base
+  div,p,span,input,textarea,label{
+    font-size: inherit;
+    letter-spacing: inherit;
+    font-family:inherit;
+  }
+  p{
+    font-size: 1em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    line-height: 1.5;
+    font-family: var(--cq-typo-sans);
+  }
+
+  //headings
+  h1,h2,h3,h4{
+    font-weight: var(--cq-typo-weight-headings);
+    font-family: var(--cq-typo-sans-alt);
+  }
+  h1{
+    font-size: var(--cq-typo-size-h1);
+  }
+  h2{
+    font-size: var(--cq-typo-size-h2);
+  }
+  h3{
+    font-size: var(--cq-typo-size-h3);
+  }
+  h4{
+    font-size: var(--cq-typo-size-h4);
+  }
+
+
+  label{
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: var(--cq-typo-sans);
+    &.unstyled{
+      font-weight: inherit;
+      font-family: inherit;
+      text-transform: inherit;
+      font-size: inherit;
+    }
+
+  }
+  small{
+    font-size: 0.7em;
+    font-family: inherit;
+  }
+  dfn{
+    //pratique sous les champs de formulaire
+    font-family: var(--cq-typo-sans);
+  }
+
+  //monospaced
+  code,pre,time{
+    font-family: var(--cq-typo-mono);
+    font-size: 11px;
+  }
+  time{
+    line-height: 1.5;
+  }
+
+}

@@ -1,0 +1,21 @@
+{
+    "name":"davidmars/Classiq",
+    "description": "Classiq est conçu pour créer des sites internet administrables en wysiwyg.",
+    "type": "library",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Classiq\\": ["Classiq/","Classiq/"]
+        }
+    },
+    "require": {
+        "davidmars/pov-2018": "dev-master",
+        "davidmars/redbean": "^5.0",
+        "jenssegers/agent": "^2.6",
+        "wixel/gump": "^1.5",
+        "phpmailer/phpmailer": "^6.0"
+    },
+    "repositories": [
+    ]
+}

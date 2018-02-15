@@ -1,0 +1,50 @@
+#the-cq-context-menu{
+  //todo opti refactor pour intégrer proprement à cq
+  position:fixed;
+  z-index: var(--cq-z-context);
+  &.is-over{
+    z-index: var(--cq-z-context-over);
+  }
+  top:0;
+  left:0;
+  pointer-events: none;
+  *{
+    pointer-events: auto;
+  }
+
+  #menu-and-selection{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    z-index: var(--cq-z-selection);
+    pointer-events: none;
+  }
+
+  &.anchor-is-over{
+    #menu-and-selection{
+      z-index: var(--cq-z-selection-in-popin);
+    }
+  }
+
+  #the-cq-selection,.is-menu,.is-menu-add{
+    position: fixed;
+    top:0;
+    left:0;
+  }
+
+  .disabler{ //bg qui permet de désactiver la config box
+    background-color: rgba(136, 136, 136, 0.08);
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+
+
+
+
+}

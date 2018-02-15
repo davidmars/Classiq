@@ -1,0 +1,15 @@
+<div id="cq-style" cq-block-picker class="cq-vars-th-black">
+    <button class="cq-unstyled close">
+        <svg class="svg wysiwyg-icon">
+            <use class="svg" xlink:href="#cq-close"></use>
+        </svg>
+    </button>
+
+    <div class="message">
+        {{message}}
+    </div>
+
+    <div class="buttons-container">
+
+    </div>
+</div>

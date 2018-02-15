@@ -1,0 +1,59 @@
+[cq-browse-records-list]{
+
+  position: relative;
+  height: 100%;
+  background-color: var(--cq-color-bg-alt);
+
+  [cq-toolbar]{
+    background-color: var(--cq-color-bg);
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    z-index: 2;
+  }
+
+  .cq-loading-dots{
+    height: 50%;
+    --color-dots:var(--cq-color-txt-disabled);
+    //--duration:1s;
+  }
+
+  .records{
+    position: absolute;
+    z-index: 1;
+    top: var(--cq-toolbar-height);
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    padding: 10px;
+
+    >.cq-box{
+      padding-top: 0;
+      padding-bottom: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .record[record-type]{
+      padding-left: var(--cq-box-padding);
+      padding-right: var(--cq-box-padding);
+      &.hidden{
+        display: none !important;
+      }
+      padding-top: var(--cq-box-padding);
+      padding-bottom: var(--cq-box-padding);
+      border-bottom: 1px solid var(--cq-color-fld-bdr);
+
+      &.active{
+        background-color: var(--cq-color-bg-alt);
+      }
+
+
+
+
+    }
+  }
+
+
+}

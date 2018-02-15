@@ -1,0 +1,18 @@
+[cq-pos-abs]{
+  position: absolute !important;
+
+  // exemple <div cq-pos-abs="top right">yo</div>
+
+  &[cq-pos-abs*="top"]{
+    top:var(--cq-pos-top,10px);
+  }
+  &[cq-pos-abs*="bottom"]{
+    bottom:var(--cq-pos-bottom,10px);
+  }
+  &[cq-pos-abs*="left"]{
+    left:var(--cq-pos-left,10px);
+  }
+  &[cq-pos-abs*="right"]{
+    right:var(--cq-pos-right,10px);
+  }
+}

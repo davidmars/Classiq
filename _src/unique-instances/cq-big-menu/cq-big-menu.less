@@ -1,0 +1,142 @@
+#the-cq-big-menu{
+  position: fixed;
+  z-index: var(--cq-z-big-menu);
+  width: var(--cq-big-menu-width);
+  height: 100vh;
+  left:0;
+
+  //-----------open / close----------------
+
+  transition:transform 0.2s;
+  transition-timing-function: ease;
+  transform: translateX( calc(-1 * var(--cq-big-menu-width) ) );
+  &.open{
+    transform: translateX(0);
+    >.wrap{
+      box-shadow: var(--cq-shadow-pops);
+    }
+    >.extension{
+      &.open{
+        left: calc( var(--cq-big-menu-width) );
+        box-shadow: var(--cq-shadow-pops);
+      }
+    }
+
+    .out-btns{
+      //display: none;
+      left: 0;
+      transform: translateX(-100px);
+      >*{
+        transform: scale(0.1);
+      }
+    }
+  }
+  >.out-btns{
+    transition: all 0.2s;
+    position: absolute;
+    left: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    //pointer-events: none;
+    transform: translateX(-35px);
+    &:hover{
+      transform: translateX(0px);
+    }
+    >*{
+      color: var(--cq-color-txt-2);
+      transform: scale(1);
+      transition: all 0.2s ease-in-out;
+      pointer-events: auto;
+      margin: 10px;
+    }
+
+    [cq-panel-section-toggle]{
+      >*{
+        opacity:1;
+      }
+    }
+  }
+
+  >.wrap{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    box-shadow: var(--cq-shadow-pops);
+
+    >nav{
+      width: 100%;
+      position: absolute;
+      z-index: 1;
+      [cq-panel-section-toggle] {
+        margin-right: 0px;
+        >svg{
+          border-radius:100%;
+          padding: 5px;
+          width: 30px;
+          height: 30px;
+          color: var(--cq-color-txt-disabled);
+        }
+        &:hover{
+          >svg{
+            background-color: var(--cq-color-bg-alt);
+          }
+        }
+        &.section-active{
+          >svg{
+            color: var(--cq-color-txt);
+          }
+        }
+      }
+    }
+
+    >main{
+      background-color: var(--cq-color-bg-alt);
+      position: absolute;
+      top: var(--cq-toolbar-height);;
+      left:0;
+      width:100%;
+      bottom:0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      padding:5px;
+      >*{
+        margin: 5px;
+      }
+    }
+  }
+
+
+  >.extension{
+    width: var(--cq-big-menu-extension-width);
+    transition: left 0.4s;
+    left: calc( var(--cq-big-menu-width) - var(--cq-big-menu-extension-width));
+    height: 100%;
+    position: absolute;
+    top:0;
+    background-color: var(--cq-color-bg);
+    z-index: 1;
+
+  }
+
+
+
+  .cq-box{
+    box-shadow: var(--cq-shadow-btn);
+  }
+
+  main>section{
+    >label{
+      color:var(--cq-color-txt-3);
+      margin: 30px 5px 10px 5px;
+    }
+
+  }
+
+}

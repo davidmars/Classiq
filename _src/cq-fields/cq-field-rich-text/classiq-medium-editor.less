@@ -1,0 +1,171 @@
+// theme settings
+@medium-editor-button-size: 40px;
+@medium-editor-hover-color: var(--cq-medium-editor-bg-color);
+@medium-editor-link-color: #ccc;
+@medium-editor-border-radius: 50px;
+@medium-editor-placeholder-color: #e2dfdd;
+
+html{
+    --cq-medium-editor-bg-color: #fff;
+    --cq-medium-editor-fg-color: #111;
+    --cq-medium-editor-fg-color-hover: var(--cq-color-selected);
+}
+
+.medium-editor-anchor-preview, .medium-editor-toolbar {
+    z-index: var(--cq-z-medium-editor) !important;
+}
+
+
+
+
+
+// theme rules
+
+.medium-toolbar-arrow-under {
+    &:after{
+        border-color: var(--cq-medium-editor-bg-color) transparent transparent transparent;
+        top: @medium-editor-button-size;
+    }
+    &:before{
+        display: block;
+        content:"";
+        top: 42px;
+        border-width: 8px 8px 0;
+        filter:blur(1px);
+        border-style: solid;
+        left: 50%;
+        margin-left: -8px;
+        position: absolute;
+        border-color: var(--cq-color-fld-bdr-more-hover) transparent transparent transparent;
+    }
+}
+
+.medium-toolbar-arrow-over{
+    &:before{
+        z-index: 2;
+        content: "";
+        //outline: 1px solid #ff2a2a;
+        border-color: transparent transparent var(--cq-medium-editor-bg-color) transparent;
+    }
+    &:after{
+        z-index: 1;
+        content: '';
+        border-color:  transparent transparent var(--cq-color-fld-bdr-more-hover) transparent;
+        filter:blur(1px);
+        top: -9px;
+        border-style: solid;
+        border-width: 0 8px 8px;;
+        display: block;
+        height: 0;
+        left: 50%;
+        margin-left: -8px;
+        position: absolute;
+        width: 0;
+    }
+}
+
+
+
+
+
+.medium-editor-toolbar {
+    background-color: var(--cq-medium-editor-bg-color);
+    border: none;
+    border-radius: @medium-editor-border-radius;
+
+    li {
+        button {
+            background-color: transparent;
+            border: none;
+            box-sizing: border-box;
+            color: var(--cq-medium-editor-fg-color);
+            height: @medium-editor-button-size;
+            min-width: @medium-editor-button-size;
+            padding: 5px 12px;
+            &:hover {
+                color: var(--cq-medium-editor-fg-color-hover);
+            }
+        }
+
+        .medium-editor-button-first {
+            border-bottom-left-radius: @medium-editor-border-radius;
+            border-top-left-radius: @medium-editor-border-radius;
+            padding-left: 24px;
+        }
+
+        .medium-editor-button-last {
+            border-bottom-right-radius: @medium-editor-border-radius;
+            border-right: none;
+            border-top-right-radius: @medium-editor-border-radius;
+            padding-right: 24px
+        }
+
+        .medium-editor-button-active {
+            background-color: var(--cq-medium-editor-bg-color);;
+            color: var(--cq-medium-editor-fg-color-hover);
+        }
+    }
+}
+.medium-editor-toolbar{
+    box-shadow: var(--cq-shadow-btn);
+    color:var(--cq-medium-editor-fg-color);
+    li button{
+        color:var(--cq-medium-editor-fg-color);
+        &:hover{
+            color:var(--cq-medium-editor-fg-color-hover);
+        }
+    }
+}
+
+.medium-editor-toolbar-form {
+    background: var(--cq-medium-editor-bg-color);
+    border-radius: @medium-editor-border-radius;
+    color: var(--cq-medium-editor-fg-color);
+    overflow: hidden;
+
+    .medium-editor-toolbar-input {
+        background: var(--cq-medium-editor-bg-color);
+        box-sizing: border-box;
+        color: var(--cq-medium-editor-fg-color);
+        height: @medium-editor-button-size;
+        padding-left: 16px;
+        width: 220px;
+        &::placeholder{
+            color: @medium-editor-placeholder-color;
+        }
+    }
+    a {
+        color: var(--cq-medium-editor-fg-color);
+        transform: translateY(2px);
+    }
+    .medium-editor-toolbar-close {
+      margin-right: 16px;
+    }
+}
+
+.medium-editor-toolbar-anchor-preview {
+    background: var(--cq-medium-editor-bg-color);
+    border-radius: var(--cq-box-border-radius);
+    padding: 5px 12px;
+    box-shadow: var(--cq-shadow-btn) !important;
+}
+.medium-editor-anchor-preview {
+    a {
+        color: var(--cq-medium-editor-fg-color);
+        text-decoration: none;
+        font-size: 11px;
+        line-height: 1;
+        font-family: monospace;
+        margin: 5px !important;
+    }
+}
+
+
+
+.medium-editor-toolbar-actions {
+  li, button {
+    border-radius: @medium-editor-border-radius;
+  }
+}
+
+

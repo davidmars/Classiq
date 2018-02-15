@@ -1,0 +1,90 @@
+//si le block picker est seul dans la liste on ne peut pas le supprimer
+[cq-blocks]{
+  >[cq-block-picker]{
+    &:only-child{
+      .close{
+        display: none;
+      }
+    }
+  }
+}
+
+[context-menu-size='small']{
+  [cq-block-picker]{
+    --main-padding:15px;
+    --paddings:5px;
+  }
+}
+
+
+[cq-block-picker]{
+  --main-padding:15px;
+  --paddings:15px;
+
+  margin: var(--paddings) auto;
+  max-width: 900px;
+  position: relative;
+  border-radius: var(--cq-box-border-radius);
+  box-shadow: var(--cq-shadow-bars);;
+  padding: var(--main-padding);
+  background: var(--cq-color-bg-radial-2);
+  color:var(--cq-color-txt);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .close{
+    cursor: pointer;
+    color: var(--cq-color-txt);
+    position: absolute;
+    right: 15px;
+    top:15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    transition: all 0.2s;
+    &:hover{
+      color: var(--cq-color-bg);
+      background-color: var(--cq-color-txt);
+      box-shadow: var(--cq-shadow-btn-hover);
+    }
+  }
+
+  .message{
+    text-align: center;
+    padding: 0 var(--paddings);
+  }
+  .buttons-container,.message{
+    margin-top: var(--paddings);
+    margin-bottom: var(--paddings);
+    min-width: 100px;
+  }
+
+  .buttons-container{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+
+    >[cq-ico-txt]{
+      &:hover{
+        svg{
+          color:#fff;
+          background-color: var(--cq-color-selected);
+        }
+      }
+    }
+
+
+
+
+
+  }
+
+
+
+
+}

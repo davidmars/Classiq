@@ -1,0 +1,3 @@
+<div cq-progress-bar progress="0" min="0" max="100">
+    <div class="bar"></div>
+</div>

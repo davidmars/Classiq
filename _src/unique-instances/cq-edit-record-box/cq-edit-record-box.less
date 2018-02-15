@@ -1,0 +1,36 @@
+#the-cq-record-editor{
+
+  position: fixed;
+  left: calc(var(--cq-big-menu-width) + var(--cq-big-menu-extension-width) );
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: var(--cq-color-bg);
+  box-shadow: var(--cq-shadow-pops);
+
+  display: none;
+  &.open{
+    display: block;
+  }
+
+  [cq-toolbar]{
+    z-index: 10;
+    position: absolute;
+    width: 100%;
+  }
+
+  main{
+    position: absolute;
+    z-index: 9;
+    left: 1px;
+    right:  1px;
+    top: var(--cq-toolbar-height);
+    bottom: 1px;
+    background-color: var(--cq-color-bg-alt);
+    >.target{
+      margin: 15px auto;
+      max-width: 800px;
+    }
+  }
+
+}

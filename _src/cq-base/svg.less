@@ -1,0 +1,19 @@
+svg{
+  &.svg{
+    //outline: 1px dotted red;
+    fill: currentcolor;
+    line-height: 0;
+    width:20px;
+    height:20px;
+
+    [STROKE*='#'],[stroke*='#']{
+      stroke: currentcolor !important;
+    }
+    [FILL*='#'],[fill*='#']{
+      fill: currentcolor !important;;
+    }
+    *{
+      vector-effect:non-scaling-stroke;
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{{! list-horizontal = true|false }}
+{{! context-menu-size = empty|normal|small|big définit la taille des boutons contextuels}}
+<div cq-sortable list-horizontal="false" context-menu-size="normal">
+
+</div>

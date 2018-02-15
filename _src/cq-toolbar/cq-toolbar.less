@@ -1,0 +1,16 @@
+[cq-toolbar]{
+  height:var(--cq-toolbar-height);
+  display: flex;
+  box-shadow: var(--cq-shadow-bars);
+  padding: 15px;
+  align-items: center;
+  justify-content: space-between;
+  //justify-content: flex-start;
+  :only-child{
+    margin-left: auto; //aligne à droite
+  }
+  >*,>div>a{
+    display: inline-flex;
+    justify-content: center;
+  }
+}

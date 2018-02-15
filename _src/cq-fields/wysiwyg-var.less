@@ -1,0 +1,40 @@
+/**
+Les champs wysiwyg
+ */
+
+[wysiwyg-var]{
+  &[wysiwyg-data-type='string'] {
+    &[contenteditable='true']{
+      pointer-events: auto;
+      cursor: text;
+      &:hover{
+        outline:1px solid var(--cq-color-editable);
+      }
+      &[placeholder]:empty:before{
+        content: attr(placeholder);
+        opacity:0.2;
+      }
+    }
+
+
+  }
+
+  transition:opacity 0.2s;
+
+  //quand le champ a été modifié
+  &.wysiwyg-state-changed{
+    outline:1px solid #ffff00;
+  }
+  //quand le champ est en train d'être enregistré
+  &.wysiwyg-state-loading{
+    .cq-motion-blink;
+  }
+}
+
+.medium-editor-placeholder:after {
+  text-align: inherit;
+  width: 100%;
+  font-style: inherit !important;
+  opacity: 0.3;
+  color:inherit !important;
+}

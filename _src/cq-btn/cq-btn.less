@@ -1,0 +1,88 @@
+.cq-btn{
+
+  --icon-space:5px;
+  --icon-size:20px;
+  --height:40px;
+  --padding:0 30px;
+  --font-size:14px;
+
+  font-size: var(--font-size);
+
+  line-height: var(--height);
+  min-height: var(--height);
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  overflow: visible;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  box-sizing: border-box;
+  padding: var(--padding);
+  margin: 0;
+  transition: all .2s ease-out;
+  border-radius: 500px;
+
+  cursor: pointer;
+  outline: none;
+
+  >svg.svg{
+    height: var(--icon-size);
+    width: var(--icon-size);
+    &:first-child{
+      margin-right: var(--icon-space);
+    }
+    &:last-child{
+      margin-left: var(--icon-space);
+    }
+    &:only-child{
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  &.circle{
+    --circle-size:50px;
+    justify-content: center;
+    width: var(--circle-size);
+    height: var(--circle-size);
+    border-radius: 100%;
+    padding: 0;
+    position: relative;
+    >.svg{
+      margin-left: 0;
+      margin-right: 0;
+    }
+    >[cq-tip]{
+      position: absolute;
+      right:0;
+      width: 0;
+      height: 0;
+      top: 15px;
+    }
+  }
+
+  &.small{
+    --padding:1px 10px;
+    --height:24px;
+    --icon-size:15px;
+    --font-size:11px;
+    &.circle{
+      --circle-size:30px;
+    }
+  }
+
+  box-shadow: var(--cq-shadow-btn);
+  &:hover{
+    box-shadow: var(--cq-shadow-btn-hover);
+    background-color: var(--cq-color-bg-2);
+  }
+
+
+}
+
+
+
+
+
