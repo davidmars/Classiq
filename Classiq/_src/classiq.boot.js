@@ -20,9 +20,6 @@ require("gsap/TweenMax");
 require("gsap/ScrollToPlugin");
 require("gsap/Draggable");
 window.PerfectScrollbar=require("perfect-scrollbar/dist/perfect-scrollbar.min");
-//import Draggable from "gsap/Draggable";
-//require("gsap/TextPlugin"); marche pas à la compilation :(
-require("../../vendor/davidmars/pov-2018/dist/pov-boot");
 Pov.onBodyReady(function(){
     window.pov.history.init();
     window.povSSE=new window.pov.PovSSE(
