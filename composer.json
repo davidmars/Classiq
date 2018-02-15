@@ -1,5 +1,5 @@
 {
-    "name":"davidmars/Classiq",
+    "name":"davidmars/classiq",
     "description": "Classiq est conçu pour créer des sites internet administrables en wysiwyg.",
     "type": "library",
     "minimum-stability": "dev",
