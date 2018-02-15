@@ -50,7 +50,7 @@ class Classiq
      * @return string Le chemin pour acceder aux assets
      */
     public static function assetsDir(){
-        return __DIR__."/../dist/";
+        return realpath(__DIR__."/../dist/");
     }
 
 
