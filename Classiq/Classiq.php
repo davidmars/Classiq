@@ -46,6 +46,13 @@ class Classiq
 
     }
 
+    /**
+     * @return string Le chemin pour acceder aux assets
+     */
+    public static function assetsDir(){
+        return __DIR__."/../dist/";
+    }
+
 
     /**
      * Charge un record à partir de son uid
