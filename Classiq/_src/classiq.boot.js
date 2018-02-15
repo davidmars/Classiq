@@ -1,10 +1,4 @@
-import CqEventsListener from "./CqEventsListener";
-require("gsap/TweenMax");
-require("gsap/ScrollToPlugin");
-require("gsap/Draggable");
-window.PerfectScrollbar=require("perfect-scrollbar/dist/perfect-scrollbar.min");
-//import Draggable from "gsap/Draggable";
-//require("gsap/TextPlugin"); marche pas à la compilation :(
+
 /**
  * Ce fichier est à inclure dans votre front.
  *
@@ -21,7 +15,14 @@ window.PerfectScrollbar=require("perfect-scrollbar/dist/perfect-scrollbar.min");
  * - SSE : si l'utilisateur fait un login rechergera la page.
  * - SSE : fait un console.log si on reçoit un EVENTS.SSE_DEBUG_LOG.
  */
-require("pov-2018/dist/pov-boot");
+import CqEventsListener from "./CqEventsListener";
+require("gsap/TweenMax");
+require("gsap/ScrollToPlugin");
+require("gsap/Draggable");
+window.PerfectScrollbar=require("perfect-scrollbar/dist/perfect-scrollbar.min");
+//import Draggable from "gsap/Draggable";
+//require("gsap/TextPlugin"); marche pas à la compilation :(
+require("./../../vendor/davidmars/pov-2018/dist/pov-boot");
 Pov.onBodyReady(function(){
     window.pov.history.init();
     window.povSSE=new window.pov.PovSSE(
