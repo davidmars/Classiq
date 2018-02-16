@@ -28,18 +28,17 @@ export default class DisplayObject extends EventEmitter{
             getClassName = obj => obj.constructor.toString().match(regex)[1];
             return getClassName(obj);
         };
-
-        let className=getClassName(this);
-
-        /**
-         * Pour un composant "MonComposantToto" sera "mon-composant-toto"
-         */
-        this.ATTR=kebabCase(className);
         /**
          * Nom de la classe utilisée
          * @type {string}
          */
-        this.CLASS_NAME=this.constructor.name;
+        this.CLASS_NAME=getClassName(this);
+
+        /**
+         * Pour un composant "MonComposantToto" sera "mon-composant-toto"
+         */
+        this.ATTR=kebabCase(this.CLASS_NAME);
+
 
         if($main!==undefined && $main.length<1){
             console.error("$main DisplayObject introuvable "+this.CLASS_NAME+" / "+this.ATTR,$main);
@@ -47,10 +46,8 @@ export default class DisplayObject extends EventEmitter{
         }
         DisplayObject.allInstances.push(this);
 
-
-
         if(this.$main.data(this.CLASS_NAME)){
-            console.error(this.CLASS_NAME+" déjà construit!",$main);
+            console.error(this.CLASS_NAME+" déjà construit!!!",$main);
             return this.$main.data(this.CLASS_NAME);
         }
 

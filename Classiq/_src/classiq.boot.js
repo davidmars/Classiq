@@ -2,13 +2,13 @@
 /**
  * Ce fichier est à inclure dans votre front.
  *
- * - JQuery est installé (via pov-2018)
+ * Il ajoute les librairies suivantes au projet...
  * - GSAP TweenMax est installé
  * - GSAP ScrollToPlugin est installé
  * - GSAP Draggable est installé
  * - perfect-scrollbar est installé
  *
- * Une fois inclus, ce script fait les choses suivantes :
+ * Ce script fait les choses suivantes :
  * - initialise la navigation ajax de pov-2018
  * - initialise les cqEventsListener (qui permettent de faire fonctionner les attributs cq-on="monAction()"
  * - initialise un listener window.povSSE
