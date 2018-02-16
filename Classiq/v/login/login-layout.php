@@ -3,8 +3,8 @@
 use Classiq\Models\User;
 
 $view->inside("layout/html5bp",the()->htmlLayout());
-the()->htmlLayout()->addCssToHeader(\Classiq\Classiq::assetsDir()."/login.css");
-the()->htmlLayout()->addJsToFooter(\Classiq\Classiq::assetsDir()."/login.js");
+the()->htmlLayout()->addCssToHeader("vendor/davidmars/pov-2018/dist/dev-ui.css");
+the()->htmlLayout()->addJsToFooter("vendor/davidmars/pov-2018/dist/dev-ui.js");
 
 ?>
 <div class="uk-text-small uk-text-right uk-text-muted uk-padding-small">
