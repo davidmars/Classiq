@@ -33,6 +33,7 @@ export default class DisplayObject extends EventEmitter{
          * @type {string}
          */
         this.CLASS_NAME=getClassName(this);
+        this.CLASS_NAME=this.constructor.name;//todo important ne fonctionne pas sur ie mais la methode precedente buggue partout.
 
         /**
          * Pour un composant "MonComposantToto" sera "mon-composant-toto"
