@@ -82,19 +82,24 @@ class ClassiqUtils extends AbstractSingleton
     }
 
     /**
-     * Renvoie tout ce qui est utile pour le Wysiwyg.
-     * A utiliser une seule fois dans le layout
-     * Si l'utilisateur n'est pas connecté, ne renverra rien
+     * Renvoie tout ce qui est utile pour faire marcher Classiq:
+     * A utiliser une seule fois dans le layout (non ajax)
+     * intègre :
+     * - pov-boot.js (donc jquery)
+     * - si connecté en wysiwyg intègre les js et css du wysiwyg
+     * - fait passer les variables json (accessibles en js via window.pov.history.currentPageInfo ou window.LayoutVars)
+     *
      * @return String Tout le code html, svg etc nécessaire
      */
     public function _layoutStuff()
     {
         $r="";
         the()->htmlLayout()->layoutVars->isModeDev=$this->isModeDev();
-        //the()->htmlLayout()->addImportToHeader("Classiq/comp/cq-design.html");
-        //the()->htmlLayout()->addImportToHeader("polymer-20-test/build/es5-bundled/index.html");
-        //the()->htmlLayout()->addJsToHeader("bower_components/webcomponentsjs/webcomponents-hi.js");
+        //pov-fmk + jquery
+        the()->htmlLayout()->addJsToFooter("vendor/davidmars/pov-2018/dist/pov-boot.js",true);
         if($this->wysiwyg()){
+            the()->htmlLayout()->addJsToFooter(\Classiq\Classiq::assetsDir()."/wysiwyg.js");
+            the()->htmlLayout()->addCssToHeader(\Classiq\Classiq::assetsDir()."/wysiwyg.css");
             $r=View::get("unique-instances/layout-stuff")->render();
         }
         return $r;
