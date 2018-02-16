@@ -20,6 +20,7 @@ require("gsap/TweenMax");
 require("gsap/ScrollToPlugin");
 require("gsap/Draggable");
 window.PerfectScrollbar=require("perfect-scrollbar/dist/perfect-scrollbar.min");
+require("perfect-scrollbar/css/perfect-scrollbar.css");
 
 Pov.onBodyReady(function(){
     //TweenMax config
