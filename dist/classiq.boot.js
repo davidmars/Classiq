@@ -5011,11 +5011,15 @@ __webpack_require__(22);
 __webpack_require__(23);
 __webpack_require__(24);
 window.PerfectScrollbar=__webpack_require__(25);
+
 Pov.onBodyReady(function(){
+    //TweenMax config
+    CSSPlugin.defaultTransformPerspective = 800;
+    //initialise les liens ajax
     window.pov.history.init();
-    window.povSSE=new window.pov.PovSSE(
-        window.pov.api.listenSSE()
-    );
+    //écoute le serveur
+    window.povSSE=new window.pov.PovSSE(window.pov.api.listenSSE());
+    //qd user login recharge
     window.povSSE.on(EVENTS.SSE_USER_LOGIN,function(e){
         window.povSSE.close();
         document.location.reload(true);
@@ -5023,11 +5027,9 @@ Pov.onBodyReady(function(){
     window.povSSE.on(EVENTS.SSE_DEBUG_LOG,function(e){
         console.log(EVENTS.SSE_DEBUG_LOG,e);
     });
-
     //initialise les events cq-on-etc="action()"
     window.cqEventsListener=new __WEBPACK_IMPORTED_MODULE_0__CqEventsListener__["a" /* default */]();
     window.cqEventsListener.addObject(window);
-
 });
 
 /***/ }),
