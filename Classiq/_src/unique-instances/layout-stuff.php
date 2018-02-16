@@ -2,7 +2,7 @@
     var CqLayer = document.registerElement('cq-layer');
     //document.body.appendChild(new CqLayer());
 </script>
-<cq-layer id="the-cq-layer" class="cq-vars-th-white cq-css">
+<cq-layer id="the-cq-layer" class="cq-vars-th-white cq-css" history-hrefs>
     <?=$view->render("./cq-big-menu/cq-big-menu")?>
     <?=$view->render("./cq-context-menu/cq-context-menu")?>
     <?=$view->render("./cq-notifier/wysiwyg-notifier")?>
