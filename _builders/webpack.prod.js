@@ -4,17 +4,8 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const common = require('../webpack.common.js');
 var build="prod";
 
-//todo important copier les fichiers php des _src
-
-
-
-
-
-
-
 module.exports = merge(common, {
-    //devtool: 'source-map',
-
+    devtool: 'source-map',
     plugins: [
         new UglifyJSPlugin({sourceMap: true}),
         new webpack.DefinePlugin({
@@ -22,7 +13,6 @@ module.exports = merge(common, {
             PRODUCTION: JSON.stringify(true)
         })
    ],
-
     module:{
         rules:[
             {
@@ -34,5 +24,4 @@ module.exports = merge(common, {
             }
         ]
     }
-
 });

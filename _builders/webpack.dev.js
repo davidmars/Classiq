@@ -3,10 +3,10 @@ const merge = require('webpack-merge');
 
 const common = require('../webpack.common.js');
     module.exports = merge(common, {
-       devtool: 'inline-source-map',
-       devServer: {
+        devtool: 'source-map',
+        devServer: {
          contentBase: './dist'
-       },
+        },
         plugins: [
             new webpack.DefinePlugin({
                 NODE_ENV: JSON.stringify('developpement'),

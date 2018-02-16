@@ -4,14 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-prod": "webpack --config _builders/webpack.prod.js",
-    "build-prod-stats": "webpack --config _builders/webpack.prod.js --json > _builders/stats-prod.json",
-    "build-dev": "webpack --config _builders/webpack.dev.js",
-    "build-dev-stats": "webpack --config _builders/webpack.dev.js --json > _builders/stats-dev.json",
-    "watch-prod": "webpack --watch --config _builders/webpack.prod.js",
-    "watch-dev": "webpack --watch --config _builders/webpack.dev.js",
-    "build-svg-icons": "grunt --base ./ --gruntfile ./_builders/GruntSvgCollections.js svg",
-    "composer-update": "composer update"
+    "build-cq-prod": "webpack --config _builders/webpack.prod.js",
+    "build-cq-prod-stats": "webpack --config _builders/webpack.prod.js --json > _builders/stats-prod.json",
+    "build-cq-dev": "webpack --config _builders/webpack.dev.js",
+    "build-cq-dev-stats": "webpack --config _builders/webpack.dev.js --json > _builders/stats-dev.json",
+    "watch-cq-prod": "webpack --watch --config _builders/webpack.prod.js",
+    "watch-cq-dev": "webpack --watch --config _builders/webpack.dev.js",
+    "build-cq-svg-icons": "grunt --base ./ --gruntfile ./_builders/GruntSvgCollections.js svg",
+    "composer-cq-update": "composer update"
   },
   "keywords": [],
   "author": "",
