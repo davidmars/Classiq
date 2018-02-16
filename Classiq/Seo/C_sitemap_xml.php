@@ -6,7 +6,7 @@ use Classiq\Seo\SitemapXmlUrlset;
 use Pov\MVC\Controller;
 use Pov\MVC\View;
 
-View::$possiblesPath[]="Classiq/Seo/v";
+View::$possiblesPath[]=__DIR__."/v";
 
 /**
  *
