@@ -75,6 +75,22 @@ class C_classiq extends C_default {
     }
 
     /**
+     * Retourne l'url d'une page à partir de son type et de son nom
+     * @param string $type
+     * @param string $name
+     * @return mixed
+     * @throws PovException erreur si la page n'est pas trouvée
+     */
+    public static function pageByName_url($type, $name){
+        /** @var Page $p */
+        $p=db()->findOne(strtolower($type),"name='$name'");
+        if($p){
+          return $p->box()->href();
+        }else{
+            throw (new PovException("Pas de page $type ayant pour nom '$name'"));
+        }
+    }
+    /**
      * Page issue de la db ou page d'erreur 404 si on trouve rien
      * @param Urlpage $urlpage
      * @return \Pov\MVC\ControllerUrl|string|null
