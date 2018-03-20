@@ -795,7 +795,7 @@ class Wysiwyg{
             //initialise des composants wysiwyg au besoin
             __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */].__fromDom(__WEBPACK_IMPORTED_MODULE_5__cq_blocks_CqBlocks__["a" /* default */],"cq-blocks");
             __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */].__fromDom(__WEBPACK_IMPORTED_MODULE_6__cq_fields_WysiwygImage__["a" /* default */],"wysiwyg-image");
-            __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */].__fromDom(__WEBPACK_IMPORTED_MODULE_7__cq_fields_cq_field_rich_text_CqFieldRichText__["a" /* default */],"wysiwyg-rich-text");
+            __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */].__fromDom(__WEBPACK_IMPORTED_MODULE_7__cq_fields_cq_field_rich_text_CqFieldRichText__["a" /* default */],"cq-field-rich-text");
             __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */].__fromDom(__WEBPACK_IMPORTED_MODULE_9__cq_sortable_CqSortable__["a" /* default */],"cq-sortable");
             __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */].__fromDom(__WEBPACK_IMPORTED_MODULE_10__cq_field_records_CqFieldRecords__["a" /* default */],"cq-field-records");
 

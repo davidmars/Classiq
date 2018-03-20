@@ -89,7 +89,7 @@ export default class Wysiwyg{
             //initialise des composants wysiwyg au besoin
             DisplayObject.__fromDom(CqBlocks,"cq-blocks");
             DisplayObject.__fromDom(WysiwygImage,"wysiwyg-image");
-            DisplayObject.__fromDom(WysiwygRichText,"wysiwyg-rich-text");
+            DisplayObject.__fromDom(WysiwygRichText,"cq-field-rich-text");
             DisplayObject.__fromDom(CqSortable,"cq-sortable");
             DisplayObject.__fromDom(CqFieldRecords,"cq-field-records");
 
