@@ -2,6 +2,7 @@
 
 namespace Classiq\Models;
 
+use Classiq\Classiq;
 use Pov\PovException;
 use RedBeanPHP\SimpleModel;
 
@@ -150,6 +151,7 @@ class Urlpage extends Classiqmodel
 
             case 0:
                 //pas trouvé...
+                pov()->events->dispatch("EVENT_ERROR_MISSING_HOME_PAGE");
                 throw new PovException("Pas de home page url trouvé et pas d'url vide qui pourrait aller");
             default:
                 //gros bobo
