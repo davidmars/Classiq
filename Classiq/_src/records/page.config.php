@@ -72,7 +72,7 @@ use Classiq\Seo\SEO_FRENCH;
 
     <fieldset cq-display-if="seo">
     <label><?=SEO_FRENCH::CHANGE_FREQ_LABEL?> (seo)</label>
-    <?=$vv->urlpage->wysiwyg()->field("seo_priority")
+    <?=$vv->urlpage->wysiwyg()->field("seo_change_frequency")
         ->string()
         ->select(SEO_FRENCH::CHANGE_FREQ_ALL)
         //->setAttribute("list","seo_prority_labels")
