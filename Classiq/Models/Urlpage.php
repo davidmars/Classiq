@@ -77,15 +77,19 @@ class Urlpage extends Classiqmodel
 
     /**
      * Retourne la page relative
+     * @param bool $exception si défini sur false ne renverra pas d'erreur
      * @return null|Page
      */
-    public function getPage(){
+    public function getPage($exception=true){
         $bean=null;
         if($this->bean->related_type && $this->bean->related_id){
             $bean = db()->findOne($this->related_type,"id = '".$this->bean->related_id."'");
         }
-        if(!$bean){
+        if(!$bean && $exception){
             throw new PovException("UrlPage sans Page ".pov()->debug->dump($this->bean));
+        }
+        if(!$bean){
+            return null;
         }
         return $bean;
 

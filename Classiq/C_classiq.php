@@ -175,7 +175,7 @@ class C_classiq extends C_default {
     }
 
     /**
-     * Lien pour éditer un rpofil utilisateur
+     * Lien pour éditer un profil utilisateur
      * @param null|User $user L'utilisateur qu'on souhaite éditer
      * @return \Pov\MVC\ControllerUrl|string
      */
