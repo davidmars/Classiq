@@ -44,8 +44,7 @@ class C_classiq extends C_default {
       "^v/(.*)$"=>"classiq/quickView/($1)", // le ($1) dit que les slashes à l'intérieur de la parenthèse sont préservés (toto/titi) ne donnera pas deux arguments mais un seul
       "^permalink-uid/([A-Za-z]+)-([0-9]+)$"=>"classiq/permalinkUid/$1/$2", //
       "^.*\.p([0-9]+)$"=>"classiq/pageId/$1", //   ce/que-tu_veux.p14 renverra vers la PageUrl@14
-      "^(.*)$"=>"classiq/page",
-       // "^(.*)$"=>"classiq/err404",
+      "^(.*)$"=>"classiq/page" //qui renverra une 404 au besoin
 
     ];
 
@@ -72,8 +71,6 @@ class C_classiq extends C_default {
             return $u->getPage()->views()->page();
         }else{
             return $this->err404_run();
-            the()->headerOutput->set404("page introuvable");
-            return new View("404","\Classiq\C_classiq::page_run impossible de trouver une url");
         }
     }
 
