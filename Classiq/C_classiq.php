@@ -10,6 +10,7 @@ use Classiq\Seo\SEO;
 use Pov\Defaults\C_default;
 use Pov\MVC\View;
 use Pov\PovException;
+use Pov\System\ApiResponse;
 
 /**
  * Les contrôleurs utilisés par le système classiq
@@ -44,6 +45,7 @@ class C_classiq extends C_default {
       "^permalink-uid/([A-Za-z]+)-([0-9]+)$"=>"classiq/permalinkUid/$1/$2", //
       "^.*\.p([0-9]+)$"=>"classiq/pageId/$1", //   ce/que-tu_veux.p14 renverra vers la PageUrl@14
       "^(.*)$"=>"classiq/page",
+        "^(.*)$"=>"classiq/err404",
 
     ];
 
@@ -123,6 +125,26 @@ class C_classiq extends C_default {
             }
         }
         return null;
+    }
+    /**
+     * La page d'erreur 404
+     * @return View
+     */
+    public function err404_run($message="La page n'existe pas"){
+        if(the()->requestUrl->isAjax){
+            $v=View::get("404",[]);
+            //renvoie un json qui sera utilisé par PovHistory.js
+            $obj=new ApiResponse();
+            $obj->addToJson("meta",the()->htmlLayout()->meta);
+            $obj->addToJson("pageInfo",the()->htmlLayout()->pageInfo);
+            $obj->html=$v->render();
+            $v->inside("json",$obj);
+            return View::get("json",$obj,true);
+        }else{
+            the()->headerOutput->set404($message);
+        }
+
+        return new View("404",$message);
     }
 
     /**
