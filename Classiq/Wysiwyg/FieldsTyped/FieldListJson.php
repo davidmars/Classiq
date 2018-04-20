@@ -126,7 +126,7 @@ class FieldListJson extends FieldTyped
      * @return $this
      */
     public function onlyImages(){
-        $this->options["onlyIages"]="true";
+        $this->options["onlyImages"]="true";
         return $this;
     }
 
