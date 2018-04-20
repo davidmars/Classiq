@@ -363,6 +363,11 @@ export default class CqBlocks extends CqSortable{
                         .then(
                             function(){
                                 console.log("4/ refresh après upload ok");
+                                //rafraichit les wysiwyg-on-saved-action-selector :\
+                                let $toRefresh=block.$main.closest('[wysiwyg-on-saved-action="refresh"][wysiwyg-on-saved-action-selector]');
+                                if($toRefresh.length){
+                                    $toRefresh.evalHere($toRefresh.attr("wysiwyg-on-saved-action-selector")).povRefresh();
+                                }
                             }
                         )
                 });
