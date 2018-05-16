@@ -117,10 +117,14 @@ class C_classiq extends C_default {
         $urlpage=db()->load("urlpage",$urlpageId);
         if($urlpage){
             /** @var Page $page */
-            $page=$urlpage->getPage();
+            $page=$urlpage->getPage(false);
             if($page){
                 return $page->views()->page();
+            }else{
+                return $this->err404_run();
             }
+        }else{
+            return $this->err404_run();
         }
         return null;
     }
