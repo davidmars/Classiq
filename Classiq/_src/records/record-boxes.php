@@ -25,10 +25,25 @@ $classesHierarchy=array_reverse($classesHierarchy);
 
     <?foreach ($classesHierarchy as $modelClassName):?>
         <?php
+        $boxBefore=$vv->views()->configByClass($modelClassName.".before");
+        ?>
+        <?if($boxBefore):?>
+            <?=$boxBefore->render()?>
+        <?endif;?>
+
+        <?php
             $box=$vv->views()->configByClass($modelClassName);
         ?>
         <?if($box):?>
             <?=$box->render()?>
         <?endif;?>
+
+        <?php
+        $boxAfter=$vv->views()->configByClass($modelClassName.".after");
+        ?>
+        <?if($boxAfter):?>
+            <?=$boxAfter->render()?>
+        <?endif;?>
+
     <?endforeach;?>
 </div>    
