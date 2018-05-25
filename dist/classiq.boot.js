@@ -69,8 +69,8 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * VERSION: 1.20.4
- * DATE: 2018-02-15
+ * VERSION: 1.20.5
+ * DATE: 2018-05-21
  * UPDATES AND DOCS AT: http://greensock.com
  *
  * @license Copyright (c) 2008-2018, GreenSock. All rights reserved.
@@ -86,7 +86,7 @@
 			_doc = window.document,
 			_globals = window.GreenSockGlobals = window.GreenSockGlobals || window;
 		if (_globals.TweenLite) {
-			return; //in case the core set of classes is already loaded, don't instantiate twice.
+			return _globals.TweenLite; //in case the core set of classes is already loaded, don't instantiate twice.
 		}
 		var _namespace = function(ns) {
 				var a = ns.split("."),
@@ -857,7 +857,7 @@
 			var prevTween, st;
 			child._startTime = Number(position || 0) + child._delay;
 			if (child._paused) if (this !== child._timeline) { //we only adjust the _pauseTime if it wasn't in this timeline already. Remember, sometimes a tween will be inserted again into the same timeline when its startTime is changed so that the tweens in the TimelineLite/Max are re-ordered properly in the linked list (so everything renders in the proper order).
-				child._pauseTime = child._startTime + ((this.rawTime() - child._startTime) / child._timeScale);
+				child._pauseTime = this.rawTime() - (child._timeline.rawTime() - child._pauseTime);
 			}
 			if (child.timeline) {
 				child.timeline._remove(child, true); //removes from existing timeline so that it can be properly added to this one.
@@ -1029,7 +1029,7 @@
 		p._firstPT = p._targets = p._overwrittenProps = p._startAt = null;
 		p._notifyPluginsOfEnabled = p._lazy = false;
 
-		TweenLite.version = "1.20.4";
+		TweenLite.version = "1.20.5";
 		TweenLite.defaultEase = p._ease = new Ease(null, null, 1, 1);
 		TweenLite.defaultOverwrite = "auto";
 		TweenLite.ticker = _ticker;
@@ -1044,7 +1044,10 @@
 				TweenLite.selector = selector;
 				return selector(e);
 			}
-			return (typeof(_doc) === "undefined") ? e : (_doc.querySelectorAll ? _doc.querySelectorAll(e) : _doc.getElementById((e.charAt(0) === "#") ? e.substr(1) : e));
+			if (!_doc) { //in some dev environments (like Angular 6), GSAP gets loaded before the document is defined! So re-query it here if/when necessary.
+				_doc = window.document;
+			}
+			return (!_doc) ? e : (_doc.querySelectorAll ? _doc.querySelectorAll(e) : _doc.getElementById((e.charAt(0) === "#") ? e.substr(1) : e));
 		};
 
 		var _lazyTweens = [],
@@ -1059,7 +1062,7 @@
 				while (pt) {
 					val = !pt.blob ? pt.c * v + pt.s : (v === 1 && this.end != null) ? this.end : v ? this.join("") : this.start;
 					if (pt.m) {
-						val = pt.m(val, this._target || pt.t);
+						val = pt.m.call(this._tween, val, this._target || pt.t, this._tween);
 					} else if (val < min) if (val > -min && !pt.blob) { //prevents issues with converting very small numbers to strings in the browser
 						val = 0;
 					}
@@ -1358,7 +1361,7 @@
 				startVars.onUpdate = v.onUpdate;
 				startVars.onUpdateParams = v.onUpdateParams;
 				startVars.onUpdateScope = v.onUpdateScope || v.callbackScope || this;
-				this._startAt = TweenLite.to(this.target, 0, startVars);
+				this._startAt = TweenLite.to(this.target || {}, 0, startVars);
 				if (immediate) {
 					if (this._time > 0) {
 						this._startAt = null; //tweens that render immediately (like most from() and fromTo() tweens) shouldn't revert when their parent timeline's playhead goes backward past the startTime because the initial render could have happened anytime and it shouldn't be directly correlated to this tween's startTime. Imagine setting up a complex animation where the beginning states of various objects are rendered immediately but the tween doesn't happen for quite some time - if we revert to the starting values as soon as the playhead goes backward past the tween's startTime, it will throw things off visually. Reversion should only happen in TimelineLite/Max instances where immediateRender was false (which is the default in the convenience methods like from()).
@@ -2049,8 +2052,8 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * VERSION: 1.20.4
- * DATE: 2018-02-15
+ * VERSION: 1.20.5
+ * DATE: 2018-05-21
  * UPDATES AND DOCS AT: http://greensock.com
  *
  * @license Copyright (c) 2008-2018, GreenSock. All rights reserved.
@@ -2081,7 +2084,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 			p = CSSPlugin.prototype = new TweenPlugin("css");
 
 		p.constructor = CSSPlugin;
-		CSSPlugin.version = "1.20.4";
+		CSSPlugin.version = "1.20.5";
 		CSSPlugin.API = 2;
 		CSSPlugin.defaultTransformPerspective = 0;
 		CSSPlugin.defaultSkewType = "compensated";
@@ -2176,7 +2179,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				return null;
 			},
 
-			_getComputedStyle = _doc.defaultView ? _doc.defaultView.getComputedStyle : function() {},
+			_getComputedStyle = (typeof(window) !== "undefined" ? window : _doc.defaultView || {getComputedStyle:function() {}}).getComputedStyle,
 
 			/**
 			 * @private Returns the css style for a particular property of an element. For example, to get whatever the current "left" css value for an element with an ID of "myElement", you could do:
@@ -2728,7 +2731,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				while (mpt) {
 					val = proxy[mpt.v];
 					if (mpt.r) {
-						val = Math.round(val);
+						val = mpt.r(val);
 					} else if (val < min && val > -min) {
 						val = 0;
 					}
@@ -2736,7 +2739,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 					mpt = mpt._next;
 				}
 				if (d.autoRotate) {
-					d.autoRotate.rotation = d.mod ? d.mod(proxy.rotation, this.t) : proxy.rotation; //special case for ModifyPlugin to hook into an auto-rotating bezier
+					d.autoRotate.rotation = d.mod ? d.mod.call(this._tween, proxy.rotation, this.t, this._tween) : proxy.rotation; //special case for ModifyPlugin to hook into an auto-rotating bezier
 				}
 				//at the end, we must set the CSSPropTween's "e" (end) value dynamically here because that's what is used in the final setRatio() method. Same for "b" at the beginning.
 				if (v === 1 || v === 0) {
@@ -2871,7 +2874,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				if (!(t instanceof CSSPropTween)) {
 					_overwriteProps.push(this.n);
 				}
-				this.r = r; //round (boolean)
+				this.r = !r ? r : (typeof(r) === "function") ? r : Math.round; //round (boolean)
 				this.type = type || 0; //0 = normal tween, -1 = non-tweening (in which case xs0 will be applied to the target's property, like tp.t[tp.p] = tp.xs0), 1 = complex-value SpecialProp, 2 = custom setRatio() that does all the work
 				if (pr) {
 					this.pr = pr;
@@ -2949,11 +2952,11 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				_colorExp.lastIndex = 0;
 				for (i = 0; i < l; i++) {
 					bv = ba[i];
-					ev = ea[i];
+					ev = ea[i] + "";
 					bn = parseFloat(bv);
 					//if the value begins with a number (most common). It's fine if it has a suffix like px
 					if (bn || bn === 0) {
-						pt.appendXtra("", bn, _parseChange(ev, bn), ev.replace(_relNumExp, ""), (autoRound && ev.indexOf("px") !== -1), true);
+						pt.appendXtra("", bn, _parseChange(ev, bn), ev.replace(_relNumExp, ""), (autoRound && ev.indexOf("px") !== -1) ? Math.round : false, true);
 
 					//if the value is a color
 					} else if (clrs && _colorExp.test(bv)) {
@@ -2976,9 +2979,9 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 									.appendXtra("", bv[1], _parseChange(ev[1], bv[1]), "%,", false)
 									.appendXtra("", bv[2], _parseChange(ev[2], bv[2]), (hasAlpha ? "%," : "%" + str), false);
 							} else {
-								pt.appendXtra(temp.substr(0, temp.indexOf("rgb")) + (hasAlpha ? "rgba(" : "rgb("), bv[0], ev[0] - bv[0], ",", true, true)
-									.appendXtra("", bv[1], ev[1] - bv[1], ",", true)
-									.appendXtra("", bv[2], ev[2] - bv[2], (hasAlpha ? "," : str), true);
+								pt.appendXtra(temp.substr(0, temp.indexOf("rgb")) + (hasAlpha ? "rgba(" : "rgb("), bv[0], ev[0] - bv[0], ",", Math.round, true)
+									.appendXtra("", bv[1], ev[1] - bv[1], ",", Math.round)
+									.appendXtra("", bv[2], ev[2] - bv[2], (hasAlpha ? "," : str), Math.round);
 							}
 
 							if (hasAlpha) {
@@ -3006,7 +3009,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 							for (xi = 0; xi < bnums.length; xi++) {
 								cv = bnums[xi];
 								temp = bv.indexOf(cv, ni);
-								pt.appendXtra(bv.substr(ni, temp - ni), Number(cv), _parseChange(enums[xi], cv), "", (autoRound && bv.substr(temp + cv.length, 2) === "px"), (xi === 0));
+								pt.appendXtra(bv.substr(ni, temp - ni), Number(cv), _parseChange(enums[xi], cv), "", (autoRound && bv.substr(temp + cv.length, 2) === "px") ? Math.round : false, (xi === 0));
 								ni = temp + cv.length;
 							}
 							pt["xs" + pt.l] += bv.substr(ni);
@@ -3999,6 +4002,10 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				copy[_transformProp] = orig;
 				copy.display = "block"; //if display is "none", the browser often refuses to report the transform properties correctly.
 				copy.position = "absolute";
+				if (orig.indexOf("%") !== -1) { //%-based translations will fail unless we set the width/height to match the original target...
+					copy.width = _getStyle(t, "width");
+					copy.height = _getStyle(t, "height");
+				}
 				_doc.body.appendChild(_tempDiv);
 				m2 = _getTransform(_tempDiv, null, false);
 				if (m1.skewType === "simple") { //the default _getTransform() reports the skewX/scaleY as if skewType is "compensated", thus we need to adjust that here if skewType is "simple".
@@ -4235,7 +4242,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 		}, formatter:_parsePosition});
 		_registerComplexSpecialProp("backgroundSize", {defaultValue:"0 0", formatter:function(v) {
 			v += ""; //ensure it's a string
-			return _parsePosition(v.indexOf(" ") === -1 ? v + " " + v : v); //if set to something like "100% 100%", Safari typically reports the computed style as just "100%" (no 2nd value), but we should ensure that there are two values, so copy the first one. Otherwise, it'd be interpreted as "100% 0" (wrong).
+			return (v.substr(0,2) === "co") ? v : _parsePosition(v.indexOf(" ") === -1 ? v + " " + v : v); //if set to something like "100% 100%", Safari typically reports the computed style as just "100%" (no 2nd value), but we should ensure that there are two values, so copy the first one. Otherwise, it'd be interpreted as "100% 0" (wrong). Also remember that it could be "cover" or "contain" which we can't tween but should be able to set.
 		}});
 		_registerComplexSpecialProp("perspective", {defaultValue:"0px", prefix:true});
 		_registerComplexSpecialProp("perspectiveOrigin", {defaultValue:"50% 50%", prefix:true});
@@ -4688,7 +4695,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				while (pt) {
 					if (pt.type !== 2) {
 						if (pt.r && pt.type !== -1) {
-							val = Math.round(pt.s + pt.c);
+							val = pt.r(pt.s + pt.c);
 							if (!pt.type) {
 								pt.t[pt.p] = val + pt.xs0;
 							} else if (pt.type === 1) { //complex value (one that typically has multiple numbers inside a string, like "rect(5px,10px,20px,25px)"
@@ -4712,7 +4719,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				while (pt) {
 					val = pt.c * v + pt.s;
 					if (pt.r) {
-						val = Math.round(val);
+						val = pt.r(val);
 					} else if (val < min) if (val > -min) {
 						val = 0;
 					}
@@ -4815,8 +4822,8 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 		p._mod = function(lookup) {
 			var pt = this._firstPT;
 			while (pt) {
-				if (typeof(lookup[pt.p]) === "function" && lookup[pt.p] === Math.round) { //only gets called by RoundPropsPlugin (ModifyPlugin manages all the rendering internally for CSSPlugin properties that need modification). Remember, we handle rounding a bit differently in this plugin for performance reasons, leveraging "r" as an indicator that the value should be rounded internally..
-					pt.r = 1;
+				if (typeof(lookup[pt.p]) === "function") { //only gets called by RoundPropsPlugin (ModifyPlugin manages all the rendering internally for CSSPlugin properties that need modification). Remember, we handle rounding a bit differently in this plugin for performance reasons, leveraging "r" as an indicator that the value should be rounded internally.
+					pt.r = lookup[pt.p];
 				}
 				pt = pt._next;
 			}
@@ -5167,8 +5174,8 @@ class CqEventsListener{
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * VERSION: 1.20.4
- * DATE: 2018-02-15
+ * VERSION: 1.20.5
+ * DATE: 2018-05-21
  * UPDATES AND DOCS AT: http://greensock.com
  * 
  * Includes all of the following: TweenLite, TweenMax, TimelineLite, TimelineMax, EasePack, CSSPlugin, RoundPropsPlugin, BezierPlugin, AttrPlugin, DirectionalRotationPlugin
@@ -5220,7 +5227,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 			p = TweenMax.prototype = TweenLite.to({}, 0.1, {}),
 			_blankArray = [];
 
-		TweenMax.version = "1.20.4";
+		TweenMax.version = "1.20.5";
 		p.constructor = TweenMax;
 		p.kill()._gc = false;
 		TweenMax.killTweensOf = TweenMax.killDelayedCallsTo = TweenLite.killTweensOf;
@@ -7751,7 +7758,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 			p = CSSPlugin.prototype = new TweenPlugin("css");
 
 		p.constructor = CSSPlugin;
-		CSSPlugin.version = "1.20.4";
+		CSSPlugin.version = "1.20.5";
 		CSSPlugin.API = 2;
 		CSSPlugin.defaultTransformPerspective = 0;
 		CSSPlugin.defaultSkewType = "compensated";
@@ -7846,7 +7853,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				return null;
 			},
 
-			_getComputedStyle = _doc.defaultView ? _doc.defaultView.getComputedStyle : function() {},
+			_getComputedStyle = (typeof(window) !== "undefined" ? window : _doc.defaultView || {getComputedStyle:function() {}}).getComputedStyle,
 
 			/**
 			 * @private Returns the css style for a particular property of an element. For example, to get whatever the current "left" css value for an element with an ID of "myElement", you could do:
@@ -8398,7 +8405,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				while (mpt) {
 					val = proxy[mpt.v];
 					if (mpt.r) {
-						val = Math.round(val);
+						val = mpt.r(val);
 					} else if (val < min && val > -min) {
 						val = 0;
 					}
@@ -8406,7 +8413,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 					mpt = mpt._next;
 				}
 				if (d.autoRotate) {
-					d.autoRotate.rotation = d.mod ? d.mod(proxy.rotation, this.t) : proxy.rotation; //special case for ModifyPlugin to hook into an auto-rotating bezier
+					d.autoRotate.rotation = d.mod ? d.mod.call(this._tween, proxy.rotation, this.t, this._tween) : proxy.rotation; //special case for ModifyPlugin to hook into an auto-rotating bezier
 				}
 				//at the end, we must set the CSSPropTween's "e" (end) value dynamically here because that's what is used in the final setRatio() method. Same for "b" at the beginning.
 				if (v === 1 || v === 0) {
@@ -8541,7 +8548,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				if (!(t instanceof CSSPropTween)) {
 					_overwriteProps.push(this.n);
 				}
-				this.r = r; //round (boolean)
+				this.r = !r ? r : (typeof(r) === "function") ? r : Math.round; //round (boolean)
 				this.type = type || 0; //0 = normal tween, -1 = non-tweening (in which case xs0 will be applied to the target's property, like tp.t[tp.p] = tp.xs0), 1 = complex-value SpecialProp, 2 = custom setRatio() that does all the work
 				if (pr) {
 					this.pr = pr;
@@ -8619,11 +8626,11 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				_colorExp.lastIndex = 0;
 				for (i = 0; i < l; i++) {
 					bv = ba[i];
-					ev = ea[i];
+					ev = ea[i] + "";
 					bn = parseFloat(bv);
 					//if the value begins with a number (most common). It's fine if it has a suffix like px
 					if (bn || bn === 0) {
-						pt.appendXtra("", bn, _parseChange(ev, bn), ev.replace(_relNumExp, ""), (autoRound && ev.indexOf("px") !== -1), true);
+						pt.appendXtra("", bn, _parseChange(ev, bn), ev.replace(_relNumExp, ""), (autoRound && ev.indexOf("px") !== -1) ? Math.round : false, true);
 
 					//if the value is a color
 					} else if (clrs && _colorExp.test(bv)) {
@@ -8646,9 +8653,9 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 									.appendXtra("", bv[1], _parseChange(ev[1], bv[1]), "%,", false)
 									.appendXtra("", bv[2], _parseChange(ev[2], bv[2]), (hasAlpha ? "%," : "%" + str), false);
 							} else {
-								pt.appendXtra(temp.substr(0, temp.indexOf("rgb")) + (hasAlpha ? "rgba(" : "rgb("), bv[0], ev[0] - bv[0], ",", true, true)
-									.appendXtra("", bv[1], ev[1] - bv[1], ",", true)
-									.appendXtra("", bv[2], ev[2] - bv[2], (hasAlpha ? "," : str), true);
+								pt.appendXtra(temp.substr(0, temp.indexOf("rgb")) + (hasAlpha ? "rgba(" : "rgb("), bv[0], ev[0] - bv[0], ",", Math.round, true)
+									.appendXtra("", bv[1], ev[1] - bv[1], ",", Math.round)
+									.appendXtra("", bv[2], ev[2] - bv[2], (hasAlpha ? "," : str), Math.round);
 							}
 
 							if (hasAlpha) {
@@ -8676,7 +8683,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 							for (xi = 0; xi < bnums.length; xi++) {
 								cv = bnums[xi];
 								temp = bv.indexOf(cv, ni);
-								pt.appendXtra(bv.substr(ni, temp - ni), Number(cv), _parseChange(enums[xi], cv), "", (autoRound && bv.substr(temp + cv.length, 2) === "px"), (xi === 0));
+								pt.appendXtra(bv.substr(ni, temp - ni), Number(cv), _parseChange(enums[xi], cv), "", (autoRound && bv.substr(temp + cv.length, 2) === "px") ? Math.round : false, (xi === 0));
 								ni = temp + cv.length;
 							}
 							pt["xs" + pt.l] += bv.substr(ni);
@@ -9669,6 +9676,10 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				copy[_transformProp] = orig;
 				copy.display = "block"; //if display is "none", the browser often refuses to report the transform properties correctly.
 				copy.position = "absolute";
+				if (orig.indexOf("%") !== -1) { //%-based translations will fail unless we set the width/height to match the original target...
+					copy.width = _getStyle(t, "width");
+					copy.height = _getStyle(t, "height");
+				}
 				_doc.body.appendChild(_tempDiv);
 				m2 = _getTransform(_tempDiv, null, false);
 				if (m1.skewType === "simple") { //the default _getTransform() reports the skewX/scaleY as if skewType is "compensated", thus we need to adjust that here if skewType is "simple".
@@ -9905,7 +9916,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 		}, formatter:_parsePosition});
 		_registerComplexSpecialProp("backgroundSize", {defaultValue:"0 0", formatter:function(v) {
 			v += ""; //ensure it's a string
-			return _parsePosition(v.indexOf(" ") === -1 ? v + " " + v : v); //if set to something like "100% 100%", Safari typically reports the computed style as just "100%" (no 2nd value), but we should ensure that there are two values, so copy the first one. Otherwise, it'd be interpreted as "100% 0" (wrong).
+			return (v.substr(0,2) === "co") ? v : _parsePosition(v.indexOf(" ") === -1 ? v + " " + v : v); //if set to something like "100% 100%", Safari typically reports the computed style as just "100%" (no 2nd value), but we should ensure that there are two values, so copy the first one. Otherwise, it'd be interpreted as "100% 0" (wrong). Also remember that it could be "cover" or "contain" which we can't tween but should be able to set.
 		}});
 		_registerComplexSpecialProp("perspective", {defaultValue:"0px", prefix:true});
 		_registerComplexSpecialProp("perspectiveOrigin", {defaultValue:"50% 50%", prefix:true});
@@ -10358,7 +10369,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				while (pt) {
 					if (pt.type !== 2) {
 						if (pt.r && pt.type !== -1) {
-							val = Math.round(pt.s + pt.c);
+							val = pt.r(pt.s + pt.c);
 							if (!pt.type) {
 								pt.t[pt.p] = val + pt.xs0;
 							} else if (pt.type === 1) { //complex value (one that typically has multiple numbers inside a string, like "rect(5px,10px,20px,25px)"
@@ -10382,7 +10393,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				while (pt) {
 					val = pt.c * v + pt.s;
 					if (pt.r) {
-						val = Math.round(val);
+						val = pt.r(val);
 					} else if (val < min) if (val > -min) {
 						val = 0;
 					}
@@ -10485,8 +10496,8 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 		p._mod = function(lookup) {
 			var pt = this._firstPT;
 			while (pt) {
-				if (typeof(lookup[pt.p]) === "function" && lookup[pt.p] === Math.round) { //only gets called by RoundPropsPlugin (ModifyPlugin manages all the rendering internally for CSSPlugin properties that need modification). Remember, we handle rounding a bit differently in this plugin for performance reasons, leveraging "r" as an indicator that the value should be rounded internally..
-					pt.r = 1;
+				if (typeof(lookup[pt.p]) === "function") { //only gets called by RoundPropsPlugin (ModifyPlugin manages all the rendering internally for CSSPlugin properties that need modification). Remember, we handle rounding a bit differently in this plugin for performance reasons, leveraging "r" as an indicator that the value should be rounded internally.
+					pt.r = lookup[pt.p];
 				}
 				pt = pt._next;
 			}
@@ -10634,7 +10645,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 
 		var RoundPropsPlugin = _gsScope._gsDefine.plugin({
 				propName: "roundProps",
-				version: "1.6.0",
+				version: "1.7.0",
 				priority: -1,
 				API: 2,
 
@@ -10645,10 +10656,16 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				}
 
 			}),
-			_roundLinkedList = function(node) {
+			_getRoundFunc = function(v) { //pass in 0.1 get a function that'll round to the nearest tenth, or 5 to round to the closest 5, or 0.001 to the closest 1000th, etc.
+				var p = v < 1 ? Math.pow(10, (v + "").length - 2) : 1; //to avoid floating point math errors (like 24 * 0.1 == 2.4000000000000004), we chop off at a specific number of decimal places (much faster than toFixed()
+				return function(n) {
+					return ((Math.round(n / v) * v * p) | 0) / p;
+				};
+			},
+			_roundLinkedList = function(node, mod) {
 				while (node) {
 					if (!node.f && !node.blob) {
-						node.m = Math.round;
+						node.m = mod || Math.round;
 					}
 					node = node._next;
 				}
@@ -10657,27 +10674,35 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 
 		p._onInitAllProps = function() {
 			var tween = this._tween,
-				rp = (tween.vars.roundProps.join) ? tween.vars.roundProps : tween.vars.roundProps.split(","),
-				i = rp.length,
+				rp = tween.vars.roundProps,
 				lookup = {},
 				rpt = tween._propLookup.roundProps,
-				prop, pt, next;
-			while (--i > -1) {
-				lookup[rp[i]] = Math.round;
+				pt, next, i, p;
+			if (typeof(rp) === "object" && !rp.push) {
+				for (p in rp) {
+					lookup[p] = _getRoundFunc(rp[p]);
+				}
+			} else {
+				if (typeof(rp) === "string") {
+					rp = rp.split(",");
+				}
+				i = rp.length;
+				while (--i > -1) {
+					lookup[rp[i]] = Math.round;
+				}
 			}
-			i = rp.length;
-			while (--i > -1) {
-				prop = rp[i];
+
+			for (p in lookup) {
 				pt = tween._firstPT;
 				while (pt) {
 					next = pt._next; //record here, because it may get removed
 					if (pt.pg) {
 						pt.t._mod(lookup);
-					} else if (pt.n === prop) {
+					} else if (pt.n === p) {
 						if (pt.f === 2 && pt.t) { //a blob (text containing multiple numeric values)
-							_roundLinkedList(pt.t._firstPT);
+							_roundLinkedList(pt.t._firstPT, lookup[p]);
 						} else {
-							this._add(pt.t, prop, pt.s, pt.c);
+							this._add(pt.t, p, pt.s, pt.c, lookup[p]);
 							//remove from linked list
 							if (next) {
 								next._prev = pt._prev;
@@ -10688,7 +10713,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 								tween._firstPT = next;
 							}
 							pt._next = pt._prev = null;
-							tween._propLookup[prop] = rpt;
+							tween._propLookup[p] = rpt;
 						}
 					}
 					pt = next;
@@ -10697,8 +10722,8 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 			return false;
 		};
 
-		p._add = function(target, p, s, c) {
-			this._addTween(target, p, s, s + c, p, Math.round);
+		p._add = function(target, p, s, c, mod) {
+			this._addTween(target, p, s, s + c, p, mod || Math.round);
 			this._overwriteProps.push(p);
 		};
 
@@ -11219,7 +11244,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 			_doc = window.document,
 			_globals = window.GreenSockGlobals = window.GreenSockGlobals || window;
 		if (_globals.TweenLite) {
-			return; //in case the core set of classes is already loaded, don't instantiate twice.
+			return _globals.TweenLite; //in case the core set of classes is already loaded, don't instantiate twice.
 		}
 		var _namespace = function(ns) {
 				var a = ns.split("."),
@@ -11990,7 +12015,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 			var prevTween, st;
 			child._startTime = Number(position || 0) + child._delay;
 			if (child._paused) if (this !== child._timeline) { //we only adjust the _pauseTime if it wasn't in this timeline already. Remember, sometimes a tween will be inserted again into the same timeline when its startTime is changed so that the tweens in the TimelineLite/Max are re-ordered properly in the linked list (so everything renders in the proper order).
-				child._pauseTime = child._startTime + ((this.rawTime() - child._startTime) / child._timeScale);
+				child._pauseTime = this.rawTime() - (child._timeline.rawTime() - child._pauseTime);
 			}
 			if (child.timeline) {
 				child.timeline._remove(child, true); //removes from existing timeline so that it can be properly added to this one.
@@ -12162,7 +12187,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 		p._firstPT = p._targets = p._overwrittenProps = p._startAt = null;
 		p._notifyPluginsOfEnabled = p._lazy = false;
 
-		TweenLite.version = "1.20.4";
+		TweenLite.version = "1.20.5";
 		TweenLite.defaultEase = p._ease = new Ease(null, null, 1, 1);
 		TweenLite.defaultOverwrite = "auto";
 		TweenLite.ticker = _ticker;
@@ -12177,7 +12202,10 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 				TweenLite.selector = selector;
 				return selector(e);
 			}
-			return (typeof(_doc) === "undefined") ? e : (_doc.querySelectorAll ? _doc.querySelectorAll(e) : _doc.getElementById((e.charAt(0) === "#") ? e.substr(1) : e));
+			if (!_doc) { //in some dev environments (like Angular 6), GSAP gets loaded before the document is defined! So re-query it here if/when necessary.
+				_doc = window.document;
+			}
+			return (!_doc) ? e : (_doc.querySelectorAll ? _doc.querySelectorAll(e) : _doc.getElementById((e.charAt(0) === "#") ? e.substr(1) : e));
 		};
 
 		var _lazyTweens = [],
@@ -12192,7 +12220,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 				while (pt) {
 					val = !pt.blob ? pt.c * v + pt.s : (v === 1 && this.end != null) ? this.end : v ? this.join("") : this.start;
 					if (pt.m) {
-						val = pt.m(val, this._target || pt.t);
+						val = pt.m.call(this._tween, val, this._target || pt.t, this._tween);
 					} else if (val < min) if (val > -min && !pt.blob) { //prevents issues with converting very small numbers to strings in the browser
 						val = 0;
 					}
@@ -12491,7 +12519,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 				startVars.onUpdate = v.onUpdate;
 				startVars.onUpdateParams = v.onUpdateParams;
 				startVars.onUpdateScope = v.onUpdateScope || v.callbackScope || this;
-				this._startAt = TweenLite.to(this.target, 0, startVars);
+				this._startAt = TweenLite.to(this.target || {}, 0, startVars);
 				if (immediate) {
 					if (this._time > 0) {
 						this._startAt = null; //tweens that render immediately (like most from() and fromTo() tweens) shouldn't revert when their parent timeline's playhead goes backward past the startTime because the initial render could have happened anytime and it shouldn't be directly correlated to this tween's startTime. Imagine setting up a complex animation where the beginning states of various objects are rendered immediately but the tween doesn't happen for quite some time - if we revert to the starting values as soon as the playhead goes backward past the tween's startTime, it will throw things off visually. Reversion should only happen in TimelineLite/Max instances where immediateRender was false (which is the default in the convenience methods like from()).
@@ -13151,8 +13179,8 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * VERSION: 1.9.0
- * DATE: 2018-02-15
+ * VERSION: 1.9.1
+ * DATE: 2018-05-21
  * UPDATES AND DOCS AT: http://greensock.com
  *
  * @license Copyright (c) 2008-2018, GreenSock. All rights reserved.
@@ -13201,6 +13229,17 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 		},
 		_getOffset = function(element, container) {
 			var rect = _unwrapElement(element).getBoundingClientRect(),
+				b = document.body,
+				isRoot = (!container || container === _window || container === b),
+				cRect = isRoot ? {top:_doc.clientTop - (window.pageYOffset || _doc.scrollTop || b.scrollTop || 0), left:_doc.clientLeft - (window.pageXOffset || _doc.scrollLeft || b.scrollLeft || 0)} : container.getBoundingClientRect(),
+				offsets = {x: rect.left - cRect.left, y: rect.top - cRect.top};
+			if (!isRoot && container) { //only add the current scroll position if it's not the window/body.
+				offsets.x += _buildGetter(container, "x")();
+				offsets.y += _buildGetter(container, "y")();
+			}
+			return offsets;
+			/*	PREVIOUS
+			var rect = _unwrapElement(element).getBoundingClientRect(),
 				isRoot = (!container || container === _window || container === document.body),
 				cRect = (isRoot ? _doc : container).getBoundingClientRect(),
 				offsets = {x: rect.left - cRect.left, y: rect.top - cRect.top};
@@ -13209,6 +13248,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				offsets.y += _buildGetter(container, "y")();
 			}
 			return offsets;
+			*/
 		},
 		_parseVal = function(value, target, axis) {
 			var type = typeof(value);
@@ -13219,7 +13259,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 			propName: "scrollTo",
 			API: 2,
 			global: true,
-			version:"1.9.0",
+			version:"1.9.1",
 
 			//called when the tween renders for the first time. This is where initial values should be recorded and any setup routines should run.
 			init: function(target, value, tween) {
@@ -13343,8 +13383,8 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * VERSION: 0.16.2
- * DATE: 2018-02-15
+ * VERSION: 0.16.3
+ * DATE: 2018-05-04
  * UPDATES AND DOCS AT: http://greensock.com
  *
  * Requires TweenLite and CSSPlugin version 1.17.0 or later (TweenMax contains both TweenLite and CSSPlugin). ThrowPropsPlugin is required for momentum-based continuation of movement after the mouse/touch is released (ThrowPropsPlugin is a membership benefit of Club GreenSock - http://greensock.com/club/).
@@ -13781,12 +13821,11 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				}
 				parentRect = offsetParent.getBoundingClientRect();
 				m = e.getScreenCTM();
+
 				point2 = e.createSVGPoint();
 				point1 = point2.matrixTransform(m);
-				point2.x = point2.y = 10;
-				point2 = point2.matrixTransform(m);
-				cache.scaleX = (point2.x - point1.x) / 10;
-				cache.scaleY = (point2.y - point1.y) / 10;
+				cache.scaleX = Math.sqrt(m.a * m.a + m.b * m.b);
+				cache.scaleY = Math.sqrt(m.d * m.d + m.c * m.c);
 				if (_svgBorderFactor === undefined) {
 					_setEnvironmentVariables();
 				}
@@ -14146,8 +14185,10 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 
 			_addListener = function(element, type, func, capture) {
 				if (element.addEventListener) {
-					element.addEventListener(_touchEventLookup[type], func, capture);
-					if (type !== _touchEventLookup[type]) { //some browsers actually support both, so must we.
+					var touchType = _touchEventLookup[type];
+					capture = capture || {passive:false};
+					element.addEventListener(touchType || type, func, capture);
+					if (touchType && type !== touchType) { //some browsers actually support both, so must we.
 						element.addEventListener(type, func, capture);
 					}
 				} else if (element.attachEvent) {
@@ -14157,8 +14198,9 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 
 			_removeListener = function(element, type, func) {
 				if (element.removeEventListener) {
-					element.removeEventListener(_touchEventLookup[type], func);
-					if (type !== _touchEventLookup[type]) {
+					var touchType = _touchEventLookup[type];
+					element.removeEventListener(touchType || type, func);
+					if (touchType && type !== touchType) {
 						element.removeEventListener(type, func);
 					}
 				} else if (element.detachEvent) {
@@ -14252,8 +14294,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				}
 			},
 
-			_addPaddingBR,
-			_addPaddingLeft = (function() { //this function is in charge of analyzing browser behavior related to padding. It sets the _addPaddingBR to true if the browser doesn't normally factor in the bottom or right padding on the element inside the scrolling area, and it sets _addPaddingLeft to true if it's a browser that requires the extra offset (offsetLeft) to be added to the paddingRight (like Opera).
+			_addPaddingBR = (function() { //this function is in charge of analyzing browser behavior related to padding. It sets the _addPaddingBR to true if the browser doesn't normally factor in the bottom or right padding on the element inside the scrolling area, and it sets _addPaddingLeft to true if it's a browser that requires the extra offset (offsetLeft) to be added to the paddingRight (like Opera).
 				var div = _doc.createElement("div"),
 					child = _doc.createElement("div"),
 					childStyle = child.style,
@@ -14264,14 +14305,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				div.style.cssText = child.innerHTML = "width:90px; height:40px; padding:10px; overflow:auto; visibility: hidden";
 				div.appendChild(child);
 				parent.appendChild(div);
-				_addPaddingBR = (child.offsetHeight + 18 > div.scrollHeight); //div.scrollHeight should be child.offsetHeight + 20 because of the 10px of padding on each side, but some browsers ignore one side. We allow a 2px margin of error.
-				childStyle.width = "100%";
-				if (!_transformProp) {
-					childStyle.paddingRight = "500px";
-					val = div.scrollLeft = div.scrollWidth - div.clientWidth;
-					childStyle.left = "-90px";
-					val = (val !== div.scrollLeft);
-				}
+				val = (child.offsetHeight + 18 > div.scrollHeight); //div.scrollHeight should be child.offsetHeight + 20 because of the 10px of padding on each side, but some browsers ignore one side. We allow a 2px margin of error.
 				parent.removeChild(div);
 				return val;
 			}()),
@@ -14352,7 +14386,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 						} else {
 							style.left = -offsetLeft + "px";
 						}
-						if (_addPaddingLeft && offsetLeft + extraPadRight >= 0) {
+						if (offsetLeft + extraPadRight >= 0) {
 							style.paddingRight = offsetLeft + extraPadRight + "px";
 						}
 					}
@@ -15030,7 +15064,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 							_setSelectable(triggers, true); //accommodates things like inputs and elements with contentEditable="true" (otherwise user couldn't drag to select text)
 							return;
 						}
-						allowNativeTouchScrolling = (!touchEventTarget || allowX === allowY || self.vars.allowNativeTouchScrolling === false) ? false : allowX ? "y" : "x";
+						allowNativeTouchScrolling = (!touchEventTarget || allowX === allowY || self.vars.allowNativeTouchScrolling === false || (self.vars.allowContextMenu && e && (e.ctrlKey || e.which > 2))) ? false : allowX ? "y" : "x"; //note: in Chrome, right-clicking (for a context menu) fires onPress and it doesn't have the event.which set properly, so we must look for event.ctrlKey. If the user wants to allow context menus we should of course sense it here and not allow native touch scrolling.
 						if (_isOldIE) {
 							e = _populateIEEvent(e, true);
 						} else if (!allowNativeTouchScrolling && !self.allowEventDefault) {
@@ -15260,6 +15294,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 						self.isPressed = false;
 						var originalEvent = e,
 							wasDragging = self.isDragging,
+							isContextMenuRelease = (self.vars.allowContextMenu && e && (e.ctrlKey || e.which > 2)),
 							placeholderDelayedCall = TweenLite.delayedCall(0.001, removePlaceholder),
 							touches, i, syntheticEvent, eventTarget, syntheticClick;
 						if (touchEventTarget) {
@@ -15275,7 +15310,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 							_removeListener(e.target, "mouseup", onRelease);
 						}
 						dirty = false;
-						if (isClicking) {
+						if (isClicking && !isContextMenuRelease) {
 							if (e) {
 								_removeListener(e.target, "change", onRelease);
 								self.pointerEvent = originalEvent;
@@ -15317,7 +15352,13 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 							self.pointerX = e.pageX;
 							self.pointerY = e.pageY;
 						}
-						if (originalEvent && !wasDragging) {
+						if (isContextMenuRelease && originalEvent) {
+							originalEvent.preventDefault();
+							if (originalEvent.preventManipulation) {
+								originalEvent.preventManipulation();  //for some Microsoft browsers
+							}
+							_dispatchEvent(self, "release", "onRelease");
+						} else if (originalEvent && !wasDragging) {
 							if (interrupted && (vars.snap || vars.bounds)) { //otherwise, if the user clicks on the object while it's animating to a snapped position, and then releases without moving 3 pixels, it will just stay there (it should animate/snap)
 								animate(vars.throwProps);
 							}
@@ -15329,7 +15370,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 								}
 								eventTarget = originalEvent.target || originalEvent.srcElement || target; //old IE uses srcElement
 								clickTime = _getTime();
-								syntheticClick = function() { // some browsers (like Firefox) won't trust script-generated clicks, so if the user tries to click on a video to play it, for example, it simply won't work. Since a regular "click" event will most likely be generated anyway (one that has its isTrusted flag set to true), we must slightly delay our script-generated click so that the "real"/trusted one is prioritized. Remember, when there are duplicate events in quick succession, we suppress all but the first one. Some browsers don't even trigger the "real" one at all, so our synthetic one is a safety valve that ensures that no matter what, a click event does get dispatched.
+								syntheticClick = function () { // some browsers (like Firefox) won't trust script-generated clicks, so if the user tries to click on a video to play it, for example, it simply won't work. Since a regular "click" event will most likely be generated anyway (one that has its isTrusted flag set to true), we must slightly delay our script-generated click so that the "real"/trusted one is prioritized. Remember, when there are duplicate events in quick succession, we suppress all but the first one. Some browsers don't even trigger the "real" one at all, so our synthetic one is a safety valve that ensures that no matter what, a click event does get dispatched.
 									if (clickTime !== clickDispatch && self.enabled() && !self.isPressed) {
 										if (eventTarget.click) { //some browsers (like mobile Safari) don't properly trigger the click event
 											eventTarget.click();
@@ -15716,7 +15757,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 		p.constructor = Draggable;
 		p.pointerX = p.pointerY = p.startX = p.startY = p.deltaX = p.deltaY = 0;
 		p.isDragging = p.isPressed = false;
-		Draggable.version = "0.16.1";
+		Draggable.version = "0.16.3";
 		Draggable.zIndex = 1000;
 
 		_addListener(_doc, "touchcancel", function() {
