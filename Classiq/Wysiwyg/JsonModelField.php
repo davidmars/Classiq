@@ -29,14 +29,16 @@ class JsonModelField extends Field
 
     /**
      * Field constructor.
+     *
      * @param WysiwygListitem $wysiwyg
-     * @param string $varName
+     * @param string          $varName
+     * @param string          $suffix
      */
-    public function __construct($wysiwyg, $varName){
+    public function __construct($wysiwyg, $varName,$suffix=""){
         $this->wysiwyg=$wysiwyg;
         if($this->wysiwyg->listItem->record){
             $this->record=$this->wysiwyg->listItem->record;
-            $this->varName=$this->wysiwyg->listItem->fieldName.".".$this->wysiwyg->listItem->key.".".$varName;
+            $this->varName=$this->wysiwyg->listItem->fieldName.".".$this->wysiwyg->listItem->key.".".$varName.$suffix;
         }
     }
 

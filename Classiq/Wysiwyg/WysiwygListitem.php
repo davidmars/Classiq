@@ -34,11 +34,14 @@ class WysiwygListitem
 
     /**
      * Pour éditer un champ
+     *
      * @param $varName
+     * @param $suffix
+     *
      * @return Field
      */
-    public function field($varName){
-        return new JsonModelField($this,$varName);
+    public function field($varName,$suffix=""){
+        return new JsonModelField($this,$varName,$suffix);
     }
 
     /**
