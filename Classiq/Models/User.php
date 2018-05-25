@@ -286,12 +286,14 @@ class User extends Classiqmodel
     public function roleSvg()
     {
         switch ($this->role) {
+            case "":
+                return "cq-user-question";
             case self::ROLE_ADMIN:
                 return "cq-user-admin";
             case self::ROLE_SIMPLE_HUMAN:
-                return "cq-user-no-sign";
             default:
-                return "cq-user-question";
+                return "cq-user-no-sign";
+
         }
     }
 
