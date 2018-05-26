@@ -413,5 +413,25 @@ class Classiqmodel extends Classiqbean
         parent::open();
     }
 
+    /**
+     * @param string $prop utilsez _lang pour obtenir une variable traduite dans la langue courrante
+     *
+     * @return mixed
+     */
+    public function __get($prop)
+    {
+        $prop=preg_replace("/_lang/","_".the()->project->langCode,$prop);
+        return parent::__get($prop);
+    }
+    /**
+     * @param string $prop utilsez _lang pour définir une variable traduite dans la langue courrante
+     *
+     */
+    public function __set($prop, $value)
+    {
+        $prop=preg_replace("/_lang/","_".the()->project->langCode,$prop);
+        parent::__set($prop, $value);
+    }
+
 
 }
