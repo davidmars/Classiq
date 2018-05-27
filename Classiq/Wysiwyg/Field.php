@@ -4,6 +4,7 @@ namespace Classiq\Wysiwyg;
 
 
 use Classiq\Models\Classiqmodel;
+use Classiq\Wysiwyg\FieldsTyped\FieldBoolean;
 use Classiq\Wysiwyg\FieldsTyped\FieldFile;
 use Classiq\Wysiwyg\FieldsTyped\FieldImage;
 use Classiq\Wysiwyg\FieldsTyped\FieldListJson;
@@ -59,6 +60,19 @@ class Field
             }
         }
 
+        return $f;
+    }
+    /**
+     * Pour rendre le champ editable sous forme de booléain
+     * @param string $format
+     * @return FieldBoolean
+     */
+    public function bool(){
+        $f= new FieldBoolean($this);
+        $f->attr()["wysiwyg-field-error"]=$this->getError();
+        if($this->wysiwyg->active){
+            $f->attr()["wysiwyg-data-type"]="boolean";
+        }
         return $f;
     }
 

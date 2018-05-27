@@ -128,6 +128,18 @@ export default class WysiwygField{
     value(){
         switch (this.dataType){
 
+            case "boolean":
+                if(this.$field.is("input[type='checkbox'],input[type='radio']")){
+                    if(this.$field.is(":checked")){
+                        return this.$field.attr("value");
+                    }else{
+                        return "";
+                    }
+                }else{
+                    console.error("type de champ string non géré",this.$field);
+                }
+                break;
+
             case "string":
                 if(this.$field.is("input,textarea,select")){
                     return this.$field.val();

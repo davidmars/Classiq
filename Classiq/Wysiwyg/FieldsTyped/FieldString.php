@@ -30,11 +30,10 @@ class FieldString extends FieldTyped
         $this->attr()["placeholder"]=$placeholder;
         $tag->setAttributes($this->attr());
         $tag->addClass($class);
-
         $this->attr()["value"]=$this->field->value(true,$this->defaultValue);
-
         return $tag;
     }
+
 
     /**
      * Permet d'obtenir un tag html SELECT
@@ -48,7 +47,6 @@ class FieldString extends FieldTyped
         $this->attr()["placeholder"]=$placeholder;
         $tag->setAttributes($this->attr());
         $tag->addClass($class);
-
         if(!pov()->utils->array->isAssociative($options)){
             //convertit en associatif
             $new=[];
@@ -60,7 +58,7 @@ class FieldString extends FieldTyped
 
         $optionTags=[];
         $placeholder=new HtmlTag("option",$placeholder);
-        $placeholder->setAttribute("disabled","disabled");
+        //$placeholder->setAttribute("disabled","disabled");
         $optionTags[]=$placeholder;
 
         foreach ($options as $k=>$v){
