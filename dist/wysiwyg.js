@@ -398,6 +398,7 @@ class WysiwygField{
         switch (this.dataType){
 
             case "boolean":
+                //en pratique un checkbox dont on extraira la valeur ou rien
                 if(this.$field.is("input[type='checkbox'],input[type='radio']")){
                     if(this.$field.is(":checked")){
                         return this.$field.attr("value");
@@ -405,14 +406,28 @@ class WysiwygField{
                         return "";
                     }
                 }else{
-                    console.error("type de champ string non géré",this.$field);
+                    console.error("type de champ boolean non géré",this.$field);
                 }
                 break;
 
+            case "list-string":
+                //en pratique des checkboxes dont on extraira variable1;variable2;etc...
+                let $checkeds=this.$field.find("[value]:checked");
+                let selecteds=[];
+                $checkeds.each(function(){
+                    selecteds.push($(this).attr("value"))
+                });
+                return selecteds.join(";");
+                break;
+
             case "string":
+
                 if(this.$field.is("input,textarea,select")){
+                    //en pratique un input, un textarea ou un select
                     return this.$field.val();
+
                 }else if(this.$field.is("[contenteditable]")){
+                    //...ou un div contenteditable
                     this.$field.find("a,span,div").filter(
                         function() {
                             return $.trim($(this).text()) === "";
@@ -834,6 +849,13 @@ class Wysiwyg{
         $body.on("change","[wysiwyg-var][wysiwyg-data-type='file'] input[type='file']",function(){
             new __WEBPACK_IMPORTED_MODULE_13__cq_fields_CqFieldUpload__["a" /* CqFieldUpload */]($(this).closest("[wysiwyg-var][wysiwyg-data-type='file']"));
 
+        });
+
+        // changement d'un checkbox
+        $body.on("change","[wysiwyg-var][wysiwyg-data-type='list-string'] input[type='checkbox']",function(){
+            let $f=$(this).closest("[wysiwyg-var][wysiwyg-data-type='list-string']");
+            let field=new __WEBPACK_IMPORTED_MODULE_2__cq_fields_WysiwygField__["a" /* default */]($f);
+            field.doSave(true);
         });
 
 

@@ -118,6 +118,13 @@ export default class Wysiwyg{
 
         });
 
+        // changement d'un checkbox
+        $body.on("change","[wysiwyg-var][wysiwyg-data-type='list-string'] input[type='checkbox']",function(){
+            let $f=$(this).closest("[wysiwyg-var][wysiwyg-data-type='list-string']");
+            let field=new WysiwygField($f);
+            field.doSave(true);
+        });
+
 
     }
 }

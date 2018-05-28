@@ -129,6 +129,7 @@ export default class WysiwygField{
         switch (this.dataType){
 
             case "boolean":
+                //en pratique un checkbox dont on extraira la valeur ou rien
                 if(this.$field.is("input[type='checkbox'],input[type='radio']")){
                     if(this.$field.is(":checked")){
                         return this.$field.attr("value");
@@ -136,14 +137,28 @@ export default class WysiwygField{
                         return "";
                     }
                 }else{
-                    console.error("type de champ string non géré",this.$field);
+                    console.error("type de champ boolean non géré",this.$field);
                 }
                 break;
 
+            case "list-string":
+                //en pratique des checkboxes dont on extraira variable1;variable2;etc...
+                let $checkeds=this.$field.find("[value]:checked");
+                let selecteds=[];
+                $checkeds.each(function(){
+                    selecteds.push($(this).attr("value"))
+                });
+                return selecteds.join(";");
+                break;
+
             case "string":
+
                 if(this.$field.is("input,textarea,select")){
+                    //en pratique un input, un textarea ou un select
                     return this.$field.val();
+
                 }else if(this.$field.is("[contenteditable]")){
+                    //...ou un div contenteditable
                     this.$field.find("a,span,div").filter(
                         function() {
                             return $.trim($(this).text()) === "";

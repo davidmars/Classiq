@@ -8,6 +8,7 @@ use Classiq\Wysiwyg\FieldsTyped\FieldBoolean;
 use Classiq\Wysiwyg\FieldsTyped\FieldFile;
 use Classiq\Wysiwyg\FieldsTyped\FieldImage;
 use Classiq\Wysiwyg\FieldsTyped\FieldListJson;
+use Classiq\Wysiwyg\FieldsTyped\FieldListString;
 use Classiq\Wysiwyg\FieldsTyped\FieldRecordPicker;
 use Classiq\Wysiwyg\FieldsTyped\FieldString;
 use Pov\Html\Trace\Attributes;
@@ -58,6 +59,21 @@ class Field
             if($format===pov()->utils->string::FORMAT_HTML){
                 $f->attr()["cq-field-rich-text"]=".";
             }
+        }
+
+        return $f;
+    }
+    /**
+     * Pour rendre le champ editable sous forme de liste de choix texte
+     * @return FieldListString
+     */
+    public function listString()
+    {
+        $f= new FieldListString($this);
+        $f->attr()["wysiwyg-field-error"]=$this->getError();
+        if($this->wysiwyg->active){
+            $f->attr()["contenteditable"]="true";
+            $f->attr()["wysiwyg-data-type"]="list-string";
         }
 
         return $f;
@@ -186,8 +202,16 @@ class Field
     public function valueAsRecord(){
         return $this->wysiwyg->model->getValueAsRecord($this->varName);
     }
-
-
+    /**
+     * Retourne la valeur du champ sous forme de tableau de chaines
+     * partant du principe que le contenu est une chaine séparée par des points virgules
+     *
+     * @return array La valeur du champ sous forme de tableau.
+     */
+    public function valueAsStringArray(){
+        $string=$this->value(true,"");
+        return explode(";",$string);
+    }
 
 
 
