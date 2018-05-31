@@ -22,6 +22,11 @@ use Pov\System\AbstractSingleton;
 class ClassiqUtils extends AbstractSingleton
 {
     /**
+     * @var bool Quand défini sur false n'enregistrera pas de notification lors des updates de la DB
+     */
+    public $configPreventDbNotifications=false;
+
+    /**
      *
      * @param string $svgId
      * @return \Pov\Html\Trace\HtmlTag

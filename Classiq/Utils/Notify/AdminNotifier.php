@@ -32,6 +32,10 @@ class AdminNotifier extends AbstractNotifier
      * @param mixed $moreData données additionelles transmises à l'event
      */
     public function notify($eventType,$message,$moreData=null){
+        if(cq()->configPreventDbNotifications) {
+            return;
+        }
+
         self::trashPrevious($eventType);
 
         foreach (self::getNew() as $notif){
