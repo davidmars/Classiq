@@ -1,5 +1,8 @@
 #the-cq-record-editor{
-
+  backface-visibility: hidden;
+  *{
+    backface-visibility: hidden;
+  }
   position: fixed;
   left: calc(var(--cq-big-menu-width) + var(--cq-big-menu-extension-width) );
   right: 0;
@@ -20,6 +23,7 @@
   }
 
   main{
+    overflow-y: auto;
     position: absolute;
     z-index: 9;
     left: 1px;

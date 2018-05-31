@@ -1348,6 +1348,7 @@ class CqBrowseRecordsList extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["
     constructor($main){
         super($main);
         let me = this;
+        /*
         new PerfectScrollbar($main.find(".records").get(0),
             {
                 wheelSpeed: 1,
@@ -1357,6 +1358,7 @@ class CqBrowseRecordsList extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["
                 swipeEasing:true
             }
         );
+        */
         setTimeout(function(){
             window.cqAdmin.ui.recordEditor.on(EVENTS.OPEN,function(){
                 me.highlightEdited();
@@ -1464,6 +1466,7 @@ class CqEditRecordBox extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /
          * @type {string}
          */
         this.currentUid="";
+        /*
         new PerfectScrollbar(this.$main.find(">main").get(0),
             {
                 wheelSpeed: 1,
@@ -1473,6 +1476,7 @@ class CqEditRecordBox extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /
                 swipeEasing:true
             }
         );
+        */
 
         //si le record est supprimé on ferme
         this.$main.on(EVENTS.SSE_DB_TRASH,function(e){

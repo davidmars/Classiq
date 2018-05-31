@@ -1,5 +1,8 @@
 [cq-browse-records-list]{
-
+  backface-visibility: hidden;
+  >*{
+    backface-visibility: hidden;
+  }
   position: relative;
   height: 100%;
   background-color: var(--cq-color-bg-alt);
@@ -27,6 +30,7 @@
     width: 100%;
     bottom: 0;
     padding: 10px;
+    overflow-y: auto;
 
     >.cq-box{
       padding-top: 0;
@@ -36,6 +40,9 @@
     }
 
     .record[record-type]{
+      >*{
+        //display: none;
+      }
       padding-left: var(--cq-box-padding);
       padding-right: var(--cq-box-padding);
       &.hidden{

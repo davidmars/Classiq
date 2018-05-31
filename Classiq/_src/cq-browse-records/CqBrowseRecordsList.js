@@ -10,6 +10,7 @@ export default class CqBrowseRecordsList extends DisplayObject{
     constructor($main){
         super($main);
         let me = this;
+        /*
         new PerfectScrollbar($main.find(".records").get(0),
             {
                 wheelSpeed: 1,
@@ -19,6 +20,7 @@ export default class CqBrowseRecordsList extends DisplayObject{
                 swipeEasing:true
             }
         );
+        */
         setTimeout(function(){
             window.cqAdmin.ui.recordEditor.on(EVENTS.OPEN,function(){
                 me.highlightEdited();
