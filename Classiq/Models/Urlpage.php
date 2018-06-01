@@ -59,18 +59,21 @@ class Urlpage extends Classiqmodel
      * @throws PovException
      */
     public function after_update(){
-        pov()->log->debug("after_update 1");
         if($this->getPage()->id && $this->getPage()->hasUrl()){
-            pov()->log->debug("after_update 2");
-            //notifie que la page relative a changée
-            $message=$this->getPage()->views()->wysiwygPreview()->render()."<br>";
-            if($this->changes()){
-                cq()->notify->admins->notify(
-                    self::EVENT_SSE_DB_CHANGE,
-                    "Les données SEO de ".$message." on été modifiées.",
-                    $this->getPage()->apiData()
-                );
+
+            //notifications
+            if(!cq()->configPreventDbNotifications){
+                //notifie que la page relative a changée
+                $message=$this->getPage()->views()->wysiwygPreview()->render()."<br>";
+                if($this->changes()){
+                    cq()->notify->admins->notify(
+                        self::EVENT_SSE_DB_CHANGE,
+                        "Les données SEO de ".$message." on été modifiées.",
+                        $this->getPage()->apiData()
+                    );
+                }
             }
+
         }
 
     }

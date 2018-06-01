@@ -159,8 +159,12 @@ class Classiqmodel extends Classiqbean
 
     /**
      * Retourne la valeur de la variable donnée
+     *
      * @param string $varName Le champ qu'on veut (la syntaxe à point pour les tableaux fonctionne, monchamptableau.mavar par exemple)
+     * @param bool   $forceString si true renverra toujours un string
+     *
      * @return mixed
+     * @throws PovException
      */
     public function getValue($varName,$forceString=false){
 
@@ -370,11 +374,14 @@ class Classiqmodel extends Classiqbean
     public function after_update()
     {
         //notifications
-        $message=$this->views()->wysiwygPreview()->render()."<br>";
-        if($this->changes()){
-            pov()->log->warning("modifie changes".$this->uid(),[$this->changes()]);
-            cq()->notify->admins->notify(self::EVENT_SSE_DB_CHANGE,$message." a été enregistré.",$this->apiData());
+        if(!cq()->configPreventDbNotifications){
+            $message=$this->views()->wysiwygPreview()->render()."<br>";
+            if($this->changes()){
+                pov()->log->warning("modifie changes".$this->uid(),[$this->changes()]);
+                cq()->notify->admins->notify(self::EVENT_SSE_DB_CHANGE,$message." a été enregistré.",$this->apiData());
+            }
         }
+
         parent::after_update();
     }
 
