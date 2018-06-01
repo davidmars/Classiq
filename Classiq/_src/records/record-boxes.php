@@ -12,7 +12,7 @@ $classesHierarchy=array_reverse($classesHierarchy);
 
 
 ?>
-<div cq-edit-record-form big-menu-module="admin-page-<?=$calledModel?>-<?=$vv->id?>" <?=$view->attrRefresh($vv->uid())?>>
+<div cq-edit-record-form="<?=$vv->modelType()?>" big-menu-module="admin-page-<?=$calledModel?>-<?=$vv->id?>" <?=$view->attrRefresh($vv->uid())?>>
 
     <?//main class...ici on prend en compte les custom view?>
     <?if($vv->view):?>
