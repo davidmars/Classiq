@@ -410,6 +410,10 @@ class WysiwygField{
                 }
                 break;
 
+            case "geoloc":
+                return this.$field.find("[latlng='lat']").val()+";"+this.$field.find("[latlng='lng']").val();
+                break;
+
             case "list-string":
                 //en pratique des checkboxes dont on extraira variable1;variable2;etc...
                 let $checkeds=this.$field.find("[value]:checked");
@@ -728,9 +732,11 @@ $.fn.CqSortable = function() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__unique_instances_cq_notifier_CqNotifier__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__cq_sortable_CqSortable__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__cq_field_records_CqFieldRecords__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__unique_instances_cq_edit_record_box_CqEditRecordBox__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__CqAdmin__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__cq_fields_CqFieldUpload__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__cq_fields_cq_field_google_map_CqFieldGoogleMap__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__unique_instances_cq_edit_record_box_CqEditRecordBox__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__CqAdmin__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__cq_fields_CqFieldUpload__ = __webpack_require__(79);
+
 
 
 
@@ -760,7 +766,7 @@ class Wysiwyg{
         setTimeout(function(){
             me._boot();
             me._initListeners();
-            window.cqAdmin = new __WEBPACK_IMPORTED_MODULE_12__CqAdmin__["a" /* default */]();
+            window.cqAdmin = new __WEBPACK_IMPORTED_MODULE_13__CqAdmin__["a" /* default */]();
         },10)
 
     }
@@ -791,7 +797,7 @@ class Wysiwyg{
          * Le layer qui permet d'etiter un record en grand
          * @type {CqEditRecordBox}
          */
-        this.recordEditor=new __WEBPACK_IMPORTED_MODULE_11__unique_instances_cq_edit_record_box_CqEditRecordBox__["a" /* default */]($("#the-cq-record-editor"));
+        this.recordEditor=new __WEBPACK_IMPORTED_MODULE_12__unique_instances_cq_edit_record_box_CqEditRecordBox__["a" /* default */]($("#the-cq-record-editor"));
     }
 
     /**
@@ -825,6 +831,7 @@ class Wysiwyg{
             __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */].__fromDom(__WEBPACK_IMPORTED_MODULE_7__cq_fields_cq_field_rich_text_CqFieldRichText__["a" /* default */],"cq-field-rich-text");
             __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */].__fromDom(__WEBPACK_IMPORTED_MODULE_9__cq_sortable_CqSortable__["a" /* default */],"cq-sortable");
             __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */].__fromDom(__WEBPACK_IMPORTED_MODULE_10__cq_field_records_CqFieldRecords__["a" /* default */],"cq-field-records");
+            __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */].__fromDom(__WEBPACK_IMPORTED_MODULE_11__cq_fields_cq_field_google_map_CqFieldGoogleMap__["a" /* default */],"cq-field-google-map");
 
             //nettoie les display objects innutiles
             __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */].cleanfromDom();
@@ -847,13 +854,19 @@ class Wysiwyg{
 
         // click sur un uploader de fichier
         $body.on("change","[wysiwyg-var][wysiwyg-data-type='file'] input[type='file']",function(){
-            new __WEBPACK_IMPORTED_MODULE_13__cq_fields_CqFieldUpload__["a" /* CqFieldUpload */]($(this).closest("[wysiwyg-var][wysiwyg-data-type='file']"));
+            new __WEBPACK_IMPORTED_MODULE_14__cq_fields_CqFieldUpload__["a" /* CqFieldUpload */]($(this).closest("[wysiwyg-var][wysiwyg-data-type='file']"));
 
         });
 
         // changement d'un checkbox
         $body.on("change","[wysiwyg-var][wysiwyg-data-type='list-string'] input[type='checkbox']",function(){
             let $f=$(this).closest("[wysiwyg-var][wysiwyg-data-type='list-string']");
+            let field=new __WEBPACK_IMPORTED_MODULE_2__cq_fields_WysiwygField__["a" /* default */]($f);
+            field.doSave(true);
+        });
+        // changement d'une geoloc
+        $body.on("input change","[wysiwyg-var][wysiwyg-data-type='geoloc'] input[latlng]",function(){
+            let $f=$(this).closest("[wysiwyg-var][wysiwyg-data-type='geoloc']");
             let field=new __WEBPACK_IMPORTED_MODULE_2__cq_fields_WysiwygField__["a" /* default */]($f);
             field.doSave(true);
         });
@@ -16097,6 +16110,151 @@ class CqFieldUpload extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
 
 /***/ }),
 /* 84 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
+
+__webpack_require__(102);
+
+/**
+ *
+ */
+class CqFieldGoogleMap extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */]{
+    /**
+     *
+     * @param {JQuery} $main
+     */
+    constructor($main){
+        super($main);
+        let me=this;
+
+        this.$lat=$main.find("[latlng='lat']");
+        this.$lng=$main.find("[latlng='lng']");
+        this.$map=$main.find(".map");
+        this.$search=$main.find(".search");
+
+
+        $main.find("[latlng]").on("input change",function(){
+            marker.setPosition({lat: Number(me.$lat.val()), lng: Number(me.$lng.val())});
+        });
+
+        let lat=Number(me.$lat.val());
+        let lng=Number(me.$lng.val());
+        let center = {lat: lat, lng: lng};
+        let map=this.map = new google.maps.Map(me.$map[0], {
+            center: center,
+            zoom:5
+        });
+        let marker = new google.maps.Marker({
+            position: center,
+            map: map,
+            title: 'Déplacez moi',
+            draggable:true
+        });
+        marker.addListener("dragend",function(e){
+            me.$lat.val(marker.getPosition().lat());
+            me.$lng.val(marker.getPosition().lng());
+            me.$lat.trigger("change");
+        });
+
+        //------------------uniquement search maintenant----------------------------
+
+
+        // Create the search box and link it to the UI element.
+        var input = me.$search[0];
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+            searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+            var places = searchBox.getPlaces();
+
+
+            if (places.length == 0) {
+                return;
+            }
+
+            // Clear out the old markers.
+            markers.forEach(function(marker) {
+                marker.setMap(null);
+            });
+            markers = [];
+
+            // For each place, get the icon, name and location.
+            var bounds = new google.maps.LatLngBounds();
+            places.forEach(function(place) {
+                if (!place.geometry) {
+                    console.log("Returned place contains no geometry");
+                    return;
+                }
+                var icon = {
+                    url: place.icon,
+                    size: new google.maps.Size(71, 71),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(17, 34),
+                    scaledSize: new google.maps.Size(25, 25)
+                };
+
+                // Create a marker for each place.
+                markers.push(new google.maps.Marker({
+                    map: map,
+                    icon: icon,
+                    title: place.name,
+                    position: place.geometry.location
+                }));
+
+                if (place.geometry.viewport) {
+                    // Only geocodes have viewport.
+                    bounds.union(place.geometry.viewport);
+                } else {
+                    bounds.extend(place.geometry.location);
+                }
+            });
+            map.fitBounds(bounds);
+        });
+
+
+
+    }
+
+    destroy(){
+        //this.mediumEditor.destroy();
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = CqFieldGoogleMap;
+
+
+/***/ }),
+/* 102 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

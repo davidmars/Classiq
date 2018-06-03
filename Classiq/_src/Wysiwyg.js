@@ -9,6 +9,7 @@ import WysiwygRichText from "./cq-fields/cq-field-rich-text/CqFieldRichText";
 import CqNotifier from "./unique-instances/cq-notifier/CqNotifier";
 import CqSortable from "./cq-sortable/CqSortable";
 import CqFieldRecords from "./cq-field-records/CqFieldRecords";
+import CqFieldGoogleMap from "./cq-fields/cq-field-google-map/CqFieldGoogleMap";
 import CqEditRecordBox from "./unique-instances/cq-edit-record-box/CqEditRecordBox";
 import CqAdmin from "./CqAdmin";
 import {CqFieldUpload} from "./cq-fields/CqFieldUpload";
@@ -92,6 +93,7 @@ export default class Wysiwyg{
             DisplayObject.__fromDom(WysiwygRichText,"cq-field-rich-text");
             DisplayObject.__fromDom(CqSortable,"cq-sortable");
             DisplayObject.__fromDom(CqFieldRecords,"cq-field-records");
+            DisplayObject.__fromDom(CqFieldGoogleMap,"cq-field-google-map");
 
             //nettoie les display objects innutiles
             DisplayObject.cleanfromDom();
@@ -121,6 +123,12 @@ export default class Wysiwyg{
         // changement d'un checkbox
         $body.on("change","[wysiwyg-var][wysiwyg-data-type='list-string'] input[type='checkbox']",function(){
             let $f=$(this).closest("[wysiwyg-var][wysiwyg-data-type='list-string']");
+            let field=new WysiwygField($f);
+            field.doSave(true);
+        });
+        // changement d'une geoloc
+        $body.on("input change","[wysiwyg-var][wysiwyg-data-type='geoloc'] input[latlng]",function(){
+            let $f=$(this).closest("[wysiwyg-var][wysiwyg-data-type='geoloc']");
             let field=new WysiwygField($f);
             field.doSave(true);
         });

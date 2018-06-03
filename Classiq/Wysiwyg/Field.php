@@ -6,6 +6,7 @@ namespace Classiq\Wysiwyg;
 use Classiq\Models\Classiqmodel;
 use Classiq\Wysiwyg\FieldsTyped\FieldBoolean;
 use Classiq\Wysiwyg\FieldsTyped\FieldFile;
+use Classiq\Wysiwyg\FieldsTyped\FieldGeoloc;
 use Classiq\Wysiwyg\FieldsTyped\FieldImage;
 use Classiq\Wysiwyg\FieldsTyped\FieldListJson;
 use Classiq\Wysiwyg\FieldsTyped\FieldListString;
@@ -80,7 +81,6 @@ class Field
     }
     /**
      * Pour rendre le champ editable sous forme de booléain
-     * @param string $format
      * @return FieldBoolean
      */
     public function bool(){
@@ -88,6 +88,18 @@ class Field
         $f->attr()["wysiwyg-field-error"]=$this->getError();
         if($this->wysiwyg->active){
             $f->attr()["wysiwyg-data-type"]="boolean";
+        }
+        return $f;
+    }
+    /**
+     * Pour rendre le champ editable sous forme de géolocalisation
+     * @return FieldGeoloc
+     */
+    public function geoloc(){
+        $f= new FieldGeoloc($this);
+        $f->attr()["wysiwyg-field-error"]=$this->getError();
+        if($this->wysiwyg->active){
+            $f->attr()["wysiwyg-data-type"]="geoloc";
         }
         return $f;
     }

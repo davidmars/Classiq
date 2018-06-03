@@ -128,4 +128,13 @@ abstract class FieldTyped
         return $this;
     }
 
+    /**
+     * Ajoute un attribut focus-prevent-refresh qui dit à Pov de ne pas rafraichir la vue si l'élément est focused
+     * @return $this
+     */
+    public function preventFocusedRefresh(){
+        $this->attr()["focus-prevent-refresh"] = "1";
+        return $this;
+    }
+
 }
