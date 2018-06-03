@@ -16225,12 +16225,19 @@ class CqFieldGoogleMap extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" 
                 };
 
                 // Create a marker for each place.
-                markers.push(new google.maps.Marker({
+                let n=new google.maps.Marker({
                     map: map,
                     icon: icon,
-                    title: place.name,
+                    title: place.name+" / cliquez pour déplacer ici",
                     position: place.geometry.location
-                }));
+                });
+                n.addListener("click",function(){
+                    marker.setPosition(n.getPosition());
+                    me.$lat.val(marker.getPosition().lat());
+                    me.$lng.val(marker.getPosition().lng());
+                    me.$lat.trigger("change");
+                })
+                markers.push(n);
 
                 if (place.geometry.viewport) {
                     // Only geocodes have viewport.
