@@ -31,7 +31,7 @@ class ClassiqUtils extends AbstractSingleton
      */
     public function configNotificationsOff(){
         $this->_configNotificationsReset=$this->configPreventDbNotifications;
-        $this->configPreventDbNotifications=false;
+        $this->configPreventDbNotifications=true;
     }
     /**
      * Remet les notifications comme elle étaient avant l'appel à configNotificationsOff()
