@@ -27,6 +27,21 @@ class ClassiqUtils extends AbstractSingleton
     public $configPreventDbNotifications=false;
 
     /**
+     * Désactive les notifications
+     */
+    public function configNotificationsOff(){
+        $this->_configNotificationsReset=$this->configPreventDbNotifications;
+        $this->configPreventDbNotifications=false;
+    }
+    /**
+     * Remet les notifications comme elle étaient avant l'appel à configNotificationsOff()
+     */
+    public function configNotificationsReset(){
+        $this->configPreventDbNotifications=$this->_configNotificationsReset;
+    }
+    private $_configNotificationsReset=false;
+
+    /**
      *
      * @param string $svgId
      * @return \Pov\Html\Trace\HtmlTag
