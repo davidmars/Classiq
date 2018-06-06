@@ -428,7 +428,7 @@ class Classiqmodel extends Classiqbean
     public function __get($prop)
     {
         $propClean=preg_replace("/_lang$/","",$prop);
-        $noLangVal=parent::__get($prop);
+        $noLangVal=parent::__get($propClean);
         if($propClean != $prop){
             //c'est un champ traduit
             $languageProp=$propClean."_".the()->project->langCode;
