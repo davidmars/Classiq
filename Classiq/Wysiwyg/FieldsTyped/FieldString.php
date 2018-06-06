@@ -102,6 +102,14 @@ class FieldString extends FieldTyped
         $tag->addClass($class);
         return $tag;
     }
+    /**
+     * Dit que le champ est traduit dans la langue donnée
+     * @param string $langCode L'identifiant de langue
+     */
+    public function isTranslated($langCode){
+        $this->attr()["data-lang"]=$langCode;
+        return $this;
+    }
 
     /**
      * Permet d'obtenir un tag Html
