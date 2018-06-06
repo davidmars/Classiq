@@ -47,7 +47,7 @@ class Classiq
     }
 
     /**
-     * @return string Le chemin pour acceder aux assets
+     * @return string Le chemin http pour acceder aux assets
      */
     public static function assetsDir(){
         $r= realpath(__DIR__."/../dist/");

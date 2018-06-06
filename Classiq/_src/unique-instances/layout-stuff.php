@@ -11,3 +11,12 @@
     </div>
     <?=$view->render("./cq-edit-record-box/cq-edit-record-box")?>
 </cq-layer>
+
+<?//------css traductions------------------?>
+<style>
+    <?foreach (the()->project->languages as $lang):?>
+    .fld[data-lang='<?=$lang?>']{
+        background-image: url('<?=\Localization\Lang::getByCode("$lang")->flagUrl()?>') !important;
+    }
+    <?endforeach;?>
+</style>

@@ -4,17 +4,19 @@
 #the-cq-layer{
 
 
-  [data-lang]{
-    background-position: top right;
-    background-size: 20px;
-    background-repeat: no-repeat;
-  }
-  [data-lang='fr']{
-    background-image: url('/vendor/davidmars/localization/flags/fr.png');
-  }
+
+
 
 
   .fld{
+
+    &[data-lang]{
+      background-position: center right;
+      background-size: 20px;
+      background-repeat: no-repeat;
+      //background-image: url('');// défini en fonction des langues dans /Classiq/_src/unique-instances/layout-stuff.php
+    }
+
     font-family: var(--cq-typo-sans);
     font-size: 14px;
     display: inline-block;
