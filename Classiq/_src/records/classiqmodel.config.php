@@ -46,4 +46,11 @@ $errs=$vv->getErrors()
         ->string()
         ->input("text","Titre de la page...")
     ?>
+    <?foreach (the()->project->languages as $lang):?>
+        <?=$vv->wysiwyg()->field("name_$lang")
+            ->string()
+            ->input("text",$lang)
+            ->setAttribute("data-lang",$lang)
+        ?>
+    <?endforeach;?>
 </div>

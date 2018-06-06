@@ -138,13 +138,17 @@ class Field
 
     /**
      * Pour rendre un champ éditable sous forme de liste réorganisable
+     *
      * @param string $itemTemplates Liste des templates path possibles séparés par une virgule
+     *
      * @return FieldListJson
+     * @throws PovException
      */
     public function listJson($itemTemplates="")
     {
         $testTemplates=pov()->utils->array->fromString($itemTemplates);
         foreach ($testTemplates as $template){
+
             if(!View::isValid($template)){
                 throw new PovException($template." n'est pas valide");
             }

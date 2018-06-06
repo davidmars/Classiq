@@ -732,10 +732,10 @@ $.fn.CqSortable = function() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__unique_instances_cq_notifier_CqNotifier__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__cq_sortable_CqSortable__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__cq_field_records_CqFieldRecords__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__cq_fields_cq_field_google_map_CqFieldGoogleMap__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__cq_fields_cq_field_google_map_CqFieldGoogleMap__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__unique_instances_cq_edit_record_box_CqEditRecordBox__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__CqAdmin__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__cq_fields_CqFieldUpload__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__CqAdmin__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__cq_fields_CqFieldUpload__ = __webpack_require__(81);
 
 
 
@@ -752,10 +752,10 @@ $.fn.CqSortable = function() {
 
 
 
-__webpack_require__(81);
-__webpack_require__(82);
 __webpack_require__(83);
 __webpack_require__(84);
+__webpack_require__(85);
+__webpack_require__(86);
 
 
 class Wysiwyg{
@@ -15870,274 +15870,9 @@ class CqFieldRecords extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /*
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cq_db_CqDb__ = __webpack_require__(78);
-
-
-class CqAdmin{
-    constructor(){
-
-
-        let me=this;
-        /**
-         * Pour parler avec la base de données
-         * @type {CqDb}
-         */
-        this.db=new __WEBPACK_IMPORTED_MODULE_0__cq_db_CqDb__["a" /* default */]();
-        /**
-         * Permet d'accéder à des élément d'interface d'admin courrants
-         */
-        this.ui={
-            bigMenu:wysiwyg.bigMenu,
-            recordEditor:wysiwyg.recordEditor
-        };
-
-        //pour que les cq-on-etc puissent appeler des methodes de cet objet
-        window.cqEventsListener.addObject(this);
-        window.cqEventsListener.addListener(EVENTS.SSE_DB_CHANGE,"cq-on-model-saved");
-        window.cqEventsListener.addListener(EVENTS.SSE_DB_TRASH,"cq-on-model-trash"); //todo opti pas utilisé mais devrait l'être ;)
-
-
-        /**
-         * Pour afficher facilement des notifications
-         * @type {{apiResponse: CqAdmin.notify.apiResponse}}
-         */
-        this.notify={
-            /**
-             * Affiche (ou pas) une notification appropriée en fonction de ApiResponse
-             * @param {ApiResponse} apiResponse
-             */
-            apiResponse:function(apiResponse){
-                let theme="white";
-                let icon="cq-circle-info";
-                let content="";
-                if(!apiResponse.success){
-                    theme="danger";
-                    icon="cq-circle-error";
-                    content=apiResponse.errors.join("<br>");
-                }
-                if(content){
-                    wysiwyg.notifier.notify(content,10,theme,icon);
-                }
-            }
-        };
-
-        this._initSSEEvents();
-    }
-
-    editRecord(uid){
-        this.ui.recordEditor.displayUid(uid);
-    }
-
-    _initSSEEvents(){
-
-        /**
-         * Quand une élément de la DB est modifié
-         */
-        window.povSSE.on(EVENTS.SSE_DB_CHANGE,
-            /**
-             * @param {PovSSEevent} sseEvent
-             * - notification
-             * - renvoie l'event sur les éléments modifiés
-             */
-            function(sseEvent){
-                window.wysiwyg.notifier.notify(sseEvent.humanMessage,3,"white","cq-edit",sseEvent.vars.uid);
-                if(sseEvent.vars.uid){
-                    let $relatedEls=$("[data-pov-vv-uid='"+sseEvent.vars.uid+"']");
-                    $relatedEls.trigger(EVENTS.SSE_DB_CHANGE);
-                }
-            }
-        );
-        /**
-         * Quand on met un element de la DB à la poubelle
-         * - notification
-         * - renvoie l'event sur les éléments supprimés
-         */
-        window.povSSE.on(EVENTS.SSE_DB_TRASH,
-            /**
-             * @param {PovSSEevent} sseEvent
-             */
-            function(sseEvent){
-                window.wysiwyg.notifier.notify(sseEvent.humanMessage,4,"danger","cq-trash");
-                if(sseEvent.vars.uid){
-                    let $relatedEls=$("[data-pov-vv-uid='"+sseEvent.vars.uid+"']");
-                    $relatedEls.css("opacity","0.2");
-                    $relatedEls.trigger(EVENTS.SSE_DB_TRASH);
-                    if(PovHistory.currentPageInfo.uid){
-                        if(PovHistory.currentPageInfo.uid===sseEvent.vars.uid){
-                            PovHistory.goToHomePage();
-                        }
-                    }
-                }
-            }
-        );
-    }
-
-
-    /**
-     * Fait un pov refresh de l'objet qui appelle la fonction
-     */
-    refresh(){
-        $(this).povRefresh();
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = CqAdmin;
-
-
-/***/ }),
-/* 78 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * Permet de communiquer avec la base de données
- */
-class CqDb{
-
-    constructor(){
-        this.toto="rigolo";
-    }
-    /**
-     * Efface un uid (demande confirmation à l'utilisateur avant)
-     * @param uid
-     * @returns {Promise<any>}
-     */
-    trash(uid){
-        return new Promise(function (resolve,reject) {
-            if(confirm("Êtes vous certain?")){
-                window.pov.api.delete({uid:uid},function(r){
-                    console.log(r);
-                    if(r.success){
-                        resolve(r)
-                    }else{
-                        cqAdmin.notify.apiResponse(r);
-                        reject(r);
-                    }
-                });
-            }
-        })
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = CqDb;
-
-
-/***/ }),
-/* 79 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__WysiwygField__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cq_progress_bar_CqProgressBar__ = __webpack_require__(19);
-
-
-
-
-__webpack_require__(80);
-class CqFieldUpload extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */]{
-    constructor($main){
-        super($main);
-        let me=this;
-
-        if(!$main.is("[wysiwyg-var][wysiwyg-data-type='file']")){
-            let m="wrong CqFieldUpload";
-            alert(m);
-            console.error(m,$main);
-            return;
-        }
-        this.field=new __WEBPACK_IMPORTED_MODULE_1__WysiwygField__["a" /* default */]($main);
-        this.$inputFile=$main.find("input[type='file']");
-        this.$progressText=$main.find("[data-progress-text]");
-        let $progressBar=$main.find("[cq-progress-bar]");
-        this.progressbar=new __WEBPACK_IMPORTED_MODULE_2__cq_progress_bar_CqProgressBar__["a" /* default */]($progressBar);
-
-        this._startUpload();
-    }
-
-    _startUpload(){
-        let me=this;
-        me.$main.attr("state","uploading")
-        //1 uploader le fichier
-        window.pov.api.upload(
-            me.$inputFile.get(0).files[0],
-            function(progress){
-                console.log("uploading file "+progress)
-                me.$progressText.text(String(progress)+"%");
-                me.progressbar.progress=progress;
-            }
-        ).then(
-            function(apiResponse){
-                //2 receptionner l'uid du Filerecord
-                console.log("upload ok json",apiResponse);
-                //3 l'enregistrer dans le champ
-                me.field.$field.attr("wysiwyg-value",apiResponse.json.record.uid);
-                me.field.doSave(true);
-                me.$main.attr("state","")
-            },
-            function(){
-                //failed
-                console.error("erreur upload");
-                me.$main.attr("state","error")
-            }
-        );
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = CqFieldUpload;
-
-
-/***/ }),
-/* 80 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 81 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 82 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 83 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 84 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 85 */,
-/* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */,
-/* 92 */,
-/* 93 */,
-/* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
 
-__webpack_require__(102);
+__webpack_require__(78);
 
 /**
  *
@@ -16261,7 +15996,256 @@ class CqFieldGoogleMap extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" 
 
 
 /***/ }),
-/* 102 */
+/* 78 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 79 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cq_db_CqDb__ = __webpack_require__(80);
+
+
+class CqAdmin{
+    constructor(){
+
+
+        let me=this;
+        /**
+         * Pour parler avec la base de données
+         * @type {CqDb}
+         */
+        this.db=new __WEBPACK_IMPORTED_MODULE_0__cq_db_CqDb__["a" /* default */]();
+        /**
+         * Permet d'accéder à des élément d'interface d'admin courrants
+         */
+        this.ui={
+            bigMenu:wysiwyg.bigMenu,
+            recordEditor:wysiwyg.recordEditor
+        };
+
+        //pour que les cq-on-etc puissent appeler des methodes de cet objet
+        window.cqEventsListener.addObject(this);
+        window.cqEventsListener.addListener(EVENTS.SSE_DB_CHANGE,"cq-on-model-saved");
+        window.cqEventsListener.addListener(EVENTS.SSE_DB_TRASH,"cq-on-model-trash"); //todo opti pas utilisé mais devrait l'être ;)
+
+
+        /**
+         * Pour afficher facilement des notifications
+         * @type {{apiResponse: CqAdmin.notify.apiResponse}}
+         */
+        this.notify={
+            /**
+             * Affiche (ou pas) une notification appropriée en fonction de ApiResponse
+             * @param {ApiResponse} apiResponse
+             */
+            apiResponse:function(apiResponse){
+                let theme="white";
+                let icon="cq-circle-info";
+                let content="";
+                if(!apiResponse.success){
+                    theme="danger";
+                    icon="cq-circle-error";
+                    content=apiResponse.errors.join("<br>");
+                }
+                if(content){
+                    wysiwyg.notifier.notify(content,10,theme,icon);
+                }
+            }
+        };
+
+        this._initSSEEvents();
+    }
+
+    editRecord(uid){
+        this.ui.recordEditor.displayUid(uid);
+    }
+
+    _initSSEEvents(){
+
+        /**
+         * Quand une élément de la DB est modifié
+         */
+        window.povSSE.on(EVENTS.SSE_DB_CHANGE,
+            /**
+             * @param {PovSSEevent} sseEvent
+             * - notification
+             * - renvoie l'event sur les éléments modifiés
+             */
+            function(sseEvent){
+                window.wysiwyg.notifier.notify(sseEvent.humanMessage,3,"white","cq-edit",sseEvent.vars.uid);
+                if(sseEvent.vars.uid){
+                    let $relatedEls=$("[data-pov-vv-uid='"+sseEvent.vars.uid+"']");
+                    $relatedEls.trigger(EVENTS.SSE_DB_CHANGE);
+                }
+            }
+        );
+        /**
+         * Quand on met un element de la DB à la poubelle
+         * - notification
+         * - renvoie l'event sur les éléments supprimés
+         */
+        window.povSSE.on(EVENTS.SSE_DB_TRASH,
+            /**
+             * @param {PovSSEevent} sseEvent
+             */
+            function(sseEvent){
+                window.wysiwyg.notifier.notify(sseEvent.humanMessage,4,"danger","cq-trash");
+                if(sseEvent.vars.uid){
+                    let $relatedEls=$("[data-pov-vv-uid='"+sseEvent.vars.uid+"']");
+                    $relatedEls.css("opacity","0.2");
+                    $relatedEls.trigger(EVENTS.SSE_DB_TRASH);
+                    if(PovHistory.currentPageInfo.uid){
+                        if(PovHistory.currentPageInfo.uid===sseEvent.vars.uid){
+                            PovHistory.goToHomePage();
+                        }
+                    }
+                }
+            }
+        );
+    }
+
+
+    /**
+     * Fait un pov refresh de l'objet qui appelle la fonction
+     */
+    refresh(){
+        $(this).povRefresh();
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = CqAdmin;
+
+
+/***/ }),
+/* 80 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Permet de communiquer avec la base de données
+ */
+class CqDb{
+
+    constructor(){
+        this.toto="rigolo";
+    }
+    /**
+     * Efface un uid (demande confirmation à l'utilisateur avant)
+     * @param uid
+     * @returns {Promise<any>}
+     */
+    trash(uid){
+        return new Promise(function (resolve,reject) {
+            if(confirm("Êtes vous certain?")){
+                window.pov.api.delete({uid:uid},function(r){
+                    console.log(r);
+                    if(r.success){
+                        resolve(r)
+                    }else{
+                        cqAdmin.notify.apiResponse(r);
+                        reject(r);
+                    }
+                });
+            }
+        })
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = CqDb;
+
+
+/***/ }),
+/* 81 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__WysiwygField__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cq_progress_bar_CqProgressBar__ = __webpack_require__(19);
+
+
+
+
+__webpack_require__(82);
+class CqFieldUpload extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */]{
+    constructor($main){
+        super($main);
+        let me=this;
+
+        if(!$main.is("[wysiwyg-var][wysiwyg-data-type='file']")){
+            let m="wrong CqFieldUpload";
+            alert(m);
+            console.error(m,$main);
+            return;
+        }
+        this.field=new __WEBPACK_IMPORTED_MODULE_1__WysiwygField__["a" /* default */]($main);
+        this.$inputFile=$main.find("input[type='file']");
+        this.$progressText=$main.find("[data-progress-text]");
+        let $progressBar=$main.find("[cq-progress-bar]");
+        this.progressbar=new __WEBPACK_IMPORTED_MODULE_2__cq_progress_bar_CqProgressBar__["a" /* default */]($progressBar);
+
+        this._startUpload();
+    }
+
+    _startUpload(){
+        let me=this;
+        me.$main.attr("state","uploading")
+        //1 uploader le fichier
+        window.pov.api.upload(
+            me.$inputFile.get(0).files[0],
+            function(progress){
+                console.log("uploading file "+progress)
+                me.$progressText.text(String(progress)+"%");
+                me.progressbar.progress=progress;
+            }
+        ).then(
+            function(apiResponse){
+                //2 receptionner l'uid du Filerecord
+                console.log("upload ok json",apiResponse);
+                //3 l'enregistrer dans le champ
+                me.field.$field.attr("wysiwyg-value",apiResponse.json.record.uid);
+                me.field.doSave(true);
+                me.$main.attr("state","")
+            },
+            function(){
+                //failed
+                console.error("erreur upload");
+                me.$main.attr("state","error")
+            }
+        );
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = CqFieldUpload;
+
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 86 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
