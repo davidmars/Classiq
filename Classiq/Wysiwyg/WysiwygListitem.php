@@ -36,12 +36,12 @@ class WysiwygListitem
      * Pour éditer un champ
      *
      * @param $varName
-     * @param $suffix
      *
      * @return Field
      */
-    public function field($varName,$suffix=""){
-        return new JsonModelField($this,$varName,$suffix);
+    public function field($varName){
+        $varName=preg_replace("/_lang$/",the()->project->langCode,$varName);
+        return new JsonModelField($this,$varName);
     }
 
     /**
