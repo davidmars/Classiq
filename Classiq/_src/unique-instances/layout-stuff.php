@@ -16,7 +16,7 @@
 <style>
     <?foreach (the()->project->languages as $lang):?>
     .fld[data-lang='<?=$lang?>']{
-        background-image: url('<?=\Localization\Lang::getByCode("$lang")->flagUrl()?>') !important;
+        background-image: url('<?=\Localization\Lang::getByCode("$lang")->flagUrl(the()->fmkHttpRoot."/".\Localization\Lang::$flagsUrlBasePath)?>') !important;
     }
     <?endforeach;?>
 </style>
