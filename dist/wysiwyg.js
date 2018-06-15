@@ -751,6 +751,7 @@ $.fn.CqSortable = function() {
 
 
 
+__webpack_require__(103);
 
 __webpack_require__(83);
 __webpack_require__(84);
@@ -16248,6 +16249,57 @@ class CqFieldUpload extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
 
 /***/ }),
 /* 86 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(104);
+$( document ).ready(function() {
+
+    /**
+     * affiche/masque les éléments "cq-visible-in-viewport'
+     */
+    function visibleInViewport(){
+        console.log("visibleInViewport");
+        $("[cq-visible-in-viewport]").each(function() {
+            if ($(this).isInViewport()) { //pov.jQuery.more.js
+                $(this).attr("cq-visible-in-viewport","visible")
+            } else {
+                $(this).attr("cq-visible-in-viewport","")
+            }
+        });
+    }
+    $("*").on('scroll', function() {
+        visibleInViewport();
+    });
+    $(window).on('resize scroll', function() {
+        visibleInViewport();
+    });
+
+});
+
+/***/ }),
+/* 104 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

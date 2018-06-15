@@ -13,6 +13,7 @@ import CqFieldGoogleMap from "./cq-fields/cq-field-google-map/CqFieldGoogleMap";
 import CqEditRecordBox from "./unique-instances/cq-edit-record-box/CqEditRecordBox";
 import CqAdmin from "./CqAdmin";
 import {CqFieldUpload} from "./cq-fields/CqFieldUpload";
+require("./cq-visible-in-viewport/cq-visible-in-viewport");
 
 require("./cq-base/cq-typography/cq-typography.less");
 require("./cq-list-item-class/cq-list-item.less");
