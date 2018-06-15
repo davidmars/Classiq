@@ -3598,6 +3598,7 @@ class CqBigMenu{
             }
         });
 
+        /*
         new PerfectScrollbar($main.find("main").get(0),
             {
                 wheelSpeed: 1,
@@ -3607,6 +3608,7 @@ class CqBigMenu{
                 swipeEasing:true
             }
         );
+        */
 
         this.usersSection=new __WEBPACK_IMPORTED_MODULE_3__UserSection__["a" /* default */](me.$userSection(),me);
         this.browse= new __WEBPACK_IMPORTED_MODULE_4__cq_browse_records_CqBrowseRecords__["a" /* default */](this.$browseSection,this);

@@ -65,6 +65,7 @@ export default class CqBigMenu{
             }
         });
 
+        /*
         new PerfectScrollbar($main.find("main").get(0),
             {
                 wheelSpeed: 1,
@@ -74,6 +75,7 @@ export default class CqBigMenu{
                 swipeEasing:true
             }
         );
+        */
 
         this.usersSection=new UserSection(me.$userSection(),me);
         this.browse= new CqBrowseRecords(this.$browseSection,this);
