@@ -134,6 +134,18 @@ class FieldString extends FieldTyped
         }
         return $this;
 
+    }/**
+     * Définit les boutons pour Medium editor
+     * @param string[] $buttons exemple ["h1","h2","bold","italic","anchor","select-record","removeFormat"]
+     * @return $this
+     */
+    public function setMediumButtons($buttons)
+    {
+        if($this->field->wysiwyg->active){
+            $this->options["mediumButtons"]=pov()->utils->array->fromString($buttons);
+        }
+        return $this;
+
     }
 
     /**

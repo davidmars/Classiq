@@ -17,9 +17,20 @@ export default class CqFieldRichText extends DisplayObject{
         let ph=$main.attr("placeholder");
         let me=this;
 
+        let buttons=["bold","italic","anchor","select-record","removeFormat"]
+
+
+        let fieldOptions=$main.attr("cq-field-options");
+        if(fieldOptions){
+            fieldOptions=JSON.parse(fieldOptions);
+        }
+        if(fieldOptions.mediumButtons){
+            buttons=fieldOptions.mediumButtons;
+        }
+
         let options={
             toolbar:{
-                buttons:["bold","italic","anchor","select-record","removeFormat"]
+                buttons: buttons
             },
             placeholder: {
                 text: ph?ph:'Texte ici...',

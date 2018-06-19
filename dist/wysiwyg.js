@@ -751,12 +751,12 @@ $.fn.CqSortable = function() {
 
 
 
-__webpack_require__(103);
-
 __webpack_require__(83);
-__webpack_require__(84);
+
 __webpack_require__(85);
 __webpack_require__(86);
+__webpack_require__(87);
+__webpack_require__(88);
 
 
 class Wysiwyg{
@@ -7157,9 +7157,20 @@ class CqFieldRichText extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /
         let ph=$main.attr("placeholder");
         let me=this;
 
+        let buttons=["bold","italic","anchor","select-record","removeFormat"]
+
+
+        let fieldOptions=$main.attr("cq-field-options");
+        if(fieldOptions){
+            fieldOptions=JSON.parse(fieldOptions);
+        }
+        if(fieldOptions.mediumButtons){
+            buttons=fieldOptions.mediumButtons;
+        }
+
         let options={
             toolbar:{
-                buttons:["bold","italic","anchor","select-record","removeFormat"]
+                buttons: buttons
             },
             placeholder: {
                 text: ph?ph:'Texte ici...',
@@ -16231,49 +16242,9 @@ class CqFieldUpload extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
 
 /***/ }),
 /* 83 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 84 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 85 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 86 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */,
-/* 92 */,
-/* 93 */,
-/* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */,
-/* 102 */,
-/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(104);
+__webpack_require__(84);
 $( document ).ready(function() {
 
     /**
@@ -16299,7 +16270,31 @@ $( document ).ready(function() {
 });
 
 /***/ }),
-/* 104 */
+/* 84 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 88 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
