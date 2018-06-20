@@ -41,6 +41,7 @@ class Wysiwyg
      * @return Field
      */
     public function field($varName){
+        $varName=preg_replace("/_lang$/",the()->project->langCode,$varName);
         return new Field($this,$varName);
     }
 
