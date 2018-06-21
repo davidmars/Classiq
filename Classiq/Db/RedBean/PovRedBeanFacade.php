@@ -872,7 +872,7 @@ class PovRedBeanFacade extends AbstractSingleton
      */
     public function getInsertID()
     {
-        throw new PovException("Redbean facade pas implémenté");
+        return R::getInsertID();
     }
 
     /**
