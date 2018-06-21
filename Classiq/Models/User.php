@@ -40,6 +40,8 @@ class User extends Classiqmodel
         return "Compte utilisateur";
     }
 
+
+
     /**
      * Envoie à l'utilisateur un email qui lui permettra de redéfinir son mot de passe via un token
      */
@@ -73,6 +75,18 @@ class User extends Classiqmodel
         if($u && $connectUserIfValid){
             self::setConnected($u->box());
         }
+        return $u;
+    }
+
+    /**
+     * Renvoie un User depuis son email (ou null)
+     * @param string $email
+     * @return User
+     */
+    public static function getUserByEmail($email)
+    {
+        /** @var User $u */
+        $u=db()->findOne("user","email='$email'");
         return $u;
     }
 
