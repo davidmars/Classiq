@@ -114,6 +114,9 @@ class ClassiqUtils extends AbstractSingleton
     public function _layoutStuff()
     {
         $r="";
+        if(the()->request("editUid")){
+            the()->htmlLayout()->layoutVars->editUid=the()->request("editUid");
+        }
         the()->htmlLayout()->layoutVars->isModeDev=$this->isModeDev();
         //pov-fmk + jquery
         the()->htmlLayout()->addJsToFooter("vendor/davidmars/pov-2018/dist/pov-boot.js",true);

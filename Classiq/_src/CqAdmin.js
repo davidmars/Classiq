@@ -49,6 +49,16 @@ export default class CqAdmin{
         };
 
         this._initSSEEvents();
+
+
+        if(LayoutVars.editUid){
+            setTimeout(function(){
+                me.ui.bigMenu.open("browse");
+                me.editRecord(LayoutVars.editUid);
+            },1000)
+
+        }
+
     }
 
     editRecord(uid){
