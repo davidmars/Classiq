@@ -381,7 +381,7 @@ class Classiqmodel extends Classiqbean
                 cq()->notify->admins->notify(self::EVENT_SSE_DB_CHANGE,$message." a été enregistré.",$this->apiData());
             }
         }
-
+        pov()->events->dispatch(self::EVENT_UPDATE,[$this]);
         parent::after_update();
     }
 
