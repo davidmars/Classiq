@@ -48,7 +48,7 @@ class SessionHandler implements SessionHandlerInterface
         if($s->willExpire()){
             $s->touch();
         }
-        pov()->log->info("open session");
+        //pov()->log->info("open session");
         return true;
     }
 
