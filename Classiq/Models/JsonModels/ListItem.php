@@ -97,6 +97,7 @@ class ListItem
      */
     public function getData($varName,$ifNull="")
     {
+        $varName=preg_replace("/_lang$/","_".the()->project->langCode,$varName);
         if(isset($this->data[$varName])){
             return $this->data[$varName];
         }else{

@@ -40,7 +40,7 @@ class WysiwygListitem
      * @return Field
      */
     public function field($varName){
-        $varName=preg_replace("/_lang$/",the()->project->langCode,$varName);
+        $varName=preg_replace("/_lang$/","_".the()->project->langCode,$varName);
         return new JsonModelField($this,$varName);
     }
 
