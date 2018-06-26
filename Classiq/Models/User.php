@@ -119,6 +119,11 @@ class User extends Classiqmodel
             throw new PovException("Un utilisateur avec le même nom existe déjà");
         }
 
+        $sameMail=db()->findOne("user", "email='$this->email' and id != '$this->id'");
+        if($sameMail){
+            throw new PovException("Un compte avec ce mail existe déjà");
+        }
+
         if($this->id && $this->email){
             $existing = db()->find("user", "email='$this->email' and id != '$this->id'");
             if ($existing) {
