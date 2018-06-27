@@ -50,15 +50,20 @@ use Classiq\Seo\SEO_FRENCH;
 
     <?if(!$vv->urlpage->is_homepage):?>
         <fieldset cq-display-if="seo">
-        <label>Url</label>
-        <?=$vv->urlpage->wysiwyg()->field("url")
+
+            <label>Url</label>
+            <?foreach (the()->project->languages as $lang):?>
+            <?=$vv->urlpage->wysiwyg()->field("url_$lang")
+                ->string()
+                    ->isTranslated($lang)
+                ->textarea("url de la page")
+            ?>
+            <?endforeach?>
+
+            <?=$vv->urlpage->wysiwyg()->field("stricturl")
             ->string()
-            ->textarea("url de la page")
-        ?>
-        <?=$vv->urlpage->wysiwyg()->field("stricturl")
-        ->string()
-        ->select(["avec id (recommandé)"=>"0","sans id"=>"1"])
-        ?>
+            ->select(["avec id (recommandé)"=>"0","sans id"=>"1"])
+            ?>
         <small>Url réelle:</small>
         <pre title="<?=$vv->href()?>"><?=$vv->href()?></pre>
         </fieldset>
