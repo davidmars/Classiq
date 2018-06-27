@@ -1411,6 +1411,7 @@ class CqBrowseRecordsList extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["
             $records,
             {
                 types:this.types.join(","),
+                q:this.search,
                 function(r){
                     me.emit(EVENTS.CHANGED);
                     setTimeout(function(){
@@ -4871,6 +4872,12 @@ class BrowseRecords extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
 
         this.__init($main);
 
+        /**
+         * Les mots clés (ou pas)
+         * @type {string}
+         */
+        this.search="";
+
 
     }
 
@@ -4889,8 +4896,16 @@ class BrowseRecords extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
             $selecteds.each(function(){
                 selectedTypes.push($(this).val());
             });
-            me.setTypes(selectedTypes)
+            me.setTypes(selectedTypes);
         });
+
+        console.log("$main",$main)
+
+        $body.on("input",".js-is-search",function(){
+            console.log("search...")
+            me.search=$(this).val();
+            me.updateUi();
+        })
 
         //applique l'état courrant à partir du storage
         if(me.storage.getValue("typesSelected")){
@@ -4923,6 +4938,16 @@ class BrowseRecords extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
     $types(){
         return this.$main.find(".js-is-record-type");
     }
+
+    /**
+     * Le champ de recherche
+     * @returns {JQuery|*}
+     */
+    $search(){
+        let $r=this.$main.find(".js-is-search");
+        return $r;
+    }
+
 
 
     setTypes(types){

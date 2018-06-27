@@ -29,17 +29,21 @@ class Urlpage extends Classiqmodel
      * S'assure que l'url est bien unique
      */
     public function update(){
-        if($this->urlExists($this->url)){
-            $increment=1;
-            $url=$this->url.'-'.$increment;
-            while($this->urlExists($url)){
-                $increment++;
-                $url=$this->url.'-'.$increment;
+        foreach (the()->project->languages as $lang){
+            $field="url_$lang";
+            if($this->urlExists($this->$field,$lang)){
+                $increment=1;
+                $url=$this->$field.'-'.$increment;
+                while($this->urlExists($url,$lang)){
+                    $increment++;
+                    $url=$this->$field.'-'.$increment;
+                }
+                $this->$field=$url;
             }
-            $this->url=$url;
+            $this->$field=strtolower($this->$field);
+            $this->$field=pov()->utils->string->clean($this->$field,"/");
         }
-        $this->url=strtolower($this->url);
-        $this->url=pov()->utils->string->clean($this->url,"/");
+
 
         parent::update();
 
@@ -49,8 +53,8 @@ class Urlpage extends Classiqmodel
      * @param $url
      * @return int
      */
-    private function urlExists($url){
-        return db()->count("urlpage","url='".$url."' and id != '".$this->id."' ");
+    private function urlExists($url,$langCode){
+        return db()->count("urlpage","url_$langCode='".$url."' and id != '".$this->id."' ");
     }
 
 
