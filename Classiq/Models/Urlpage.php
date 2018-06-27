@@ -103,7 +103,10 @@ class Urlpage extends Classiqmodel
      * @return Urlpage|null Le modèle de l'url
      */
     public static function getByUrl($url){
-        $bean=db()->findOne("urlpage","url='$url'");
+        $bean=db()->findOne("urlpage","url_".the()->project->langCode." = '$url'");
+        if(!$bean){
+            $bean=db()->findOne("urlpage","url = '$url'");
+        }
         return $bean;
     }
 

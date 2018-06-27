@@ -101,7 +101,7 @@ class C_classiq extends C_default {
         if(!$page){
             throw new PovException("pageId_url pas de page ".pov()->debug->dump($urlpage));
         }
-        $url=$urlpage->url;
+        $url=$urlpage->box()->url_lang;
         if(!$urlpage->stricturl){
             $url=$url.".p$urlpage->id";
         }
