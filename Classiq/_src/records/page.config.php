@@ -27,19 +27,25 @@ use Classiq\Seo\SEO_FRENCH;
 
     <fieldset cq-display-if="seo">
     <label>Titre de page (seo)</label>
-    <?=$vv->urlpage->wysiwyg()->field("meta_title")
-        ->string()
-        ->input("text","Titre de la page...")
-        ->setAttribute("oninput","document.title=this.value")
-    ?>
+    <?foreach (the()->project->languages as $lang):?>
+        <?=$vv->urlpage->wysiwyg()->field("meta_title_$lang")
+            ->string()
+            ->isTranslated($lang)
+            ->input("text","Titre de la page...")
+            ->setAttribute("oninput","document.title=this.value")
+        ?>
+    <?endforeach;?>
     </fieldset>
 
     <fieldset cq-display-if="seo">
     <label>Description (seo)</label>
-    <?=$vv->urlpage->wysiwyg()->field("meta_description")
+    <?foreach (the()->project->languages as $lang):?>
+    <?=$vv->urlpage->wysiwyg()->field("meta_description_$lang")
         ->string()
+        ->isTranslated($lang)
         ->textarea("Description de la page")
     ?>
+    <?endforeach;?>
     </fieldset>
 
     <?if(!$vv->urlpage->is_homepage):?>
