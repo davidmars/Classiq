@@ -123,7 +123,7 @@ class DisplayObject extends __WEBPACK_IMPORTED_MODULE_0_event_emitter_es6___defa
             console.error(this.CLASS_NAME+" déjà construit!!!",$main);
             return this.$main.data(this.CLASS_NAME);
         }
-
+        this.$main.data("displayObject",this);
         this.$main.data(this.CLASS_NAME,this);
         this.$main.attr(this.ATTR,"init");
 
@@ -164,6 +164,14 @@ class DisplayObject extends __WEBPACK_IMPORTED_MODULE_0_event_emitter_es6___defa
      */
     height(){
         return this.$main.height();
+    }
+
+    /**
+     * Methode à appeler quand l'objet vient d'être injecté dans le DOM.
+     * Cette méthode une fois overridée permet par exemple de réinitialiser des events qui auraient disparu suite à une supression du DOM.
+     */
+    injected(){
+        //console.log("injected",this);
     }
 
     /**
@@ -1362,6 +1370,7 @@ class CqBrowseRecordsList extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["
     constructor($main){
         super($main);
         let me = this;
+        this.keywords="";
         /*
         new PerfectScrollbar($main.find(".records").get(0),
             {
@@ -1379,6 +1388,20 @@ class CqBrowseRecordsList extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["
             });
         },100);
 
+        $body.on("input",".js-is-search",function(){
+            let k=$(this).val();
+            console.log("keywords",k);
+            me.setKeywords(k);
+        })
+    }
+
+    injected(){
+        let me=this;
+        setTimeout(function(){
+            me.$main.find(".records").scroll(function(){
+                me.$main.trigger("cq-scroll-event");
+            });
+        },100)
 
     }
 
@@ -1396,7 +1419,12 @@ class CqBrowseRecordsList extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["
      */
     setTypes(types){
         this.types=types;
-        this.refreshList(types);
+        this.refreshList();
+    }
+
+    setKeywords(keywords){
+        this.keywords=keywords;
+        this.refreshList();
     }
 
     /**
@@ -1411,7 +1439,7 @@ class CqBrowseRecordsList extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["
             $records,
             {
                 types:this.types.join(","),
-                q:this.search,
+                keywords:this.keywords,
                 function(r){
                     me.emit(EVENTS.CHANGED);
                     setTimeout(function(){
@@ -1517,6 +1545,20 @@ class CqEditRecordBox extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /
         this.show();
         this.currentUid=uid;
         this.emit(EVENTS.OPEN,[uid]);
+        this.injected();
+
+    }
+
+    injected(){
+
+        let me=this;
+        //console.log("editRecordBox",me.$main);
+        setTimeout(function(){
+            me.$main.find("main").scroll(function(){
+                me.$main.trigger("cq-scroll-event");
+            });
+        },100)
+
     }
 
     /**
@@ -3771,6 +3813,11 @@ class CqBigMenu{
     setExtensionContent($content){
         this.$extension.empty();
         this.$extension.append($content);
+        let displayObject=$content.data("displayObject");
+        if(displayObject){
+            displayObject.injected();
+        }
+
     }
 
     
@@ -4872,11 +4919,6 @@ class BrowseRecords extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
 
         this.__init($main);
 
-        /**
-         * Les mots clés (ou pas)
-         * @type {string}
-         */
-        this.search="";
 
 
     }
@@ -4898,14 +4940,6 @@ class BrowseRecords extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
             });
             me.setTypes(selectedTypes);
         });
-
-        console.log("$main",$main)
-
-        $body.on("input",".js-is-search",function(){
-            console.log("search...")
-            me.search=$(this).val();
-            me.updateUi();
-        })
 
         //applique l'état courrant à partir du storage
         if(me.storage.getValue("typesSelected")){
@@ -4938,17 +4972,6 @@ class BrowseRecords extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
     $types(){
         return this.$main.find(".js-is-record-type");
     }
-
-    /**
-     * Le champ de recherche
-     * @returns {JQuery|*}
-     */
-    $search(){
-        let $r=this.$main.find(".js-is-search");
-        return $r;
-    }
-
-
 
     setTypes(types){
         this.typesSelected=window.pov.utils.arrayUnique(types);
@@ -16286,8 +16309,8 @@ $( document ).ready(function() {
      * affiche/masque les éléments "cq-visible-in-viewport'
      */
     function visibleInViewport(){
-        console.log("visibleInViewport");
-        $("[cq-visible-in-viewport]").each(function() {
+        //console.log("visibleInViewport");
+        $("[cq-visible-in-viewport='']").each(function() {
             if ($(this).isInViewport()) { //pov.jQuery.more.js
                 $(this).attr("cq-visible-in-viewport","visible")
             } else {
@@ -16295,9 +16318,11 @@ $( document ).ready(function() {
             }
         });
     }
+    /*
     $("*").on('scroll', function() {
         visibleInViewport();
     });
+    */
     $(window).on('resize scroll', function() {
         visibleInViewport();
     });

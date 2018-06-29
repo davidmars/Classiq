@@ -236,6 +236,11 @@ export default class CqBigMenu{
     setExtensionContent($content){
         this.$extension.empty();
         this.$extension.append($content);
+        let displayObject=$content.data("displayObject");
+        if(displayObject){
+            displayObject.injected();
+        }
+
     }
 
     

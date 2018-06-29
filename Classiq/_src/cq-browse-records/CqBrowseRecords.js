@@ -50,6 +50,7 @@ export default class BrowseRecords extends DisplayObject{
         this.__init($main);
 
 
+
     }
 
     __init($main){
@@ -67,7 +68,7 @@ export default class BrowseRecords extends DisplayObject{
             $selecteds.each(function(){
                 selectedTypes.push($(this).val());
             });
-            me.setTypes(selectedTypes)
+            me.setTypes(selectedTypes);
         });
 
         //applique l'état courrant à partir du storage
@@ -101,7 +102,6 @@ export default class BrowseRecords extends DisplayObject{
     $types(){
         return this.$main.find(".js-is-record-type");
     }
-
 
     setTypes(types){
         this.typesSelected=window.pov.utils.arrayUnique(types);

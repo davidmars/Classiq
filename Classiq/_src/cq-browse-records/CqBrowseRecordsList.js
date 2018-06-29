@@ -10,6 +10,7 @@ export default class CqBrowseRecordsList extends DisplayObject{
     constructor($main){
         super($main);
         let me = this;
+        this.keywords="";
         /*
         new PerfectScrollbar($main.find(".records").get(0),
             {
@@ -27,6 +28,20 @@ export default class CqBrowseRecordsList extends DisplayObject{
             });
         },100);
 
+        $body.on("input",".js-is-search",function(){
+            let k=$(this).val();
+            console.log("keywords",k);
+            me.setKeywords(k);
+        })
+    }
+
+    injected(){
+        let me=this;
+        setTimeout(function(){
+            me.$main.find(".records").scroll(function(){
+                me.$main.trigger("cq-scroll-event");
+            });
+        },100)
 
     }
 
@@ -44,7 +59,12 @@ export default class CqBrowseRecordsList extends DisplayObject{
      */
     setTypes(types){
         this.types=types;
-        this.refreshList(types);
+        this.refreshList();
+    }
+
+    setKeywords(keywords){
+        this.keywords=keywords;
+        this.refreshList();
     }
 
     /**
@@ -59,6 +79,7 @@ export default class CqBrowseRecordsList extends DisplayObject{
             $records,
             {
                 types:this.types.join(","),
+                keywords:this.keywords,
                 function(r){
                     me.emit(EVENTS.CHANGED);
                     setTimeout(function(){

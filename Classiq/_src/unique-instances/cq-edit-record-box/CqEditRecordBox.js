@@ -53,6 +53,20 @@ export default class CqEditRecordBox extends DisplayObject{
         this.show();
         this.currentUid=uid;
         this.emit(EVENTS.OPEN,[uid]);
+        this.injected();
+
+    }
+
+    injected(){
+
+        let me=this;
+        //console.log("editRecordBox",me.$main);
+        setTimeout(function(){
+            me.$main.find("main").scroll(function(){
+                me.$main.trigger("cq-scroll-event");
+            });
+        },100)
+
     }
 
     /**

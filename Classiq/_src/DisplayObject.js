@@ -51,7 +51,7 @@ export default class DisplayObject extends EventEmitter{
             console.error(this.CLASS_NAME+" déjà construit!!!",$main);
             return this.$main.data(this.CLASS_NAME);
         }
-
+        this.$main.data("displayObject",this);
         this.$main.data(this.CLASS_NAME,this);
         this.$main.attr(this.ATTR,"init");
 
@@ -92,6 +92,14 @@ export default class DisplayObject extends EventEmitter{
      */
     height(){
         return this.$main.height();
+    }
+
+    /**
+     * Methode à appeler quand l'objet vient d'être injecté dans le DOM.
+     * Cette méthode une fois overridée permet par exemple de réinitialiser des events qui auraient disparu suite à une supression du DOM.
+     */
+    injected(){
+        //console.log("injected",this);
     }
 
     /**
