@@ -55,7 +55,7 @@ class User extends Classiqmodel
         $this->tokenexpires=$tokenexpires;
         db()->store($this);
 
-        $message="Afin de réinitiliser votre mot de passe, veuillez cliquer sur le lien ci-dessous (valable une heure):<br>";
+        $message="Afin de réinitialiser votre mot de passe, veuillez cliquer sur le lien ci-dessous (valable une heure):<br>";
         $message.=C_classiq::login_url("edit-user")->absolute()."?token=".$this->token;
 
         cq()->sendMail($this->email,"Mot de passe oublié",$message);
