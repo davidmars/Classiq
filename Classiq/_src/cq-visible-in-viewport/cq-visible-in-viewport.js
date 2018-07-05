@@ -5,8 +5,8 @@ $( document ).ready(function() {
      * affiche/masque les éléments "cq-visible-in-viewport'
      */
     function visibleInViewport(){
-        console.log("visibleInViewport");
-        $("[cq-visible-in-viewport]").each(function() {
+        //console.log("visibleInViewport");
+        $("[cq-visible-in-viewport='']").each(function() {
             if ($(this).isInViewport()) { //pov.jQuery.more.js
                 $(this).attr("cq-visible-in-viewport","visible")
             } else {
@@ -14,9 +14,11 @@ $( document ).ready(function() {
             }
         });
     }
+    /*
     $("*").on('scroll', function() {
         visibleInViewport();
     });
+    */
     $(window).on('resize scroll', function() {
         visibleInViewport();
     });

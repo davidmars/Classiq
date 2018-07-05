@@ -21,7 +21,7 @@ $doit= the()->request("je-suis-certain") === "1";
     <h4><?=$total?> Urls</h4>
     <?foreach ($urls as $f):?>
 
-        <?=$f->url?><br>
+        <?=$f->url_lang?><br>
         <code>(<?=$f->uid()?>)</code><br>
         <code><?=$f->localPath()?></code><br>
         <?if(!$f->getPage(false)):?>

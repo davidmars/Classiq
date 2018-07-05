@@ -18,7 +18,31 @@ export default class CqEventsListener{
         this._listenerAttributtes={};
 
         this.addListener("click","cq-on-click")
-        this.addListener("submit","cq-on-submit")
+        this.addListener("submit","cq-on-submit");
+
+
+
+        /**
+         * cq-replace-on-scrollview=ma-vue
+         */
+        function scrollviewTest(){
+            $("[cq-replace-on-scrollview]").each(function() {
+                if ($(this).isInViewport()) { //pov.jQuery.more.js
+                    let v=$(this).attr("cq-replace-on-scrollview");
+                    $(this).removeAttr("cq-replace-on-scrollview");
+                    PovApi.getView(
+                        v,
+                        $(this),
+                        {}
+                    );
+                } else {
+                    //fait rien
+                }
+            });
+        }
+        $(window).on('resize scroll cq-scroll-event', function() {
+            scrollviewTest();
+        });
 
     }
 

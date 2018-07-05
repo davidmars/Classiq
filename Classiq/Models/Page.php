@@ -138,8 +138,17 @@ class Page extends Classiqmodel
     protected function defaultUrlmodel(){
         /** @var Urlpage $u */
         $u=db()->dispense("urlpage");
-        $u->url= pov()->utils->string->clean($this->name,"/");
+
+
         $u->meta_title=$this->name;
+
+        foreach (the()->project->languages as $lang){
+            $field="url_$lang";
+            $u->$field= pov()->utils->string->clean($this->name,"/");
+            $field="meta_title_$lang";
+            $u->$field=$this->name;
+        }
+
         $u->seo_priority=0.3;
         $u->seo_change_frequency=SEO::CHANGE_FREQ_YEARLY;
         return $u;
