@@ -73,6 +73,7 @@ use Classiq\Seo\SEO_FRENCH;
     <label>Priorité (seo)</label>
     <?=$vv->urlpage->wysiwyg()->field("seo_priority")
         ->string()
+        ->setDefaultValue("0.0")
         ->input("range")
         ->setAttribute("min","0")
         ->setAttribute("max","1")
