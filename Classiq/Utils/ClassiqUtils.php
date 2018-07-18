@@ -3,6 +3,7 @@
 namespace Classiq\Utils;
 
 
+use Classiq\C_classiq;
 use Classiq\Models\Page;
 use Classiq\Models\Session;
 use Classiq\Models\Urlpage;
@@ -116,6 +117,9 @@ class ClassiqUtils extends AbstractSingleton
         $r="";
         if(the()->request("editUid")){
             the()->htmlLayout()->layoutVars->editUid=the()->request("editUid");
+            if(!the()->human->isAdmin){
+                the()->htmlLayout()->redirectJS=C_classiq::login_url()->absolute();
+            }
         }
         the()->htmlLayout()->layoutVars->isModeDev=$this->isModeDev();
         //pov-fmk + jquery
