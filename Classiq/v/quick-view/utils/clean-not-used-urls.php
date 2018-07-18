@@ -11,6 +11,8 @@ $doit= the()->request("je-suis-certain") === "1";
 <?if(the()->human->isDev(true)):?>
 
 
+    <?=$view->render("./menu")?>
+
     <?php
         $urls=db()->find("urlpage");
         $totalTodelete=0;
@@ -23,6 +25,7 @@ $doit= the()->request("je-suis-certain") === "1";
 
         <?=$f->url_lang?><br>
         <code>(<?=$f->uid()?>)</code><br>
+        Type de page : <code>(<?=$f->related_type?>)</code><br>
         <code><?=$f->localPath()?></code><br>
         <?if(!$f->getPage(false)):?>
             <?php $totalTodelete++ ?>
