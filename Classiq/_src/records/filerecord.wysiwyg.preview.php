@@ -14,6 +14,8 @@ use Classiq\Models\Filerecord;
             <span class="icon image">
                 <i style="background-image: url('<?=$vv->httpPath()?>')"></i>
             </span>
+        <?elseif($vv->isVideo()):?>
+            <span class="icon"><?=cq()->icoWysiwyg("circle-play")?></span>
         <?else:?>
             <span class="icon"><?=cq()->icoWysiwyg("file")?></span>
         <?endif?>

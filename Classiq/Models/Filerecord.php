@@ -140,6 +140,13 @@ class Filerecord extends Classiqmodel
     {
         return preg_match("/image/",$this->mime);
     }
+    /**
+     * @return bool true si c'est une video
+     */
+    public function isVideo()
+    {
+        return preg_match("/video/",$this->mime);
+    }
 
     /**
      * Retourne de quoi jouer avec le fichier sous forme d'image
