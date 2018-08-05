@@ -41,6 +41,7 @@ class C_classiq extends C_default {
       "^robots.txt$"=>"robots/index",
       "^sitemap.xml$"=>"sitemap_xml/index",
       "^login$"=>"classiq/login",
+      "^dwd/(.*)/(.*)$"=>"default/dwd/$1/$2",
       "^v/(.*)$"=>"classiq/quickView/($1)", // le ($1) dit que les slashes à l'intérieur de la parenthèse sont préservés (toto/titi) ne donnera pas deux arguments mais un seul
       "^permalink-uid/([A-Za-z]+)-([0-9]+)$"=>"classiq/permalinkUid/$1/$2", //
       "^.*\.p([0-9]+)$"=>"classiq/pageId/$1", //   ce/que-tu_veux.p14 renverra vers la PageUrl@14
