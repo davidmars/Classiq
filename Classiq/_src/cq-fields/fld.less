@@ -3,19 +3,26 @@
 
 #the-cq-layer{
 
-
-
-
-
-
-  .fld{
-
+  
+  .fld,label{
     &[data-lang]{
       background-position: center right;
       background-size: 20px;
       background-repeat: no-repeat;
       //background-image: url('');// défini en fonction des langues dans /Classiq/_src/unique-instances/layout-stuff.php
     }
+  }
+
+  label{
+    &[data-lang] {
+      margin-right: 7px;
+    }
+  }
+
+
+
+
+  .fld{
 
     font-family: var(--cq-typo-sans);
     font-size: 14px;
