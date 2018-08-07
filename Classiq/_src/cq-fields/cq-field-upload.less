@@ -8,6 +8,10 @@
   &[state="uploading"]{
     [cq-progress-bar]{
       display: block;
+      .bar{
+        transition: width 1s;
+        background-color:var(--cq-color-success);
+      }
     }
   }
   &[state="error"]{

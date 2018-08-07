@@ -150,16 +150,47 @@ pov()->events->listen(C_povApi::EVENT_UPLOAD,
         $filename=$vv->testAndGetRequest("filename");
 
         if($vv->success){
-            //2 types d'upload possibles
+            //3 types d'upload possibles
             if(isset($_FILES["file"])){
                 //via champ classique nommé
                 $file=the()->fileSystem->uploadFromHtmlInput();
+            }elseif(isset($_FILES["chunck"])){
+                //html5 uploader chuncked
+                $filenametmp=the()->request("filenametmp");
+                $size=the()->request("size");
+                $end=the()->request("end");
+                $vv->addToJson("filename",$filename);
+                $vv->addToJson("progress",100/$size*$end."%");
+                $chunk_tmp_name = $_FILES['chunck']['tmp_name'];
+                $tmpfile=the()->fileSystem->tmpPath."/".pov()->utils->string->clean($filenametmp,"-_.");
+                // Open temp file
+                $out = fopen($tmpfile, "a+");
+                if ( $out ) {
+                    // Read binary input stream and append it to temp file
+                    $chunck = fopen($chunk_tmp_name, "rb");
+                    if ( $chunck ) {
+                        while ( $buff = fread( $chunck, 1048576 ) ) {
+                            fwrite($out, $buff);
+                        }
+                    }
+                    fclose($chunck);
+                    fclose($out);
+                }
+                if($size===$end){
+                    $file=the()->fileSystem->uploadLocalPath(date("Y/m/d/h-i-s-").pov()->utils->string->clean($filename,"-_."));
+                    the()->fileSystem->prepareDir($file);
+                    rename($tmpfile,$file);
+                }else{
+                    $file="";
+                    return;
+                }
             }else{
                 //via html 5 uploader
                 $file=the()->fileSystem->uploadFromStream();
             }
             $vv->addToJson("file",$file);
-            if(file_exists($file) && is_file($file)){
+
+            if($file && file_exists($file) && is_file($file)){
                 $record=Filerecord::getExistingByFile($file);
                 if(!$record || !$record->isOk()) {
                     $vv->addMessage("uploadé dans $file");

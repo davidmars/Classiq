@@ -16265,6 +16265,28 @@ class CqFieldUpload extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
         let me=this;
         me.$main.attr("state","uploading")
         //1 uploader le fichier
+        window.pov.api.uploadChuncked(
+            me.$inputFile.get(0).files[0],
+            function(progress){ //cbProgress
+                //console.log("uploading file "+progress)
+                me.$progressText.text(String(progress)+"%");
+                me.progressbar.progress=progress;
+            },
+            function(apiResponse){ //cbComplete
+                //receptionner l'uid du Filerecord
+                //console.log("upload okkk json",apiResponse);
+                //3 l'enregistrer dans le champ
+                me.field.$field.attr("wysiwyg-value",apiResponse.json.record.uid);
+                me.field.doSave(true);
+                me.$main.attr("state","")
+            },
+            function(apiResponse){ //cbError
+                //console.error("erreur uploaddddd",apiResponse);
+                me.$main.attr("state","error")
+            }
+        );
+        /*
+        //ancienne méthode (pas chunk)
         window.pov.api.upload(
             me.$inputFile.get(0).files[0],
             function(progress){
@@ -16287,6 +16309,7 @@ class CqFieldUpload extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
                 me.$main.attr("state","error")
             }
         );
+        */
     }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = CqFieldUpload;
