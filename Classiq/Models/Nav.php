@@ -32,7 +32,6 @@ class Nav extends Classiqmodel
      * à l'enregistrement
      */
     public function update() {
-        pov()->log->debug("update",[$this->_items]);
         parent::update();
     }
 
