@@ -201,7 +201,6 @@ class Page extends Classiqmodel
             $recursion=isset( self::$_hasUrlPreventRecursion[$uid] );
             if(!$recursion){
                 self::$_hasUrlPreventRecursion[$uid]=true;
-                pov()->log->debug("store open");
                 db()->store($this);
             }
         }
@@ -211,7 +210,6 @@ class Page extends Classiqmodel
      *
      */
     public function update(){
-        pov()->log->warning("update ".$this->uid(),[$this->changes()]);
         parent::update();
     }
     /**
@@ -220,7 +218,6 @@ class Page extends Classiqmodel
     public function after_update() {
         if(!$this->hasUrl()){
             $this->urlpage=$this->createUrl()->unbox();
-            pov()->log->debug("store after_update");
             db()->store($this);
         }
         parent::after_update();
