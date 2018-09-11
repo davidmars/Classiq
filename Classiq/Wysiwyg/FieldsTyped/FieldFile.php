@@ -32,7 +32,7 @@ class FieldFile extends FieldTyped
     }
 
     /**
-     * permet de n'uploader QUE des images
+     * Permet de n'uploader QUE des images
      * @return $this
      */
     public function setMimeAcceptImagesOnly()
@@ -41,12 +41,21 @@ class FieldFile extends FieldTyped
         return $this;
     }
     /**
-     * permet de n'uploader QUE des vidéos
+     * Permet de n'uploader QUE des vidéos
      * @return $this
      */
     public function setMimeAcceptVideoOnly()
     {
         $this->mimeTypeAccept="accept='video/*'";
+        return $this;
+    }
+    /**
+     * Permet de n'uploader QUE des audios
+     * @return $this
+     */
+    public function setMimeAcceptAudioOnly()
+    {
+        $this->mimeTypeAccept="accept='.mp3,audio/*'";
         return $this;
     }
 }
