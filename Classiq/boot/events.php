@@ -195,11 +195,14 @@ pov()->events->listen(C_povApi::EVENT_UPLOAD,
                 if(!$record || !$record->isOk()) {
                     $vv->addMessage("uploadé dans $file");
                     /** @var Filerecord $record */
-                    $record = Filerecord::getNew();
-                    $record->name = $filename;
-                    $record->setFilePath($file);
+                    $record=Filerecord::fromFile($file);
+                    if($record){
+                        db()->store($record);
+                    }else{
+                        $vv->addError("problème pour enregistrer ce fichier");
+                    }
 
-                    db()->store($record);
+
                 }else{
                     $vv->addMessage("fichier existait déjà ;)");
                 }
