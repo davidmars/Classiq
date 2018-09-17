@@ -79,6 +79,28 @@ class Filerecord extends Classiqmodel
     }
 
     /**
+     * Renvoie (et créé au besoin) un Filerecord à partir d'un fichier
+     * @param string $file Chemin vers le fichier
+     * @return Filerecord|null
+     */
+    public static function fromFile($file){
+        if(!is_file($file)){
+            return null;
+        }
+        $existing=self::getExistingByFile($file);
+        if($existing){
+            return $existing;
+        }
+        /** @var Filerecord $record */
+        $record = Filerecord::getNew();
+        $record->name = basename($file);
+        $record->setFilePath($file);
+        db()->store($record->unbox());
+        return $record;
+
+    }
+
+    /**
      * Regarde si un fichier identique existe. Si oui le renvoie
      * @param string $file chemin vers un fichier
      * @return Filerecord|null
