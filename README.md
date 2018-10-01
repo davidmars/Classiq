@@ -1,6 +1,5 @@
 # Classiq
-## Work in progress!
-## Si vous voulez un CMS stable ne l'utilisez pas ;)
+Un CMS orienté WYSIWYG.
 
 ---
 ## Si vous aimez coder dangeureusement et que vous comprennez le français continuez à lire...
