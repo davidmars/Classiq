@@ -11,7 +11,7 @@ use Classiq\Models\Filerecord;
     <?if($vv->id):?>
 
         <?if($vv->isImage()):?>
-            <span class="icon image">
+            <span class="icon image big">
                 <i style="background-image: url('<?=$vv->httpPath()?>')"></i>
             </span>
         <?elseif($vv->isVideo()):?>
