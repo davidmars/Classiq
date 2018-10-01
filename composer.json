@@ -10,7 +10,7 @@
         }
     },
     "require": {
-        "davidmars/pov-2018": "0.1.0 - 0.2.0",
+        "davidmars/pov-2018": "dev-master",
         "davidmars/redbean": "^5.0.0.1",
         "davidmars/localization": "dev-master",
         "jenssegers/agent": "^2.6",
