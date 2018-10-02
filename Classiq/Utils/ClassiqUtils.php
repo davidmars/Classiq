@@ -43,8 +43,9 @@ class ClassiqUtils extends AbstractSingleton
     private $_configNotificationsReset=false;
 
     /**
-     *
-     * @param string $svgId
+     * Renvoie un tag svg avec la classe css .wysiwyg-icon
+     * @deprecated Mieux vaut utiliser pov()->svg->use() directement
+     * @param string $svgId identifiant d'une ressources svg cq-etc... (ene pas mettre le prefixe "cq-"
      * @return \Pov\Html\Trace\HtmlTag
      */
     public function icoWysiwyg($svgId){
@@ -52,6 +53,7 @@ class ClassiqUtils extends AbstractSingleton
     }
 
     /**
+     * Pour savoir si le wysiwyg est activé.
      * @param bool $useCache si défini sur false refera une requete mysql pour s'assurer de la fraicheur des infos de session.
      * @return bool true si le wysiwyg est activé
      */

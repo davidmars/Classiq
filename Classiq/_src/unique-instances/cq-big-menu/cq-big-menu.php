@@ -42,7 +42,7 @@ use Classiq\Wysiwyg\WysiwygConfig;
 
 
                 </div>
-                <a href="#" cq-on-click="ui.bigMenu.toggle()"><?=cq()->icoWysiwyg("close")?></a>
+                <a href="#" cq-on-click="ui.bigMenu.toggle()"><?=pov()->svg->use("cq-close")?></a>
             </nav>
             <main>
                 <!----contenu scrollable-- -->

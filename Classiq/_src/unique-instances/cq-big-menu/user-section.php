@@ -16,7 +16,7 @@ use Classiq\Models\User;
             <small><?=User::connected()->email?></small>
         </p>
         <a target="_self" class="cq-btn cq-th-danger" href="<?=\Classiq\C_classiq::logout_url()?>">
-            <?=cq()->icoWysiwyg("sign-out")?>
+            <?=pov()->svg->use("cq-sign-out")?>
             <span>Déconnexion</span>
         </a>
     </div>

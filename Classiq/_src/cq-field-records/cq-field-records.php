@@ -28,7 +28,7 @@ if($pages && $vv->multiple===false){
                 "...",
                 "cq-btn small cq-th-white")
                 ->setInnerHTML(
-                        cq()->icoWysiwyg('search')
+                        pov()->svg->use("cq-search")
                 )?>
     </div>
 </div>

@@ -25,7 +25,7 @@ $uid=uniqid("uploader")
     </div>
     <div class="cq-col-3" text-right>
         <div class="input-file-wrap cq-btn-file-wrap">
-            <button class="cq-btn cq-th-white small"><?=cq()->icoWysiwyg("cloud-upload")?></button>
+            <button class="cq-btn cq-th-white small"><?=pov()->svg->use("cq-cloud-upload")?></button>
             <input data-related-progress="<?=$uid?>" type="file" <?=$vv->mimeTypeAccept?>>
         </div>
         <div class="cq-txt-center">
