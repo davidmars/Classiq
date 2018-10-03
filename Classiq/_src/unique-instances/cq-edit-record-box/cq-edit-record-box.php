@@ -9,7 +9,7 @@
 <div id="the-cq-record-editor" class="cq-cols-big" cq-edit-record-box>
     <div cq-toolbar>
         <div>...</div>
-        <button class="unstyled" cq-on-click="ui.recordEditor.hide()"><?=pov()->svg->use("cq-close")?></button>
+        <button class="cq-unstyled" cq-on-click="ui.recordEditor.hide()"><?=pov()->svg->use("cq-close")?></button>
     </div>
 
     <main>
