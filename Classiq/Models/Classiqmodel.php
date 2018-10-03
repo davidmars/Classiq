@@ -1,6 +1,7 @@
 <?php
 namespace Classiq\Models;
 
+use Classiq\Classiq;
 use Classiq\Models\JsonModels\ListItem;
 use Classiq\Utils\ModelViewsSolver;
 use Classiq\Wysiwyg\Wysiwyg;
@@ -135,11 +136,22 @@ class Classiqmodel extends Classiqbean
 
 
     /**
+     * Renvoie un tableau avec les records.
+     * Les noms de champs de ralation classiques modele_id fonctionnent.
+     * Les noms de champs à point monchamptableau.mavar fonctionnenent aussi.
      * @param string $varName Le champ qu'on veut (la syntaxe à point pour les tableaux fonctionne, monchamptableau.mavar par exemple)
      * @return Classiqmodel[]
      */
     public function getValueAsRecords($varName)
     {
+        if(preg_match("/([a-zA-Z0-9_]+)_id$/",$varName,$m)){
+            $prop=$m[1];
+            $record=$this->$prop;
+            if($record){
+                return [$record];
+            }
+            return [];
+        }
         return self::getByUids(
             $this->getValue($varName,true)
         );
@@ -213,10 +225,22 @@ class Classiqmodel extends Classiqbean
     public function setValue($varName,$value){
         if(preg_match("/\./",$varName)) {
             //si la variable contient l'uid du record au début on le suprime
-            if(preg_match("@^".$this->uid()."\.(.*)$@",$varName,$m)){
-                $varName=$m[1];
+            if (preg_match("@^" . $this->uid() . "\.(.*)$@", $varName, $m)) {
+                $varName = $m[1];
             }
             pov()->utils->array->setValFromDotsVarName($this, $varName, $value);
+        }else if(preg_match("/([A-Za-z0-9_]+)_id$/",$varName,$m)){
+            //une association de type propriete_id
+            $prop=$m[1];
+            $model=null;
+            if(preg_match("/([A-Za-z0-9_])*-([0-9]*)/",$value,$m)){
+                $model=Classiqmodel::getByUid($value);
+            }
+            if($model){
+                $this->$prop=$model->unbox();
+            }else{
+                $this->$prop=null;
+            }
         }else if(is_array($value)){
 
             //$this->$varName=$value; //soucis avec celui-là c'est que ça supprime les variables non définies
