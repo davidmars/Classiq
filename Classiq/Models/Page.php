@@ -18,7 +18,6 @@ use Pov\PovException;
  * @property Urlpage $urlpage Objet d'url relatif
  * @property String $urlpage_id
  *
- * @property Filerecord $thumbnail Objet de fichier
  *
  * @property String $jsonvars
  * @property String $jsonblocks
@@ -29,8 +28,12 @@ use Pov\PovException;
  */
 class Page extends Classiqmodel
 {
+
+    use WithFieldThumbnailTrait;
+
     static $icon="cq-tests-file-empty";
     static $isPage=true;
+
     /**
      * @return  string nom du type de record lisible par les humains
      */
@@ -82,23 +85,7 @@ class Page extends Classiqmodel
         return $a;
     }
 
-    /**
-     * Pour jouer avec la thubnail
-     * @return ImgUrl|Filerecord
-     */
-    public function thumbnail($asRecord=false)
-    {
-        $url="";
-        /** @var Filerecord $file */
-        $file=Filerecord::getByUid($this->thumbnail);
-        if($asRecord){
-            return $file;
-        }
-        if($file){
-            $url=$file->localPath();
-        }
-        return pov()->img($url);
-    }
+
 
     /**
      * Crée le Urlpage (si il n'existe pas déja) et l'associe à la page.

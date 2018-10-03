@@ -22,6 +22,8 @@ use Pov\PovException;
 class User extends Classiqmodel
 {
 
+    use WithFieldThumbnailTrait;
+
     const ROLE_ADMIN = "admin";
     const ROLE_SIMPLE_HUMAN = "simple human";
 

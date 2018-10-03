@@ -6,6 +6,17 @@ use Classiq\Models\User;
 ?>
 
 <div class="cq-box">
+
+    <fieldset>
+        <label>Image avatar</label>
+        <?=$vv->wysiwyg()->field("thumbnail")
+            ->file()
+            ->setMimeAcceptImagesOnly()
+            ->onSavedRefresh("$(this).closest('[data-pov-v-path]')")
+            ->button()->render()
+        ?>
+    </fieldset>
+
     <fieldset>
         <label>email</label>
         <?=$vv->wysiwyg()
