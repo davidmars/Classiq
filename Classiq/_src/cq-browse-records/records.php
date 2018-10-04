@@ -13,13 +13,15 @@ $next=$start+$slice;
 if($types){
     $types=explode(",",$types);
     foreach ($types as $type){
+        $className="Classiq\Models\\".$type;
+        $orderBy=$className::$DEFAULT_ORDER_BY;
         $type=strtolower($type);
         if($keywords){
-            $collections[$type]=db()->find($type,"name LIKE '%$keywords%' ORDER BY name");
-            $total+=db()->count($type,"name LIKE '%$keywords%' ORDER BY name");
+            $collections[$type]=db()->find($type,"name LIKE '%$keywords%' ORDER BY $orderBy asc");
+            $total+=db()->count($type,"name LIKE '%$keywords%' ORDER BY $orderBy asc");
         }else{
-            $collections[$type]=db()->find($type,"ORDER BY name");
-            $total+=db()->count($type,"ORDER BY name");
+            $collections[$type]=db()->find($type,"ORDER BY $orderBy asc");
+            $total+=db()->count($type,"ORDER BY $orderBy asc");
         }
 
     }
