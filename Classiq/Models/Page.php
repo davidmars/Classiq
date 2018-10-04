@@ -34,12 +34,7 @@ class Page extends Classiqmodel
     static $icon="cq-tests-file-empty";
     static $isPage=true;
 
-    /**
-     * @return  string nom du type de record lisible par les humains
-     */
-    static function humanType($plural=false){
-        return $plural?"Pages":"Page";
-    }
+
 
 
 
