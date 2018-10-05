@@ -114,6 +114,7 @@ class FieldListJson extends FieldTyped
      * @return $this
      */
     public function onlyRecords($recordsTypes=""){
+        $recordsTypes=strtolower($recordsTypes);
         $this->options["onlyRecords"]="true";
         $this->options["onlyRecordsTypes"]=$recordsTypes;
         return $this;
