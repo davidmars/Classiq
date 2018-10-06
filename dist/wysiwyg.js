@@ -7206,6 +7206,7 @@ class CqFieldRichText extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /
         let me=this;
 
         let buttons=["bold","italic","anchor","select-record","removeFormat"]
+        let selectableRecordsTypes="page,film,pagefilm,pageauteur,pagevideo";
 
 
         let fieldOptions=$main.attr("cq-field-options");
@@ -7214,6 +7215,9 @@ class CqFieldRichText extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /
         }
         if(fieldOptions.mediumButtons){
             buttons=fieldOptions.mediumButtons;
+        }
+        if(fieldOptions.selectableRecordsTypes){
+            selectableRecordsTypes=fieldOptions.selectableRecordsTypes;
         }
 
         let options={
@@ -7242,7 +7246,7 @@ class CqFieldRichText extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /
 
                         function $tmpTag(){return $("#tmp-tag-medium");}
 
-                        wysiwyg.recordSelector.getUids(false,"page,pagefilm,pageauteur,pagevideo").then(
+                        wysiwyg.recordSelector.getUids(false,selectableRecordsTypes).then(
                             function(uids){
                                 //remplace par le lien ver l'uid
                                 let $replace=$tmpTag();

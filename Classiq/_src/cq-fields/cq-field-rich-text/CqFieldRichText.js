@@ -18,6 +18,7 @@ export default class CqFieldRichText extends DisplayObject{
         let me=this;
 
         let buttons=["bold","italic","anchor","select-record","removeFormat"]
+        let selectableRecordsTypes="page,film,pagefilm,pageauteur,pagevideo";
 
 
         let fieldOptions=$main.attr("cq-field-options");
@@ -26,6 +27,9 @@ export default class CqFieldRichText extends DisplayObject{
         }
         if(fieldOptions.mediumButtons){
             buttons=fieldOptions.mediumButtons;
+        }
+        if(fieldOptions.selectableRecordsTypes){
+            selectableRecordsTypes=fieldOptions.selectableRecordsTypes;
         }
 
         let options={
@@ -54,7 +58,7 @@ export default class CqFieldRichText extends DisplayObject{
 
                         function $tmpTag(){return $("#tmp-tag-medium");}
 
-                        wysiwyg.recordSelector.getUids(false,"page,pagefilm,pageauteur,pagevideo").then(
+                        wysiwyg.recordSelector.getUids(false,selectableRecordsTypes).then(
                             function(uids){
                                 //remplace par le lien ver l'uid
                                 let $replace=$tmpTag();

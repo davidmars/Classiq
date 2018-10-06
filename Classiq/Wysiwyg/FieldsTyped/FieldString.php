@@ -149,6 +149,18 @@ class FieldString extends FieldTyped
     }
 
     /**
+     * Permet de définir quel type de records il est possible d'ajouter en href (n'a d'incidence que sur les champs RichText)
+     * @param string $recordsTypes Les types de records séparé par une virgune page,custommodel,etc
+     * @return $this
+     */
+    public function setSelectableRecordTypes($recordsTypes){
+        if($this->field->wysiwyg->active){
+            $this->options["selectableRecordsTypes"]=strtolower(implode(",",pov()->utils->array->fromString($recordsTypes)));
+        }
+        return $this;
+    }
+
+    /**
      * Dit que le champ texte peut être rechargé même si le focus de la souris est toutjours dessus
      */
     public function dontCareFocus(){
