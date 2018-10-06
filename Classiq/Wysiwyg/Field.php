@@ -152,12 +152,10 @@ class Field
     {
         $testTemplates=pov()->utils->array->fromString($itemTemplates);
         foreach ($testTemplates as $template){
-
             if(!View::isValid($template)){
                 throw new PovException($template." n'est pas valide");
             }
         }
-
         $itemTemplates=pov()->utils->array->toString($itemTemplates);
         $f= new FieldListJson($this);
         $f->attr()["wysiwyg-field-error"]=$this->getError();
