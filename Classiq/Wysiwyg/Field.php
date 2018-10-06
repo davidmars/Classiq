@@ -120,12 +120,16 @@ class Field
     }
 
     /**
-     * Pour rendre le champ editable sous forme de selecteur de record
+     * Pour rendre le champ editable sous forme de selecteur de record(s)
      * @param string $recordsTypes types de records possibles séparés par une virgule
-     * @param bool $multiple definir sur false pour qu'on ne puissse selectionner qu'un seul record
+     * @param bool $multiple definir sur false pour qu'on ne puissse selectionner qu'un seul record. Passera automatiquement sur false si c'est une champ model_id
      * @return FieldRecordPicker
      */
     public function recordPicker($recordsTypes, $multiple=true){
+        $recordsTypes=strtolower($recordsTypes);
+        if(preg_match("/[a-z0-9_]+_id$/",$this->varName,$m)){
+            $multiple=false;
+        }
         $f= new FieldRecordPicker($this,$recordsTypes,$multiple);
         $f->attr()["wysiwyg-field-error"]=$this->getError();
         $f->multiple=$multiple;
