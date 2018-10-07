@@ -56,15 +56,26 @@ class ListItem
      */
     public function path()
     {
+        //si path n'est pas défini...
         if(!isset($this->data["path"])){
             $this->data["path"]="defaults/list-item-default";
         }
         $path=$this->data["path"];
+
+        //si vue pas valide
         if(!View::isValid($path)){
+            //et si une alternative a été proposée...
             if(isset(self::$debugPath[$path])){
                 $path=self::$debugPath[$path];
             }
         }
+        if(!View::isValid($path)){
+            //et si wysiwyg activé va proposer d'effacer le block
+            //if((Wysiwyg::$enabled)){
+                $path="cq-list-item-class/debug-list-item";
+            //}
+        }
+
         return $path;
     }
 
