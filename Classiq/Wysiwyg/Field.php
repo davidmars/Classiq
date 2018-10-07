@@ -153,7 +153,7 @@ class Field
         $testTemplates=pov()->utils->array->fromString($itemTemplates);
         foreach ($testTemplates as $template){
             if(!View::isValid($template)){
-                throw new PovException($template." n'est pas valide");
+                throw new PovException($template." n'est pas valide revoyez les templates passés à ->listJson()");
             }
         }
         $itemTemplates=pov()->utils->array->toString($itemTemplates);
