@@ -97,6 +97,8 @@ class Urlpage extends Classiqmodel
         }
         if(!$bean){
             return null;
+        }else{
+            $bean=$bean->box();
         }
         return $bean;
 
