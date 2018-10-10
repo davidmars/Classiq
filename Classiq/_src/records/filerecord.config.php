@@ -6,12 +6,14 @@ $errs=$vv->getErrors()
 
 <div class="cq-box ">
 
-
+    <label>Fichier</label>
+    <a href="<?=$vv->httpPath()?>" target="_blank">Télécharger</a>
     <label>Type</label>
     <?=$vv->mime?><br>
 
     <label>Taille</label>
     <?=$vv->humanFileSize()?><br>
+
 
 
     <?if($vv->isImage()):?>
