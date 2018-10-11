@@ -8,13 +8,16 @@ use Pov\Html\Trace\HtmlTag;
 use Pov\MVC\View;
 
 /**
- * Class FieldRecordPicker
+ * FieldRecordPicker est une classe qui représente un champ permettant de selectionner des records.
  * @package Classiq\Wysiwyg
  */
 class FieldRecordPicker extends FieldTyped
 {
+    use TraitUploadOptions;
+
     public $recordsTypes="page";
     public $multiple=true;
+    public $onlyFiles=false;
 
     public function __construct($field,$recordsTypes,$multiple)
     {
@@ -27,6 +30,11 @@ class FieldRecordPicker extends FieldTyped
         $this->recordsTypes=$recordsTypes;
         $this->multiple=$recordsTypes;
 
+    }
+
+    public function onlyFiles(){
+        $this->onlyFiles=true;
+        return $this;
     }
 
     /**
@@ -66,7 +74,12 @@ class FieldRecordPicker extends FieldTyped
      * @return View
      */
     public function buttonRecord(){
-        return View::get("cq-field-records/cq-field-records",$this);
+        if($this->onlyFiles){
+            return View::get("cq-field-records/cq-field-records-files",$this);
+        }else{
+            return View::get("cq-field-records/cq-field-records",$this);
+        }
+
     }
 
     /**

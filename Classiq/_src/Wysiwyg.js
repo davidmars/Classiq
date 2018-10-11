@@ -109,6 +109,7 @@ export default class Wysiwyg{
         $body.on("input "+Wysiwyg.events.CHANGED,"[wysiwyg-var]",function(e){
             e.stopPropagation();
             if($(e.target).is("[wysiwyg-var]")){
+                console.log("Wysiwyg.events.CHANGED")
                 let field=new WysiwygField($(this));
                 field.mirror();
                 field.doSave();
@@ -118,7 +119,6 @@ export default class Wysiwyg{
         // click sur un uploader de fichier
         $body.on("change","[wysiwyg-var][wysiwyg-data-type='file'] input[type='file']",function(){
             new CqFieldUpload($(this).closest("[wysiwyg-var][wysiwyg-data-type='file']"));
-
         });
 
         // changement d'un checkbox

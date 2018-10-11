@@ -855,6 +855,7 @@ class Wysiwyg{
         $body.on("input "+Wysiwyg.events.CHANGED,"[wysiwyg-var]",function(e){
             e.stopPropagation();
             if($(e.target).is("[wysiwyg-var]")){
+                console.log("Wysiwyg.events.CHANGED")
                 let field=new __WEBPACK_IMPORTED_MODULE_2__cq_fields_WysiwygField__["a" /* default */]($(this));
                 field.mirror();
                 field.doSave();
@@ -864,7 +865,6 @@ class Wysiwyg{
         // click sur un uploader de fichier
         $body.on("change","[wysiwyg-var][wysiwyg-data-type='file'] input[type='file']",function(){
             new __WEBPACK_IMPORTED_MODULE_14__cq_fields_CqFieldUpload__["a" /* CqFieldUpload */]($(this).closest("[wysiwyg-var][wysiwyg-data-type='file']"));
-
         });
 
         // changement d'un checkbox
@@ -15821,6 +15821,8 @@ module.exports = function() { var T = new H.Template({code: function (c,p,i) { v
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cq_sortable_CqSortable__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cq_fields_WysiwygField__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Wysiwyg__ = __webpack_require__(8);
+
 
 
 
@@ -15843,9 +15845,13 @@ class CqFieldRecords extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /*
          */
         this.list=$main.find("[cq-sortable]").CqSortable();
         /**
-         * Le bouton (qui est aussi le champ)
+         * Le bouton de selection de records (qui est aussi le champ)
          */
         this.$btn=$main.find("button[wysiwyg-var][wysiwyg-data-type='records']");
+        /**
+         * Le bouton d'upload de fichiers
+         */
+        this.$btnUpload=$main.find(".input-file-wrap input[type='file']");
 
         /**
          * plusieurs ou un seul record possible?
@@ -15863,6 +15869,8 @@ class CqFieldRecords extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /*
             me.list.$main.trigger("change")
         }
 
+
+        //change records
         this.$btn.on("click",function(){
             wysiwyg.recordSelector.getUids(
                 me.multiple,
@@ -15874,13 +15882,51 @@ class CqFieldRecords extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /*
                         me.list.$main.empty();
                     }
                     me.list.$main.append(wysiwyg.recordSelector.$recordsPreviews(uids));
-
                     triggerChange(); //la liste change est donc est enregistrée
                 },
                 function(){
                     //console.log("action annulée")
                 }
             )
+        });
+        //change files
+        this.$btnUpload.on("input "+__WEBPACK_IMPORTED_MODULE_3__Wysiwyg__["a" /* default */].events.CHANGED,function(e){
+            console.log("uploader des fichiers...",e);
+            e.stopPropagation();
+            let toUpload=0;
+            for(let file of $(this).get(0).files){
+                toUpload++;
+                console.log(file.name);
+                let $preview=$(__webpack_require__(105));
+                $preview.find(".title").text(file.name);
+                me.list.$main.append($preview);
+                window.pov.api.uploadChuncked(
+                    file,
+                    function(progress){ //cbProgress
+                        console.log("uploading file "+progress)
+                        $preview.find(".type").text(progress)
+                        //me.$progressText.text(String(progress)+"%");
+                        //me.progressbar.progress=progress;
+                    },
+                    function(apiResponse){ //cbComplete
+                        //receptionner l'uid du Filerecord
+                        console.log("upload okkk json",apiResponse);
+                        $preview.find(".title").text(apiResponse.json.record.name);
+                        $preview.find(".type").text("100% ok")
+                        $preview.attr("data-pov-vv-uid",apiResponse.json.record.uid);
+                        toUpload--;
+                        if(toUpload===0){
+                            //3 l'enregistrer dans le champ
+                            triggerChange();
+                        }
+                    },
+                    function(apiResponse){ //cbError
+                        console.error("erreur uploaddddd",apiResponse);
+                        //me.$main.attr("state","error")
+                    }
+                );
+            }
+
         });
 
         //quand la liste change
@@ -16385,6 +16431,28 @@ $( document ).ready(function() {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"preview-record\">\r\n    <span class=\"icon\">\r\n            <svg class=\"svg svg-cq-circle-play\">\r\n                <use class=\"svg svg-cq-cloud-upload\" xlink:href=\"#cq-cloud-upload\"></use>\r\n            </svg>\r\n\r\n    </span>\r\n    <i cq-tip=\"\" class=\"cq-th-danger inline\" data-count=\"0\" title=\"\"></i>\r\n    <div>\r\n        <div class=\"title\" title=\"\">YO</div>\r\n        <span class=\"type\">0%</span>\r\n    </div>\r\n</div>";
 
 /***/ })
 /******/ ]);
