@@ -50,6 +50,27 @@ class Urlpage extends Classiqmodel
     }
 
     /**
+     * Renvoie l'url relative traduite avec ou sans id
+     * @param string $langCode
+     * @param bool $withUid si true rajoutera .p88 par exemple (sauf pour la home)
+     * @return mixed|string
+     */
+    public function translatedUrl($langCode,$withUid=false){
+        $u= "";
+        if($this->is_homepage){
+           return "";
+        }elseif ($this->{"url_".$langCode}){
+            $u=$this->{"url_".$langCode};
+        }else{
+            $u=$this->url;
+        }
+        if($withUid){
+            $u.=".p".$this->id;
+        }
+        return $u;
+    }
+
+    /**
      * @param $url
      * @return int
      */
