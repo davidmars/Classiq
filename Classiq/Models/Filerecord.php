@@ -92,7 +92,7 @@ class Filerecord extends Classiqmodel
             return $existing;
         }
         /** @var Filerecord $record */
-        $record = Filerecord::getNew();
+        $record = self::getNew();
         $record->name = basename($file);
         $record->setFilePath($file);
         db()->store($record->unbox());
@@ -121,7 +121,7 @@ class Filerecord extends Classiqmodel
     public static function getExistingByFileIdentifier($fileIdentifier)
     {
         /** @var Filerecord $existing */
-        $existing=db()->findOne("filerecord","fileidentifier='$fileIdentifier'");
+        $existing=db()->findOne(self::modelTypeStatic(),"fileidentifier='$fileIdentifier'");
 
         if($existing){
             if( $existing->isOk()){
