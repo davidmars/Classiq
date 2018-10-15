@@ -570,165 +570,6 @@ class WysiwygField{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class CqLocalStorage{
-    /**
-     *
-     * @param {string} name
-     */
-    constructor (name){
-        /**
-         * Les données décodées
-         * @type {{}}
-         */
-        this.data={};
-        /**
-         * Nom du stockage
-         * @type {string}
-         */
-        this.name=name;
-
-        let local=localStorage.getItem(name);
-        if(local){
-            this.data=JSON.parse(localStorage.getItem(name));
-        }
-
-    }
-
-    setValue(varName,value){
-        this.data[varName]=value;
-        localStorage.setItem(this.name,JSON.stringify(this.data));
-    }
-
-    /**
-     *
-     * @param {string} varName
-     * @param defaultValue
-     * @returns {*}
-     */
-    getValue(varName,defaultValue=null){
-        let val=this.data[varName];
-        if(val!==undefined){
-            return val;
-        }else{
-            return defaultValue;
-        }
-
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = CqLocalStorage;
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*
- *  Copyright 2011 Twitter, Inc.
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- */
-
-// This file is for use with Node.js. See dist/ for browser files.
-
-var Hogan = __webpack_require__(34);
-Hogan.Template = __webpack_require__(35).Template;
-Hogan.template = Hogan.Template;
-module.exports = Hogan;
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
-
-const Sortable=__webpack_require__(16);
-__webpack_require__(54);
-
-class CqSortable extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */]{
-    /**
-     *
-     * @param {JQuery} $main
-     */
-    constructor($main){
-
-        super($main);
-        let me=this;
-
-        /**
-         *
-         * @type {Sortable}
-         * @see http://rubaxa.github.io/Sortable/
-         */
-        this.sortable=null;
-
-        if($main[0]){
-            me.sortable = Sortable.create($main[0], {
-                group:{
-                    name:"receiver",
-                    //put:true,
-                    put:["lib"]
-                },
-                cancel:null,
-                animation: 100, // ms, animation speed moving items when sorting, `0` — without animation
-            });
-        }else{
-            console.error("sortable vide !!!");
-        }
-
-        Sortable.utils.on($main[0],"sort",function(evt/**Event*/){
-            console.log("change sortable");
-            $main.trigger("change");
-        });
-
-    }
-
-    /**
-     * Les éléments de la liste
-     * @returns {JQuery}
-     */
-    $items(){
-        return this.$main.children();
-    }
-
-
-    destroy(){
-        this.sortable.destroy();
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = CqSortable;
-
-
-/**
- * Pour invoquer un CqSortable depuis son objet JQuery
- * @returns {CqSortable}
- * @constructor
- */
-$.fn.CqSortable = function() {
-    "use strict";
-    if(!$(this).is("[cq-sortable='init']")){
-        return new CqSortable($(this));
-    }else{
-        return $(this).data("CqSortable")
-    }
-};
-
-/***/ }),
-/* 7 */,
-/* 8 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unique_instances_cq_big_menu_CqBigMenu__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cq_fields_WysiwygField__ = __webpack_require__(3);
@@ -738,12 +579,12 @@ $.fn.CqSortable = function() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__cq_fields_WysiwygImage__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__cq_fields_cq_field_rich_text_CqFieldRichText__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__unique_instances_cq_notifier_CqNotifier__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__cq_sortable_CqSortable__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__cq_sortable_CqSortable__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__cq_field_records_CqFieldRecords__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__cq_fields_cq_field_google_map_CqFieldGoogleMap__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__cq_fields_cq_field_google_map_CqFieldGoogleMap__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__unique_instances_cq_edit_record_box_CqEditRecordBox__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__CqAdmin__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__cq_fields_CqFieldUpload__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__CqAdmin__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__cq_fields_CqFieldUpload__ = __webpack_require__(82);
 
 
 
@@ -759,12 +600,12 @@ $.fn.CqSortable = function() {
 
 
 
-__webpack_require__(83);
+__webpack_require__(84);
 
-__webpack_require__(85);
 __webpack_require__(86);
 __webpack_require__(87);
 __webpack_require__(88);
+__webpack_require__(89);
 
 
 class Wysiwyg{
@@ -896,6 +737,165 @@ Wysiwyg.events={
 
 
 /***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class CqLocalStorage{
+    /**
+     *
+     * @param {string} name
+     */
+    constructor (name){
+        /**
+         * Les données décodées
+         * @type {{}}
+         */
+        this.data={};
+        /**
+         * Nom du stockage
+         * @type {string}
+         */
+        this.name=name;
+
+        let local=localStorage.getItem(name);
+        if(local){
+            this.data=JSON.parse(localStorage.getItem(name));
+        }
+
+    }
+
+    setValue(varName,value){
+        this.data[varName]=value;
+        localStorage.setItem(this.name,JSON.stringify(this.data));
+    }
+
+    /**
+     *
+     * @param {string} varName
+     * @param defaultValue
+     * @returns {*}
+     */
+    getValue(varName,defaultValue=null){
+        let val=this.data[varName];
+        if(val!==undefined){
+            return val;
+        }else{
+            return defaultValue;
+        }
+
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = CqLocalStorage;
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+ *  Copyright 2011 Twitter, Inc.
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+// This file is for use with Node.js. See dist/ for browser files.
+
+var Hogan = __webpack_require__(34);
+Hogan.Template = __webpack_require__(35).Template;
+Hogan.template = Hogan.Template;
+module.exports = Hogan;
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
+
+const Sortable=__webpack_require__(16);
+__webpack_require__(54);
+
+class CqSortable extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */]{
+    /**
+     *
+     * @param {JQuery} $main
+     */
+    constructor($main){
+
+        super($main);
+        let me=this;
+
+        /**
+         *
+         * @type {Sortable}
+         * @see http://rubaxa.github.io/Sortable/
+         */
+        this.sortable=null;
+
+        if($main[0]){
+            me.sortable = Sortable.create($main[0], {
+                group:{
+                    name:"receiver",
+                    //put:true,
+                    put:["lib"]
+                },
+                cancel:null,
+                animation: 100, // ms, animation speed moving items when sorting, `0` — without animation
+            });
+        }else{
+            console.error("sortable vide !!!");
+        }
+
+        Sortable.utils.on($main[0],"sort",function(evt/**Event*/){
+            console.log("change sortable");
+            $main.trigger("change");
+        });
+
+    }
+
+    /**
+     * Les éléments de la liste
+     * @returns {JQuery}
+     */
+    $items(){
+        return this.$main.children();
+    }
+
+
+    destroy(){
+        this.sortable.destroy();
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = CqSortable;
+
+
+/**
+ * Pour invoquer un CqSortable depuis son objet JQuery
+ * @returns {CqSortable}
+ * @constructor
+ */
+$.fn.CqSortable = function() {
+    "use strict";
+    if(!$(this).is("[cq-sortable='init']")){
+        return new CqSortable($(this));
+    }else{
+        return $(this).data("CqSortable")
+    }
+};
+
+/***/ }),
+/* 8 */,
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3528,7 +3528,7 @@ class CqProgressBar extends __WEBPACK_IMPORTED_MODULE_0__cq_progress_CqProgress_
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Wysiwyg__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Wysiwyg__ = __webpack_require__(4);
 __webpack_require__(28);
 __webpack_require__(29);
 
@@ -3830,7 +3830,7 @@ class CqBigMenu{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CqLocalStorage__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CqLocalStorage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DisplayObject__ = __webpack_require__(0);
 
 
@@ -3989,7 +3989,7 @@ class CqPanelSection extends __WEBPACK_IMPORTED_MODULE_1__DisplayObject__["a" /*
 /* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var H = __webpack_require__(5);
+var H = __webpack_require__(6);
 module.exports = function() { var T = new H.Template({code: function (c,p,i) { var t=this;t.b(i=i||"");t.b("<i cq-tip data-count=\"");t.b(t.v(t.f("count",c,p,0)));t.b("\" title=\"");t.b(t.v(t.f("message",c,p,0)));t.b("\" class=\"cq-th-");t.b(t.v(t.f("theme",c,p,0)));t.b("\"></i>");return t.fl(); },partials: {}, subs: {  }}, "<i cq-tip data-count=\"{{count}}\" title=\"{{message}}\" class=\"cq-th-{{theme}}\"></i>", H);return T.render.apply(T, arguments); };
 
 /***/ }),
@@ -4866,7 +4866,7 @@ module.exports = "<div class=\"cq-loading-dots\">\r\n    <i class=\"a\"></i>\r\n
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CqLocalStorage__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CqLocalStorage__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CqBrowseRecordsList__ = __webpack_require__(12);
 
 
@@ -5026,7 +5026,7 @@ class BrowseRecords extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CqLocalStorage__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CqLocalStorage__ = __webpack_require__(5);
 
 
 __webpack_require__(45);
@@ -6063,8 +6063,8 @@ $.fn.CqBtnGroup = function() {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cq_fields_WysiwygField__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Wysiwyg__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cq_sortable_CqSortable__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Wysiwyg__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cq_sortable_CqSortable__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cq_block_picker_CqBlockPicker__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__CqBlock__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__CqBlockFile__ = __webpack_require__(60);
@@ -6934,7 +6934,7 @@ class TemplateItem{
 /* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var H = __webpack_require__(5);
+var H = __webpack_require__(6);
 module.exports = function() { var T = new H.Template({code: function (c,p,i) { var t=this;t.b(i=i||"");t.b("<div id=\"cq-style\" cq-block-picker class=\"cq-vars-th-black\">\r");t.b("\n" + i);t.b("    <button class=\"cq-unstyled close\">\r");t.b("\n" + i);t.b("        <svg class=\"svg wysiwyg-icon\">\r");t.b("\n" + i);t.b("            <use class=\"svg\" xlink:href=\"#cq-close\"></use>\r");t.b("\n" + i);t.b("        </svg>\r");t.b("\n" + i);t.b("    </button>\r");t.b("\n" + i);t.b("\r");t.b("\n" + i);t.b("    <div class=\"message\">\r");t.b("\n" + i);t.b("        ");t.b(t.v(t.f("message",c,p,0)));t.b("\r");t.b("\n" + i);t.b("    </div>\r");t.b("\n" + i);t.b("\r");t.b("\n" + i);t.b("    <div class=\"buttons-container\">\r");t.b("\n" + i);t.b("\r");t.b("\n" + i);t.b("    </div>\r");t.b("\n" + i);t.b("</div>");return t.fl(); },partials: {}, subs: {  }}, "<div id=\"cq-style\" cq-block-picker class=\"cq-vars-th-black\">\r\n    <button class=\"cq-unstyled close\">\r\n        <svg class=\"svg wysiwyg-icon\">\r\n            <use class=\"svg\" xlink:href=\"#cq-close\"></use>\r\n        </svg>\r\n    </button>\r\n\r\n    <div class=\"message\">\r\n        {{message}}\r\n    </div>\r\n\r\n    <div class=\"buttons-container\">\r\n\r\n    </div>\r\n</div>", H);return T.render.apply(T, arguments); };
 
 /***/ }),
@@ -15804,7 +15804,7 @@ class CqProgress extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* def
 /* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var H = __webpack_require__(5);
+var H = __webpack_require__(6);
 module.exports = function() { var T = new H.Template({code: function (c,p,i) { var t=this;t.b(i=i||"");t.b("<div cq-notification class=\"cq-th-");t.b(t.v(t.f("theme",c,p,0)));t.b("\" cq-notification-about-uid=\"");t.b(t.v(t.f("uid",c,p,0)));t.b("\">\r");t.b("\n" + i);t.b("\r");t.b("\n" + i);t.b("    <div class=\"icon\"></div>\r");t.b("\n" + i);t.b("    <main>\r");t.b("\n" + i);t.b("        ");t.b(t.v(t.f("message",c,p,0)));t.b("\r");t.b("\n" + i);t.b("    </main>\r");t.b("\n" + i);t.b("    <div cq-progress-bar value=\"0\" min=\"0\" max=\"100\">\r");t.b("\n" + i);t.b("        <div class=\"bar\"></div>\r");t.b("\n" + i);t.b("    </div>\r");t.b("\n" + i);t.b("</div>");return t.fl(); },partials: {}, subs: {  }}, "<div cq-notification class=\"cq-th-{{theme}}\" cq-notification-about-uid=\"{{uid}}\">\r\n\r\n    <div class=\"icon\"></div>\r\n    <main>\r\n        {{message}}\r\n    </main>\r\n    <div cq-progress-bar value=\"0\" min=\"0\" max=\"100\">\r\n        <div class=\"bar\"></div>\r\n    </div>\r\n</div>", H);return T.render.apply(T, arguments); };
 
 /***/ }),
@@ -15819,9 +15819,9 @@ module.exports = function() { var T = new H.Template({code: function (c,p,i) { v
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cq_sortable_CqSortable__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cq_sortable_CqSortable__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cq_fields_WysiwygField__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Wysiwyg__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Wysiwyg__ = __webpack_require__(4);
 
 
 
@@ -15897,7 +15897,7 @@ class CqFieldRecords extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /*
             for(let file of $(this).get(0).files){
                 toUpload++;
                 console.log(file.name);
-                let $preview=$(__webpack_require__(105));
+                let $preview=$(__webpack_require__(77));
                 $preview.find(".title").text(file.name);
                 me.list.$main.append($preview);
                 window.pov.api.uploadChuncked(
@@ -15979,12 +15979,18 @@ class CqFieldRecords extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /*
 
 /***/ }),
 /* 77 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"preview-record\">\r\n    <span class=\"icon\">\r\n            <svg class=\"svg svg-cq-circle-play\">\r\n                <use class=\"svg svg-cq-cloud-upload\" xlink:href=\"#cq-cloud-upload\"></use>\r\n            </svg>\r\n\r\n    </span>\r\n    <i cq-tip=\"\" class=\"cq-th-danger inline\" data-count=\"0\" title=\"\"></i>\r\n    <div>\r\n        <div class=\"title\" title=\"\">YO</div>\r\n        <span class=\"type\">0%</span>\r\n    </div>\r\n</div>";
+
+/***/ }),
+/* 78 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
 
-__webpack_require__(78);
+__webpack_require__(79);
 
 /**
  *
@@ -16108,17 +16114,17 @@ class CqFieldGoogleMap extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" 
 
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cq_db_CqDb__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cq_db_CqDb__ = __webpack_require__(81);
 
 
 class CqAdmin{
@@ -16242,7 +16248,7 @@ class CqAdmin{
 
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16279,7 +16285,7 @@ class CqDb{
 
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16290,7 +16296,7 @@ class CqDb{
 
 
 
-__webpack_require__(82);
+__webpack_require__(83);
 class CqFieldUpload extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */]{
     constructor($main){
         super($main);
@@ -16366,16 +16372,16 @@ class CqFieldUpload extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
 
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(84);
+__webpack_require__(85);
 $( document ).ready(function() {
 
     /**
@@ -16403,12 +16409,6 @@ $( document ).ready(function() {
 });
 
 /***/ }),
-/* 84 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
 /* 85 */
 /***/ (function(module, exports) {
 
@@ -16433,26 +16433,10 @@ $( document ).ready(function() {
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 89 */,
-/* 90 */,
-/* 91 */,
-/* 92 */,
-/* 93 */,
-/* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */,
-/* 102 */,
-/* 103 */,
-/* 104 */,
-/* 105 */
+/* 89 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"preview-record\">\r\n    <span class=\"icon\">\r\n            <svg class=\"svg svg-cq-circle-play\">\r\n                <use class=\"svg svg-cq-cloud-upload\" xlink:href=\"#cq-cloud-upload\"></use>\r\n            </svg>\r\n\r\n    </span>\r\n    <i cq-tip=\"\" class=\"cq-th-danger inline\" data-count=\"0\" title=\"\"></i>\r\n    <div>\r\n        <div class=\"title\" title=\"\">YO</div>\r\n        <span class=\"type\">0%</span>\r\n    </div>\r\n</div>";
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

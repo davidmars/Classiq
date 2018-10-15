@@ -40,7 +40,7 @@ $errs=$vv->getErrors()
 <?endif?>
 
 
-<div class="cq-box">
+<div class="cq-box wysiwyg-config-classiqmodel">
     <label>Titre / Nom</label>
     <?=$vv->wysiwyg()->field("name")
         ->string()

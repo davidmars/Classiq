@@ -5,7 +5,7 @@ use Classiq\Seo\SEO_FRENCH;
 
 ?>
 
-<div class="cq-box">
+<div class="cq-box wysiwyg-config-page">
 
     <fieldset>
     <label>Image de prévisualisation</label>
