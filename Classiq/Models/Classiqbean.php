@@ -23,6 +23,21 @@ class Classiqbean extends \RedBeanPHP\SimpleModel
     public $vars=[];
 
     /**
+     * Renvoie la date de création
+     * @return bool|\DateTime
+     */
+    public function getDateCreated(){
+        return \DateTime::createFromFormat("Y-m-d H:i:s",$this->date_created);
+    }
+    /**
+     * Renvoie la date de modification
+     * @return bool|\DateTime
+     */
+    public function getDateModified(){
+        return \DateTime::createFromFormat("Y-m-d H:i:s",$this->date_modified);
+    }
+
+    /**
      * Lancé après ouverture du modèle (attention c'est en cela qu'on n'utilise pas la librairie redbean officielle mais davidmars/redbean).
      * Ici les champs json sont décodés et attribués au modèle.
      */
