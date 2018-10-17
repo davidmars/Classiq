@@ -17,8 +17,26 @@ pov()->events->listen(C_povApi::EVENT_SAVE,
             $vv->addError("Vous devez vous connecter");
         }
 
-        $id=$vv->testAndGetRequest("modelId","Il nous faut un modelId",true);
-        $type=$vv->testAndGetRequest("modelType","Il nous faut un modelType",true);
+        //soit modelUid soit modelId & modelType
+        $id=null;
+        $type=null;
+        $uid=the()->request("modelUid");
+        if($uid){
+            $record=Classiqmodel::getByUid($uid);
+            if($record){
+                $id=$record->id;
+                $type=$record->modelType();
+            }else{
+                $vv->addError("Pas de record trouvé pour modelUid ($uid)");
+            }
+        }else{
+            $id=$vv->testAndGetRequest("modelId","Il nous faut un modelId",true);
+            $type=$vv->testAndGetRequest("modelType","Il nous faut un modelType",true);
+        }
+        if(!$id || !$type){
+            $vv->addError("Il nous faut soit un modelUid soit modelId et modelType pour pouvoir enregistrer");
+        }
+
         $vars=$vv->testAndGetRequest("modelVars");
         //pov()->log->debug("PovApi.save",[$vars]);
         /** @var Classiqmodel $record */
