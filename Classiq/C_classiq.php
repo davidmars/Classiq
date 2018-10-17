@@ -104,9 +104,9 @@ class C_classiq extends C_default {
         }
 
         if(!$urlpage->stricturl){
-            $url=$urlpage->translatedUrl(the()->project->langCode,false);
-        }else{
             $url=$urlpage->translatedUrl(the()->project->langCode,true);
+        }else{
+            $url=$urlpage->translatedUrl(the()->project->langCode,false);
         }
         return self::genUrl($url,false);
     }
