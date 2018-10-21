@@ -135,12 +135,15 @@ class Filerecord extends Classiqmodel
 
 
     /**
+     * Renvoie l'url http du fichier
+     * @param bool $absolute si true renverra l'url avec http://etc...
      * @return string chemin à utiliser via http pour accéder au fichier
      */
-    public function httpPath(){
-        return the()->fileSystem->uploadHttpPath($this->path);
+    public function httpPath($absolute=false){
+        return the()->fileSystem->uploadHttpPath($this->path,$absolute);
     }
     /**
+     * Renvoie l'url dans le systèle de fichier
      * @return string chemin à utiliser via php pour accéder au fichier
      */
     public function localPath(){
