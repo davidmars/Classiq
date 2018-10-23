@@ -219,10 +219,11 @@ class User extends Classiqmodel
     }
 
     /**
+     * Définit l'utilisateur connecté
      * @param User $user
      * @return User
      */
-    private static function setConnected($user)
+    public static function setConnected($user)
     {
         if (!self::$connected || self::$connected->id != $user->id) {
 
