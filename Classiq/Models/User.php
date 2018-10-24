@@ -29,6 +29,8 @@ class User extends Classiqmodel
 
     const EVENT_USER_CHANGE = "SSE_USER_CHANGE";
 
+    static public $DEFAULT_ORDER_BY="role, name";
+
     static $icon = "cq-user-user";
 
     /**
