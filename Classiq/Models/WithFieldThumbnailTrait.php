@@ -13,7 +13,7 @@ use Pov\Image\ImgUrl;
 /**
  * Trait WithFieldThumbnailTrait
  * @package Classiq\Models
- * @property Filerecord $thumbnail Objet de fichier
+ * @property string $thumbnail uid du Filerecord correspondant
  */
 trait WithFieldThumbnailTrait
 {
