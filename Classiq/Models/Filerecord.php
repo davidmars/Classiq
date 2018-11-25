@@ -42,6 +42,9 @@ class Filerecord extends Classiqmodel
      */
     public function update() {
         pov()->log->debug("update",[$this->_items]);
+        if($this->unbox()->hasChanged("path")){
+            $this->setFilePath($this->path);
+        }
         parent::update();
     }
 
