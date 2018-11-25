@@ -11,7 +11,7 @@ use Classiq\Models\JsonModels\ListItem;
  * @method Filerecord box()
  *
  * @property string $mime
- * @property  string private $path Chemin vers le fichier dont la racine est relative au répertoire files/mon-projet/uploads
+ * @property string private $path Chemin vers le fichier dont la racine est relative au répertoire files/mon-projet/uploads
  * @property string $bytesize Poids du fichier en octets
  * @property string $fileidentifier md5 du fichier
  * @property int $image_width Largeur (si c'est une image)
