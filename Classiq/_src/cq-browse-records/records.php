@@ -17,10 +17,10 @@ if($types){
         $orderBy=$className::$DEFAULT_ORDER_BY;
         $type=strtolower($type);
         if($keywords){
-            $collections[$type]=db()->find($type,"name LIKE '%$keywords%' ORDER BY $orderBy asc");
+            $collections[$type]=db()->find($type,"name LIKE '%$keywords%' ORDER BY $orderBy asc  LIMIT $start, $slice");
             $total+=db()->count($type,"name LIKE '%$keywords%' ORDER BY $orderBy asc");
         }else{
-            $collections[$type]=db()->find($type,"ORDER BY $orderBy asc");
+            $collections[$type]=db()->find($type," ORDER BY $orderBy asc LIMIT $start, $slice");
             $total+=db()->count($type,"ORDER BY $orderBy asc");
         }
 
@@ -33,7 +33,7 @@ foreach ($collections as $type=>$beans){
         $list[]=$bean;
     }
 }
-$list=array_slice($list,$start,$slice);
+//$list=array_slice($list,$start,$slice);
 $i=$start;
 
 $nextUrl="".the()->request("viewPath")."?";
