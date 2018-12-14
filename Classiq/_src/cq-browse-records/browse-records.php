@@ -9,7 +9,7 @@ use Classiq\Wysiwyg\WysiwygConfig;
         <?foreach (WysiwygConfig::inst()->recordsWeCanBrowse as $type):?>
 
             <div class="fld-chk" record-type="<?=$type?>">
-            <input class="js-is-record-type" id="browse-record-<?=$type?>" type="checkbox" name="records" value="<?=$type?>">
+            <input class="js-is-record-type" id="browse-record-<?=$type?>" type="radio" name="records" value="<?=$type?>">
             <label class="unstyled" for="browse-record-<?=$type?>">
 
                 <span class="cq-list-item">
