@@ -117,21 +117,9 @@ class Classiqmodel extends Classiqbean
     static $isPage=false;
 
 
-    /**
-     * @var ModelViewsSolver
-     */
-    private $_modelViewsSolver;
 
-    /**
-     * Pour obtenir les vues associées automatiquement à ce modèle
-     * @return ModelViewsSolver
-     */
-    public function views(){
-        if(!$this->_modelViewsSolver){
-            $this->_modelViewsSolver=new ModelViewsSolver($this);
-        }
-        return $this->_modelViewsSolver;
-    }
+
+
 
 
 

@@ -226,5 +226,21 @@ class Classiqbean extends \RedBeanPHP\SimpleModel
     {
     }
 
+    /**
+     * Pour obtenir les vues associées automatiquement à ce modèle
+     * @return ModelViewsSolver
+     */
+    public function views(){
+        if(!$this->_modelViewsSolver){
+            $this->_modelViewsSolver=new ModelViewsSolver($this);
+        }
+        return $this->_modelViewsSolver;
+    }
+
+    /**
+     * @var ModelViewsSolver
+     */
+    private $_modelViewsSolver;
+
 
 }
