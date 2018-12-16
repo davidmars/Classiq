@@ -1,6 +1,7 @@
 <?php
 /** @var \Classiq\Models\Filerecord $vv */
-$errs=$vv->getErrors()
+$errs=$vv->getErrors();
+$vv->localPath()
 ?>
 
 
@@ -18,10 +19,18 @@ $errs=$vv->getErrors()
     <?if($vv->isImage()):?>
         <label>Dimensions</label>
         <?=$vv->image_width?>x<?=$vv->image_height?>px <br><br>
-        <div style="background-image: var(--cq-img-toshop-grid); padding-bottom: 100%; position: relative; max-width: <?=$vv->image_width?>px; max-height: <?=$vv->image_height?>px">
+        <div style="background-image: var(--cq-img-toshop-grid); padding-bottom: 100%; position: relative; max-width: <?=$vv->image_width?>px; max-height: <?=$vv->image_height?>px;margin-bottom:20px;">
             <div style="background-position:center;background-repeat:no-repeat;background-size:contain;position:absolute;background-image: url('<?=$vv->httpPath()?>');height: 100%;width:100%;"></div>
         </div>
     <?endif?>
+
+    <fieldset cq-display-if="dev">
+        <label>Chemin vers le fichier (relatif à <code style="text-transform: none"><?=the()->fileSystem->uploadsPath?>)</code></label>
+        <?=$vv->wysiwyg()->field("path")
+            ->string()
+            ->input("text","ne pas se tromper :)")
+        ?>
+    </fieldset>
 
 </div>
 

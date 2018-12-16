@@ -117,21 +117,9 @@ class Classiqmodel extends Classiqbean
     static $isPage=false;
 
 
-    /**
-     * @var ModelViewsSolver
-     */
-    private $_modelViewsSolver;
 
-    /**
-     * Pour obtenir les vues associées automatiquement à ce modèle
-     * @return ModelViewsSolver
-     */
-    public function views(){
-        if(!$this->_modelViewsSolver){
-            $this->_modelViewsSolver=new ModelViewsSolver($this);
-        }
-        return $this->_modelViewsSolver;
-    }
+
+
 
 
 
@@ -221,6 +209,16 @@ class Classiqmodel extends Classiqbean
 
 
         return $val;
+    }
+    /**
+     * Retourne la valeur du champ sous forme de tableau de chaines
+     * partant du principe que le contenu est une chaine séparée par des points virgules
+     *
+     * @return array La valeur du champ sous forme de tableau.
+     */
+    public function getValueAsStringArray($varName){
+        $string=$this->getValue($varName,true);
+        return explode(";",$string);
     }
 
     /**

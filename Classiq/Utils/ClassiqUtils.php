@@ -13,6 +13,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use Pov\MVC\View;
 use Pov\PovException;
 use Pov\System\AbstractSingleton;
+use Classiq\Models\Classiqmodel;
 
 /**
  * Class ClassiqUtils
@@ -202,5 +203,32 @@ class ClassiqUtils extends AbstractSingleton
      * @var MailConfig Le compte mail par défaut à utiliser pour envoyer des email (à configurer au boot)
      */
     public $defaultMailSender;
+
+
+    /**
+     * Retourne un enregistrement dans lequel on stoque des variables globales telles que les lnagues activées par exemple
+     * @return Classiqmodel
+     */
+    public function configStorage(){
+        /** @var Classiqmodel $conf */
+        $conf=Classiqmodel::getByName("config storage",true);
+        return $conf;
+    }
+
+    /**
+     * Retourne la liste des langues marquées comme actives depuis la backfice de config.
+     * Si aucune langue n'est signalée active on retournera la liste des langues par défaut
+     * @param boolean $allIfAdmin si défini sur true et que l'utilisateur est admin renverra la liste complète des langues
+     * @return string[] Les langCodes
+     * @throws PovException
+     */
+    public function langActives($allIfAdmin=false){
+        $langs=$this->configStorage()->getValueAsStringArray("vars.langActives");
+        $default=the()->project->languages;
+        if(!$langs || ( cq()->isAdmin() && $allIfAdmin ) ){
+            return $default;
+        }
+        return $langs;
+    }
 
 }

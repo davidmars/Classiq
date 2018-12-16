@@ -2,6 +2,7 @@
 
 namespace Classiq\Utils;
 
+use Classiq\Models\Classiqbean;
 use Classiq\Models\Classiqmodel;
 use Pov\Html\Trace\HtmlTag;
 use Pov\MVC\View;
@@ -14,12 +15,12 @@ use Pov\System\ApiResponse;
 class ModelViewsSolver
 {
     /**
-     * @var Classiqmodel
+     * @var Classiqbean
      */
     private $model;
     /**
      * ModelViewsSolver constructor.
-     * @param ClassiqModel $model
+     * @param Classiqbean $model
      */
     public function __construct($model)
     {

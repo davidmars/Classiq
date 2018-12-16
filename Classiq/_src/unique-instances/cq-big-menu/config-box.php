@@ -9,6 +9,23 @@ $svgCollections=glob("dist/svg-collection/*.html");
 <label>Options</label>
 <?=$view->render("cq-display-if/cq-display-control")?>
 
+<?if(count(the()->project->languages)>1):?>
+    <?php
+    $langArray=[];
+    foreach (the()->project->languages as $code){
+        $langArray[\Localization\Lang::getByCode($code)->name]=$code;
+    }
+    ?>
+    <label>Activer/désactiver des langues</label>
+    <div class="cq-box">
+        <?=cq()->configStorage()->wysiwyg()
+            ->field("vars.langActives")
+            ->listString()
+            ->checkboxes($langArray);?>
+    </div>
+<?endif?>
+
+
 <label>Liens utiles</label>
 <div class="cq-box">
 
