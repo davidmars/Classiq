@@ -159,11 +159,11 @@ class ClassiqUtils extends AbstractSingleton
      * @param string $emailTo Email à qui envoyer le mail
      * @param string $subject Objet du mail
      * @param string $htmlMessage Message formaté en html
+     * @param string[] $attachments Listes des fichiers joints
      * @return bool true si ça a marché
-     * @throws Exception Si une erreur de mail s'est produite
      * @throws PovException Si le mail par défaut n'est pas configuré
      */
-    public function sendMail($emailTo,$subject,$htmlMessage){
+    public function sendMail($emailTo,$subject,$htmlMessage,$attachments=[]){
         if(!$this->defaultMailSender){
             throw new PovException("Configuration manquante; Il faut configurer le mail système <code>(cq()->defaultMailSender=etc...)</code>");
         }else{
@@ -191,8 +191,14 @@ class ClassiqUtils extends AbstractSingleton
                 $mail->Subject = $subject;
                 $mail->Body    = $htmlMessage;
                 $mail->AltBody = strip_tags($htmlMessage);
-                $mail->send();
-                return true;
+
+                //Attachments
+                foreach ($attachments as $file){
+                    $mail->addAttachment($file);         // Add attachments
+                }
+                //send
+                return $mail->send();
+
             } catch (Exception $e) {
                 throw new Exception($e->getMessage());
             }
