@@ -128,9 +128,12 @@ class ClassiqUtils extends AbstractSingleton
         //pov-fmk + jquery
         the()->htmlLayout()->addJsToFooter("vendor/davidmars/pov-2018/dist/pov-boot.js",true);
         if($this->wysiwyg()){
+            the()->htmlLayout()->layoutVars->wysiwyg=true;
             the()->htmlLayout()->addJsToFooter(\Classiq\Classiq::assetsDir()."/wysiwyg.js");
             the()->htmlLayout()->addCssToHeader(\Classiq\Classiq::assetsDir()."/wysiwyg.css");
             $r=View::get("unique-instances/layout-stuff")->render();
+        }else{
+            the()->htmlLayout()->layoutVars->wysiwyg=false;
         }
         return $r;
     }

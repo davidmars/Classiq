@@ -5017,20 +5017,24 @@ window.PerfectScrollbar=__webpack_require__(25);
 __webpack_require__(26);
 
 Pov.onBodyReady(function(){
+    console.log("classiq.boot");
     //TweenMax config
     CSSPlugin.defaultTransformPerspective = 800;
     //initialise les liens ajax
     window.pov.history.init();
     //écoute le serveur
-    window.povSSE=new window.pov.PovSSE(window.pov.api.listenSSE());
-    //qd user login recharge
-    window.povSSE.on(EVENTS.SSE_USER_LOGIN,function(e){
-        window.povSSE.close();
-        document.location.reload(true);
-    });
-    window.povSSE.on(EVENTS.SSE_DEBUG_LOG,function(e){
-        console.log(EVENTS.SSE_DEBUG_LOG,e);
-    });
+    if(LayoutVars.wysiwyg){
+        window.povSSE=new window.pov.PovSSE(window.pov.api.listenSSE());
+        //qd user login recharge
+        window.povSSE.on(EVENTS.SSE_USER_LOGIN,function(e){
+            window.povSSE.close();
+            document.location.reload(true);
+        });
+        window.povSSE.on(EVENTS.SSE_DEBUG_LOG,function(e){
+            console.log(EVENTS.SSE_DEBUG_LOG,e);
+        });
+    }
+
     //initialise les events cq-on-etc="action()"
     window.cqEventsListener=new __WEBPACK_IMPORTED_MODULE_0__CqEventsListener__["a" /* default */]();
     window.cqEventsListener.addObject(window);

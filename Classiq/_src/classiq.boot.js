@@ -23,20 +23,24 @@ window.PerfectScrollbar=require("perfect-scrollbar/dist/perfect-scrollbar.min");
 require("perfect-scrollbar/css/perfect-scrollbar.css");
 
 Pov.onBodyReady(function(){
+    console.log("classiq.boot");
     //TweenMax config
     CSSPlugin.defaultTransformPerspective = 800;
     //initialise les liens ajax
     window.pov.history.init();
     //écoute le serveur
-    window.povSSE=new window.pov.PovSSE(window.pov.api.listenSSE());
-    //qd user login recharge
-    window.povSSE.on(EVENTS.SSE_USER_LOGIN,function(e){
-        window.povSSE.close();
-        document.location.reload(true);
-    });
-    window.povSSE.on(EVENTS.SSE_DEBUG_LOG,function(e){
-        console.log(EVENTS.SSE_DEBUG_LOG,e);
-    });
+    if(LayoutVars.wysiwyg){
+        window.povSSE=new window.pov.PovSSE(window.pov.api.listenSSE());
+        //qd user login recharge
+        window.povSSE.on(EVENTS.SSE_USER_LOGIN,function(e){
+            window.povSSE.close();
+            document.location.reload(true);
+        });
+        window.povSSE.on(EVENTS.SSE_DEBUG_LOG,function(e){
+            console.log(EVENTS.SSE_DEBUG_LOG,e);
+        });
+    }
+
     //initialise les events cq-on-etc="action()"
     window.cqEventsListener=new CqEventsListener();
     window.cqEventsListener.addObject(window);
