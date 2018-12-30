@@ -10,6 +10,7 @@ export default class CqBrowseRecordsList extends DisplayObject{
     constructor($main){
         super($main);
         let me = this;
+        this.xhr=null;
         this.keywords="";
         /*
         new PerfectScrollbar($main.find(".records").get(0),
@@ -74,13 +75,17 @@ export default class CqBrowseRecordsList extends DisplayObject{
         let me = this;
         let $records=me.$main.find(".records");
         $records.empty().append(new CqLoadingDots().$main);
-        window.pov.api.getView(
+        if(me.xhr){
+            me.xhr.abort();
+        }
+        me.xhr=window.pov.api.getView(
             "cq-browse-records/records",
             $records,
             {
                 types:this.types.join(","),
                 keywords:this.keywords,
                 function(r){
+                    me.xhr=null;
                     me.emit(EVENTS.CHANGED);
                     setTimeout(function(){
                         me.highlightEdited();

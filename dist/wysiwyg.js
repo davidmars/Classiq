@@ -1370,6 +1370,7 @@ class CqBrowseRecordsList extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["
     constructor($main){
         super($main);
         let me = this;
+        this.xhr=null;
         this.keywords="";
         /*
         new PerfectScrollbar($main.find(".records").get(0),
@@ -1434,13 +1435,17 @@ class CqBrowseRecordsList extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["
         let me = this;
         let $records=me.$main.find(".records");
         $records.empty().append(new __WEBPACK_IMPORTED_MODULE_1__cq_loading_dots_CqLoadingDots__["a" /* default */]().$main);
-        window.pov.api.getView(
+        if(me.xhr){
+            me.xhr.abort();
+        }
+        me.xhr=window.pov.api.getView(
             "cq-browse-records/records",
             $records,
             {
                 types:this.types.join(","),
                 keywords:this.keywords,
                 function(r){
+                    me.xhr=null;
                     me.emit(EVENTS.CHANGED);
                     setTimeout(function(){
                         me.highlightEdited();
