@@ -6654,7 +6654,7 @@ class CqBlocks extends __WEBPACK_IMPORTED_MODULE_2__cq_sortable_CqSortable__["a"
         }else{
             $item.data("itemInit",true);
         }
-        $item.on("mouseenter",function(e){
+        $item.on("mouseenter mouseover",function(e){
             e.stopPropagation();
             let $item=$(this);
             wysiwyg.contextMenu.show().setAnchor($item).btns.reset();
