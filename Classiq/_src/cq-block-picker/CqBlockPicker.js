@@ -55,12 +55,8 @@ export default class CqBlockPicker extends DisplayObject{
                 let $btn=CqBlockPicker.templatesLoaded[template];
                 me.$buttons.append($btn.clone());
             }
-
         });
-
         this.initListeners();
-
-
     }
     /**
      * Définit le message à afficher
@@ -83,10 +79,6 @@ export default class CqBlockPicker extends DisplayObject{
     remove(){
         this.$main.remove();
     }
-
-
-
-
 
     destroy(){
         //evite de suprimer l'objet même s'il n'est pas dans le dom
@@ -145,9 +137,40 @@ export default class CqBlockPicker extends DisplayObject{
         return this._templateItemByPath[path]
     }
 
+    /**
+     * Ajuste graphiquement toutes les instances des plocks pickers
+     *
+     */
+    static resizeAll(){
+        $("[cq-block-picker] .buttons-container").each(function(){
+            let $cont=$(this);
+            let $prev=null;
+            let lastY=0;
+            let $all=$cont.find("[cq-ico-txt]");
+            $all.removeClass("first last");
+            $cont.find("[cq-ico-txt]").each(function(){
+                let y=$(this).offset().top;
+                if(!$prev || lastY != y){
+                    $(this).addClass("first");
+                    if($prev){
+                        $prev.addClass("last");
+                    }
+                }
+                $prev=$(this);
+                lastY=y;
+            })
+            if($prev){
+                $prev.addClass("last");
+            }
+        });
+    }
+
 }
 
 CqBlockPicker.templatesLoaded={};
+STAGE.on(EVENTS.RESIZE,function(){
+    CqBlockPicker.resizeAll();
+});
 
 class TemplateItem{
     /**

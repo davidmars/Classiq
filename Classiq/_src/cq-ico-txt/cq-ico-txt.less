@@ -1,112 +1,110 @@
-[context-menu-size='small']{
+
   [cq-ico-txt]{
-    --pad:3px;
-    --w:60px;
-    --h:40px;
-    --bigger:5px;
-  }
-}
 
-[cq-ico-txt]{
+    --pad:15px;
+    --w:90px;
+    --h:70px;
+    --bigger:10px;
+    --font-size:12px;
 
-  --pad:15px;
-  --w:90px;
-  --h:70px;
-  --bigger:10px;
-
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-
-  svg,label{
     position: relative;
-    z-index: 2;
-    width: var(--w) !important;
-
-    //outline: 1px dotted red;
-  }
-  label{
-    --cq-typo-size-h4:12px;
-    order: 2;
-    padding: 5px 5px 0 5px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: var(--cq-color-txt,#f00) !important;
-  }
-  svg{
-    order:1;
-    height: var(--h) !important;
-    padding: var(--pad);
-    transition: all 0.2s;
-    background-color: var(--cq-color-txt);
-    color: var(--cq-color-bg-alt);
-    border-right: 1px solid rgba(128, 128, 128, 0.2);
-  }
-
-  &:after{
-    content: "";
-    position: absolute;
-    width: var(--w) !important;
-    height: var(--h) !important;
-    box-shadow: var(--cq-shadow-btn);
-    z-index: 1;
-  }
-
-  &:first-child,&:last-child{
-    svg,&:after{
-      overflow: hidden;
-      width: calc( var(--w) + var(--bigger) ) !important;
-    }
-  }
-  &:first-child{
-    label{
-      margin-left: var(--bigger);
-    }
-    svg{
-      padding-left: var(--bigger);
-    }
-    svg,&:after{
-      border-top-left-radius: var(--h);
-      border-bottom-left-radius: var(--h);
-      padding-left: calc( var(--bigger) + var(--pad) );
-    }
-  }
-  &:last-child{
-    svg{
-      padding-right: var(--bigger);
-      border-right: none;
-    }
-    svg,&:after{
-      border-top-right-radius: var(--h);
-      border-bottom-right-radius: var(--h);
-      padding-right: calc( var(--bigger) + var(--pad) );
-
-    }
-  }
-  &:only-child{
-    label{
-      margin-left: auto;
-      margin-right: auto;
-    }
-  }
-
-
-  input[type="file"]{
-    position: absolute;
-    z-index: 3;
-    border: 1px solid #f000;
-    background-color: #1ab7ea;
-    width: 100%;
-    height: 100%;
-    text-indent: 500px;
-    font-size: 500px;
-    opacity: 0;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+
+    svg,label{
+      position: relative;
+      z-index: 2;
+      width: var(--w) !important;
+    }
+    label{
+      font-size: var(--font-size) !important;
+      order: 2;
+      padding: 5px 5px 0 5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--cq-color-txt,#f00) !important;
+    }
+    svg{
+      order:1;
+      height: var(--h) !important;
+      padding: var(--pad);
+      transition: all 0.2s;
+      background-color: var(--cq-color-txt);
+      color: var(--cq-color-bg-alt);
+      border-right: 1px solid rgba(128, 128, 128, 0.2);
+    }
+
+    &:after{
+      content: "";
+      position: absolute;
+      width: var(--w) !important;
+      height: var(--h) !important;
+      box-shadow: var(--cq-shadow-btn);
+      z-index: 1;
+    }
+
+    &:first-child,&:last-child{
+      svg,&:after{
+        overflow: hidden;
+        width: calc( var(--w) + var(--bigger) ) !important;
+      }
+    }
+    &:first-child,&.first{
+      label{
+        margin-left: var(--bigger);
+      }
+      svg{
+        padding-left: var(--bigger);
+      }
+      svg,&:after{
+        border-top-left-radius: var(--h);
+        border-bottom-left-radius: var(--h);
+        padding-left: calc( var(--bigger) + var(--pad) );
+      }
+    }
+    &:last-child,&.last{
+      svg{
+        padding-right: var(--bigger);
+        border-right: none;
+      }
+      svg,&:after{
+        border-top-right-radius: var(--h);
+        border-bottom-right-radius: var(--h);
+        padding-right: calc( var(--bigger) + var(--pad) );
+
+      }
+    }
+    &:only-child,&.first,.last{
+      label{
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+
+    input[type="file"]{
+      position: absolute;
+      z-index: 3;
+      border: 1px solid #f000;
+      background-color: #1ab7ea;
+      width: 100%;
+      height: 100%;
+      text-indent: 500px;
+      font-size: 500px;
+      opacity: 0;
+      cursor: pointer;
+    }
+
   }
 
+  [context-menu-size='small']{
+    [cq-ico-txt]{
+      --pad:10px;
+      --w:60px;
+      --h:40px;
+      --bigger:5px;
+      --font-size:9px;
+    }
+  }
 
-
-
-
-}

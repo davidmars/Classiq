@@ -6379,6 +6379,7 @@ class CqBlocks extends __WEBPACK_IMPORTED_MODULE_2__cq_sortable_CqSortable__["a"
                 }else{
                     me.blockPicker.$main.insertAfter($item);
                 }
+                __WEBPACK_IMPORTED_MODULE_3__cq_block_picker_CqBlockPicker__["a" /* default */].resizeAll();
                 me.blockPicker.initListeners();
             }else{
                 this.addItem(this.templates[0],$item,insertBefore)
@@ -6800,11 +6801,9 @@ class CqBlockPicker extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
                 let $btn=CqBlockPicker.templatesLoaded[template];
                 me.$buttons.append($btn.clone());
             }
-
         });
 
         this.initListeners();
-
 
     }
     /**
@@ -6828,10 +6827,6 @@ class CqBlockPicker extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
     remove(){
         this.$main.remove();
     }
-
-
-
-
 
     destroy(){
         //evite de suprimer l'objet même s'il n'est pas dans le dom
@@ -6890,11 +6885,42 @@ class CqBlockPicker extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
         return this._templateItemByPath[path]
     }
 
+    /**
+     * Ajuste graphiquement toutes les instances des plocks pickers
+     *
+     */
+    static resizeAll(){
+        $("[cq-block-picker] .buttons-container").each(function(){
+            let $cont=$(this);
+            let $prev=null;
+            let lastY=0;
+            let $all=$cont.find("[cq-ico-txt]");
+            $all.removeClass("first last");
+            $cont.find("[cq-ico-txt]").each(function(){
+                let y=$(this).offset().top;
+                if(!$prev || lastY != y){
+                    $(this).addClass("first");
+                    if($prev){
+                        $prev.addClass("last");
+                    }
+                }
+                $prev=$(this);
+                lastY=y;
+            })
+            if($prev){
+                $prev.addClass("last");
+            }
+        });
+    }
+
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = CqBlockPicker;
 
 
 CqBlockPicker.templatesLoaded={};
+STAGE.on(EVENTS.RESIZE,function(){
+    CqBlockPicker.resizeAll();
+});
 
 class TemplateItem{
     /**
@@ -6921,7 +6947,13 @@ class TemplateItem{
     config(){
         return this.$item.attr("config");
     }
+
+
 }
+
+
+
+
 
 /***/ }),
 /* 56 */

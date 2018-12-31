@@ -304,6 +304,7 @@ export default class CqBlocks extends CqSortable{
                 }else{
                     me.blockPicker.$main.insertAfter($item);
                 }
+                CqBlockPicker.resizeAll();
                 me.blockPicker.initListeners();
             }else{
                 this.addItem(this.templates[0],$item,insertBefore)
