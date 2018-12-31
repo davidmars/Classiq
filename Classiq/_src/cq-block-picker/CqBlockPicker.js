@@ -166,7 +166,6 @@ export default class CqBlockPicker extends DisplayObject{
     }
 
 }
-
 CqBlockPicker.templatesLoaded={};
 STAGE.on(EVENTS.RESIZE,function(){
     CqBlockPicker.resizeAll();

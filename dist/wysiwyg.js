@@ -6914,7 +6914,6 @@ class CqBlockPicker extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = CqBlockPicker;
 
-
 CqBlockPicker.templatesLoaded={};
 STAGE.on(EVENTS.RESIZE,function(){
     CqBlockPicker.resizeAll();
