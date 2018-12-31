@@ -6802,9 +6802,7 @@ class CqBlockPicker extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
                 me.$buttons.append($btn.clone());
             }
         });
-
         this.initListeners();
-
     }
     /**
      * Définit le message à afficher
@@ -6947,13 +6945,7 @@ class TemplateItem{
     config(){
         return this.$item.attr("config");
     }
-
-
 }
-
-
-
-
 
 /***/ }),
 /* 56 */
