@@ -171,12 +171,12 @@ class C_classiq extends C_default {
      */
     public function permalinkUid_run($type,$id){
         /** @var Urlpage $urlpage */
-        $page=db()->load($type,$id);
+        $page=db()->findOne($type,"id = '$id'");
         if($page){
             /** @var Page $page */
             return $page->views()->page();
         }
-        return null;
+        return $this->err404_run();
     }
 
 
