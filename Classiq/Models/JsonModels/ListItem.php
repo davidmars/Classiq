@@ -44,11 +44,12 @@ class ListItem
     }
 
     /**
+     * @param bool $active Permet de forcer la désactivation du wysiwyg
      * @return WysiwygListitem
      */
-    public function wysiwyg()
+    public function wysiwyg($active=true)
     {
-        return new WysiwygListitem($this);
+        return new WysiwygListitem($this,$active);
     }
 
     /**

@@ -27,7 +27,7 @@ abstract class FieldTyped
     public function __construct($field)
     {
         $this->field=$field;
-        if(cq()->wysiwyg()){
+        if($this->field->wysiwyg->active){
             $this->attr()["context-menu-is-list"]="false";
         }
     }
@@ -78,7 +78,7 @@ abstract class FieldTyped
     public function htmlTag($tag="span"){
 
         $tag=new HtmlTag($tag,$this->field->value());
-        if(cq()->wysiwyg()){
+        if($this->field->wysiwyg->active){
             $this->attr()["cq-field-options"]=json_encode($this->options);
         }
         $tag->setAttributes($this->attr());
