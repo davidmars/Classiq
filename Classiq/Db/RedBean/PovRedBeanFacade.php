@@ -420,11 +420,14 @@ class PovRedBeanFacade extends AbstractSingleton
      */
     public function store( $bean )
     {
+        /*
         if($bean->unbox()){
             pov()->log->warning("appel a db->store(".$bean->unbox()->getMeta("type")."-".$bean->unbox()->getID().")",[$bean]);
         }else{
             pov()->log->warning("appel a db->store(".$bean->getMeta("type")."-".$bean->getID().")",[$bean]);
         }
+        */
+
 
         return R::store($bean);
     }
