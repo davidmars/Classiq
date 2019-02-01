@@ -3,25 +3,28 @@
     .input-file-wrap {
       display: flex;
     }
+
+
+    --btn-size:40px;
+    --svg-size:20px;
+
+    &[size="small"]{
+      --btn-size:30px;
+      --svg-size:15px;
+    }
+    &[size="normal"]{
+      --btn-size:40px;
+      --svg-size:20px;
+    }
+    &[size="big"]{
+      --btn-size:60px;
+      --svg-size:20px;
+    }
   }
 }
 [cq-btn-group]{
 
-  --btn-size:40px;
-  --svg-size:20px;
 
-  &[size="small"]{
-    --btn-size:30px;
-    --svg-size:15px;
-  }
-  &[size="normal"]{
-    --btn-size:40px;
-    --svg-size:20px;
-  }
-  &[size="big"]{
-    --btn-size:60px;
-    --svg-size:20px;
-  }
 
 
   overflow: hidden;
@@ -78,8 +81,8 @@
     width: var(--btn-size);
     position: relative;
     >svg{
-      width: var(--svg-size);
-      height: var(--svg-size);
+      width: var(--svg-size) !important;
+      height: var(--svg-size) !important;
     }
   }
 
