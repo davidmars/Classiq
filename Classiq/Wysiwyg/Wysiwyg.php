@@ -2,6 +2,7 @@
 namespace Classiq\Wysiwyg;
 
 use Classiq\Models\Classiqmodel;
+use Pov\Html\Trace\HtmlTag;
 
 
 /**
@@ -43,6 +44,25 @@ class Wysiwyg
     public function field($varName){
         $varName=preg_replace("/_lang$/","_".the()->project->langCode,$varName);
         return new Field($this,$varName);
+    }
+
+    /**
+     * Renvoie un bouton visible en wysiwyg qui permet d'ouvrir une popin de config
+     * @param string $template path vers la view qui sera affichée dans la fenêtre de config
+     * @param string $svgIcon icone svg à utiliser
+     * @return HtmlTag
+     */
+    public function buttonConfigWindow($template,$svgIcon="cq-edit"){
+        $tag=new HtmlTag("button");
+        $tag->isRenderable=$this->active;
+        $tag->addClass("cq-btn circle small cq-th-white cq-hover-color-th");
+        //$tag->setAttribute("href","#cq-show-config-popin");
+        $uid=$this->model->uid();
+        $tag->setAttribute("cq-on-click","wysiwyg.contextMenu.showConfig($template,$uid)");
+        $tag->setAttribute("cq-config-path",$template);
+        $tag->setAttribute("cq-config-uid",$this->model->uid());
+        $tag->setInnerHTML(pov()->svg->use($svgIcon));
+        return $tag;
     }
 
 
