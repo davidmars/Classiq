@@ -1186,9 +1186,11 @@ class CqNewRecord{
             }
         });
         $(me._$nameField).on('keyup', function (e) {
-            if (e.keyCode === 13) {
+            if (e.keyCode === 13) { //ENTER
                 e.preventDefault();
-                me.create(me._$nameField.val(),$(this).attr("record-type"));
+                if( me._$createBtns.length===1){
+                    me.create(me._$nameField.val(),me._$createBtns.first().attr("record-type"));
+                }
             }
         });
         me._$createBtns.on("click",function(e){
