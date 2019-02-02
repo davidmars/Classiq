@@ -3,6 +3,7 @@
 namespace Classiq\Wysiwyg\FieldsTyped;
 
 
+use Classiq\Models\Classiqmodel;
 use Classiq\Models\JsonModels\ListItem;
 use Classiq\Wysiwyg\Field;
 use Classiq\Wysiwyg\JsonModelField;
@@ -110,6 +111,22 @@ abstract class FieldTyped
     public function onSavedRefreshListItem(ListItem $listItem,$refreshConfig=true){
         if($this->field->wysiwyg->active){
             $selector="$('[list-item-key=\'".$listItem->key."\']')"; //le(s) template(s)
+            if($refreshConfig){
+                $selector.=".add($(this).closest('#config-loader'))";//la fenêtre de config
+            }
+            $this->onSavedRefresh($selector);
+        }
+        return $this;
+    }
+    /**
+     * Une fois le champ enregistré va faire un refresh sur la fenêtre de config et le(s) template(s) qui a/ont la même clé
+     * @param Classiqmodel $record L'enregistrement à rafraichir
+     * @param bool $refreshConfig mettre sur false pour ne pas rafraichir la fenetre de config
+     * @return $this
+     */
+    public function onSavedRefreshRecord($record,$refreshConfig=true){
+        if($this->field->wysiwyg->active){
+            $selector="$('[data-pov-vv-uid=\'".$record->uid()."\']')"; //le(s) template(s)
             if($refreshConfig){
                 $selector.=".add($(this).closest('#config-loader'))";//la fenêtre de config
             }
