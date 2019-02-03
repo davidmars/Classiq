@@ -52,6 +52,7 @@
     "webpack-merge": "^4.1.1"
   },
   "dependencies": {
+    "croppr": "^2.3.1",
     "babel-preset-stage-0": "^6.24.1",
     "browsernavbarheight": "^0.0.4",
     "data-social-share-click": "^0.0.5",

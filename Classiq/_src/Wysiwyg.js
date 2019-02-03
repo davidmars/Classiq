@@ -10,6 +10,7 @@ import CqNotifier from "./unique-instances/cq-notifier/CqNotifier";
 import CqSortable from "./cq-sortable/CqSortable";
 import CqFieldRecords from "./cq-field-records/CqFieldRecords";
 import CqFieldGoogleMap from "./cq-fields/cq-field-google-map/CqFieldGoogleMap";
+import CqFieldCrop from "./cq-fields/cq-field-crop/CqFieldCrop";
 import CqEditRecordBox from "./unique-instances/cq-edit-record-box/CqEditRecordBox";
 import CqAdmin from "./CqAdmin";
 import {CqFieldUpload} from "./cq-fields/CqFieldUpload";
@@ -95,6 +96,7 @@ export default class Wysiwyg{
             DisplayObject.__fromDom(CqSortable,"cq-sortable");
             DisplayObject.__fromDom(CqFieldRecords,"cq-field-records");
             DisplayObject.__fromDom(CqFieldGoogleMap,"cq-field-google-map");
+            DisplayObject.__fromDom(CqFieldCrop,"cq-field-crop");
 
             //nettoie les display objects innutiles
             DisplayObject.cleanfromDom();

@@ -145,6 +145,10 @@ export default class WysiwygField{
                 return this.$field.find("[latlng='lat']").val()+";"+this.$field.find("[latlng='lng']").val();
                 break;
 
+            case "crop":
+                return this.$field.find("textarea").val();
+                break;
+
             case "list-string":
                 //en pratique des checkboxes dont on extraira variable1;variable2;etc...
                 let $checkeds=this.$field.find("[value]:checked");

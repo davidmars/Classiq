@@ -5,6 +5,7 @@ namespace Classiq\Wysiwyg;
 
 use Classiq\Models\Classiqmodel;
 use Classiq\Wysiwyg\FieldsTyped\FieldBoolean;
+use Classiq\Wysiwyg\FieldsTyped\FieldCrop;
 use Classiq\Wysiwyg\FieldsTyped\FieldFile;
 use Classiq\Wysiwyg\FieldsTyped\FieldGeoloc;
 use Classiq\Wysiwyg\FieldsTyped\FieldImage;
@@ -101,6 +102,16 @@ class Field
         if($this->wysiwyg->active){
             $f->attr()["wysiwyg-data-type"]="geoloc";
         }
+        return $f;
+    }
+
+    /**
+     * Renvoie un champ qui permet de selectionner un rectange dans une image
+     * @param string $imgSrc Image à utiliser pour la prevue
+     * @return FieldCrop
+     */
+    public function crop($imgSrc){
+        $f=new FieldCrop($this,$imgSrc);
         return $f;
     }
 
