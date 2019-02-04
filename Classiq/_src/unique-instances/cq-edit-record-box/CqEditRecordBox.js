@@ -17,17 +17,6 @@ export default class CqEditRecordBox extends DisplayObject{
          * @type {string}
          */
         this.currentUid="";
-        /*
-        new PerfectScrollbar(this.$main.find(">main").get(0),
-            {
-                wheelSpeed: 1,
-                wheelPropagation: true,
-                minScrollbarLength: 20,
-                suppressScrollX:true,
-                swipeEasing:true
-            }
-        );
-        */
 
         //si le record est supprimé on ferme
         this.$main.on(EVENTS.SSE_DB_TRASH,function(e){

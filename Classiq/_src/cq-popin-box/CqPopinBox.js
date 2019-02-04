@@ -32,18 +32,6 @@ export default class CqPopinBox extends DisplayObject{
             me.close();
         });
 
-        new PerfectScrollbar(this.$content.get(0),
-            {
-                wheelSpeed: 1,
-                wheelPropagation: true,
-                minScrollbarLength: 20,
-                suppressScrollX:true,
-                swipeEasing:true
-            }
-        );
-
-
-
     }
 
     /**

@@ -65,18 +65,6 @@ export default class CqBigMenu{
             }
         });
 
-        /*
-        new PerfectScrollbar($main.find("main").get(0),
-            {
-                wheelSpeed: 1,
-                wheelPropagation: true,
-                minScrollbarLength: 20,
-                suppressScrollX:true,
-                swipeEasing:true
-            }
-        );
-        */
-
         this.usersSection=new UserSection(me.$userSection(),me);
         this.browse= new CqBrowseRecords(this.$browseSection,this);
         new WysiwygCreateUi(this.$createSection);

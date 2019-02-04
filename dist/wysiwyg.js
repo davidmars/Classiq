@@ -1381,17 +1381,6 @@ class CqBrowseRecordsList extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["
         let me = this;
         this.xhr=null;
         this.keywords="";
-        /*
-        new PerfectScrollbar($main.find(".records").get(0),
-            {
-                wheelSpeed: 1,
-                wheelPropagation: true,
-                minScrollbarLength: 20,
-                suppressScrollX:true,
-                swipeEasing:true
-            }
-        );
-        */
         setTimeout(function(){
             window.cqAdmin.ui.recordEditor.on(EVENTS.OPEN,function(){
                 me.highlightEdited();
@@ -1523,17 +1512,6 @@ class CqEditRecordBox extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /
          * @type {string}
          */
         this.currentUid="";
-        /*
-        new PerfectScrollbar(this.$main.find(">main").get(0),
-            {
-                wheelSpeed: 1,
-                wheelPropagation: true,
-                minScrollbarLength: 20,
-                suppressScrollX:true,
-                swipeEasing:true
-            }
-        );
-        */
 
         //si le record est supprimé on ferme
         this.$main.on(EVENTS.SSE_DB_TRASH,function(e){
@@ -1656,18 +1634,6 @@ class CqPopinBox extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* def
             e.preventDefault();
             me.close();
         });
-
-        new PerfectScrollbar(this.$content.get(0),
-            {
-                wheelSpeed: 1,
-                wheelPropagation: true,
-                minScrollbarLength: 20,
-                suppressScrollX:true,
-                swipeEasing:true
-            }
-        );
-
-
 
     }
 
@@ -4452,18 +4418,6 @@ class CqBigMenu{
                     window.wysiwyg.recordEditor.hide();
             }
         });
-
-        /*
-        new PerfectScrollbar($main.find("main").get(0),
-            {
-                wheelSpeed: 1,
-                wheelPropagation: true,
-                minScrollbarLength: 20,
-                suppressScrollX:true,
-                swipeEasing:true
-            }
-        );
-        */
 
         this.usersSection=new __WEBPACK_IMPORTED_MODULE_3__UserSection__["a" /* default */](me.$userSection(),me);
         this.browse= new __WEBPACK_IMPORTED_MODULE_4__cq_browse_records_CqBrowseRecords__["a" /* default */](this.$browseSection,this);

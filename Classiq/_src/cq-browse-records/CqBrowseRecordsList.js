@@ -12,17 +12,6 @@ export default class CqBrowseRecordsList extends DisplayObject{
         let me = this;
         this.xhr=null;
         this.keywords="";
-        /*
-        new PerfectScrollbar($main.find(".records").get(0),
-            {
-                wheelSpeed: 1,
-                wheelPropagation: true,
-                minScrollbarLength: 20,
-                suppressScrollX:true,
-                swipeEasing:true
-            }
-        );
-        */
         setTimeout(function(){
             window.cqAdmin.ui.recordEditor.on(EVENTS.OPEN,function(){
                 me.highlightEdited();
