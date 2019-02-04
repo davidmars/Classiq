@@ -17008,12 +17008,11 @@ class CqFieldCrop extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* de
         var options={
             aspectRatio:ratio,
             returnMode:"ratio",
-            //startSize:[100, 100, '%'],
+            startSize:[100, 100, '%'],
             maxSize: [100, 100, '%']
         }
-        if(value){
-            //options.startSize=[value.width*100,value.height*100,"%"];
-        }
+
+        //applique les valeurs enregistrées
         options.onInitialize=function(instance){
             if(value){
                 setTimeout(function(){
@@ -17025,32 +17024,36 @@ class CqFieldCrop extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* de
                         value.x*instance.imageEl.width,
                         value.y*instance.imageEl.height
                     );
-                },100);
+                },10);
             }
-
         }
+        //quand ça change
         options.onCropMove=function(value){
-            //console.log(value.x, value.y, value.width, value.height);
+            //applique la valeur au champ
             $input.val(JSON.stringify(value));
-            let s=""+(1/value.width*100)+"% "+(1/value.height*100)+"% ";
-            function convert(x,width){
-                if(width===1){
-                    width=0.9999999;
-                }
-                return pov.utils.ratio(x,1-width,100,0,0);
-            }
-            let p=""+String(convert(value.x,value.width))+"% "+convert(value.y,value.height)+"% ";
-            //p=""+value.x*100+"% "+"100% ";
+            //met à jour éventuellement la preview css en bougeant le background image
             if($target){
-                $target.css("background-size",s);
-                $target.css("background-position",p);
-                console.log(s,p);
+                //background-size
+                let csssize=String(1/value.width*100)+"% ";
+                csssize+=String(1/value.height*100)+"% ";
+                $target.css("background-size",csssize);
+
+                //background-position
+                let convert=function(position,size){
+                    if(size===1){
+                        size=0.9999999;
+                    }
+                    return pov.utils.ratio(position,1-size,100,0,0);
+                }
+                let csspos=String(convert(value.x,value.width))+"% ";
+                csspos+=String(convert(value.y,value.height))+"% ";
+                $target.css("background-position",csspos);
             }
-            console.log("change crop",me.$main);
-            //me.$main.trigger(EVENTS.CHANGE);
+        }
+        //enregistre
+        options.onCropEnd=function(data) {
             $field.trigger("input");
         }
-
         var croppr = new __WEBPACK_IMPORTED_MODULE_1_croppr___default.a($img[0], options);
 
     }
