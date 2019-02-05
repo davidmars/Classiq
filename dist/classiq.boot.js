@@ -5013,7 +5013,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 __webpack_require__(22);
 __webpack_require__(23);
 __webpack_require__(24);
-__webpack_require__(26);
+__webpack_require__(25);
 
 Pov.onBodyReady(function(){
     console.log("classiq.boot");
@@ -15906,8 +15906,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 25 */,
-/* 26 */
+/* 25 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
