@@ -125,6 +125,10 @@ class ClassiqUtils extends AbstractSingleton
             }
         }
         the()->htmlLayout()->layoutVars->isModeDev=$this->isModeDev();
+        the()->htmlLayout()->layoutVars->isExportStatic=cq()->isExportStatic();
+        if(cq()->isExportStatic()){
+            the()->htmlLayout()->addJsScriptToFooter("vendor/davidmars/classiq/Classiq/_src/nav-static.js");
+        }
         //pov-fmk + jquery
         the()->htmlLayout()->addJsToFooter("vendor/davidmars/pov-2018/dist/pov-boot.js",true);
         if($this->wysiwyg()){
@@ -238,6 +242,15 @@ class ClassiqUtils extends AbstractSingleton
             return $default;
         }
         return $langs;
+    }
+
+    /**
+     * Si true veut dire que les page rendues sont générées pour un usage staique (fichiers html et json)
+     * De ce fait certains comportements seront différents, les liens vers les pages seront en .html par exemple.
+     * @return bool
+     */
+    public function isExportStatic(){
+        return the()->request("exportStatic",false);
     }
 
 }

@@ -108,6 +108,9 @@ class C_classiq extends C_default {
         }else{
             $url=$urlpage->translatedUrl(the()->project->langCode,false);
         }
+        if(cq()->isExportStatic()){
+            $url.=".html";
+        }
         return self::genUrl($url,false);
     }
     /**

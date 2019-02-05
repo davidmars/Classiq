@@ -58,6 +58,9 @@ class Urlpage extends Classiqmodel
     public function translatedUrl($langCode,$withUid=false){
         $u= "";
         if($this->is_homepage){
+            if(cq()->isExportStatic()){
+                return "index";
+            }
            return "";
         }elseif ($this->{"url_".$langCode}){
             $u=$this->{"url_".$langCode};

@@ -8,4 +8,7 @@
     <li>
         <a href="<?=\Classiq\C_classiq::quickView_url("utils/fix-uggly-urls")?>">Réparer les urls pas jolies</a>
     </li>
+    <li>
+        <a href="<?=\Classiq\C_classiq::quickView_url("utils/export-static")?>">Générer des pages statiques du site</a>
+    </li>
 </ul>
