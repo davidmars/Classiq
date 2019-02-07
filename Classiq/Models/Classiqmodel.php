@@ -370,7 +370,7 @@ class Classiqmodel extends Classiqbean
     }
     /**
      * Retourne les records obtenus à partir d'une liste d'uids
-     * @param string $uid modeltype-modelid ou modeltype-modelid.champ.key
+     * @param string|String[] $uid modeltype-modelid ou modeltype-modelid.champ.key
      * @return ClassiqModel[]
      */
     public static function getByUids($uids)
@@ -378,7 +378,7 @@ class Classiqmodel extends Classiqbean
         $r=[];
 
         if($uids){
-            $uids=explode(",",$uids);
+            $uids=pov()->utils->array->fromString($uids);
             foreach ($uids as $uid){
                 $record=Classiqmodel::getByUid($uid);
                 if($record){
