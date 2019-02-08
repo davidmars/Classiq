@@ -75,7 +75,7 @@ class Page extends Classiqmodel
      * @return HtmlTag une balise A href avec le nom de la page en contenu
      */
     public function htmlLink(){
-        $a=new HtmlTag("a",$this->name);
+        $a=new HtmlTag("a",$this->name_lang);
         $a->setAttribute("href",$this->href());
         return $a;
     }
