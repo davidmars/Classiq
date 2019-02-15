@@ -6,21 +6,6 @@ $pathToReplace=trim($pathToReplace,"/");
 $pathToReplace="/".$pathToReplace."/";
 set_time_limit(60*5);
 
-//
-
-/*
-
-http://localhost/github/changemakers/   *** https://blog-tom.com/webdoc/changemakers
-/github/changemakers/fr/                *** ./
-/github/changemakers/                   *** ../
-
-
-/blog-tom.com/webdoc/changemakers
-blog-tom.com/webdoc/changemakers/fr
-
-
-*/
-
 ?>
 <style>
     code{
@@ -73,11 +58,10 @@ foreach ($pages as $p){
     //exporte les pages html
     the()->fileSystem->prepareDir($url);
 
+    //.html
     $params="?exportStatic=1";
     $full=$p->href()->absolute().$params;
     echo $full."<br>";
-
-    //.html
     $content=file_get_contents($full);
     if($replaceAbsolute){
         $content=preg_replace("/".preg_quote(the()->requestUrl->httpAndHost.the()->fmkHttpRoot,'/')."/","$replaceAbsolute",$content);
@@ -91,7 +75,7 @@ foreach ($pages as $p){
     $full=$p->href()->absolute().$params;
     $content=file_get_contents($full);
     if($replaceAbsolute){
-        $content=preg_replace("/".preg_quote(the()->configProjectUrl->absoluteUrl(),'/')."/","$replaceAbsolute",$content);
+        $content=preg_replace("/".preg_quote(the()->requestUrl->httpAndHost.the()->fmkHttpRoot,'/')."/","$replaceAbsolute",$content);
     }
     $content=preg_replace("/".preg_quote($pathToReplace,'/')."/","../",$content);
     $content=preg_replace("/".preg_quote($params,'/')."/","",$content);
