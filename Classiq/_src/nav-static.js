@@ -13,7 +13,7 @@ if(LayoutVars.isExportStatic){
         console.log("Static page load");
         $.ajax({
             dataType: "json",
-            url: url+".json",
+            url: url+".pov.json",
             data: {
                 povHistory:true
             },
