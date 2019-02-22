@@ -32,6 +32,12 @@ set_time_limit(60*5);
             par...
             <input name="absoluteUrl" style="display: block;width: 80%;" type="text">
         </p>
+        <p>Exporter vers le répertoire...
+            <input name="exportDir" style="display: block;width: 80%;" type="text">
+        </p>
+        <p>query string additifs...
+            <input placeholder="&param=value" name="moreQueryString" style="display: block;width: 80%;" type="text">
+        </p>
     </fieldset>
     <p>Voulez-vous continuer?</p>
     <button type="submit" name="doIt" value="1">Oui</button>
@@ -47,9 +53,15 @@ set_time_limit(60*5);
 
 $pages=db()->findAll("page");
 $replaceAbsolute=the()->request("absoluteUrl");
+$moreQueryString=the()->request("moreQueryString");
+$exportDir=the()->request("exportDir","");
+if($exportDir){
+    $exportDir=trim($exportDir,"/");
+    $exportDir="/$exportDir";
+}
 
 foreach ($pages as $p){
-    $url="_export-static".$p->href()->relative();
+    $url="_export-static".$exportDir.$p->href()->relative();
     if($p->urlpage->is_homepage){
         $url.="index";
     }
@@ -59,7 +71,7 @@ foreach ($pages as $p){
     the()->fileSystem->prepareDir($url);
 
     //.html
-    $params="?exportStatic=1";
+    $params="?exportStatic=1&$moreQueryString";
     $full=$p->href()->absolute().$params;
     echo $full."<br>";
     $content=file_get_contents($full);
@@ -71,7 +83,7 @@ foreach ($pages as $p){
     file_put_contents($url.".html",$content);
 
     //.json
-    $params="?exportStatic=1&povHistory=1";
+    $params="?exportStatic=1&povHistory=1&$moreQueryString";
     $full=$p->href()->absolute().$params;
     $content=file_get_contents($full);
     if($replaceAbsolute){
