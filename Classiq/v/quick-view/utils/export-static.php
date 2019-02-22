@@ -17,7 +17,11 @@ set_time_limit(60*5);
 </style>
 
 
-
+<?php
+$replaceAbsolute=the()->request("absoluteUrl","");
+$moreQueryString=the()->request("moreQueryString","");
+$exportDir=the()->request("exportDir","");
+?>
 
 <form>
     <h1>Ce module permet d'exporter les pages du site vers des fichiers statiques</h1>
@@ -30,13 +34,13 @@ set_time_limit(60*5);
         <p>Remplacer
             <code><?=the()->requestUrl->httpAndHost.the()->fmkHttpRoot?></code>
             par...
-            <input name="absoluteUrl" style="display: block;width: 80%;" type="text">
+            <input name="absoluteUrl" style="display: block;width: 80%;" type="text" value="<?=$replaceAbsolute?>">
         </p>
         <p>Exporter vers le répertoire...
-            <input name="exportDir" style="display: block;width: 80%;" type="text">
+            <input name="exportDir" style="display: block;width: 80%;" type="text" value="<?=$exportDir?>">
         </p>
         <p>query string additifs...
-            <input placeholder="&param=value" name="moreQueryString" style="display: block;width: 80%;" type="text">
+            <input placeholder="&param=value" name="moreQueryString" style="display: block;width: 80%;" value="<?=$moreQueryString?>" type="text">
         </p>
     </fieldset>
     <p>Voulez-vous continuer?</p>
@@ -52,9 +56,7 @@ set_time_limit(60*5);
 
 
 $pages=db()->findAll("page");
-$replaceAbsolute=the()->request("absoluteUrl");
-$moreQueryString=the()->request("moreQueryString");
-$exportDir=the()->request("exportDir","");
+
 if($exportDir){
     $exportDir=trim($exportDir,"/");
     $exportDir="/$exportDir";
