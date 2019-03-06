@@ -24,6 +24,11 @@ class Wysiwyg
      */
     public static $enabled;
 
+    /**
+     * @var string Le code langue à utiliser pour les traductions WYSIWYG
+     */
+    public static $defaultWysiwygLanguage="fr";
+
 
     /**
      * Wysiwyg constructor.

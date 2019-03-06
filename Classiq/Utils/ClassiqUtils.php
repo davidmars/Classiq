@@ -253,4 +253,26 @@ class ClassiqUtils extends AbstractSingleton
         return the()->request("exportStatic",false);
     }
 
+    /**
+     * @var Translations Les traductions pour le WYSIWYG
+     */
+    private $_tradWysiwyg;
+
+    /**
+     * Renvoie un terme traduit pour le WYSIWYG
+     * @param string $termsIdentifier
+     * @param bool $nl2br si true remplacera les sauts de ligne par des <BR>
+     * @param string $langCode Langue à utiliser pour traduire le terme
+     * @return string
+     */
+    public function tradWysiwyg($termsIdentifier,$nl2br=false,$langCode=null){
+        if(!$this->_tradWysiwyg){
+            $this->_tradWysiwyg=new Translations(
+                "https://docs.google.com/spreadsheets/d/1k1QtJocsj7XJlM4W4hc8gsq6ZD8hta6sLe-e234I2a0/export?gid=0&format=csv",
+                Wysiwyg::$defaultWysiwygLanguage
+            );
+        }
+        return $this->_tradWysiwyg->term($termsIdentifier,$nl2br,$langCode);
+
+    }
 }

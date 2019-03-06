@@ -6,7 +6,7 @@ use Pov\Defaults\C_dev;
 
 $svgCollections=glob("dist/svg-collection/*.html");
 ?>
-<label>Options</label>
+<label><?=cq()->tradWysiwyg("Options")?></label>
 <?=$view->render("cq-display-if/cq-display-control")?>
 
 <?if(count(the()->project->languages)>1):?>
@@ -16,7 +16,7 @@ $svgCollections=glob("dist/svg-collection/*.html");
         $langArray[\Localization\Lang::getByCode($code)->name]=$code;
     }
     ?>
-    <label>Activer/désactiver des langues</label>
+    <label><?=cq()->tradWysiwyg("Activer/désactiver des langues")?></label>
     <div class="cq-box">
         <?=cq()->configStorage()->wysiwyg()
             ->field("vars.langActives")
@@ -26,12 +26,12 @@ $svgCollections=glob("dist/svg-collection/*.html");
 <?endif?>
 
 
-<label>Liens utiles</label>
+<label><?=cq()->tradWysiwyg("Liens utiles")?></label>
 <div class="cq-box">
 
     <?//---------------icone, gfx etc.............?>
 
-    <label>icônes</label>
+    <label><?=cq()->tradWysiwyg("icônes")?></label>
     <?foreach ($svgCollections as $link):?>
     <div>
         <a class="cq-list-item" href="<?=the()->fmkHttpRoot."/$link"?>" target="_blank">
@@ -40,21 +40,23 @@ $svgCollections=glob("dist/svg-collection/*.html");
         </a>
     </div>
     <?endforeach;?>
-
+    <?/*
     <label>Charte graphique</label>
     <a class="cq-list-item" href="<?=C_classiq::quickView_url("gfx")?>" target="gfx">
         <?=pov()->svg->use("cq-art-typo")->addClass("start")?>
         <div>Style guide</div>
     </a>
-
+    */?>
     <?//---------------dev.............?>
 
     <div cq-display-if="dev">
         <label>Dev</label>
+        <?/*
         <a class="cq-list-item" href="<?=C_classiq::quickView_url("tests")?>" target="tests">
             <?=pov()->svg->use("cq-lab")->addClass("start")?>
             La page de tests
         </a>
+        */?>
         <a class="cq-list-item" href="<?=C_dev::page_url("logs")?>" target="dev-logs">
             <?=pov()->svg->use("cq-device-terminal")->addClass("start")?>
             Logs
@@ -62,7 +64,7 @@ $svgCollections=glob("dist/svg-collection/*.html");
         <a title="Efface les entrees de la DB où on ne trouve pas de fichier en relation." class="cq-list-item"
            href="<?=C_classiq::quickView_url("utils/clean-broken-filerecords")?>" target="dev-logs">
             <?=pov()->svg->use("cq-trash")->addClass("start")?>
-            Trash Filrecord(s) corrompus
+            <?=cq()->tradWysiwyg("Trash Filrecord(s) corrompus")?>
         </a>
     </div>
 
