@@ -14,6 +14,7 @@ use Pov\MVC\View;
 use Pov\PovException;
 use Pov\System\AbstractSingleton;
 use Classiq\Models\Classiqmodel;
+use Pov\Utils\Translations;
 
 /**
  * Class ClassiqUtils
@@ -269,7 +270,8 @@ class ClassiqUtils extends AbstractSingleton
         if(!$this->_tradWysiwyg){
             $this->_tradWysiwyg=new Translations(
                 "https://docs.google.com/spreadsheets/d/1k1QtJocsj7XJlM4W4hc8gsq6ZD8hta6sLe-e234I2a0/export?gid=0&format=csv",
-                Wysiwyg::$defaultWysiwygLanguage
+                Wysiwyg::$defaultWysiwygLanguage,
+                the()->project->config_translations_debug
             );
         }
         return $this->_tradWysiwyg->term($termsIdentifier,$nl2br,$langCode);
