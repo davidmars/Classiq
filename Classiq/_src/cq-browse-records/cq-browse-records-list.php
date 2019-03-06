@@ -1,7 +1,7 @@
 <div cq-browse-records-list>
     <div cq-toolbar="">
         <div class="full-width">
-            <input class="js-is-search" type="text" placeholder="Rechercher" name="yop">
+            <input class="js-is-search" type="text" placeholder="<?=cq()->tradWysiwyg("Rechercher")?>" name="yop">
         </div>
     </div>
     <div class="records" data-pov-refresh-method="html">

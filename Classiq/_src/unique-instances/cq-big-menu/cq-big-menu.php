@@ -15,27 +15,27 @@ use Classiq\Wysiwyg\WysiwygConfig;
 
                     <a cq-panel-section-toggle="page" href="#"
                        class=""
-                       title="Éditer la page en cours">
+                       title="<?=cq()->tradWysiwyg("Éditer la page en cours")?>">
                         <?=pov()->svg->use("cq-edit")?>
                         <i cq-tip data-count="0" class="cq-th-danger"></i>
                     </a>
                     <a cq-panel-section-toggle="create" href="#"
                        class=""
-                       title="Créer une nouvelle page">
+                       title="<?=cq()->tradWysiwyg("Créer une nouvelle page")?>">
                         <?=pov()->svg->use("cq-circle-plus")?>
                     </a>
                     <a cq-panel-section-toggle="browse" href="#"
-                       title="Rechercher & éditer des élements du site">
+                       title="<?=cq()->tradWysiwyg("Rechercher & éditer des élements du site")?>">
                         <?=pov()->svg->use("cq-search")?>
                     </a>
                     <a cq-panel-section-toggle="config" href="#"
                        class=""
-                       title="Paramètres">
+                       title="<?=cq()->tradWysiwyg("Paramètres")?>">
                         <?=pov()->svg->use("cq-cog")?>
                     </a>
                     <a cq-panel-section-toggle="user" href="#"
                        class=""
-                       title="Déconnexion et gestion des utilisateurs">
+                       title="<?=cq()->tradWysiwyg("Déconnexion et gestion des utilisateurs")?>">
                         <?=pov()->svg->use("cq-user-group")?>
                         <i cq-tip data-count="0" class="cq-th-danger"></i>
                     </a>
@@ -49,11 +49,11 @@ use Classiq\Wysiwyg\WysiwygConfig;
                 <div cq-panel-is-section="page" class="section-active"></div>
 
                 <section cq-panel-is-section="create">
-                    <label>Créer une nouvelle page :</label>
+                    <label><?=cq()->tradWysiwyg("Créer une nouvelle page")?> :</label>
                     <?=$view->render("cq-new-record/cq-new-record",
                         [
                                 "types"=>WysiwygConfig::inst()->recordsWeCanCreate,
-                                "placeholder"=>"Nom de la nouvelle page"
+                                "placeholder"=>cq()->tradWysiwyg("Nom de la nouvelle page")
                         ]
 
                     )?>
@@ -73,28 +73,28 @@ use Classiq\Wysiwyg\WysiwygConfig;
 
             <a cq-panel-section-toggle="page" href="#" cq-on-click="ui.bigMenu.toggle()"
                class="cq-btn circle cq-th-white"
-               title="Éditer la page en cours">
+               title="<?=cq()->tradWysiwyg("Éditer la page en cours")?>">
                 <?=pov()->svg->use("cq-edit")?>
                 <i cq-tip data-count="0" class="cq-th-danger"></i>
             </a>
             <a cq-panel-section-toggle="create" href="#" cq-on-click="ui.bigMenu.toggle()"
                class="cq-btn circle cq-th-white"
-               title="Créer une nouvelle page">
+               title="<?=cq()->tradWysiwyg("Créer une nouvelle page")?>">
                 <?=pov()->svg->use("cq-plus")?>
             </a>
             <a cq-panel-section-toggle="browse" href="#" cq-on-click="ui.bigMenu.toggle()"
                class="cq-btn circle cq-th-white"
-               title="Rechercher & éditer des élements du site">
+               title="<?=cq()->tradWysiwyg("Rechercher & éditer des élements du site")?>">
                 <?=pov()->svg->use("cq-search")?>
             </a>
             <a cq-panel-section-toggle="config" href="#" cq-on-click="ui.bigMenu.toggle()"
                class="cq-btn circle cq-th-white"
-               title="Paramètres">
+               title="<?=cq()->tradWysiwyg("Paramètres")?>">
                 <?=pov()->svg->use("cq-cog")?>
             </a>
             <a cq-panel-section-toggle="user" href="#" cq-on-click="ui.bigMenu.toggle()"
                class="cq-btn circle cq-th-white"
-               title="Déconnexion et gestion des utilisateurs">
+               title="<?=cq()->tradWysiwyg("Déconnexion et gestion des utilisateurs")?>">
                 <?=pov()->svg->use("cq-user-group")?>
                 <i cq-tip data-count="0" class="cq-th-danger"></i>
             </a>
