@@ -49,7 +49,7 @@
         ?>
         <div id="config-box" cq-popin-box class="medium">
             <nav>
-                <h4>Configurer</h4>
+                <h4><?=cq()->tradWysiwyg("Configurer")?></h4>
                 <a href="#hide-stuff"><?=cq()->icoWysiwyg("close")?></a>
             </nav>
             <main></main>
