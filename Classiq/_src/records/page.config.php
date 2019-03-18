@@ -1,14 +1,14 @@
 <?php
 /** @var \Classiq\Models\Page $vv */
 
-use Classiq\Seo\SEO_FRENCH;
+use Classiq\Seo\SEO_TRANSLATED;
 
 ?>
 
 <div class="cq-box wysiwyg-config-page">
 
     <fieldset>
-    <label>Image de prévisualisation</label>
+    <label><?=cq()->tradWysiwyg("Image de prévisualisation")?></label>
     <?=$vv->wysiwyg()->field("thumbnail")
         ->file()
         ->setMimeAcceptImagesOnly()
@@ -26,24 +26,24 @@ use Classiq\Seo\SEO_FRENCH;
     </fieldset>
 
     <fieldset cq-display-if="seo">
-    <label>Titre de page (seo)</label>
+    <label><?=cq()->tradWysiwyg("Titre de page (seo)")?></label>
     <?foreach (the()->project->languages as $lang):?>
         <?=$vv->urlpage->wysiwyg()->field("meta_title_$lang")
             ->string()
             ->isTranslated($lang)
-            ->input("text","Titre de la page...")
+            ->input("text",cq()->tradWysiwyg("Titre de la page..."))
             ->setAttribute("oninput","document.title=this.value")
         ?>
     <?endforeach;?>
     </fieldset>
 
     <fieldset cq-display-if="seo">
-    <label>Description (seo)</label>
+    <label><?=cq()->tradWysiwyg("Description (seo)")?></label>
     <?foreach (the()->project->languages as $lang):?>
     <?=$vv->urlpage->wysiwyg()->field("meta_description_$lang")
         ->string()
         ->isTranslated($lang)
-        ->textarea("Description de la page")
+        ->textarea(cq()->tradWysiwyg(cq()->tradWysiwyg("Description de la page")))
     ?>
     <?endforeach;?>
     </fieldset>
@@ -56,13 +56,13 @@ use Classiq\Seo\SEO_FRENCH;
             <?=$vv->urlpage->wysiwyg()->field("url_$lang")
                 ->string()
                     ->isTranslated($lang)
-                ->textarea("url de la page")
+                ->textarea(cq()->tradWysiwyg("url de la page"))
             ?>
             <?endforeach?>
 
             <?=$vv->urlpage->wysiwyg()->field("stricturl")
             ->string()
-            ->select(["avec id (recommandé)"=>"0","sans id"=>"1"])
+            ->select([cq()->tradWysiwyg("avec id (recommandé)")=>"0",cq()->tradWysiwyg("sans id")=>"1"])
             ?>
         <small>Url réelle:</small>
         <pre title="<?=$vv->href()?>"><?=$vv->href()?></pre>
@@ -70,7 +70,7 @@ use Classiq\Seo\SEO_FRENCH;
     <?endif?>
 
     <fieldset cq-display-if="seo">
-    <label>Priorité (seo)</label>
+    <label><?=cq()->tradWysiwyg("Priorité (seo)")?></label>
     <?=$vv->urlpage->wysiwyg()->field("seo_priority")
         ->string()
         ->setDefaultValue("0.0")
@@ -83,10 +83,10 @@ use Classiq\Seo\SEO_FRENCH;
     </fieldset>
 
     <fieldset cq-display-if="seo">
-    <label><?=SEO_FRENCH::CHANGE_FREQ_LABEL?> (seo)</label>
+    <label><?=cq()->tradWysiwyg("Fréquence de mise à jour")?> (seo)</label>
     <?=$vv->urlpage->wysiwyg()->field("seo_change_frequency")
         ->string()
-        ->select(SEO_FRENCH::CHANGE_FREQ_ALL)
+        ->select(SEO_TRANSLATED::CHANGE_FREQ_ALL())
         //->setAttribute("list","seo_prority_labels")
     ?>
     </fieldset>

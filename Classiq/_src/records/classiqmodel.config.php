@@ -26,7 +26,12 @@ $errs=$vv->getErrors()
     <fieldset cq-display-if="dev">
         <?=$vv->wysiwyg()->field("conf_prevent_trash")
             ->string()
-            ->select(["Protégé (ne peut être effacé)"=>"1","Peut être effacé"=>0])?>
+            ->select(
+                    [
+                        cq()->tradWysiwyg("Protégé (ne peut être effacé)")=>"1",
+                        cq()->tradWysiwyg("Peut être effacé")=>0
+                    ]
+            )?>
     </fieldset>
 
 </div>
@@ -41,10 +46,10 @@ $errs=$vv->getErrors()
 
 
 <div class="cq-box wysiwyg-config-classiqmodel">
-    <label>Titre / Nom</label>
+    <label><?=cq()->tradWysiwyg("Titre / Nom")?></label>
     <?=$vv->wysiwyg()->field("name")
         ->string()
-        ->input("text","Titre de la page...")
+        ->input("text",cq()->tradWysiwyg("Titre de la page..."))
     ?>
     <?foreach (the()->project->languages as $lang):?>
         <?=$vv->wysiwyg()->field("name_$lang")
