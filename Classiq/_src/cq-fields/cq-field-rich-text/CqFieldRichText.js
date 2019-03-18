@@ -37,7 +37,7 @@ export default class CqFieldRichText extends DisplayObject{
                 buttons: buttons
             },
             placeholder: {
-                text: ph?ph:'Texte ici...',
+                text: ph?ph:'Text...',
                 hideOnClick: false
             },
             extensions: {
