@@ -16912,7 +16912,7 @@ class CqFieldRecords extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /*
 /* 76 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"preview-record\">\r\n    <span class=\"icon\">\r\n            <svg class=\"svg svg-cq-circle-play\">\r\n                <use class=\"svg svg-cq-cloud-upload\" xlink:href=\"#cq-cloud-upload\"></use>\r\n            </svg>\r\n\r\n    </span>\r\n    <i cq-tip=\"\" class=\"cq-th-danger inline\" data-count=\"0\" title=\"\"></i>\r\n    <div>\r\n        <div class=\"title\" title=\"\">YO</div>\r\n        <span class=\"type\">0%</span>\r\n        <div data-progress-bar=\"<?=$uid?>\" cq-progress-bar progress=\"0\" min=\"0\" max=\"100\">\r\n            <div class=\"bar\"></div>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<div class=\"preview-record\">\r\n    <span class=\"icon\">\r\n            <svg class=\"svg svg-cq-circle-play\">\r\n                <use class=\"svg svg-cq-cloud-upload\" xlink:href=\"#cq-cloud-upload\"></use>\r\n            </svg>\r\n\r\n    </span>\r\n    <i cq-tip=\"\" class=\"cq-th-danger inline\" data-count=\"0\" title=\"\"></i>\r\n    <div class=\"content\">\r\n        <div class=\"title\" title=\"\">YO</div>\r\n        <span class=\"type\">0%</span>\r\n        <div data-progress-bar=\"<?=$uid?>\" cq-progress-bar progress=\"0\" min=\"0\" max=\"100\">\r\n            <div class=\"bar\"></div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 77 */
@@ -18555,8 +18555,6 @@ class CqFieldUpload extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
         this.field=new __WEBPACK_IMPORTED_MODULE_1__WysiwygField__["a" /* default */]($main);
         this.$inputFile=$main.find("input[type='file']");
         this.$progressText=$main.find("[data-progress-text]");
-
-
         let $progressBar=$main.find("[cq-progress-bar]");
         if($progressBar.length){
             this.progressbar=new __WEBPACK_IMPORTED_MODULE_2__cq_progress_bar_CqProgressBar__["a" /* default */]($progressBar);
