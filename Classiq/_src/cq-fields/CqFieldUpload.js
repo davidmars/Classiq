@@ -18,8 +18,9 @@ export class CqFieldUpload extends DisplayObject{
         this.$inputFile=$main.find("input[type='file']");
         this.$progressText=$main.find("[data-progress-text]");
         let $progressBar=$main.find("[cq-progress-bar]");
-        this.progressbar=new CqProgressBar($progressBar);
-
+        if($progressBar.length){
+            this.progressbar=new CqProgressBar($progressBar);
+        }
         this._startUpload();
     }
 

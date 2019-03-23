@@ -2,6 +2,8 @@ import DisplayObject from "../DisplayObject";
 import CqSortable from "../cq-sortable/CqSortable";
 import WysiwygField from "../cq-fields/WysiwygField";
 import Wysiwyg from "../Wysiwyg"
+import CqProgressBar from "../cq-progress-bar/CqProgressBar";
+
 
 /**
  * Un champ qui permet de sélectionner des records
@@ -74,15 +76,20 @@ export default class CqFieldRecords extends DisplayObject{
                 toUpload++;
                 console.log(file.name);
                 let $preview=$(require("./upload-preview.html"));
+                /**
+                 *
+                 * @type {CqProgressBar}
+                 */
+                let progressbar=new CqProgressBar($preview.find("[cq-progress-bar]"));
                 $preview.find(".title").text(file.name);
                 me.list.$main.append($preview);
                 window.pov.api.uploadChuncked(
                     file,
                     function(progress){ //cbProgress
-                        console.log("uploading file "+progress)
-                        $preview.find(".type").text(progress)
-                        //me.$progressText.text(String(progress)+"%");
-                        //me.progressbar.progress=progress;
+                        let txt=progress+"%";
+                        console.log("uploading file "+txt)
+                        $preview.find(".type").text(txt);
+                        progressbar.progress=progress;
                     },
                     function(apiResponse){ //cbComplete
                         //receptionner l'uid du Filerecord

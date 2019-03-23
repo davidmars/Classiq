@@ -173,6 +173,7 @@ pov()->events->listen(C_povApi::EVENT_UPLOAD,
                 //via champ classique nommé
                 $file=the()->fileSystem->uploadFromHtmlInput();
             }elseif(isset($_FILES["chunck"])){
+                $sliceSize=the()->request("sliceSize");
                 //html5 uploader chuncked
                 $filenametmp=the()->request("filenametmp");
                 $size=the()->request("size");
@@ -187,7 +188,7 @@ pov()->events->listen(C_povApi::EVENT_UPLOAD,
                     // Read binary input stream and append it to temp file
                     $chunck = fopen($chunk_tmp_name, "rb");
                     if ( $chunck ) {
-                        while ( $buff = fread( $chunck, 1048576 ) ) {
+                        while ( $buff = fread( $chunck, $sliceSize ) ) {
                             fwrite($out, $buff);
                         }
                     }
