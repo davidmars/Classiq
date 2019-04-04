@@ -4,7 +4,7 @@ $pathToReplace=the()->configProjectUrl->httpPathNoHost;
 $pathToReplace=preg_replace("/\/".the()->project->langCode."$/","",$pathToReplace);
 $pathToReplace=trim($pathToReplace,"/");
 $pathToReplace="/".$pathToReplace."/";
-set_time_limit(60*5);
+set_time_limit(60*10);
 
 ?>
 <style>
@@ -94,6 +94,7 @@ foreach ($pages as $p){
     $content=preg_replace("/".preg_quote($pathToReplace,'/')."/","../",$content);
     $content=preg_replace("/".preg_quote($params,'/')."/","",$content);
     file_put_contents($url.".html.pov.json",$content);
+    echo "<div>".the()->boot->getTime()."</div>";
     echo "<textarea>".$content."</textarea><br>";
 
 }
