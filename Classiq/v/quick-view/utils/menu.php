@@ -11,4 +11,7 @@
     <li>
         <a href="<?=\Classiq\C_classiq::quickView_url("utils/export-static")?>">Générer des pages statiques du site</a>
     </li>
+    <li>
+        <a href="<?=\Classiq\C_classiq::quickView_url("utils/rename-files")?>">Renommer les Filerecord avec un nom de fichier trop long</a>
+    </li>
 </ul>
