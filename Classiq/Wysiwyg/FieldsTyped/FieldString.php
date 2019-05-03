@@ -93,11 +93,17 @@ class FieldString extends FieldTyped
      * Permet d'obtenir un tag Html
      * @param string $tag
      * @param bool $displayIfEmpty Si false et qu'on est pas en wysiwyg et que le texte est vide ne renverra pas de tag
+     * @param bool $fixHtml
      * @return HtmlTag|string
+     * @throws \Pov\PovException
      */
-    public function htmlTag($tag="span",$displayIfEmpty=true){
+    public function htmlTag($tag="span",$displayIfEmpty=true,$fixHtml=false){
         $tag=parent::htmlTag($tag);
-        $tag->setInnerHTML($this->field->value(true,$this->defaultValue));
+        $v=$this->field->value(true,$this->defaultValue);
+        if($fixHtml){
+            $v=pov()->utils->string->fixHtml($v);
+        }
+        $tag->setInnerHTML($v);
         $tag->isRenderable=$displayIfEmpty || $tag->getInnerHTML() || $this->field->wysiwyg->active;
         return $tag;
     }
