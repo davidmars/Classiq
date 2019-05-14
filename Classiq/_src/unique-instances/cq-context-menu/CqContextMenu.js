@@ -158,6 +158,10 @@ export default class CqContextMenu{
             /**
              * @private
              */
+            $previewIcon    :$main.find(".js-preview-icon"),
+            /**
+             * @private
+             */
             $plus   :$main.find("[href='#plus']"),
             /**
              * @private
@@ -206,6 +210,20 @@ export default class CqContextMenu{
              */
             cog:function(cb){
                 buttonAction(this.$cog,cb);
+            },
+            /**
+             * Affiche l'icone svg en preview
+             * @param svgIdentifier
+             */
+            setPreviewIcon:function(svgIdentifier,title){
+                if(svgIdentifier){
+                    this.$previewIcon.css("display","flex");
+                    this.$previewIcon.attr("title",title);
+                    this.$previewIcon.find("svg use").attr("xlink:href",svgIdentifier);
+                }else{
+                    this.$previewIcon.css("display","none")
+                }
+
             },
 
             /**

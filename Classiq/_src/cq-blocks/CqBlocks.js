@@ -625,6 +625,11 @@ export default class CqBlocks extends CqSortable{
                     openConfig();
                 })
             }
+            //définit l'icone de preview
+            wysiwyg.contextMenu.btns.setPreviewIcon(
+                template.$item.find("use").attr("xlink:href"),
+                template.$item.find("label").text()
+            )
 
 
 

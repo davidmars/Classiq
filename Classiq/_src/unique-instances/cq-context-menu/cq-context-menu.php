@@ -24,8 +24,17 @@
                 </a>
             </div>
 
+
+
             <?//menu volant ?>
             <div cq-btn-group class="is-menu cq-th-white">
+
+                <span style="display:none;"
+                      title="nom du block"
+                      class="ico js-preview-icon cq-fg-disabled">
+                    <?=pov()->svg->use("cq-sad")?>
+                </span>
+
                 <a href="#up"><?=pov()->svg->use("cq-arrow-up")?></a>
                 <a href="#down"><?=pov()->svg->use("cq-arrow-down")?></a>
                 <a href="#left"><?=pov()->svg->use("cq-arrow-left")?></a>

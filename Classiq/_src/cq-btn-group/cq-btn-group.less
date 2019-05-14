@@ -38,20 +38,22 @@
 
   &.empty{
     border: 1px solid red;
-    //opacity: 0.2;
     display: none;
   }
 
   >a{
+    &:hover{
+      background-color: var(--cq-color-selected);
+      color: #fff;
+    }
+  }
+  >a,.ico{
+
     display: flex;
     position: relative;
     align-items: center;
     justify-content: center;
 
-    &:hover{
-      background-color: var(--cq-color-selected);
-      color: #fff;
-    }
     &.first,&.last{
       width: calc( 1.1 * var(--btn-size));
     }
@@ -70,8 +72,8 @@
       width:  var(--btn-size);
       height: var(--btn-size);
     }
-
   }
+
   >*{
     border-right: 1px solid var(--cq-color-fld-bdr);
     margin-right: -1px;
