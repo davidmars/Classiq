@@ -17,6 +17,15 @@ $body.on("input WYSIWYG_EVENT_CHANGED","[wysiwyg-var]",function(e){
         field.doSave();
     }
 });
+$body.on("click WYSIWYG_EVENT_CHANGED","button[wysiwyg-var]",function(e){
+    e.stopPropagation();
+    if($(e.target).is("[wysiwyg-var]")){
+        console.log("Wysiwyg.events.CHANGED")
+        let field=new WysiwygField($(this));
+        field.mirror();
+        field.doSave();
+    }
+});
 
 // on paste sur des champs texte sans formatage de texte
 $body.on("paste","[wysiwyg-var][contenteditable='true'][wysiwyg-data-type-format='STRING_FORMAT_NO_HTML_SINGLE_LINE'],[wysiwyg-var][contenteditable='true'][wysiwyg-data-type-format='STRING_FORMAT_NO_HTML_MULTI_LINE']",function(e){

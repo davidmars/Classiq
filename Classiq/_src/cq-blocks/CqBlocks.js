@@ -625,6 +625,10 @@ export default class CqBlocks extends CqSortable{
                     openConfig();
                 })
             }
+            //options dans le menu des boutons ou pas?
+            if(template.options()){
+                wysiwyg.contextMenu.showOptions(template.options(),itemUid)
+            }
             //définit l'icone de preview
             wysiwyg.contextMenu.btns.setPreviewIcon(
                 template.$item.find("use").attr("xlink:href"),

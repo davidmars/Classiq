@@ -156,6 +156,10 @@ export default class CqContextMenu{
              */
             $cog    :$main.find("[href='#cog']"),
             /**
+             * @private Le conteneur pour les boutons de config
+             */
+            $uiOptions    :$main.find(".js-ui-options"),
+            /**
              * @private
              */
             $previewIcon    :$main.find(".js-preview-icon"),
@@ -210,6 +214,14 @@ export default class CqContextMenu{
              */
             cog:function(cb){
                 buttonAction(this.$cog,cb);
+            },/**
+             * Active les boutons
+             * @param optionsTemplate
+             */
+            setOptions:function(optionsTemplate){
+                this.$uiOptions.css("display","flex");
+                PovApi.getView(optionsTemplate,)
+                this.$uiOptions.text(optionsTemplate)
             },
             /**
              * Affiche l'icone svg en preview
@@ -279,7 +291,7 @@ export default class CqContextMenu{
              * Tous les boutons
              * @type {JQuery}
              */
-            $all:me.$menu.find("a[href*='#']").add(me.$menuAdd.find("a[href*='#']")),
+            $all:me.$menu.find(">a[href*='#'],>[cq-btn-sub-group]").add(me.$menuAdd.find(">a[href*='#'],>[cq-btn-sub-group]")),
             /**
              * masque et annule toutes les actions sur les boutons
              * @returns {CqContextMenu}
@@ -584,7 +596,7 @@ export default class CqContextMenu{
     }
 
     /**
-     *
+     * Charge dans la popin de config le contenu spécifié
      * @param {string} configPath Chemin vers la vue de la boute de config
      * @param {String} uid identifiant unique du modèle relatif
      */
@@ -602,6 +614,25 @@ export default class CqContextMenu{
             this.configBox.$content.append($configLoader);
             $configLoader.povRefresh();
 
+        }else{
+            console.error("pas d'uid ou configPath pour charger la config")
+        }
+    }
+    /**
+     * Charge dans le menu des boutons un sous templete (d'autres boutons)
+     * @param {string} configPath Chemin vers la vue des boutons
+     * @param {String} uid identifiant unique du modèle relatif
+     */
+    showOptions(configPath,uid){
+        //return;
+        //this.setAnchor(null);
+        this.btns.$uiOptions.text("...");
+        this.btns.$uiOptions.css("display","flex");
+        if(configPath){
+            this.btns.$uiOptions.attr("data-pov-v-path",configPath);
+            this.btns.$uiOptions.attr("data-pov-vv-uid",uid);
+            this.btns.$uiOptions.attr("id","options-loader");
+            this.btns.$uiOptions.povRefresh();
         }else{
             console.error("pas d'uid ou configPath pour charger la config")
         }

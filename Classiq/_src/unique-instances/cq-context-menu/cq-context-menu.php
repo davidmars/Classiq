@@ -35,6 +35,9 @@
                     <?=pov()->svg->use("cq-sad")?>
                 </span>
 
+                <span data-pov-refresh-method="html" class="js-ui-options" cq-btn-sub-group>
+                    <?//bouton de config viennent ici?>
+                </span>
                 <a href="#up"><?=pov()->svg->use("cq-arrow-up")?></a>
                 <a href="#down"><?=pov()->svg->use("cq-arrow-down")?></a>
                 <a href="#left"><?=pov()->svg->use("cq-arrow-left")?></a>

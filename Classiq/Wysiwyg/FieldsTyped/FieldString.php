@@ -168,6 +168,24 @@ class FieldString extends FieldTyped
         $tag->setInnerHTML($inner);
         return $tag;
     }
+    /**
+     * Permet d'obtenir un bouton pour définir une valeur
+     * @param array $options liste des options possibles
+     * @param string $placeholder
+     * @param string $class Classe css (.fld par défaut)
+     * @return HtmlTag|string
+     */
+    public function buttonValueSetter($value){
+        $tag=new HtmlTag("button",$value);
+        $this->attr()["contenteditable"]=null;
+        $this->attr()["value"]=$value;
+
+        $tag->setAttributes($this->attr());
+        if($this->field->value(true,$this->defaultValue)===$value){
+            $this->attr()["selected"]="selected";
+        }
+        return $tag;
+    }
 
     /**
     Permet d'obtenir un tag html TEXTAREA

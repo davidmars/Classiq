@@ -191,9 +191,16 @@ class TemplateItem{
 
     /**
      *
-     * @returns {string} Chemin vers le template de config
+     * @returns {string} Chemin vers le template de config (ou pas)
      */
     config(){
         return this.$item.attr("config");
+    }
+    /**
+     *
+     * @returns {string} Chemin vers le template des ui-options/boutons de mnu (ou pas)
+     */
+    options(){
+        return this.$item.attr("options");
     }
 }
