@@ -80,9 +80,10 @@ class DisplayObject extends __WEBPACK_IMPORTED_MODULE_0_event_emitter_es6___defa
 
     /**
      *
-     * @param {JQuery} $main
+     * @param {JQuery} $main Element DOM JQuery relatif
+     * @param {String} CLASS_NAME Nom de la classe en string
      */
-    constructor($main=undefined){
+    constructor($main=undefined,CLASS_NAME){
         super();
         /**
          *
@@ -91,22 +92,20 @@ class DisplayObject extends __WEBPACK_IMPORTED_MODULE_0_event_emitter_es6___defa
         this.$main=$main;
 
 
+        //this.CLASS_NAME=this.constructor.name;//todo important ne fonctionne pas sur ie mais la methode precedente buggue partout.
+        //console.log("CLASS_NAME",this.CLASS_NAME);
 
-        let getClassName = obj => {
-            if (obj.constructor.name) {
-                return obj.constructor.name;
-            }
-            const regex = new RegExp(/^\s*function\s*(\S*)\s*\(/);
-            getClassName = obj => obj.constructor.toString().match(regex)[1];
-            return getClassName(obj);
-        };
+        if(!CLASS_NAME){
+            console.warn("pas de this.CLASS_NAME pour "+this.constructor.name)
+        }
+        if(CLASS_NAME!=this.constructor.name){
+            console.error("CLASS_NAME ("+CLASS_NAME+") incorrect pour "+this.constructor.name)
+        }
         /**
          * Nom de la classe utilisée
          * @type {string}
          */
-        this.CLASS_NAME=getClassName(this);
-        this.CLASS_NAME=this.constructor.name;//todo important ne fonctionne pas sur ie mais la methode precedente buggue partout.
-
+        this.CLASS_NAME=CLASS_NAME;
         /**
          * Pour un composant "MonComposantToto" sera "mon-composant-toto"
          */
@@ -808,9 +807,9 @@ class CqSortable extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* def
      *
      * @param {JQuery} $main
      */
-    constructor($main){
+    constructor($main,CLASS_NAME="CqSortable"){
 
-        super($main);
+        super($main,CLASS_NAME);
         let me=this;
 
         /**
@@ -883,7 +882,7 @@ __webpack_require__(72);
 
 class CqProgressBar extends __WEBPACK_IMPORTED_MODULE_0__cq_progress_CqProgress__["a" /* default */]{
     constructor($main){
-        super($main);
+        super($main,"CqProgressBar");
         this.$bar=$main.find(".bar");
         this._updateDisplay();
     }
@@ -1318,7 +1317,7 @@ class CqTip extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default 
             );
             $main=$(html);
         }
-        super($main);
+        super($main,"CqTip");
 
         /**
          *
@@ -1388,7 +1387,7 @@ class CqBrowseRecordsList extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["
      * @param {JQuery} $main
      */
     constructor($main){
-        super($main);
+        super($main,"CqBrowseRecordsList");
         let me = this;
         this.xhr=null;
         this.keywords="";
@@ -1515,7 +1514,7 @@ class CqEditRecordBox extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /
      * @param {JQuery} $main
      */
     constructor($main){
-        super($main);
+        super($main,"CqEditRecordBox");
         let me=this;
         this.$container=this.$main.find(">main>.target");
         /**
@@ -1650,8 +1649,8 @@ __webpack_require__(49);
  */
 class CqPopinBox extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */]{
 
-    constructor($main){
-        super($main);
+    constructor($main,CLASS_NAME="CqPopinBox"){
+        super($main,CLASS_NAME);
         let me=this;
         /**
          * La barre qui permet de dragger la fenêtre
@@ -4317,7 +4316,7 @@ class CqProgressCircle extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" 
      */
     constructor($main){
 
-        super($main);
+        super($main,"CqProgressCircle");
 
         let me=this;
 
@@ -4821,7 +4820,7 @@ class CqPanelSection extends __WEBPACK_IMPORTED_MODULE_1__DisplayObject__["a" /*
      * @param {string} storageName nom du localstorage qui permettra d'enregistrer l'état et le réapliquer quand on recharge le navigateur.
      */
     constructor($main,storageName){
-        super($main);
+        super($main,"CqPanelSection");
         let me=this;
 
         $main.on("click","[cq-panel-section-toggle]",function(e){
@@ -5853,7 +5852,7 @@ class BrowseRecords extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
      * @param {CqBigMenu} bigMenu
      */
     constructor($main,bigMenu){
-        super($main);
+        super($main,"BrowseRecords");
         let me = this;
 
         /**
@@ -6006,7 +6005,7 @@ __webpack_require__(46);
 
 class CqDisplayControl extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */]{
     constructor($main){
-        super($main);
+        super($main,"CqDisplayControl");
 
         let $chk=$main.find("input[type='checkbox']");
         let storage=new __WEBPACK_IMPORTED_MODULE_1__CqLocalStorage__["a" /* default */]("cq-is-display");
@@ -6072,7 +6071,7 @@ class CqRecordPicker extends __WEBPACK_IMPORTED_MODULE_0__cq_popin_box_CqPopinBo
      * @param {JQuery} $main
      */
     constructor($main){
-        super($main);
+        super($main,"CqRecordPicker");
         let me=this;
 
         this.multiple=false;
@@ -6957,7 +6956,7 @@ class CqBtnGroup extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* def
             $main=$("<div cq-btn-group size='normal'></div>")
         }
         
-        super($main);
+        super($main,"CqBtnGroup");
         let me=this;
 
         let preventRecursion=false;
@@ -7051,7 +7050,7 @@ class CqBlocks extends __WEBPACK_IMPORTED_MODULE_2__cq_sortable_CqSortable__["a"
      * @param {JQuery} $main
      */
     constructor($main){
-        super($main);
+        super($main,"CqBlocks");
         let me=this;
         this.$main.on(Pov.events.DOM_CHANGE,function(){
             me._initItems();
@@ -7733,7 +7732,7 @@ class CqBlockPicker extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
             );
             $main=$(html);
         }
-        super($main);
+        super($main,"CqBlockPicker");
         let me=this;
         /**
          *
@@ -8022,7 +8021,7 @@ class WysiwygImage extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* d
      */
     constructor($main){
 
-        super($main);
+        super($main,"WysiwygImage");
 
         let me=this;
 
@@ -8192,7 +8191,7 @@ class CqFieldRichText extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /
      * @param {JQuery} $main
      */
     constructor($main){
-        super($main);
+        super($main,"CqFieldRichText");
         let ph=$main.attr("placeholder");
         let me=this;
 
@@ -16546,7 +16545,7 @@ class CqNotifier extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* def
      * @param {JQuery} $main
      */
     constructor($main){
-        super($main);
+        super($main,"CqNotifier");
         let me=this;
         window.povSSE.on(EVENTS.SSE_INFO,function(e){
             if(e.humanMessage){
@@ -16661,7 +16660,7 @@ class CqNotification extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject_js__["a"
            $main.find(">.icon").append("<svg class='svg'><use class='svg' href='#"+svgIcon+"'></use></svg>") ;
         }
 
-        super($main);
+        super($main,"CqNotification");
         let me=this;
 
         this.progress=new __WEBPACK_IMPORTED_MODULE_1__cq_progress_bar_CqProgressBar__["a" /* default */](
@@ -16753,9 +16752,9 @@ class CqProgress extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* def
      *
      * @param $main
      */
-    constructor($main){
+    constructor($main,CLASS_NAME="CqProgress"){
 
-        super($main);
+        super($main,CLASS_NAME);
         this.max=Number($main.attr("max"));
         this.min=Number($main.attr("min"));
         this._value=Number($main.attr("progress"));

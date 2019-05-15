@@ -8,7 +8,7 @@ export default class CqProgressCircle extends DisplayObject{
      */
     constructor($main){
 
-        super($main);
+        super($main,"CqProgressCircle");
 
         let me=this;
 

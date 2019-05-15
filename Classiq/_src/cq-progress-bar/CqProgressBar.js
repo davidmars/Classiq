@@ -4,7 +4,7 @@ require("./cq-progress-bar.less");
 
 export default class CqProgressBar extends CqProgress{
     constructor($main){
-        super($main);
+        super($main,"CqProgressBar");
         this.$bar=$main.find(".bar");
         this._updateDisplay();
     }

@@ -8,8 +8,8 @@ require("./cq-popin-box.less");
  */
 export default class CqPopinBox extends DisplayObject{
 
-    constructor($main){
-        super($main);
+    constructor($main,CLASS_NAME="CqPopinBox"){
+        super($main,CLASS_NAME);
         let me=this;
         /**
          * La barre qui permet de dragger la fenêtre

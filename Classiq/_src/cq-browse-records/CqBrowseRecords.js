@@ -10,7 +10,7 @@ export default class BrowseRecords extends DisplayObject{
      * @param {CqBigMenu} bigMenu
      */
     constructor($main,bigMenu){
-        super($main);
+        super($main,"BrowseRecords");
         let me = this;
 
         /**

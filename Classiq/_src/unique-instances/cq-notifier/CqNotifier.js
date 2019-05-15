@@ -9,7 +9,7 @@ export default class CqNotifier extends DisplayObject{
      * @param {JQuery} $main
      */
     constructor($main){
-        super($main);
+        super($main,"CqNotifier");
         let me=this;
         window.povSSE.on(EVENTS.SSE_INFO,function(e){
             if(e.humanMessage){

@@ -4,7 +4,7 @@ require("../cq-display-if/cq-display-if.less");
 
 export default class CqDisplayControl extends DisplayObject{
     constructor($main){
-        super($main);
+        super($main,"CqDisplayControl");
 
         let $chk=$main.find("input[type='checkbox']");
         let storage=new CqLocalStorage("cq-is-display");

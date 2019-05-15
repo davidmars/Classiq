@@ -12,7 +12,7 @@ export default class WysiwygImage extends DisplayObject{
      */
     constructor($main){
 
-        super($main);
+        super($main,"WysiwygImage");
 
         let me=this;
 

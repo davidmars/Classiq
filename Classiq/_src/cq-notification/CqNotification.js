@@ -28,7 +28,7 @@ export class CqNotification extends DisplayObject{
            $main.find(">.icon").append("<svg class='svg'><use class='svg' href='#"+svgIcon+"'></use></svg>") ;
         }
 
-        super($main);
+        super($main,"CqNotification");
         let me=this;
 
         this.progress=new CqProgressBar(

@@ -5,9 +5,9 @@ export default class CqProgress extends DisplayObject{
      *
      * @param $main
      */
-    constructor($main){
+    constructor($main,CLASS_NAME="CqProgress"){
 
-        super($main);
+        super($main,CLASS_NAME);
         this.max=Number($main.attr("max"));
         this.min=Number($main.attr("min"));
         this._value=Number($main.attr("progress"));

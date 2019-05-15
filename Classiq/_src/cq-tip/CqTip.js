@@ -15,7 +15,7 @@ export default class CqTip extends DisplayObject{
             );
             $main=$(html);
         }
-        super($main);
+        super($main,"CqTip");
 
         /**
          *

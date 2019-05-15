@@ -24,7 +24,7 @@ export default class CqBlockPicker extends DisplayObject{
             );
             $main=$(html);
         }
-        super($main);
+        super($main,"CqBlockPicker");
         let me=this;
         /**
          *

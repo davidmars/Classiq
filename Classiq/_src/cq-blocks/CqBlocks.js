@@ -18,7 +18,7 @@ export default class CqBlocks extends CqSortable{
      * @param {JQuery} $main
      */
     constructor($main){
-        super($main);
+        super($main,"CqBlocks");
         let me=this;
         this.$main.on(Pov.events.DOM_CHANGE,function(){
             me._initItems();

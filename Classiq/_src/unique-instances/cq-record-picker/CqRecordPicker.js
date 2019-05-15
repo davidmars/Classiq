@@ -10,7 +10,7 @@ export default class CqRecordPicker extends WysiwygPopinBox{
      * @param {JQuery} $main
      */
     constructor($main){
-        super($main);
+        super($main,"CqRecordPicker");
         let me=this;
 
         this.multiple=false;
