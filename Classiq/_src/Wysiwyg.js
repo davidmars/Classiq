@@ -22,6 +22,7 @@ require("./cq-box/cq-box.less");
 require("./cq-btn/cq-btn.less");
 
 
+
 export default class Wysiwyg{
 
     constructor(){
@@ -103,47 +104,16 @@ export default class Wysiwyg{
             window.pov.Xdebug.fromDom();
         });
 
-
-
-
-
-        //Event changed....
-        $body.on("input "+Wysiwyg.events.CHANGED,"[wysiwyg-var]",function(e){
-            e.stopPropagation();
-            if($(e.target).is("[wysiwyg-var]")){
-                console.log("Wysiwyg.events.CHANGED")
-                let field=new WysiwygField($(this));
-                field.mirror();
-                field.doSave();
-            }
-        });
-
-        // click sur un uploader de fichier
-        $body.on("change","[wysiwyg-var][wysiwyg-data-type='file'] input[type='file']",function(){
-            new CqFieldUpload($(this).closest("[wysiwyg-var][wysiwyg-data-type='file']"));
-        });
-
-        // changement d'un checkbox
-        $body.on("change","[wysiwyg-var][wysiwyg-data-type='list-string'] input[type='checkbox']",function(){
-            let $f=$(this).closest("[wysiwyg-var][wysiwyg-data-type='list-string']");
-            let field=new WysiwygField($f);
-            field.doSave(true);
-        });
-        // changement d'une geoloc
-        $body.on("input change","[wysiwyg-var][wysiwyg-data-type='geoloc'] input[latlng]",function(){
-            let $f=$(this).closest("[wysiwyg-var][wysiwyg-data-type='geoloc']");
-            let field=new WysiwygField($f);
-            field.doSave(true);
-        });
+        require("./cq-fields/cq-fields-event-listeners.js");
 
 
     }
 }
 
-
 Wysiwyg.events={
     CHANGED:"WYSIWYG_EVENT_CHANGED"
 };
+
 
 
 

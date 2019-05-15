@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 26);
+/******/ 	return __webpack_require__(__webpack_require__.s = 28);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -269,12 +269,11 @@ DisplayObject.allInstances=[];
 
 /***/ }),
 /* 1 */,
-/* 2 */,
-/* 3 */
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__WysiwygString__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__WysiwygString__ = __webpack_require__(16);
 
 
 class WysiwygField{
@@ -570,26 +569,27 @@ class WysiwygField{
 
 
 /***/ }),
+/* 3 */,
 /* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unique_instances_cq_big_menu_CqBigMenu__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cq_fields_WysiwygField__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__unique_instances_cq_record_picker_CqRecordPicker__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__unique_instances_cq_context_menu_CqContextMenu__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__cq_blocks_CqBlocks__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__cq_fields_WysiwygImage__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__cq_fields_cq_field_rich_text_CqFieldRichText__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__unique_instances_cq_notifier_CqNotifier__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unique_instances_cq_big_menu_CqBigMenu__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cq_fields_WysiwygField__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__unique_instances_cq_record_picker_CqRecordPicker__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__unique_instances_cq_context_menu_CqContextMenu__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__cq_blocks_CqBlocks__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__cq_fields_WysiwygImage__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__cq_fields_cq_field_rich_text_CqFieldRichText__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__unique_instances_cq_notifier_CqNotifier__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__cq_sortable_CqSortable__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__cq_field_records_CqFieldRecords__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__cq_fields_cq_field_google_map_CqFieldGoogleMap__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__cq_fields_cq_field_crop_CqFieldCrop__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__cq_field_records_CqFieldRecords__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__cq_fields_cq_field_google_map_CqFieldGoogleMap__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__cq_fields_cq_field_crop_CqFieldCrop__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__unique_instances_cq_edit_record_box_CqEditRecordBox__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__CqAdmin__ = __webpack_require__(82);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__cq_fields_CqFieldUpload__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__CqAdmin__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__cq_fields_CqFieldUpload__ = __webpack_require__(21);
 
 
 
@@ -612,6 +612,7 @@ __webpack_require__(88);
 __webpack_require__(89);
 __webpack_require__(90);
 __webpack_require__(91);
+
 
 
 class Wysiwyg{
@@ -695,38 +696,7 @@ class Wysiwyg{
             window.pov.Xdebug.fromDom();
         });
 
-
-
-
-
-        //Event changed....
-        $body.on("input "+Wysiwyg.events.CHANGED,"[wysiwyg-var]",function(e){
-            e.stopPropagation();
-            if($(e.target).is("[wysiwyg-var]")){
-                console.log("Wysiwyg.events.CHANGED")
-                let field=new __WEBPACK_IMPORTED_MODULE_2__cq_fields_WysiwygField__["a" /* default */]($(this));
-                field.mirror();
-                field.doSave();
-            }
-        });
-
-        // click sur un uploader de fichier
-        $body.on("change","[wysiwyg-var][wysiwyg-data-type='file'] input[type='file']",function(){
-            new __WEBPACK_IMPORTED_MODULE_15__cq_fields_CqFieldUpload__["a" /* CqFieldUpload */]($(this).closest("[wysiwyg-var][wysiwyg-data-type='file']"));
-        });
-
-        // changement d'un checkbox
-        $body.on("change","[wysiwyg-var][wysiwyg-data-type='list-string'] input[type='checkbox']",function(){
-            let $f=$(this).closest("[wysiwyg-var][wysiwyg-data-type='list-string']");
-            let field=new __WEBPACK_IMPORTED_MODULE_2__cq_fields_WysiwygField__["a" /* default */]($f);
-            field.doSave(true);
-        });
-        // changement d'une geoloc
-        $body.on("input change","[wysiwyg-var][wysiwyg-data-type='geoloc'] input[latlng]",function(){
-            let $f=$(this).closest("[wysiwyg-var][wysiwyg-data-type='geoloc']");
-            let field=new __WEBPACK_IMPORTED_MODULE_2__cq_fields_WysiwygField__["a" /* default */]($f);
-            field.doSave(true);
-        });
+        __webpack_require__(92);
 
 
     }
@@ -734,10 +704,10 @@ class Wysiwyg{
 /* harmony export (immutable) */ __webpack_exports__["a"] = Wysiwyg;
 
 
-
 Wysiwyg.events={
     CHANGED:"WYSIWYG_EVENT_CHANGED"
 };
+
 
 
 
@@ -817,8 +787,8 @@ class CqLocalStorage{
 
 // This file is for use with Node.js. See dist/ for browser files.
 
-var Hogan = __webpack_require__(33);
-Hogan.Template = __webpack_require__(34).Template;
+var Hogan = __webpack_require__(35);
+Hogan.Template = __webpack_require__(36).Template;
 Hogan.template = Hogan.Template;
 module.exports = Hogan;
 
@@ -830,8 +800,8 @@ module.exports = Hogan;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
 
-const Sortable=__webpack_require__(17);
-__webpack_require__(53);
+const Sortable=__webpack_require__(18);
+__webpack_require__(54);
 
 class CqSortable extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */]{
     /**
@@ -906,10 +876,10 @@ $.fn.CqSortable = function() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cq_progress_CqProgress__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cq_progress_CqProgress__ = __webpack_require__(71);
 
 
-__webpack_require__(71);
+__webpack_require__(72);
 
 class CqProgressBar extends __WEBPACK_IMPORTED_MODULE_0__cq_progress_CqProgress__["a" /* default */]{
     constructor($main){
@@ -1338,7 +1308,7 @@ class CqTip extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default 
 
         //crée à partir du template
         if(!$main){
-            var template = __webpack_require__(32);
+            var template = __webpack_require__(34);
             var html = template(
                 {
                     theme: _theme,
@@ -1410,7 +1380,7 @@ $.fn.CqTip = function() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cq_loading_dots_CqLoadingDots__ = __webpack_require__(14);
 
 
-__webpack_require__(38);
+__webpack_require__(40);
 
 class CqBrowseRecordsList extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */]{
     /**
@@ -1512,13 +1482,13 @@ class CqBrowseRecordsList extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-__webpack_require__(36);
+__webpack_require__(38);
 
 class CqLoadingDots{
 
     constructor(){
 
-        this.$main=$(__webpack_require__(37));
+        this.$main=$(__webpack_require__(39));
 
     }
 
@@ -1536,8 +1506,8 @@ class CqLoadingDots{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
 
 
-__webpack_require__(41);
-__webpack_require__(42);
+__webpack_require__(43);
+__webpack_require__(44);
 
 class CqEditRecordBox extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */]{
     /**
@@ -1641,12 +1611,40 @@ class CqEditRecordBox extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+class WysiwygString{
+    /**
+     * Formate un texte
+     * @param {string} str
+     * @param {string} formatIdentifier
+     * @returns {*}
+     */
+    static format(str,formatIdentifier){
+        switch (formatIdentifier){
+            case "STRING_FORMAT_NO_HTML_SINGLE_LINE":
+            case "FORMAT_NO_HTML_MULTI_LINE":
+                let div = document.createElement("div");
+                div.innerHTML = str;
+                str= div.textContent || div.innerText || "";
+                return str;
+            default:
+                return str;
+        }
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = WysiwygString;
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
 
 
 
 
-__webpack_require__(48);
+__webpack_require__(49);
 /**
  * une popin draggable
  */
@@ -1738,12 +1736,13 @@ class CqPopinBox extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* def
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
  * Sortable
  * @author	RubaXa   <trash@rubaxa.org>
+ * @author	owenm    <owen23355@gmail.com>
  * @license MIT
  */
 
@@ -1785,26 +1784,47 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 		scrollParentEl,
 		scrollCustomFn,
 
-		lastEl,
-		lastCSS,
-		lastParentCSS,
-
 		oldIndex,
 		newIndex,
+		oldDraggableIndex,
+		newDraggableIndex,
 
 		activeGroup,
 		putSortable,
 
-		autoScroll = {},
+		autoScrolls = [],
+		scrolling = false,
+
+		awaitingDragStarted = false,
+		ignoreNextClick = false,
+		sortables = [],
+
+		pointerElemChangedInterval,
+		lastPointerElemX,
+		lastPointerElemY,
 
 		tapEvt,
 		touchEvt,
 
 		moved,
 
+
+		lastTarget,
+		lastDirection,
+		pastFirstInvertThresh = false,
+		isCircumstantialInvert = false,
+		lastMode, // 'swap' or 'insert'
+
+		targetMoveDistance,
+
+		// For positioning ghost absolutely
+		ghostRelativeParent,
+		ghostRelativeParentInitialScroll = [], // (left, top)
+
+		realDragElRect, // dragEl rect after current animation
+
 		/** @const */
 		R_SPACE = /\s+/g,
-		R_FLOAT = /left|right|inline/,
 
 		expando = 'Sortable' + (new Date).getTime(),
 
@@ -1816,135 +1836,328 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 		$ = win.jQuery || win.Zepto,
 		Polymer = win.Polymer,
 
-		captureMode = false,
-		passiveMode = false,
+		captureMode = {
+			capture: false,
+			passive: false
+		},
 
+		IE11OrLess = !!navigator.userAgent.match(/(?:Trident.*rv[ :]?11\.|msie|iemobile)/i),
+		Edge = !!navigator.userAgent.match(/Edge/i),
+		FireFox = !!navigator.userAgent.match(/firefox/i),
+		Safari = !!(navigator.userAgent.match(/safari/i) && !navigator.userAgent.match(/chrome/i) && !navigator.userAgent.match(/android/i)),
+		IOS = !!(navigator.userAgent.match(/iP(ad|od|hone)/i)),
+
+		PositionGhostAbsolutely = IOS,
+
+		CSSFloatProperty = Edge || IE11OrLess ? 'cssFloat' : 'float',
+
+		// This will not pass for IE9, because IE9 DnD only works on anchors
 		supportDraggable = ('draggable' in document.createElement('div')),
-		supportCssPointerEvents = (function (el) {
-			// false when IE11
-			if (!!navigator.userAgent.match(/(?:Trident.*rv[ :]?11\.|msie)/i)) {
+
+		supportCssPointerEvents = (function() {
+			// false when <= IE11
+			if (IE11OrLess) {
 				return false;
 			}
-			el = document.createElement('x');
+			var el = document.createElement('x');
 			el.style.cssText = 'pointer-events:auto';
 			return el.style.pointerEvents === 'auto';
 		})(),
 
 		_silent = false,
+		_alignedSilent = false,
 
 		abs = Math.abs,
 		min = Math.min,
+		max = Math.max,
 
 		savedInputChecked = [],
-		touchDragOverListeners = [],
 
-		_autoScroll = _throttle(function (/**Event*/evt, /**Object*/options, /**HTMLElement*/rootEl) {
+		_detectDirection = function(el, options) {
+			var elCSS = _css(el),
+				elWidth = parseInt(elCSS.width)
+					- parseInt(elCSS.paddingLeft)
+					- parseInt(elCSS.paddingRight)
+					- parseInt(elCSS.borderLeftWidth)
+					- parseInt(elCSS.borderRightWidth),
+				child1 = _getChild(el, 0, options),
+				child2 = _getChild(el, 1, options),
+				firstChildCSS = child1 && _css(child1),
+				secondChildCSS = child2 && _css(child2),
+				firstChildWidth = firstChildCSS && parseInt(firstChildCSS.marginLeft) + parseInt(firstChildCSS.marginRight) + _getRect(child1).width,
+				secondChildWidth = secondChildCSS && parseInt(secondChildCSS.marginLeft) + parseInt(secondChildCSS.marginRight) + _getRect(child2).width;
+
+			if (elCSS.display === 'flex') {
+				return elCSS.flexDirection === 'column' || elCSS.flexDirection === 'column-reverse'
+				? 'vertical' : 'horizontal';
+			}
+
+			if (elCSS.display === 'grid') {
+				return elCSS.gridTemplateColumns.split(' ').length <= 1 ? 'vertical' : 'horizontal';
+			}
+
+			if (child1 && firstChildCSS.float !== 'none') {
+				var touchingSideChild2 = firstChildCSS.float === 'left' ? 'left' : 'right';
+
+				return child2 && (secondChildCSS.clear === 'both' || secondChildCSS.clear === touchingSideChild2) ?
+					'vertical' : 'horizontal';
+			}
+
+			return (child1 &&
+				(
+					firstChildCSS.display === 'block' ||
+					firstChildCSS.display === 'flex' ||
+					firstChildCSS.display === 'table' ||
+					firstChildCSS.display === 'grid' ||
+					firstChildWidth >= elWidth &&
+					elCSS[CSSFloatProperty] === 'none' ||
+					child2 &&
+					elCSS[CSSFloatProperty] === 'none' &&
+					firstChildWidth + secondChildWidth > elWidth
+				) ?
+				'vertical' : 'horizontal'
+			);
+		},
+
+		/**
+		 * Detects first nearest empty sortable to X and Y position using emptyInsertThreshold.
+		 * @param  {Number} x      X position
+		 * @param  {Number} y      Y position
+		 * @return {HTMLElement}   Element of the first found nearest Sortable
+		 */
+		_detectNearestEmptySortable = function(x, y) {
+			for (var i = 0; i < sortables.length; i++) {
+				if (_lastChild(sortables[i])) continue;
+
+				var rect = _getRect(sortables[i]),
+					threshold = sortables[i][expando].options.emptyInsertThreshold,
+					insideHorizontally = x >= (rect.left - threshold) && x <= (rect.right + threshold),
+					insideVertically = y >= (rect.top - threshold) && y <= (rect.bottom + threshold);
+
+				if (threshold && insideHorizontally && insideVertically) {
+					return sortables[i];
+				}
+			}
+		},
+
+		_isClientInRowColumn = function(x, y, el, axis, options) {
+			var targetRect = _getRect(el),
+				targetS1Opp = axis === 'vertical' ? targetRect.left : targetRect.top,
+				targetS2Opp = axis === 'vertical' ? targetRect.right : targetRect.bottom,
+				mouseOnOppAxis = axis === 'vertical' ? x : y;
+
+			return targetS1Opp < mouseOnOppAxis && mouseOnOppAxis < targetS2Opp;
+		},
+
+		_isElInRowColumn = function(el1, el2, axis) {
+			var el1Rect = el1 === dragEl && realDragElRect || _getRect(el1),
+				el2Rect = el2 === dragEl && realDragElRect || _getRect(el2),
+				el1S1Opp = axis === 'vertical' ? el1Rect.left : el1Rect.top,
+				el1S2Opp = axis === 'vertical' ? el1Rect.right : el1Rect.bottom,
+				el1OppLength = axis === 'vertical' ? el1Rect.width : el1Rect.height,
+				el2S1Opp = axis === 'vertical' ? el2Rect.left : el2Rect.top,
+				el2S2Opp = axis === 'vertical' ? el2Rect.right : el2Rect.bottom,
+				el2OppLength = axis === 'vertical' ? el2Rect.width : el2Rect.height;
+
+			return (
+				el1S1Opp === el2S1Opp ||
+				el1S2Opp === el2S2Opp ||
+				(el1S1Opp + el1OppLength / 2) === (el2S1Opp + el2OppLength / 2)
+			);
+		},
+
+		_getParentAutoScrollElement = function(el, includeSelf) {
+			// skip to window
+			if (!el || !el.getBoundingClientRect) return _getWindowScrollingElement();
+
+			var elem = el;
+			var gotSelf = false;
+			do {
+				// we don't need to get elem css if it isn't even overflowing in the first place (performance)
+				if (elem.clientWidth < elem.scrollWidth || elem.clientHeight < elem.scrollHeight) {
+					var elemCSS = _css(elem);
+					if (
+						elem.clientWidth < elem.scrollWidth && (elemCSS.overflowX == 'auto' || elemCSS.overflowX == 'scroll') ||
+						elem.clientHeight < elem.scrollHeight && (elemCSS.overflowY == 'auto' || elemCSS.overflowY == 'scroll')
+					) {
+						if (!elem || !elem.getBoundingClientRect || elem === document.body) return _getWindowScrollingElement();
+
+						if (gotSelf || includeSelf) return elem;
+						gotSelf = true;
+					}
+				}
+			/* jshint boss:true */
+			} while (elem = elem.parentNode);
+
+			return _getWindowScrollingElement();
+		},
+
+		_getWindowScrollingElement = function() {
+			if (IE11OrLess) {
+				return document.documentElement;
+			} else {
+				return document.scrollingElement;
+			}
+		},
+
+		_scrollBy = function(el, x, y) {
+			el.scrollLeft += x;
+			el.scrollTop += y;
+		},
+
+		_autoScroll = _throttle(function (/**Event*/evt, /**Object*/options, /**HTMLElement*/rootEl, /**Boolean*/isFallback) {
 			// Bug: https://bugzilla.mozilla.org/show_bug.cgi?id=505521
-			if (rootEl && options.scroll) {
-				var _this = rootEl[expando],
-					el,
-					rect,
+			if (options.scroll) {
+				var _this = rootEl ? rootEl[expando] : window,
 					sens = options.scrollSensitivity,
 					speed = options.scrollSpeed,
 
 					x = evt.clientX,
 					y = evt.clientY,
 
-					winWidth = window.innerWidth,
-					winHeight = window.innerHeight,
+					winScroller = _getWindowScrollingElement(),
 
-					vx,
-					vy,
+					scrollThisInstance = false;
 
-					scrollOffsetX,
-					scrollOffsetY
-				;
-
-				// Delect scrollEl
+				// Detect scrollEl
 				if (scrollParentEl !== rootEl) {
+					_clearAutoScrolls();
+
 					scrollEl = options.scroll;
-					scrollParentEl = rootEl;
 					scrollCustomFn = options.scrollFn;
 
 					if (scrollEl === true) {
-						scrollEl = rootEl;
-
-						do {
-							if ((scrollEl.offsetWidth < scrollEl.scrollWidth) ||
-								(scrollEl.offsetHeight < scrollEl.scrollHeight)
-							) {
-								break;
-							}
-							/* jshint boss:true */
-						} while (scrollEl = scrollEl.parentNode);
+						scrollEl = _getParentAutoScrollElement(rootEl, true);
+						scrollParentEl = scrollEl;
 					}
 				}
 
-				if (scrollEl) {
-					el = scrollEl;
-					rect = scrollEl.getBoundingClientRect();
-					vx = (abs(rect.right - x) <= sens) - (abs(rect.left - x) <= sens);
-					vy = (abs(rect.bottom - y) <= sens) - (abs(rect.top - y) <= sens);
-				}
+
+				var layersOut = 0;
+				var currentParent = scrollEl;
+				do {
+					var	el = currentParent,
+						rect = _getRect(el),
+
+						top = rect.top,
+						bottom = rect.bottom,
+						left = rect.left,
+						right = rect.right,
+
+						width = rect.width,
+						height = rect.height,
+
+						scrollWidth,
+						scrollHeight,
+
+						css,
+
+						vx,
+						vy,
+
+						canScrollX,
+						canScrollY,
+
+						scrollPosX,
+						scrollPosY;
 
 
-				if (!(vx || vy)) {
-					vx = (winWidth - x <= sens) - (x <= sens);
-					vy = (winHeight - y <= sens) - (y <= sens);
+					scrollWidth = el.scrollWidth;
+					scrollHeight = el.scrollHeight;
 
-					/* jshint expr:true */
-					(vx || vy) && (el = win);
-				}
+					css = _css(el);
 
+					scrollPosX = el.scrollLeft;
+					scrollPosY = el.scrollTop;
 
-				if (autoScroll.vx !== vx || autoScroll.vy !== vy || autoScroll.el !== el) {
-					autoScroll.el = el;
-					autoScroll.vx = vx;
-					autoScroll.vy = vy;
-
-					clearInterval(autoScroll.pid);
-
-					if (el) {
-						autoScroll.pid = setInterval(function () {
-							scrollOffsetY = vy ? vy * speed : 0;
-							scrollOffsetX = vx ? vx * speed : 0;
-
-							if ('function' === typeof(scrollCustomFn)) {
-								return scrollCustomFn.call(_this, scrollOffsetX, scrollOffsetY, evt);
-							}
-
-							if (el === win) {
-								win.scrollTo(win.pageXOffset + scrollOffsetX, win.pageYOffset + scrollOffsetY);
-							} else {
-								el.scrollTop += scrollOffsetY;
-								el.scrollLeft += scrollOffsetX;
-							}
-						}, 24);
+					if (el === winScroller) {
+						canScrollX = width < scrollWidth && (css.overflowX === 'auto' || css.overflowX === 'scroll' || css.overflowX === 'visible');
+						canScrollY = height < scrollHeight && (css.overflowY === 'auto' || css.overflowY === 'scroll' || css.overflowY === 'visible');
+					} else {
+						canScrollX = width < scrollWidth && (css.overflowX === 'auto' || css.overflowX === 'scroll');
+						canScrollY = height < scrollHeight && (css.overflowY === 'auto' || css.overflowY === 'scroll');
 					}
-				}
+
+					vx = canScrollX && (abs(right - x) <= sens && (scrollPosX + width) < scrollWidth) - (abs(left - x) <= sens && !!scrollPosX);
+
+					vy = canScrollY && (abs(bottom - y) <= sens && (scrollPosY + height) < scrollHeight) - (abs(top - y) <= sens && !!scrollPosY);
+
+
+					if (!autoScrolls[layersOut]) {
+						for (var i = 0; i <= layersOut; i++) {
+							if (!autoScrolls[i]) {
+								autoScrolls[i] = {};
+							}
+						}
+					}
+
+					if (autoScrolls[layersOut].vx != vx || autoScrolls[layersOut].vy != vy || autoScrolls[layersOut].el !== el) {
+						autoScrolls[layersOut].el = el;
+						autoScrolls[layersOut].vx = vx;
+						autoScrolls[layersOut].vy = vy;
+
+						clearInterval(autoScrolls[layersOut].pid);
+
+						if (el && (vx != 0 || vy != 0)) {
+							scrollThisInstance = true;
+							/* jshint loopfunc:true */
+							autoScrolls[layersOut].pid = setInterval((function () {
+								// emulate drag over during autoscroll (fallback), emulating native DnD behaviour
+								if (isFallback && this.layer === 0) {
+									Sortable.active._emulateDragOver(true);
+									Sortable.active._onTouchMove(touchEvt, true);
+								}
+								var scrollOffsetY = autoScrolls[this.layer].vy ? autoScrolls[this.layer].vy * speed : 0;
+								var scrollOffsetX = autoScrolls[this.layer].vx ? autoScrolls[this.layer].vx * speed : 0;
+
+								if ('function' === typeof(scrollCustomFn)) {
+									if (scrollCustomFn.call(_this, scrollOffsetX, scrollOffsetY, evt, touchEvt, autoScrolls[this.layer].el) !== 'continue') {
+										return;
+									}
+								}
+
+								_scrollBy(autoScrolls[this.layer].el, scrollOffsetX, scrollOffsetY);
+							}).bind({layer: layersOut}), 24);
+						}
+					}
+					layersOut++;
+				} while (options.bubbleScroll && currentParent !== winScroller && (currentParent = _getParentAutoScrollElement(currentParent, false)));
+				scrolling = scrollThisInstance; // in case another function catches scrolling as false in between when it is not
 			}
 		}, 30),
 
+		_clearAutoScrolls = function () {
+			autoScrolls.forEach(function(autoScroll) {
+				clearInterval(autoScroll.pid);
+			});
+			autoScrolls = [];
+		},
+
 		_prepareGroup = function (options) {
 			function toFn(value, pull) {
-				if (value === void 0 || value === true) {
-					value = group.name;
-				}
+				return function(to, from, dragEl, evt) {
+					var sameGroup = to.options.group.name &&
+									from.options.group.name &&
+									to.options.group.name === from.options.group.name;
 
-				if (typeof value === 'function') {
-					return value;
-				} else {
-					return function (to, from) {
-						var fromGroup = from.options.group.name;
+					if (value == null && (pull || sameGroup)) {
+						// Default pull value
+						// Default pull and put value if same group
+						return true;
+					} else if (value == null || value === false) {
+						return false;
+					} else if (pull && value === 'clone') {
+						return value;
+					} else if (typeof value === 'function') {
+						return toFn(value(to, from, dragEl, evt), pull)(to, from, dragEl, evt);
+					} else {
+						var otherGroup = (pull ? to : from).options.group.name;
 
-						return pull
-							? value
-							: value && (value.join
-								? value.indexOf(fromGroup) > -1
-								: (fromGroup == value)
-							);
-					};
-				}
+						return (value === true ||
+						(typeof value === 'string' && value === otherGroup) ||
+						(value.join && value.indexOf(otherGroup) > -1));
+					}
+				};
 			}
 
 			var group = {};
@@ -1960,23 +2173,55 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 			group.revertClone = originalGroup.revertClone;
 
 			options.group = group;
-		}
-	;
+		},
 
-	// Detect support a passive mode
-	try {
-		window.addEventListener('test', null, Object.defineProperty({}, 'passive', {
-			get: function () {
-				// `false`, because everything starts to work incorrectly and instead of d'n'd,
-				// begins the page has scrolled.
-				passiveMode = false;
-				captureMode = {
-					capture: false,
-					passive: passiveMode
-				};
+		_checkAlignment = function(evt) {
+			if (!dragEl || !dragEl.parentNode) return;
+			dragEl.parentNode[expando] && dragEl.parentNode[expando]._computeIsAligned(evt);
+		},
+
+		_hideGhostForTarget = function() {
+			if (!supportCssPointerEvents && ghostEl) {
+				_css(ghostEl, 'display', 'none');
 			}
-		}));
-	} catch (err) {}
+		},
+
+		_unhideGhostForTarget = function() {
+			if (!supportCssPointerEvents && ghostEl) {
+				_css(ghostEl, 'display', '');
+			}
+		};
+
+
+	// #1184 fix - Prevent click event on fallback if dragged but item not changed position
+	document.addEventListener('click', function(evt) {
+		if (ignoreNextClick) {
+			evt.preventDefault();
+			evt.stopPropagation && evt.stopPropagation();
+			evt.stopImmediatePropagation && evt.stopImmediatePropagation();
+			ignoreNextClick = false;
+			return false;
+		}
+	}, true);
+
+	var nearestEmptyInsertDetectEvent = function(evt) {
+		if (dragEl) {
+			evt = evt.touches ? evt.touches[0] : evt;
+			var nearest = _detectNearestEmptySortable(evt.clientX, evt.clientY);
+
+			if (nearest) {
+				// Create imitation event
+				var event = {};
+				for (var i in evt) {
+					event[i] = evt[i];
+				}
+				event.target = event.rootEl = nearest;
+				event.preventDefault = void 0;
+				event.stopPropagation = void 0;
+				nearest[expando]._onDragOver(event);
+			}
+		}
+	};
 
 	/**
 	 * @class  Sortable
@@ -1985,7 +2230,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 	 */
 	function Sortable(el, options) {
 		if (!(el && el.nodeType && el.nodeType === 1)) {
-			throw 'Sortable: `el` must be HTMLElement, and not ' + {}.toString.call(el);
+			throw 'Sortable: `el` must be HTMLElement, not ' + {}.toString.call(el);
 		}
 
 		this.el = el; // root element
@@ -1997,7 +2242,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 
 		// Default options
 		var defaults = {
-			group: Math.random(),
+			group: null,
 			sort: true,
 			disabled: false,
 			store: null,
@@ -2005,7 +2250,15 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 			scroll: true,
 			scrollSensitivity: 30,
 			scrollSpeed: 10,
-			draggable: /[uo]l/i.test(el.nodeName) ? 'li' : '>*',
+			bubbleScroll: true,
+			draggable: /[uo]l/i.test(el.nodeName) ? '>li' : '>*',
+			swapThreshold: 1, // percentage; 0 <= x <= 1
+			invertSwap: false, // invert always
+			invertedSwapThreshold: null, // will be set to same as swapThreshold if default
+			removeCloneOnHide: true,
+			direction: function() {
+				return _detectDirection(el, this.options);
+			},
 			ghostClass: 'sortable-ghost',
 			chosenClass: 'sortable-chosen',
 			dragClass: 'sortable-drag',
@@ -2013,6 +2266,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 			filter: null,
 			preventOnFilter: true,
 			animation: 0,
+			easing: null,
 			setData: function (dataTransfer, dragEl) {
 				dataTransfer.setData('Text', dragEl.textContent);
 			},
@@ -2020,12 +2274,15 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 			dragoverBubble: false,
 			dataIdAttr: 'data-id',
 			delay: 0,
+			delayOnTouchOnly: false,
+			touchStartThreshold: parseInt(window.devicePixelRatio, 10) || 1,
 			forceFallback: false,
 			fallbackClass: 'sortable-fallback',
 			fallbackOnBody: false,
 			fallbackTolerance: 0,
 			fallbackOffset: {x: 0, y: 0},
-			supportPointer: Sortable.supportPointer !== false
+			supportPointer: Sortable.supportPointer !== false && ('PointerEvent' in window),
+			emptyInsertThreshold: 5
 		};
 
 
@@ -2046,27 +2303,73 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 		// Setup drag mode
 		this.nativeDraggable = options.forceFallback ? false : supportDraggable;
 
+		if (this.nativeDraggable) {
+			// Touch start threshold cannot be greater than the native dragstart threshold
+			this.options.touchStartThreshold = 1;
+		}
+
 		// Bind events
-		_on(el, 'mousedown', this._onTapStart);
-		_on(el, 'touchstart', this._onTapStart);
-		options.supportPointer && _on(el, 'pointerdown', this._onTapStart);
+		if (options.supportPointer) {
+			_on(el, 'pointerdown', this._onTapStart);
+		} else {
+			_on(el, 'mousedown', this._onTapStart);
+			_on(el, 'touchstart', this._onTapStart);
+		}
 
 		if (this.nativeDraggable) {
 			_on(el, 'dragover', this);
 			_on(el, 'dragenter', this);
 		}
 
-		touchDragOverListeners.push(this._onDragOver);
+		sortables.push(this.el);
 
 		// Restore sorting
-		options.store && this.sort(options.store.get(this));
+		options.store && options.store.get && this.sort(options.store.get(this) || []);
 	}
-
 
 	Sortable.prototype = /** @lends Sortable.prototype */ {
 		constructor: Sortable,
 
+		_computeIsAligned: function(evt) {
+			var target;
+
+			if (ghostEl && !supportCssPointerEvents) {
+				_hideGhostForTarget();
+				target = document.elementFromPoint(evt.clientX, evt.clientY);
+				_unhideGhostForTarget();
+			} else {
+				target = evt.target;
+			}
+
+			target = _closest(target, this.options.draggable, this.el, false);
+			if (_alignedSilent) return;
+			if (!dragEl || dragEl.parentNode !== this.el) return;
+
+			var children = this.el.children;
+			for (var i = 0; i < children.length; i++) {
+				// Don't change for target in case it is changed to aligned before onDragOver is fired
+				if (_closest(children[i], this.options.draggable, this.el, false) && children[i] !== target) {
+					children[i].sortableMouseAligned = _isClientInRowColumn(evt.clientX, evt.clientY, children[i], this._getDirection(evt, null), this.options);
+				}
+			}
+			// Used for nulling last target when not in element, nothing to do with checking if aligned
+			if (!_closest(target, this.options.draggable, this.el, true)) {
+				lastTarget = null;
+			}
+
+			_alignedSilent = true;
+			setTimeout(function() {
+				_alignedSilent = false;
+			}, 30);
+
+		},
+
+		_getDirection: function(evt, target) {
+			return (typeof this.options.direction === 'function') ? this.options.direction.call(this, evt, target, dragEl) : this.options.direction;
+		},
+
 		_onTapStart: function (/** Event|TouchEvent */evt) {
+			if (!evt.cancelable) return;
 			var _this = this,
 				el = this.el,
 				options = this.options,
@@ -2074,12 +2377,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 				type = evt.type,
 				touch = evt.touches && evt.touches[0],
 				target = (touch || evt).target,
-				originalTarget = evt.target.shadowRoot && (evt.path && evt.path[0]) || target,
+				originalTarget = evt.target.shadowRoot && ((evt.path && evt.path[0]) || (evt.composedPath && evt.composedPath()[0])) || target,
 				filter = options.filter,
-				startIndex;
+				startIndex,
+				startDraggableIndex;
 
 			_saveInputCheckedState(el);
-
 
 			// Don't trigger start event when an element is been dragged, otherwise the evt.oldindex always wrong when set option.group.
 			if (dragEl) {
@@ -2087,7 +2390,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 			}
 
 			if (/mousedown|pointerdown/.test(type) && evt.button !== 0 || options.disabled) {
-				return; // only left button or enabled
+				return; // only left button and enabled
 			}
 
 			// cancel dnd if original target is content editable
@@ -2095,11 +2398,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 				return;
 			}
 
-			target = _closest(target, options.draggable, el);
+			target = _closest(target, options.draggable, el, false);
 
-			if (!target) {
-				return;
-			}
 
 			if (lastDownEl === target) {
 				// Ignoring duplicate `down`
@@ -2107,41 +2407,95 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 			}
 
 			// Get the index of the dragged element within its parent
-			startIndex = _index(target, options.draggable);
+			startIndex = _index(target);
+			startDraggableIndex = _index(target, options.draggable);
 
 			// Check filter
 			if (typeof filter === 'function') {
 				if (filter.call(this, evt, target, this)) {
-					_dispatchEvent(_this, originalTarget, 'filter', target, el, el, startIndex);
-					preventOnFilter && evt.preventDefault();
+					_dispatchEvent(_this, originalTarget, 'filter', target, el, el, startIndex, undefined, startDraggableIndex);
+					preventOnFilter && evt.cancelable && evt.preventDefault();
 					return; // cancel dnd
 				}
 			}
 			else if (filter) {
 				filter = filter.split(',').some(function (criteria) {
-					criteria = _closest(originalTarget, criteria.trim(), el);
+					criteria = _closest(originalTarget, criteria.trim(), el, false);
 
 					if (criteria) {
-						_dispatchEvent(_this, criteria, 'filter', target, el, el, startIndex);
+						_dispatchEvent(_this, criteria, 'filter', target, el, el, startIndex, undefined, startDraggableIndex);
 						return true;
 					}
 				});
 
 				if (filter) {
-					preventOnFilter && evt.preventDefault();
+					preventOnFilter && evt.cancelable && evt.preventDefault();
 					return; // cancel dnd
 				}
 			}
 
-			if (options.handle && !_closest(originalTarget, options.handle, el)) {
+			if (options.handle && !_closest(originalTarget, options.handle, el, false)) {
 				return;
 			}
 
 			// Prepare `dragstart`
-			this._prepareDragStart(evt, touch, target, startIndex);
+			this._prepareDragStart(evt, touch, target, startIndex, startDraggableIndex);
 		},
 
-		_prepareDragStart: function (/** Event */evt, /** Touch */touch, /** HTMLElement */target, /** Number */startIndex) {
+
+		_handleAutoScroll: function(evt, fallback) {
+			if (!dragEl || !this.options.scroll) return;
+			var x = evt.clientX,
+				y = evt.clientY,
+
+				elem = document.elementFromPoint(x, y),
+				_this = this;
+
+			// IE does not seem to have native autoscroll,
+			// Edge's autoscroll seems too conditional,
+			// MACOS Safari does not have autoscroll,
+			// Firefox and Chrome are good
+			if (fallback || Edge || IE11OrLess || Safari) {
+				_autoScroll(evt, _this.options, elem, fallback);
+
+				// Listener for pointer element change
+				var ogElemScroller = _getParentAutoScrollElement(elem, true);
+				if (
+					scrolling &&
+					(
+						!pointerElemChangedInterval ||
+						x !== lastPointerElemX ||
+						y !== lastPointerElemY
+					)
+				) {
+
+					pointerElemChangedInterval && clearInterval(pointerElemChangedInterval);
+					// Detect for pointer elem change, emulating native DnD behaviour
+					pointerElemChangedInterval = setInterval(function() {
+						if (!dragEl) return;
+						// could also check if scroll direction on newElem changes due to parent autoscrolling
+						var newElem = _getParentAutoScrollElement(document.elementFromPoint(x, y), true);
+						if (newElem !== ogElemScroller) {
+							ogElemScroller = newElem;
+							_clearAutoScrolls();
+							_autoScroll(evt, _this.options, ogElemScroller, fallback);
+						}
+					}, 10);
+					lastPointerElemX = x;
+					lastPointerElemY = y;
+				}
+
+			} else {
+				// if DnD is enabled (and browser has good autoscrolling), first autoscroll will already scroll, so get parent autoscroll of first autoscroll
+				if (!_this.options.bubbleScroll || _getParentAutoScrollElement(elem, true) === _getWindowScrollingElement()) {
+					_clearAutoScrolls();
+					return;
+				}
+				_autoScroll(evt, _this.options, _getParentAutoScrollElement(elem, false), false);
+			}
+		},
+
+		_prepareDragStart: function (/** Event */evt, /** Touch */touch, /** HTMLElement */target, /** Number */startIndex, /** Number */startDraggableIndex) {
 			var _this = this,
 				el = _this.el,
 				options = _this.options,
@@ -2149,8 +2503,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 				dragStartFn;
 
 			if (target && !dragEl && (target.parentNode === el)) {
-				tapEvt = evt;
-
 				rootEl = el;
 				dragEl = target;
 				parentEl = dragEl.parentNode;
@@ -2158,28 +2510,39 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 				lastDownEl = target;
 				activeGroup = options.group;
 				oldIndex = startIndex;
+				oldDraggableIndex = startDraggableIndex;
+
+				tapEvt = {
+					target: dragEl,
+					clientX: (touch || evt).clientX,
+					clientY: (touch || evt).clientY
+				};
 
 				this._lastX = (touch || evt).clientX;
 				this._lastY = (touch || evt).clientY;
 
 				dragEl.style['will-change'] = 'all';
+				// undo animation if needed
+				dragEl.style.transition = '';
+				dragEl.style.transform = '';
 
 				dragStartFn = function () {
 					// Delayed drag has been triggered
 					// we can re-enable the events: touchmove/mousemove
-					_this._disableDelayedDrag();
+					_this._disableDelayedDragEvents();
 
-					// Make the element draggable
-					dragEl.draggable = _this.nativeDraggable;
-
-					// Chosen item
-					_toggleClass(dragEl, options.chosenClass, true);
+					if (!FireFox && _this.nativeDraggable) {
+						dragEl.draggable = true;
+					}
 
 					// Bind the events: dragstart/dragend
 					_this._triggerDragStart(evt, touch);
 
 					// Drag start event
-					_dispatchEvent(_this, rootEl, 'choose', dragEl, rootEl, rootEl, oldIndex);
+					_dispatchEvent(_this, rootEl, 'choose', dragEl, rootEl, rootEl, oldIndex, undefined, oldDraggableIndex);
+
+					// Chosen item
+					_toggleClass(dragEl, options.chosenClass, true);
 				};
 
 				// Disable "draggable"
@@ -2187,61 +2550,77 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 					_find(dragEl, criteria.trim(), _disableDraggable);
 				});
 
+				_on(ownerDocument, 'dragover', nearestEmptyInsertDetectEvent);
+				_on(ownerDocument, 'mousemove', nearestEmptyInsertDetectEvent);
+				_on(ownerDocument, 'touchmove', nearestEmptyInsertDetectEvent);
+
 				_on(ownerDocument, 'mouseup', _this._onDrop);
 				_on(ownerDocument, 'touchend', _this._onDrop);
 				_on(ownerDocument, 'touchcancel', _this._onDrop);
-				_on(ownerDocument, 'selectstart', _this);
-				options.supportPointer && _on(ownerDocument, 'pointercancel', _this._onDrop);
 
-				if (options.delay) {
+				// Make dragEl draggable (must be before delay for FireFox)
+				if (FireFox && this.nativeDraggable) {
+					this.options.touchStartThreshold = 4;
+					dragEl.draggable = true;
+				}
+
+				// Delay is impossible for native DnD in Edge or IE
+				if (options.delay && (options.delayOnTouchOnly ? touch : true) && (!this.nativeDraggable || !(Edge || IE11OrLess))) {
 					// If the user moves the pointer or let go the click or touch
 					// before the delay has been reached:
 					// disable the delayed drag
 					_on(ownerDocument, 'mouseup', _this._disableDelayedDrag);
 					_on(ownerDocument, 'touchend', _this._disableDelayedDrag);
 					_on(ownerDocument, 'touchcancel', _this._disableDelayedDrag);
-					_on(ownerDocument, 'mousemove', _this._disableDelayedDrag);
-					_on(ownerDocument, 'touchmove', _this._disableDelayedDrag);
-					options.supportPointer && _on(ownerDocument, 'pointermove', _this._disableDelayedDrag);
+					_on(ownerDocument, 'mousemove', _this._delayedDragTouchMoveHandler);
+					_on(ownerDocument, 'touchmove', _this._delayedDragTouchMoveHandler);
+					options.supportPointer && _on(ownerDocument, 'pointermove', _this._delayedDragTouchMoveHandler);
 
 					_this._dragStartTimer = setTimeout(dragStartFn, options.delay);
 				} else {
 					dragStartFn();
 				}
+			}
+		},
 
-
+		_delayedDragTouchMoveHandler: function (/** TouchEvent|PointerEvent **/e) {
+			var touch = e.touches ? e.touches[0] : e;
+			if (max(abs(touch.clientX - this._lastX), abs(touch.clientY - this._lastY))
+					>= Math.floor(this.options.touchStartThreshold / (this.nativeDraggable && window.devicePixelRatio || 1))
+			) {
+				this._disableDelayedDrag();
 			}
 		},
 
 		_disableDelayedDrag: function () {
-			var ownerDocument = this.el.ownerDocument;
-
+			dragEl && _disableDraggable(dragEl);
 			clearTimeout(this._dragStartTimer);
+
+			this._disableDelayedDragEvents();
+		},
+
+		_disableDelayedDragEvents: function () {
+			var ownerDocument = this.el.ownerDocument;
 			_off(ownerDocument, 'mouseup', this._disableDelayedDrag);
 			_off(ownerDocument, 'touchend', this._disableDelayedDrag);
 			_off(ownerDocument, 'touchcancel', this._disableDelayedDrag);
-			_off(ownerDocument, 'mousemove', this._disableDelayedDrag);
-			_off(ownerDocument, 'touchmove', this._disableDelayedDrag);
-			_off(ownerDocument, 'pointermove', this._disableDelayedDrag);
+			_off(ownerDocument, 'mousemove', this._delayedDragTouchMoveHandler);
+			_off(ownerDocument, 'touchmove', this._delayedDragTouchMoveHandler);
+			_off(ownerDocument, 'pointermove', this._delayedDragTouchMoveHandler);
 		},
 
 		_triggerDragStart: function (/** Event */evt, /** Touch */touch) {
 			touch = touch || (evt.pointerType == 'touch' ? evt : null);
 
-			if (touch) {
-				// Touch device support
-				tapEvt = {
-					target: dragEl,
-					clientX: touch.clientX,
-					clientY: touch.clientY
-				};
-
-				this._onDragStart(tapEvt, 'touch');
-			}
-			else if (!this.nativeDraggable) {
-				this._onDragStart(tapEvt, true);
-			}
-			else {
+			if (!this.nativeDraggable || touch) {
+				if (this.options.supportPointer) {
+					_on(document, 'pointermove', this._onTouchMove);
+				} else if (touch) {
+					_on(document, 'touchmove', this._onTouchMove);
+				} else {
+					_on(document, 'mousemove', this._onTouchMove);
+				}
+			} else {
 				_on(dragEl, 'dragend', this);
 				_on(rootEl, 'dragstart', this._onDragStart);
 			}
@@ -2259,58 +2638,67 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 			}
 		},
 
-		_dragStarted: function () {
+		_dragStarted: function (fallback, evt) {
+			awaitingDragStarted = false;
 			if (rootEl && dragEl) {
+				if (this.nativeDraggable) {
+					_on(document, 'dragover', this._handleAutoScroll);
+					_on(document, 'dragover', _checkAlignment);
+				}
 				var options = this.options;
 
 				// Apply effect
+				!fallback && _toggleClass(dragEl, options.dragClass, false);
 				_toggleClass(dragEl, options.ghostClass, true);
-				_toggleClass(dragEl, options.dragClass, false);
+
+				// In case dragging an animated element
+				_css(dragEl, 'transform', '');
 
 				Sortable.active = this;
 
+				fallback && this._appendGhost();
+
 				// Drag start event
-				_dispatchEvent(this, rootEl, 'start', dragEl, rootEl, rootEl, oldIndex);
+				_dispatchEvent(this, rootEl, 'start', dragEl, rootEl, rootEl, oldIndex, undefined, oldDraggableIndex, undefined, evt);
 			} else {
 				this._nulling();
 			}
 		},
 
-		_emulateDragOver: function () {
+		_emulateDragOver: function (forAutoScroll) {
 			if (touchEvt) {
-				if (this._lastX === touchEvt.clientX && this._lastY === touchEvt.clientY) {
+				if (this._lastX === touchEvt.clientX && this._lastY === touchEvt.clientY && !forAutoScroll) {
 					return;
 				}
-
 				this._lastX = touchEvt.clientX;
 				this._lastY = touchEvt.clientY;
 
-				if (!supportCssPointerEvents) {
-					_css(ghostEl, 'display', 'none');
-				}
+				_hideGhostForTarget();
 
 				var target = document.elementFromPoint(touchEvt.clientX, touchEvt.clientY);
 				var parent = target;
-				var i = touchDragOverListeners.length;
 
-				if (target && target.shadowRoot) {
+				while (target && target.shadowRoot) {
 					target = target.shadowRoot.elementFromPoint(touchEvt.clientX, touchEvt.clientY);
+					if (target === parent) break;
 					parent = target;
 				}
 
 				if (parent) {
 					do {
 						if (parent[expando]) {
-							while (i--) {
-								touchDragOverListeners[i]({
-									clientX: touchEvt.clientX,
-									clientY: touchEvt.clientY,
-									target: target,
-									rootEl: parent
-								});
-							}
+							var inserted;
 
-							break;
+							inserted = parent[expando]._onDragOver({
+								clientX: touchEvt.clientX,
+								clientY: touchEvt.clientY,
+								target: target,
+								rootEl: parent
+							});
+
+							if (inserted && !this.options.dragoverBubble) {
+								break;
+							}
 						}
 
 						target = parent; // store last element
@@ -2318,37 +2706,42 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 					/* jshint boss:true */
 					while (parent = parent.parentNode);
 				}
+				dragEl.parentNode[expando]._computeIsAligned(touchEvt);
 
-				if (!supportCssPointerEvents) {
-					_css(ghostEl, 'display', '');
-				}
+				_unhideGhostForTarget();
 			}
 		},
 
 
-		_onTouchMove: function (/**TouchEvent*/evt) {
+		_onTouchMove: function (/**TouchEvent*/evt, forAutoScroll) {
 			if (tapEvt) {
 				var	options = this.options,
 					fallbackTolerance = options.fallbackTolerance,
 					fallbackOffset = options.fallbackOffset,
 					touch = evt.touches ? evt.touches[0] : evt,
-					dx = (touch.clientX - tapEvt.clientX) + fallbackOffset.x,
-					dy = (touch.clientY - tapEvt.clientY) + fallbackOffset.y,
+					matrix = ghostEl && _matrix(ghostEl),
+					scaleX = ghostEl && matrix && matrix.a,
+					scaleY = ghostEl && matrix && matrix.d,
+					relativeScrollOffset = PositionGhostAbsolutely && ghostRelativeParent && _getRelativeScrollOffset(ghostRelativeParent),
+					dx = ((touch.clientX - tapEvt.clientX)
+							+ fallbackOffset.x) / (scaleX || 1)
+							+ (relativeScrollOffset ? (relativeScrollOffset[0] - ghostRelativeParentInitialScroll[0]) : 0) / (scaleX || 1),
+					dy = ((touch.clientY - tapEvt.clientY)
+							+ fallbackOffset.y) / (scaleY || 1)
+							+ (relativeScrollOffset ? (relativeScrollOffset[1] - ghostRelativeParentInitialScroll[1]) : 0) / (scaleY || 1),
 					translate3d = evt.touches ? 'translate3d(' + dx + 'px,' + dy + 'px,0)' : 'translate(' + dx + 'px,' + dy + 'px)';
 
 				// only set the status to dragging, when we are actually dragging
-				if (!Sortable.active) {
+				if (!Sortable.active && !awaitingDragStarted) {
 					if (fallbackTolerance &&
 						min(abs(touch.clientX - this._lastX), abs(touch.clientY - this._lastY)) < fallbackTolerance
 					) {
 						return;
 					}
-
-					this._dragStarted();
+					this._onDragStart(evt, true);
 				}
 
-				// as well as creating the ghost element on the document body
-				this._appendGhost();
+				!forAutoScroll && this._handleAutoScroll(touch, true);
 
 				moved = true;
 				touchEvt = touch;
@@ -2358,16 +2751,50 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 				_css(ghostEl, 'msTransform', translate3d);
 				_css(ghostEl, 'transform', translate3d);
 
-				evt.preventDefault();
+				evt.cancelable && evt.preventDefault();
 			}
 		},
 
 		_appendGhost: function () {
+			// Bug if using scale(): https://stackoverflow.com/questions/2637058
+			// Not being adjusted for
 			if (!ghostEl) {
-				var rect = dragEl.getBoundingClientRect(),
+				var container = this.options.fallbackOnBody ? document.body : rootEl,
+					rect = _getRect(dragEl, true, container, !PositionGhostAbsolutely),
 					css = _css(dragEl),
-					options = this.options,
-					ghostRect;
+					options = this.options;
+
+				// Position absolutely
+				if (PositionGhostAbsolutely) {
+					// Get relatively positioned parent
+					ghostRelativeParent = container;
+
+					while (
+						_css(ghostRelativeParent, 'position') === 'static' &&
+						_css(ghostRelativeParent, 'transform') === 'none' &&
+						ghostRelativeParent !== document
+					) {
+						ghostRelativeParent = ghostRelativeParent.parentNode;
+					}
+
+					if (ghostRelativeParent !== document) {
+						var ghostRelativeParentRect = _getRect(ghostRelativeParent, true);
+
+						rect.top -= ghostRelativeParentRect.top;
+						rect.left -= ghostRelativeParentRect.left;
+					}
+
+					if (ghostRelativeParent !== document.body && ghostRelativeParent !== document.documentElement) {
+						if (ghostRelativeParent === document) ghostRelativeParent = _getWindowScrollingElement();
+
+						rect.top += ghostRelativeParent.scrollTop;
+						rect.left += ghostRelativeParent.scrollLeft;
+					} else {
+						ghostRelativeParent = _getWindowScrollingElement();
+					}
+					ghostRelativeParentInitialScroll = _getRelativeScrollOffset(ghostRelativeParent);
+				}
+
 
 				ghostEl = dragEl.cloneNode(true);
 
@@ -2375,69 +2802,58 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 				_toggleClass(ghostEl, options.fallbackClass, true);
 				_toggleClass(ghostEl, options.dragClass, true);
 
-				_css(ghostEl, 'top', rect.top - parseInt(css.marginTop, 10));
-				_css(ghostEl, 'left', rect.left - parseInt(css.marginLeft, 10));
+				_css(ghostEl, 'box-sizing', 'border-box');
+				_css(ghostEl, 'margin', 0);
+				_css(ghostEl, 'top', rect.top);
+				_css(ghostEl, 'left', rect.left);
 				_css(ghostEl, 'width', rect.width);
 				_css(ghostEl, 'height', rect.height);
 				_css(ghostEl, 'opacity', '0.8');
-				_css(ghostEl, 'position', 'fixed');
+				_css(ghostEl, 'position', (PositionGhostAbsolutely ? 'absolute' : 'fixed'));
 				_css(ghostEl, 'zIndex', '100000');
 				_css(ghostEl, 'pointerEvents', 'none');
 
-				options.fallbackOnBody && document.body.appendChild(ghostEl) || rootEl.appendChild(ghostEl);
-
-				// Fixing dimensions.
-				ghostRect = ghostEl.getBoundingClientRect();
-				_css(ghostEl, 'width', rect.width * 2 - ghostRect.width);
-				_css(ghostEl, 'height', rect.height * 2 - ghostRect.height);
+				container.appendChild(ghostEl);
 			}
 		},
 
-		_onDragStart: function (/**Event*/evt, /**boolean*/useFallback) {
+		_onDragStart: function (/**Event*/evt, /**boolean*/fallback) {
 			var _this = this;
 			var dataTransfer = evt.dataTransfer;
 			var options = _this.options;
 
-			_this._offUpEvents();
+			// Setup clone
+			cloneEl = _clone(dragEl);
 
-			if (activeGroup.checkPull(_this, _this, dragEl, evt)) {
-				cloneEl = _clone(dragEl);
+			cloneEl.draggable = false;
+			cloneEl.style['will-change'] = '';
 
-				cloneEl.draggable = false;
-				cloneEl.style['will-change'] = '';
+			this._hideClone();
 
-				_css(cloneEl, 'display', 'none');
-				_toggleClass(cloneEl, _this.options.chosenClass, false);
+			_toggleClass(cloneEl, _this.options.chosenClass, false);
 
-				// #1143: IFrame support workaround
-				_this._cloneId = _nextTick(function () {
+
+			// #1143: IFrame support workaround
+			_this._cloneId = _nextTick(function () {
+				if (!_this.options.removeCloneOnHide) {
 					rootEl.insertBefore(cloneEl, dragEl);
-					_dispatchEvent(_this, rootEl, 'clone', dragEl);
-				});
-			}
-
-			_toggleClass(dragEl, options.dragClass, true);
-
-			if (useFallback) {
-				if (useFallback === 'touch') {
-					// Bind touch events
-					_on(document, 'touchmove', _this._onTouchMove);
-					_on(document, 'touchend', _this._onDrop);
-					_on(document, 'touchcancel', _this._onDrop);
-
-					if (options.supportPointer) {
-						_on(document, 'pointermove', _this._onTouchMove);
-						_on(document, 'pointerup', _this._onDrop);
-					}
-				} else {
-					// Old brwoser
-					_on(document, 'mousemove', _this._onTouchMove);
-					_on(document, 'mouseup', _this._onDrop);
 				}
+				_dispatchEvent(_this, rootEl, 'clone', dragEl);
+			});
 
+
+			!fallback && _toggleClass(dragEl, options.dragClass, true);
+
+			// Set proper drop events
+			if (fallback) {
+				ignoreNextClick = true;
 				_this._loopId = setInterval(_this._emulateDragOver, 50);
-			}
-			else {
+			} else {
+				// Undo what was set in _prepareDragStart before drag started
+				_off(document, 'mouseup', _this._onDrop);
+				_off(document, 'touchend', _this._onDrop);
+				_off(document, 'touchcancel', _this._onDrop);
+
 				if (dataTransfer) {
 					dataTransfer.effectAllowed = 'move';
 					options.setData && options.setData.call(_this, dataTransfer, dragEl);
@@ -2445,18 +2861,24 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 
 				_on(document, 'drop', _this);
 
-				// #1143: Бывает элемент с IFrame внутри блокирует `drop`,
-				// поэтому если вызвался `mouseover`, значит надо отменять весь d'n'd.
-				// Breaking Chrome 62+
-				// _on(document, 'mouseover', _this);
+				// #1276 fix:
+				_css(dragEl, 'transform', 'translateZ(0)');
+			}
 
-				_this._dragStartId = _nextTick(_this._dragStarted);
+			awaitingDragStarted = true;
+
+			_this._dragStartId = _nextTick(_this._dragStarted.bind(_this, fallback, evt));
+			_on(document, 'selectstart', _this);
+			if (Safari) {
+				_css(document.body, 'user-select', 'none');
 			}
 		},
 
+
+		// Returns true - if no further action is needed (either inserted or another condition)
 		_onDragOver: function (/**Event*/evt) {
 			var el = this.el,
-				target,
+				target = evt.target,
 				dragRect,
 				targetRect,
 				revert,
@@ -2464,19 +2886,80 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 				group = options.group,
 				activeSortable = Sortable.active,
 				isOwner = (activeGroup === group),
-				isMovingBetweenSortable = false,
-				canSort = options.sort;
+				canSort = options.sort,
+				_this = this;
+
+			if (_silent) return;
+
+			// Return invocation when dragEl is inserted (or completed)
+			function completed(insertion) {
+				if (insertion) {
+					if (isOwner) {
+						activeSortable._hideClone();
+					} else {
+						activeSortable._showClone(_this);
+					}
+
+					if (activeSortable) {
+						// Set ghost class to new sortable's ghost class
+						_toggleClass(dragEl, putSortable ? putSortable.options.ghostClass : activeSortable.options.ghostClass, false);
+						_toggleClass(dragEl, options.ghostClass, true);
+					}
+
+					if (putSortable !== _this && _this !== Sortable.active) {
+						putSortable = _this;
+					} else if (_this === Sortable.active) {
+						putSortable = null;
+					}
+
+					// Animation
+					dragRect && _this._animate(dragRect, dragEl);
+					target && targetRect && _this._animate(targetRect, target);
+				}
+
+
+				// Null lastTarget if it is not inside a previously swapped element
+				if ((target === dragEl && !dragEl.animated) || (target === el && !target.animated)) {
+					lastTarget = null;
+				}
+
+				// no bubbling and not fallback
+				if (!options.dragoverBubble && !evt.rootEl && target !== document) {
+					_this._handleAutoScroll(evt);
+					dragEl.parentNode[expando]._computeIsAligned(evt);
+
+					// Do not detect for empty insert if already inserted
+					!insertion && nearestEmptyInsertDetectEvent(evt);
+				}
+
+				!options.dragoverBubble && evt.stopPropagation && evt.stopPropagation();
+
+				return true;
+			}
+
+			// Call when dragEl has been inserted
+			function changed() {
+				_dispatchEvent(_this, rootEl, 'change', target, el, rootEl, oldIndex, _index(dragEl), oldDraggableIndex, _index(dragEl, options.draggable), evt);
+			}
+
 
 			if (evt.preventDefault !== void 0) {
-				evt.preventDefault();
-				!options.dragoverBubble && evt.stopPropagation();
+				evt.cancelable && evt.preventDefault();
 			}
 
-			if (dragEl.animated) {
-				return;
-			}
 
 			moved = true;
+
+			target = _closest(target, options.draggable, el, true);
+
+			// target is dragEl or target is animated
+			if (dragEl.contains(evt.target) || target.animated) {
+				return completed(false);
+			}
+
+			if (target !== dragEl) {
+				ignoreNextClick = false;
+			}
 
 			if (activeSortable && !options.disabled &&
 				(isOwner
@@ -2484,106 +2967,111 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 					: (
 						putSortable === this ||
 						(
-							(activeSortable.lastPullMode = activeGroup.checkPull(this, activeSortable, dragEl, evt)) &&
+							(this.lastPutMode = activeGroup.checkPull(this, activeSortable, dragEl, evt)) &&
 							group.checkPut(this, activeSortable, dragEl, evt)
 						)
 					)
-				) &&
-				(evt.rootEl === void 0 || evt.rootEl === this.el) // touch fallback
+				)
 			) {
-				// Smart auto-scrolling
-				_autoScroll(evt, options, this.el);
+				var axis = this._getDirection(evt, target);
 
-				if (_silent) {
-					return;
-				}
-
-				target = _closest(evt.target, options.draggable, el);
-				dragRect = dragEl.getBoundingClientRect();
-
-				if (putSortable !== this) {
-					putSortable = this;
-					isMovingBetweenSortable = true;
-				}
+				dragRect = _getRect(dragEl);
 
 				if (revert) {
-					_cloneHide(activeSortable, true);
+					this._hideClone();
 					parentEl = rootEl; // actualization
 
-					if (cloneEl || nextEl) {
-						rootEl.insertBefore(dragEl, cloneEl || nextEl);
-					}
-					else if (!canSort) {
+					if (nextEl) {
+						rootEl.insertBefore(dragEl, nextEl);
+					} else {
 						rootEl.appendChild(dragEl);
 					}
 
-					return;
+					return completed(true);
 				}
 
+				var elLastChild = _lastChild(el);
 
-				if ((el.children.length === 0) || (el.children[0] === ghostEl) ||
-					(el === evt.target) && (_ghostIsLast(el, evt))
-				) {
-					//assign target only if condition is true
-					if (el.children.length !== 0 && el.children[0] !== ghostEl && el === evt.target) {
-						target = el.lastElementChild;
+				if (!elLastChild || _ghostIsLast(evt, axis, el) && !elLastChild.animated) {
+					// assign target only if condition is true
+					if (elLastChild && el === evt.target) {
+						target = elLastChild;
 					}
 
 					if (target) {
-						if (target.animated) {
-							return;
-						}
-
-						targetRect = target.getBoundingClientRect();
+						targetRect = _getRect(target);
 					}
 
-					_cloneHide(activeSortable, isOwner);
+					if (isOwner) {
+						activeSortable._hideClone();
+					} else {
+						activeSortable._showClone(this);
+					}
 
-					if (_onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt) !== false) {
-						if (!dragEl.contains(el)) {
-							el.appendChild(dragEl);
-							parentEl = el; // actualization
-						}
+					if (_onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt, !!target) !== false) {
+						el.appendChild(dragEl);
+						parentEl = el; // actualization
+						realDragElRect = null;
 
-						this._animate(dragRect, dragEl);
-						target && this._animate(targetRect, target);
+						changed();
+						return completed(true);
 					}
 				}
-				else if (target && !target.animated && target !== dragEl && (target.parentNode[expando] !== void 0)) {
-					if (lastEl !== target) {
-						lastEl = target;
-						lastCSS = _css(target);
-						lastParentCSS = _css(target.parentNode);
+				else if (target && target !== dragEl && target.parentNode === el) {
+					var direction = 0,
+						targetBeforeFirstSwap,
+						aligned = target.sortableMouseAligned,
+						differentLevel = dragEl.parentNode !== el,
+						side1 = axis === 'vertical' ? 'top' : 'left',
+						scrolledPastTop = _isScrolledPast(target, 'top') || _isScrolledPast(dragEl, 'top'),
+						scrollBefore = scrolledPastTop ? scrolledPastTop.scrollTop : void 0;
+
+
+					if (lastTarget !== target) {
+						lastMode = null;
+						targetBeforeFirstSwap = _getRect(target)[side1];
+						pastFirstInvertThresh = false;
 					}
 
-					targetRect = target.getBoundingClientRect();
-
-					var width = targetRect.right - targetRect.left,
-						height = targetRect.bottom - targetRect.top,
-						floating = R_FLOAT.test(lastCSS.cssFloat + lastCSS.display)
-							|| (lastParentCSS.display == 'flex' && lastParentCSS['flex-direction'].indexOf('row') === 0),
-						isWide = (target.offsetWidth > dragEl.offsetWidth),
-						isLong = (target.offsetHeight > dragEl.offsetHeight),
-						halfway = (floating ? (evt.clientX - targetRect.left) / width : (evt.clientY - targetRect.top) / height) > 0.5,
-						nextSibling = target.nextElementSibling,
-						after = false
-					;
-
-					if (floating) {
-						var elTop = dragEl.offsetTop,
-							tgTop = target.offsetTop;
-
-						if (elTop === tgTop) {
-							after = (target.previousElementSibling === dragEl) && !isWide || halfway && isWide;
+					// Reference: https://www.lucidchart.com/documents/view/10fa0e93-e362-4126-aca2-b709ee56bd8b/0
+					if (
+						_isElInRowColumn(dragEl, target, axis) && aligned ||
+						differentLevel ||
+						scrolledPastTop ||
+						options.invertSwap ||
+						lastMode === 'insert' ||
+						// Needed, in the case that we are inside target and inserted because not aligned... aligned will stay false while inside
+						// and lastMode will change to 'insert', but we must swap
+						lastMode === 'swap'
+					) {
+						// New target that we will be inside
+						if (lastMode !== 'swap') {
+							isCircumstantialInvert = options.invertSwap || differentLevel;
 						}
-						else if (target.previousElementSibling === dragEl || dragEl.previousElementSibling === target) {
-							after = (evt.clientY - targetRect.top) / height > 0.5;
-						} else {
-							after = tgTop > elTop;
-						}
-						} else if (!isMovingBetweenSortable) {
-						after = (nextSibling !== dragEl) && !isLong || halfway && isLong;
+
+						direction = _getSwapDirection(evt, target, axis,
+							options.swapThreshold, options.invertedSwapThreshold == null ? options.swapThreshold : options.invertedSwapThreshold,
+							isCircumstantialInvert,
+							lastTarget === target);
+						lastMode = 'swap';
+					} else {
+						// Insert at position
+						direction = _getInsertDirection(target);
+						lastMode = 'insert';
 					}
+					if (direction === 0) return completed(false);
+
+					realDragElRect = null;
+					lastTarget = target;
+
+					lastDirection = direction;
+
+					targetRect = _getRect(target);
+
+					var nextSibling = target.nextElementSibling,
+						after = false;
+
+					after = direction === 1;
 
 					var moveVector = _onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt, after);
 
@@ -2595,47 +3083,77 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 						_silent = true;
 						setTimeout(_unsilent, 30);
 
-						_cloneHide(activeSortable, isOwner);
+						if (isOwner) {
+							activeSortable._hideClone();
+						} else {
+							activeSortable._showClone(this);
+						}
 
-						if (!dragEl.contains(el)) {
-							if (after && !nextSibling) {
-								el.appendChild(dragEl);
-							} else {
-								target.parentNode.insertBefore(dragEl, after ? nextSibling : target);
-							}
+						if (after && !nextSibling) {
+							el.appendChild(dragEl);
+						} else {
+							target.parentNode.insertBefore(dragEl, after ? nextSibling : target);
+						}
+
+						// Undo chrome's scroll adjustment
+						if (scrolledPastTop) {
+							_scrollBy(scrolledPastTop, 0, scrollBefore - scrolledPastTop.scrollTop);
 						}
 
 						parentEl = dragEl.parentNode; // actualization
 
-						this._animate(dragRect, dragEl);
-						this._animate(targetRect, target);
+						// must be done before animation
+						if (targetBeforeFirstSwap !== undefined && !isCircumstantialInvert) {
+							targetMoveDistance = abs(targetBeforeFirstSwap - _getRect(target)[side1]);
+						}
+						changed();
+
+						return completed(true);
 					}
 				}
+
+				if (el.contains(dragEl)) {
+					return completed(false);
+				}
 			}
+
+			return false;
 		},
 
 		_animate: function (prevRect, target) {
 			var ms = this.options.animation;
 
 			if (ms) {
-				var currentRect = target.getBoundingClientRect();
+				var currentRect = _getRect(target);
 
-				if (prevRect.nodeType === 1) {
-					prevRect = prevRect.getBoundingClientRect();
+				if (target === dragEl) {
+					realDragElRect = currentRect;
 				}
 
-				_css(target, 'transition', 'none');
-				_css(target, 'transform', 'translate3d('
-					+ (prevRect.left - currentRect.left) + 'px,'
-					+ (prevRect.top - currentRect.top) + 'px,0)'
-				);
+				if (prevRect.nodeType === 1) {
+					prevRect = _getRect(prevRect);
+				}
 
-				target.offsetWidth; // repaint
+				// Check if actually moving position
+				if ((prevRect.left + prevRect.width / 2) !== (currentRect.left + currentRect.width / 2)
+					|| (prevRect.top + prevRect.height / 2) !== (currentRect.top + currentRect.height / 2)
+				) {
+					var matrix = _matrix(this.el),
+						scaleX = matrix && matrix.a,
+						scaleY = matrix && matrix.d;
 
-				_css(target, 'transition', 'all ' + ms + 'ms');
-				_css(target, 'transform', 'translate3d(0,0,0)');
+					_css(target, 'transition', 'none');
+					_css(target, 'transform', 'translate3d('
+						+ (prevRect.left - currentRect.left) / (scaleX ? scaleX : 1) + 'px,'
+						+ (prevRect.top - currentRect.top) / (scaleY ? scaleY : 1) + 'px,0)'
+					);
 
-				clearTimeout(target.animated);
+					this._repaint(target);
+					_css(target, 'transition', 'transform ' + ms + 'ms' + (this.options.easing ? ' ' + this.options.easing : ''));
+					_css(target, 'transform', 'translate3d(0,0,0)');
+				}
+
+				(typeof target.animated === 'number') && clearTimeout(target.animated);
 				target.animated = setTimeout(function () {
 					_css(target, 'transition', '');
 					_css(target, 'transform', '');
@@ -2644,50 +3162,74 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 			}
 		},
 
+		_repaint: function(target) {
+			return target.offsetWidth;
+		},
+
+		_offMoveEvents: function() {
+			_off(document, 'touchmove', this._onTouchMove);
+			_off(document, 'pointermove', this._onTouchMove);
+			_off(document, 'dragover', nearestEmptyInsertDetectEvent);
+			_off(document, 'mousemove', nearestEmptyInsertDetectEvent);
+			_off(document, 'touchmove', nearestEmptyInsertDetectEvent);
+		},
+
 		_offUpEvents: function () {
 			var ownerDocument = this.el.ownerDocument;
 
-			_off(document, 'touchmove', this._onTouchMove);
-			_off(document, 'pointermove', this._onTouchMove);
 			_off(ownerDocument, 'mouseup', this._onDrop);
 			_off(ownerDocument, 'touchend', this._onDrop);
 			_off(ownerDocument, 'pointerup', this._onDrop);
 			_off(ownerDocument, 'touchcancel', this._onDrop);
-			_off(ownerDocument, 'pointercancel', this._onDrop);
-			_off(ownerDocument, 'selectstart', this);
+			_off(document, 'selectstart', this);
 		},
 
 		_onDrop: function (/**Event*/evt) {
 			var el = this.el,
 				options = this.options;
+			awaitingDragStarted = false;
+			scrolling = false;
+			isCircumstantialInvert = false;
+			pastFirstInvertThresh = false;
 
 			clearInterval(this._loopId);
-			clearInterval(autoScroll.pid);
+
+			clearInterval(pointerElemChangedInterval);
+			_clearAutoScrolls();
+			_cancelThrottle();
+
 			clearTimeout(this._dragStartTimer);
 
 			_cancelNextTick(this._cloneId);
 			_cancelNextTick(this._dragStartId);
 
 			// Unbind events
-			_off(document, 'mouseover', this);
 			_off(document, 'mousemove', this._onTouchMove);
+
 
 			if (this.nativeDraggable) {
 				_off(document, 'drop', this);
 				_off(el, 'dragstart', this._onDragStart);
+				_off(document, 'dragover', this._handleAutoScroll);
+				_off(document, 'dragover', _checkAlignment);
 			}
 
+			if (Safari) {
+				_css(document.body, 'user-select', '');
+			}
+
+			this._offMoveEvents();
 			this._offUpEvents();
 
 			if (evt) {
 				if (moved) {
-					evt.preventDefault();
+					evt.cancelable && evt.preventDefault();
 					!options.dropBubble && evt.stopPropagation();
 				}
 
 				ghostEl && ghostEl.parentNode && ghostEl.parentNode.removeChild(ghostEl);
 
-				if (rootEl === parentEl || Sortable.active.lastPullMode !== 'clone') {
+				if (rootEl === parentEl || (putSortable && putSortable.lastPutMode !== 'clone')) {
 					// Remove clone
 					cloneEl && cloneEl.parentNode && cloneEl.parentNode.removeChild(cloneEl);
 				}
@@ -2701,36 +3243,40 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 					dragEl.style['will-change'] = '';
 
 					// Remove class's
-					_toggleClass(dragEl, this.options.ghostClass, false);
+					_toggleClass(dragEl, putSortable ? putSortable.options.ghostClass : this.options.ghostClass, false);
 					_toggleClass(dragEl, this.options.chosenClass, false);
 
 					// Drag stop event
-					_dispatchEvent(this, rootEl, 'unchoose', dragEl, parentEl, rootEl, oldIndex);
+					_dispatchEvent(this, rootEl, 'unchoose', dragEl, parentEl, rootEl, oldIndex, null, oldDraggableIndex, null, evt);
 
 					if (rootEl !== parentEl) {
-						newIndex = _index(dragEl, options.draggable);
+						newIndex = _index(dragEl);
+						newDraggableIndex = _index(dragEl, options.draggable);
 
 						if (newIndex >= 0) {
 							// Add event
-							_dispatchEvent(null, parentEl, 'add', dragEl, parentEl, rootEl, oldIndex, newIndex);
+							_dispatchEvent(null, parentEl, 'add', dragEl, parentEl, rootEl, oldIndex, newIndex, oldDraggableIndex, newDraggableIndex, evt);
 
 							// Remove event
-							_dispatchEvent(this, rootEl, 'remove', dragEl, parentEl, rootEl, oldIndex, newIndex);
+							_dispatchEvent(this, rootEl, 'remove', dragEl, parentEl, rootEl, oldIndex, newIndex, oldDraggableIndex, newDraggableIndex, evt);
 
 							// drag from one list and drop into another
-							_dispatchEvent(null, parentEl, 'sort', dragEl, parentEl, rootEl, oldIndex, newIndex);
-							_dispatchEvent(this, rootEl, 'sort', dragEl, parentEl, rootEl, oldIndex, newIndex);
+							_dispatchEvent(null, parentEl, 'sort', dragEl, parentEl, rootEl, oldIndex, newIndex, oldDraggableIndex, newDraggableIndex, evt);
+							_dispatchEvent(this, rootEl, 'sort', dragEl, parentEl, rootEl, oldIndex, newIndex, oldDraggableIndex, newDraggableIndex, evt);
 						}
+
+						putSortable && putSortable.save();
 					}
 					else {
 						if (dragEl.nextSibling !== nextEl) {
 							// Get the index of the dragged element within its parent
-							newIndex = _index(dragEl, options.draggable);
+							newIndex = _index(dragEl);
+							newDraggableIndex = _index(dragEl, options.draggable);
 
 							if (newIndex >= 0) {
 								// drag & drop within the same list
-								_dispatchEvent(this, rootEl, 'update', dragEl, parentEl, rootEl, oldIndex, newIndex);
-								_dispatchEvent(this, rootEl, 'sort', dragEl, parentEl, rootEl, oldIndex, newIndex);
+								_dispatchEvent(this, rootEl, 'update', dragEl, parentEl, rootEl, oldIndex, newIndex, oldDraggableIndex, newDraggableIndex, evt);
+								_dispatchEvent(this, rootEl, 'sort', dragEl, parentEl, rootEl, oldIndex, newIndex, oldDraggableIndex, newDraggableIndex, evt);
 							}
 						}
 					}
@@ -2739,9 +3285,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 						/* jshint eqnull:true */
 						if (newIndex == null || newIndex === -1) {
 							newIndex = oldIndex;
+							newDraggableIndex = oldDraggableIndex;
 						}
-
-						_dispatchEvent(this, rootEl, 'end', dragEl, parentEl, rootEl, oldIndex, newIndex);
+						_dispatchEvent(this, rootEl, 'end', dragEl, parentEl, rootEl, oldIndex, newIndex, oldDraggableIndex, newDraggableIndex, evt);
 
 						// Save sorting
 						this.save();
@@ -2749,7 +3295,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 				}
 
 			}
-
 			this._nulling();
 		},
 
@@ -2764,15 +3309,23 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 
 			scrollEl =
 			scrollParentEl =
+			autoScrolls.length =
+
+			pointerElemChangedInterval =
+			lastPointerElemX =
+			lastPointerElemY =
 
 			tapEvt =
 			touchEvt =
 
 			moved =
 			newIndex =
+			oldIndex =
 
-			lastEl =
-			lastCSS =
+			lastTarget =
+			lastDirection =
+
+			realDragElRect =
 
 			putSortable =
 			activeGroup =
@@ -2781,6 +3334,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 			savedInputChecked.forEach(function (el) {
 				el.checked = true;
 			});
+
 			savedInputChecked.length = 0;
 		},
 
@@ -2791,16 +3345,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 					this._onDrop(evt);
 					break;
 
-				case 'dragover':
 				case 'dragenter':
+				case 'dragover':
 					if (dragEl) {
 						this._onDragOver(evt);
 						_globalDragOver(evt);
 					}
-					break;
-
-				case 'mouseover':
-					this._onDrop(evt);
 					break;
 
 				case 'selectstart':
@@ -2824,7 +3374,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 
 			for (; i < n; i++) {
 				el = children[i];
-				if (_closest(el, options.draggable, this.el)) {
+				if (_closest(el, options.draggable, this.el, false)) {
 					order.push(el.getAttribute(options.dataIdAttr) || _generateId(el));
 				}
 			}
@@ -2843,7 +3393,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 			this.toArray().forEach(function (id, i) {
 				var el = rootEl.children[i];
 
-				if (_closest(el, this.options.draggable, rootEl)) {
+				if (_closest(el, this.options.draggable, rootEl, false)) {
 					items[id] = el;
 				}
 			}, this);
@@ -2862,7 +3412,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 		 */
 		save: function () {
 			var store = this.options.store;
-			store && store.set(this);
+			store && store.set && store.set(this);
 		},
 
 
@@ -2873,7 +3423,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 		 * @returns {HTMLElement|null}
 		 */
 		closest: function (el, selector) {
-			return _closest(el, selector || this.options.draggable, this.el);
+			return _closest(el, selector || this.options.draggable, this.el, false);
 		},
 
 
@@ -2914,53 +3464,71 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 				_off(el, 'dragover', this);
 				_off(el, 'dragenter', this);
 			}
-
 			// Remove draggable attributes
 			Array.prototype.forEach.call(el.querySelectorAll('[draggable]'), function (el) {
 				el.removeAttribute('draggable');
 			});
 
-			touchDragOverListeners.splice(touchDragOverListeners.indexOf(this._onDragOver), 1);
-
 			this._onDrop();
 
+			sortables.splice(sortables.indexOf(this.el), 1);
+
 			this.el = el = null;
+		},
+
+		_hideClone: function() {
+			if (!cloneEl.cloneHidden) {
+				_css(cloneEl, 'display', 'none');
+				cloneEl.cloneHidden = true;
+				if (cloneEl.parentNode && this.options.removeCloneOnHide) {
+					cloneEl.parentNode.removeChild(cloneEl);
+				}
+			}
+		},
+
+		_showClone: function(putSortable) {
+			if (putSortable.lastPutMode !== 'clone') {
+				this._hideClone();
+				return;
+			}
+
+			if (cloneEl.cloneHidden) {
+				// show clone at dragEl or original position
+				if (rootEl.contains(dragEl) && !this.options.group.revertClone) {
+					rootEl.insertBefore(cloneEl, dragEl);
+				} else if (nextEl) {
+					rootEl.insertBefore(cloneEl, nextEl);
+				} else {
+					rootEl.appendChild(cloneEl);
+				}
+
+				if (this.options.group.revertClone) {
+					this._animate(dragEl, cloneEl);
+				}
+				_css(cloneEl, 'display', '');
+				cloneEl.cloneHidden = false;
+			}
 		}
 	};
 
-
-	function _cloneHide(sortable, state) {
-		if (sortable.lastPullMode !== 'clone') {
-			state = true;
-		}
-
-		if (cloneEl && (cloneEl.state !== state)) {
-			_css(cloneEl, 'display', state ? 'none' : '');
-
-			if (!state) {
-				if (cloneEl.state) {
-					if (sortable.options.group.revertClone) {
-						rootEl.insertBefore(cloneEl, nextEl);
-						sortable._animate(dragEl, cloneEl);
-					} else {
-						rootEl.insertBefore(cloneEl, dragEl);
-					}
-				}
-			}
-
-			cloneEl.state = state;
-		}
-	}
-
-
-	function _closest(/**HTMLElement*/el, /**String*/selector, /**HTMLElement*/ctx) {
+	function _closest(/**HTMLElement*/el, /**String*/selector, /**HTMLElement*/ctx, includeCTX) {
 		if (el) {
 			ctx = ctx || document;
 
 			do {
-				if ((selector === '>*' && el.parentNode === ctx) || _matches(el, selector)) {
+				if (
+					selector != null &&
+					(
+						selector[0] === '>' ?
+						el.parentNode === ctx && _matches(el, selector) :
+						_matches(el, selector)
+					) ||
+					includeCTX && el === ctx
+				) {
 					return el;
 				}
+
+				if (el === ctx) break;
 				/* jshint boss:true */
 			} while (el = _getParentOrHost(el));
 		}
@@ -2970,9 +3538,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 
 
 	function _getParentOrHost(el) {
-		var parent = el.host;
-
-		return (parent && parent.nodeType) ? parent : el.parentNode;
+		return (el.host && el !== document && el.host.nodeType)
+			? el.host
+			: el.parentNode;
 	}
 
 
@@ -2980,22 +3548,22 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 		if (evt.dataTransfer) {
 			evt.dataTransfer.dropEffect = 'move';
 		}
-		evt.preventDefault();
+		evt.cancelable && evt.preventDefault();
 	}
 
 
 	function _on(el, event, fn) {
-		el.addEventListener(event, fn, captureMode);
+		el.addEventListener(event, fn, IE11OrLess ? false : captureMode);
 	}
 
 
 	function _off(el, event, fn) {
-		el.removeEventListener(event, fn, captureMode);
+		el.removeEventListener(event, fn, IE11OrLess ? false : captureMode);
 	}
 
 
 	function _toggleClass(el, name, state) {
-		if (el) {
+		if (el && name) {
 			if (el.classList) {
 				el.classList[state ? 'add' : 'remove'](name);
 			}
@@ -3022,12 +3590,32 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 				return prop === void 0 ? val : val[prop];
 			}
 			else {
-				if (!(prop in style)) {
+				if (!(prop in style) && prop.indexOf('webkit') === -1) {
 					prop = '-webkit-' + prop;
 				}
 
 				style[prop] = val + (typeof val === 'string' ? '' : 'px');
 			}
+		}
+	}
+
+	function _matrix(el) {
+		var appliedTransforms = '';
+		do {
+			var transform = _css(el, 'transform');
+
+			if (transform && transform !== 'none') {
+				appliedTransforms = transform + ' ' + appliedTransforms;
+			}
+			/* jshint boss:true */
+		} while (el = el.parentNode);
+
+		if (window.DOMMatrix) {
+			return new DOMMatrix(appliedTransforms);
+		} else if (window.WebKitCSSMatrix) {
+			return new WebKitCSSMatrix(appliedTransforms);
+		} else if (window.CSSMatrix) {
+			return new CSSMatrix(appliedTransforms);
 		}
 	}
 
@@ -3050,14 +3638,27 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 
 
 
-	function _dispatchEvent(sortable, rootEl, name, targetEl, toEl, fromEl, startIndex, newIndex) {
+	function _dispatchEvent(
+		sortable, rootEl, name,
+		targetEl, toEl, fromEl,
+		startIndex, newIndex,
+		startDraggableIndex, newDraggableIndex,
+		originalEvt
+	) {
 		sortable = (sortable || rootEl[expando]);
-
-		var evt = document.createEvent('Event'),
+		var evt,
 			options = sortable.options,
 			onName = 'on' + name.charAt(0).toUpperCase() + name.substr(1);
-
-		evt.initEvent(name, true, true);
+		// Support for new CustomEvent feature
+		if (window.CustomEvent && !IE11OrLess && !Edge) {
+			evt = new CustomEvent(name, {
+				bubbles: true,
+				cancelable: true
+			});
+		} else {
+			evt = document.createEvent('Event');
+			evt.initEvent(name, true, true);
+		}
 
 		evt.to = toEl || rootEl;
 		evt.from = fromEl || rootEl;
@@ -3067,7 +3668,15 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 		evt.oldIndex = startIndex;
 		evt.newIndex = newIndex;
 
-		rootEl.dispatchEvent(evt);
+		evt.oldDraggableIndex = startDraggableIndex;
+		evt.newDraggableIndex = newDraggableIndex;
+
+		evt.originalEvent = originalEvt;
+		evt.pullMode = putSortable ? putSortable.lastPutMode : undefined;
+
+		if (rootEl) {
+			rootEl.dispatchEvent(evt);
+		}
 
 		if (options[onName]) {
 			options[onName].call(sortable, evt);
@@ -3080,17 +3689,26 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 			sortable = fromEl[expando],
 			onMoveFn = sortable.options.onMove,
 			retVal;
-
-		evt = document.createEvent('Event');
-		evt.initEvent('move', true, true);
+		// Support for new CustomEvent feature
+		if (window.CustomEvent && !IE11OrLess && !Edge) {
+			evt = new CustomEvent('move', {
+				bubbles: true,
+				cancelable: true
+			});
+		} else {
+			evt = document.createEvent('Event');
+			evt.initEvent('move', true, true);
+		}
 
 		evt.to = toEl;
 		evt.from = fromEl;
 		evt.dragged = dragEl;
 		evt.draggedRect = dragRect;
 		evt.related = targetEl || toEl;
-		evt.relatedRect = targetRect || toEl.getBoundingClientRect();
+		evt.relatedRect = targetRect || _getRect(toEl);
 		evt.willInsertAfter = willInsertAfter;
+
+		evt.originalEvent = originalEvt;
 
 		fromEl.dispatchEvent(evt);
 
@@ -3101,26 +3719,166 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 		return retVal;
 	}
 
-
 	function _disableDraggable(el) {
 		el.draggable = false;
 	}
-
 
 	function _unsilent() {
 		_silent = false;
 	}
 
+	/**
+	 * Gets nth child of el, ignoring hidden children, sortable's elements (does not ignore clone if it's visible)
+	 * and non-draggable elements
+	 * @param  {HTMLElement} el       The parent element
+	 * @param  {Number} childNum      The index of the child
+	 * @param  {Object} options       Parent Sortable's options
+	 * @return {HTMLElement}          The child at index childNum, or null if not found
+	 */
+	function _getChild(el, childNum, options) {
+		var currentChild = 0,
+			i = 0,
+			children = el.children;
 
-	/** @returns {HTMLElement|false} */
-	function _ghostIsLast(el, evt) {
-		var lastEl = el.lastElementChild,
-			rect = lastEl.getBoundingClientRect();
+		while (i < children.length) {
+			if (
+				children[i].style.display !== 'none' &&
+				children[i] !== ghostEl &&
+				children[i] !== dragEl &&
+				_closest(children[i], options.draggable, el, false)
+			) {
+				if (currentChild === childNum) {
+					return children[i];
+				}
+				currentChild++;
+			}
 
-		// 5 — min delta
-		// abs — нельзя добавлять, а то глюки при наведении сверху
-		return (evt.clientY - (rect.top + rect.height) > 5) ||
-			(evt.clientX - (rect.left + rect.width) > 5);
+			i++;
+		}
+		return null;
+	}
+
+	/**
+	 * Gets the last child in the el, ignoring ghostEl or invisible elements (clones)
+	 * @param  {HTMLElement} el       Parent element
+	 * @return {HTMLElement}          The last child, ignoring ghostEl
+	 */
+	function _lastChild(el) {
+		var last = el.lastElementChild;
+
+		while (last && (last === ghostEl || _css(last, 'display') === 'none')) {
+			last = last.previousElementSibling;
+		}
+
+		return last || null;
+	}
+
+	function _ghostIsLast(evt, axis, el) {
+		var elRect = _getRect(_lastChild(el)),
+			mouseOnAxis = axis === 'vertical' ? evt.clientY : evt.clientX,
+			mouseOnOppAxis = axis === 'vertical' ? evt.clientX : evt.clientY,
+			targetS2 = axis === 'vertical' ? elRect.bottom : elRect.right,
+			targetS1Opp = axis === 'vertical' ? elRect.left : elRect.top,
+			targetS2Opp = axis === 'vertical' ? elRect.right : elRect.bottom,
+			spacer = 10;
+
+		return (
+			axis === 'vertical' ?
+				(mouseOnOppAxis > targetS2Opp + spacer || mouseOnOppAxis <= targetS2Opp && mouseOnAxis > targetS2 && mouseOnOppAxis >= targetS1Opp) :
+				(mouseOnAxis > targetS2 && mouseOnOppAxis > targetS1Opp || mouseOnAxis <= targetS2 && mouseOnOppAxis > targetS2Opp + spacer)
+		);
+	}
+
+	function _getSwapDirection(evt, target, axis, swapThreshold, invertedSwapThreshold, invertSwap, isLastTarget) {
+		var targetRect = _getRect(target),
+			mouseOnAxis = axis === 'vertical' ? evt.clientY : evt.clientX,
+			targetLength = axis === 'vertical' ? targetRect.height : targetRect.width,
+			targetS1 = axis === 'vertical' ? targetRect.top : targetRect.left,
+			targetS2 = axis === 'vertical' ? targetRect.bottom : targetRect.right,
+			dragRect = _getRect(dragEl),
+			invert = false;
+
+
+		if (!invertSwap) {
+			// Never invert or create dragEl shadow when target movemenet causes mouse to move past the end of regular swapThreshold
+			if (isLastTarget && targetMoveDistance < targetLength * swapThreshold) { // multiplied only by swapThreshold because mouse will already be inside target by (1 - threshold) * targetLength / 2
+				// check if past first invert threshold on side opposite of lastDirection
+				if (!pastFirstInvertThresh &&
+					(lastDirection === 1 ?
+						(
+							mouseOnAxis > targetS1 + targetLength * invertedSwapThreshold / 2
+						) :
+						(
+							mouseOnAxis < targetS2 - targetLength * invertedSwapThreshold / 2
+						)
+					)
+				)
+				{
+					// past first invert threshold, do not restrict inverted threshold to dragEl shadow
+					pastFirstInvertThresh = true;
+				}
+
+				if (!pastFirstInvertThresh) {
+					var dragS1 = axis === 'vertical' ? dragRect.top : dragRect.left,
+						dragS2 = axis === 'vertical' ? dragRect.bottom : dragRect.right;
+					// dragEl shadow (target move distance shadow)
+					if (
+						lastDirection === 1 ?
+						(
+							mouseOnAxis < targetS1 + targetMoveDistance // over dragEl shadow
+						) :
+						(
+							mouseOnAxis > targetS2 - targetMoveDistance
+						)
+					)
+					{
+						return lastDirection * -1;
+					}
+				} else {
+					invert = true;
+				}
+			} else {
+				// Regular
+				if (
+					mouseOnAxis > targetS1 + (targetLength * (1 - swapThreshold) / 2) &&
+					mouseOnAxis < targetS2 - (targetLength * (1 - swapThreshold) / 2)
+				) {
+					return _getInsertDirection(target);
+				}
+			}
+		}
+
+		invert = invert || invertSwap;
+
+		if (invert) {
+			// Invert of regular
+			if (
+				mouseOnAxis < targetS1 + (targetLength * invertedSwapThreshold / 2) ||
+				mouseOnAxis > targetS2 - (targetLength * invertedSwapThreshold / 2)
+			)
+			{
+				return ((mouseOnAxis > targetS1 + targetLength / 2) ? 1 : -1);
+			}
+		}
+
+		return 0;
+	}
+
+	/**
+	 * Gets the direction dragEl must be swapped relative to target in order to make it
+	 * seem that dragEl has been "inserted" into that element's position
+	 * @param  {HTMLElement} target       The target whose position dragEl is being inserted at
+	 * @return {Number}                   Direction dragEl must be swapped
+	 */
+	function _getInsertDirection(target) {
+		var dragElIndex = _index(dragEl),
+			targetIndex = _index(target);
+
+		if (dragElIndex < targetIndex) {
+			return 1;
+		} else {
+			return -1;
+		}
 	}
 
 
@@ -3157,7 +3915,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 		}
 
 		while (el && (el = el.previousElementSibling)) {
-			if ((el.nodeName.toUpperCase() !== 'TEMPLATE') && (selector === '>*' || _matches(el, selector))) {
+			if ((el.nodeName.toUpperCase() !== 'TEMPLATE') && el !== cloneEl && (!selector || _matches(el, selector))) {
 				index++;
 			}
 		}
@@ -3166,40 +3924,50 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 	}
 
 	function _matches(/**HTMLElement*/el, /**String*/selector) {
+		if (!selector) return;
+
+		selector[0] === '>' && (selector = selector.substring(1));
+
 		if (el) {
-			selector = selector.split('.');
-
-			var tag = selector.shift().toUpperCase(),
-				re = new RegExp('\\s(' + selector.join('|') + ')(?=\\s)', 'g');
-
-			return (
-				(tag === '' || el.nodeName.toUpperCase() == tag) &&
-				(!selector.length || ((' ' + el.className + ' ').match(re) || []).length == selector.length)
-			);
+			try {
+				if (el.matches) {
+					return el.matches(selector);
+				} else if (el.msMatchesSelector) {
+					return el.msMatchesSelector(selector);
+				} else if (el.webkitMatchesSelector) {
+					return el.webkitMatchesSelector(selector);
+				}
+			} catch(_) {
+				return false;
+			}
 		}
 
 		return false;
 	}
 
+	var _throttleTimeout;
 	function _throttle(callback, ms) {
-		var args, _this;
-
 		return function () {
-			if (args === void 0) {
-				args = arguments;
-				_this = this;
+			if (!_throttleTimeout) {
+				var args = arguments,
+					_this = this;
 
-				setTimeout(function () {
+				_throttleTimeout = setTimeout(function () {
 					if (args.length === 1) {
 						callback.call(_this, args[0]);
 					} else {
 						callback.apply(_this, args);
 					}
 
-					args = void 0;
+					_throttleTimeout = void 0;
 				}, ms);
 			}
 		};
+	}
+
+	function _cancelThrottle() {
+		clearTimeout(_throttleTimeout);
+		_throttleTimeout = void 0;
 	}
 
 	function _extend(dst, src) {
@@ -3227,6 +3995,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 	}
 
 	function _saveInputCheckedState(root) {
+		savedInputChecked.length = 0;
+
 		var inputs = root.getElementsByTagName('input');
 		var idx = inputs.length;
 
@@ -3244,12 +4014,158 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 		return clearTimeout(id);
 	}
 
+
+	/**
+	 * Returns the "bounding client rect" of given element
+	 * @param  {HTMLElement} el                The element whose boundingClientRect is wanted
+	 * @param  {[HTMLElement]} container       the parent the element will be placed in
+	 * @param  {[Boolean]} adjustForTransform  Whether the rect should compensate for parent's transform
+	 * @return {Object}                        The boundingClientRect of el
+	 */
+	function _getRect(el, adjustForTransform, container, adjustForFixed) {
+		if (!el.getBoundingClientRect && el !== win) return;
+
+		var elRect,
+			top,
+			left,
+			bottom,
+			right,
+			height,
+			width;
+
+		if (el !== win && el !== _getWindowScrollingElement()) {
+			elRect = el.getBoundingClientRect();
+			top = elRect.top;
+			left = elRect.left;
+			bottom = elRect.bottom;
+			right = elRect.right;
+			height = elRect.height;
+			width = elRect.width;
+		} else {
+			top = 0;
+			left = 0;
+			bottom = window.innerHeight;
+			right = window.innerWidth;
+			height = window.innerHeight;
+			width = window.innerWidth;
+		}
+
+		if (adjustForFixed && el !== win) {
+			// Adjust for translate()
+			container = container || el.parentNode;
+
+			// solves #1123 (see: https://stackoverflow.com/a/37953806/6088312)
+			// Not needed on <= IE11
+			if (!IE11OrLess) {
+				do {
+					if (container && container.getBoundingClientRect && _css(container, 'transform') !== 'none') {
+						var containerRect = container.getBoundingClientRect();
+
+						// Set relative to edges of padding box of container
+						top -= containerRect.top + parseInt(_css(container, 'border-top-width'));
+						left -= containerRect.left + parseInt(_css(container, 'border-left-width'));
+						bottom = top + elRect.height;
+						right = left + elRect.width;
+
+						break;
+					}
+					/* jshint boss:true */
+				} while (container = container.parentNode);
+			}
+		}
+
+		if (adjustForTransform && el !== win) {
+			// Adjust for scale()
+			var matrix = _matrix(container || el),
+				scaleX = matrix && matrix.a,
+				scaleY = matrix && matrix.d;
+
+			if (matrix) {
+				top /= scaleY;
+				left /= scaleX;
+
+				width /= scaleX;
+				height /= scaleY;
+
+				bottom = top + height;
+				right = left + width;
+			}
+		}
+
+		return {
+			top: top,
+			left: left,
+			bottom: bottom,
+			right: right,
+			width: width,
+			height: height
+		};
+	}
+
+
+	/**
+	 * Checks if a side of an element is scrolled past a side of it's parents
+	 * @param  {HTMLElement}  el       The element who's side being scrolled out of view is in question
+	 * @param  {String}       side     Side of the element in question ('top', 'left', 'right', 'bottom')
+	 * @return {HTMLElement}           The parent scroll element that the el's side is scrolled past, or null if there is no such element
+	 */
+	function _isScrolledPast(el, side) {
+		var parent = _getParentAutoScrollElement(el, true),
+			elSide = _getRect(el)[side];
+
+		/* jshint boss:true */
+		while (parent) {
+			var parentSide = _getRect(parent)[side],
+				visible;
+
+			if (side === 'top' || side === 'left') {
+				visible = elSide >= parentSide;
+			} else {
+				visible = elSide <= parentSide;
+			}
+
+			if (!visible) return parent;
+
+			if (parent === _getWindowScrollingElement()) break;
+
+			parent = _getParentAutoScrollElement(parent, false);
+		}
+
+		return false;
+	}
+
+	/**
+	 * Returns the scroll offset of the given element, added with all the scroll offsets of parent elements.
+	 * The value is returned in real pixels.
+	 * @param  {HTMLElement} el
+	 * @return {Array}             Offsets in the format of [left, top]
+	 */
+	function _getRelativeScrollOffset(el) {
+		var offsetLeft = 0,
+			offsetTop = 0,
+			winScroller = _getWindowScrollingElement();
+
+		if (el) {
+			do {
+				var matrix = _matrix(el),
+					scaleX = matrix.a,
+					scaleY = matrix.d;
+
+				offsetLeft += el.scrollLeft * scaleX;
+				offsetTop += el.scrollTop * scaleY;
+			} while (el !== winScroller && (el = el.parentNode));
+		}
+
+		return [offsetLeft, offsetTop];
+	}
+
 	// Fixed #973:
-	_on(document, 'touchmove', function (evt) {
-		if (Sortable.active) {
+	_on(document, 'touchmove', function(evt) {
+		if ((Sortable.active || awaitingDragStarted) && evt.cancelable) {
 			evt.preventDefault();
 		}
 	});
+
 
 	// Export utils
 	Sortable.utils = {
@@ -3258,7 +4174,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 		css: _css,
 		find: _find,
 		is: function (el, selector) {
-			return !!_closest(el, selector, el);
+			return !!_closest(el, selector, el, false);
 		},
 		extend: _extend,
 		throttle: _throttle,
@@ -3267,7 +4183,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 		clone: _clone,
 		index: _index,
 		nextTick: _nextTick,
-		cancelNextTick: _cancelNextTick
+		cancelNextTick: _cancelNextTick,
+		detectDirection: _detectDirection,
+		getChild: _getChild
 	};
 
 
@@ -3282,20 +4200,20 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 
 
 	// Export
-	Sortable.version = '1.7.0';
+	Sortable.version = '1.9.0';
 	return Sortable;
 });
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_event_emitter_es6__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_event_emitter_es6___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_event_emitter_es6__);
 
-__webpack_require__(58)
+__webpack_require__(59)
 
 /**
  * Un CqBlock est un block temporaire avant que le vrai block généré par php n'apparaisse.
@@ -3384,7 +4302,7 @@ class CqBlock extends __WEBPACK_IMPORTED_MODULE_0_event_emitter_es6___default.a{
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3496,20 +4414,108 @@ class CqProgressCircle extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" 
 
 
 /***/ }),
-/* 20 */,
-/* 21 */,
+/* 21 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__WysiwygField__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cq_progress_bar_CqProgressBar__ = __webpack_require__(8);
+
+
+
+
+__webpack_require__(85);
+class CqFieldUpload extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */]{
+    constructor($main){
+        super($main);
+        let me=this;
+
+        if(!$main.is("[wysiwyg-var][wysiwyg-data-type='file']")){
+            let m="wrong CqFieldUpload";
+            alert(m);
+            console.error(m,$main);
+            return;
+        }
+        this.field=new __WEBPACK_IMPORTED_MODULE_1__WysiwygField__["a" /* default */]($main);
+        this.$inputFile=$main.find("input[type='file']");
+        this.$progressText=$main.find("[data-progress-text]");
+        let $progressBar=$main.find("[cq-progress-bar]");
+        if($progressBar.length){
+            this.progressbar=new __WEBPACK_IMPORTED_MODULE_2__cq_progress_bar_CqProgressBar__["a" /* default */]($progressBar);
+        }
+        this._startUpload();
+    }
+
+    _startUpload(){
+        let me=this;
+        me.$main.attr("state","uploading")
+        //1 uploader le fichier
+        window.pov.api.uploadChuncked(
+            me.$inputFile.get(0).files[0],
+            function(progress){ //cbProgress
+                //console.log("uploading file "+progress)
+                me.$progressText.text(String(progress)+"%");
+                me.progressbar.progress=progress;
+            },
+            function(apiResponse){ //cbComplete
+                //receptionner l'uid du Filerecord
+                //console.log("upload okkk json",apiResponse);
+                //3 l'enregistrer dans le champ
+                me.field.$field.attr("wysiwyg-value",apiResponse.json.record.uid);
+                me.field.doSave(true);
+                me.$main.attr("state","")
+            },
+            function(apiResponse){ //cbError
+                //console.error("erreur uploaddddd",apiResponse);
+                me.$main.attr("state","error")
+            }
+        );
+        /*
+        //ancienne méthode (pas chunk)
+        window.pov.api.upload(
+            me.$inputFile.get(0).files[0],
+            function(progress){
+                console.log("uploading file "+progress)
+                me.$progressText.text(String(progress)+"%");
+                me.progressbar.progress=progress;
+            }
+        ).then(
+            function(apiResponse){
+                //2 receptionner l'uid du Filerecord
+                console.log("upload ok json",apiResponse);
+                //3 l'enregistrer dans le champ
+                me.field.$field.attr("wysiwyg-value",apiResponse.json.record.uid);
+                me.field.doSave(true);
+                me.$main.attr("state","")
+            },
+            function(){
+                //failed
+                console.error("erreur upload");
+                me.$main.attr("state","error")
+            }
+        );
+        */
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = CqFieldUpload;
+
+
+/***/ }),
 /* 22 */,
 /* 23 */,
 /* 24 */,
 /* 25 */,
-/* 26 */
+/* 26 */,
+/* 27 */,
+/* 28 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Wysiwyg__ = __webpack_require__(4);
-__webpack_require__(27);
-__webpack_require__(28);
+__webpack_require__(29);
+__webpack_require__(30);
 
 Pov.onBodyReady(function(){
     console.log("ready (wysiwyg)");
@@ -3529,29 +4535,29 @@ Pov.onBodyReady(function(){
 
 
 /***/ }),
-/* 27 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
 /* 29 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 31 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cq_new_record_CqNewRecord__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cq_panel_section_CqPanelSection__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cq_panel_section_CqPanelSection__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cq_tip_CqTip__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UserSection__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cq_browse_records_CqBrowseRecords__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UserSection__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cq_browse_records_CqBrowseRecords__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__cq_edit_record_box_CqEditRecordBox__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__cq_display_if_CqDisplayControl__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__cq_display_if_CqDisplayControl__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__DisplayObject__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__cq_loading_dots_CqLoadingDots__ = __webpack_require__(14);
 
@@ -3563,7 +4569,7 @@ Pov.onBodyReady(function(){
 
 
 
-__webpack_require__(45);
+__webpack_require__(47);
 
 
 class CqBigMenu{
@@ -3793,7 +4799,7 @@ class CqBigMenu{
 
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3801,7 +4807,7 @@ class CqBigMenu{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DisplayObject__ = __webpack_require__(0);
 
 
-__webpack_require__(31);
+__webpack_require__(33);
 
 
 
@@ -3947,20 +4953,20 @@ class CqPanelSection extends __WEBPACK_IMPORTED_MODULE_1__DisplayObject__["a" /*
 
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var H = __webpack_require__(6);
 module.exports = function() { var T = new H.Template({code: function (c,p,i) { var t=this;t.b(i=i||"");t.b("<i cq-tip data-count=\"");t.b(t.v(t.f("count",c,p,0)));t.b("\" title=\"");t.b(t.v(t.f("message",c,p,0)));t.b("\" class=\"cq-th-");t.b(t.v(t.f("theme",c,p,0)));t.b("\"></i>");return t.fl(); },partials: {}, subs: {  }}, "<i cq-tip data-count=\"{{count}}\" title=\"{{message}}\" class=\"cq-th-{{theme}}\"></i>", H);return T.render.apply(T, arguments); };
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -4389,7 +5395,7 @@ module.exports = function() { var T = new H.Template({code: function (c,p,i) { v
 
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -4736,7 +5742,7 @@ var Hogan = {};
 
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4810,18 +5816,6 @@ class UserSection{
 
 
 /***/ }),
-/* 36 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"cq-loading-dots\">\r\n    <i class=\"a\"></i>\r\n    <i class=\"b\"></i>\r\n    <i class=\"c\"></i>\r\n</div>";
-
-/***/ }),
 /* 38 */
 /***/ (function(module, exports) {
 
@@ -4829,6 +5823,18 @@ module.exports = "<div class=\"cq-loading-dots\">\r\n    <i class=\"a\"></i>\r\n
 
 /***/ }),
 /* 39 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"cq-loading-dots\">\r\n    <i class=\"a\"></i>\r\n    <i class=\"b\"></i>\r\n    <i class=\"c\"></i>\r\n</div>";
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4838,7 +5844,7 @@ module.exports = "<div class=\"cq-loading-dots\">\r\n    <i class=\"a\"></i>\r\n
 
 
 
-__webpack_require__(40);
+__webpack_require__(42);
 
 class BrowseRecords extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */]{
     /**
@@ -4970,18 +5976,6 @@ class BrowseRecords extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
 
 
 /***/ }),
-/* 40 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
 /* 42 */
 /***/ (function(module, exports) {
 
@@ -4989,6 +5983,18 @@ class BrowseRecords extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
 
 /***/ }),
 /* 43 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 45 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4996,7 +6002,7 @@ class BrowseRecords extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CqLocalStorage__ = __webpack_require__(5);
 
 
-__webpack_require__(44);
+__webpack_require__(46);
 
 class CqDisplayControl extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */]{
     constructor($main){
@@ -5037,51 +6043,23 @@ class CqDisplayControl extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" 
 
 
 /***/ }),
-/* 44 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 45 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
 /* 46 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-class WysiwygString{
-    /**
-     * Formate un texte
-     * @param {string} str
-     * @param {string} formatIdentifier
-     * @returns {*}
-     */
-    static format(str,formatIdentifier){
-        switch (formatIdentifier){
-            case "STRING_FORMAT_NO_HTML_SINGLE_LINE":
-            case "FORMAT_NO_HTML_MULTI_LINE":
-                let div = document.createElement("div");
-                div.innerHTML = str;
-                str= div.textContent || div.innerText || "";
-                return str;
-            default:
-                return str;
-        }
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = WysiwygString;
-
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 47 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cq_popin_box_CqPopinBox__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cq_popin_box_CqPopinBox__ = __webpack_require__(17);
 /**
  * La fenêtre qui permet de sélectionner des records
  */
@@ -5335,18 +6313,18 @@ class CqRecordPicker extends __WEBPACK_IMPORTED_MODULE_0__cq_popin_box_CqPopinBo
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cq_popin_box_CqPopinBox__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cq_btn_group_CqBtnGroup__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cq_popin_box_CqPopinBox__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cq_btn_group_CqBtnGroup__ = __webpack_require__(51);
 
 
 
@@ -5960,13 +6938,13 @@ class CqContextMenu{
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
 
-__webpack_require__(51);
+__webpack_require__(52);
 
 class CqBtnGroup extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */]{
     /**
@@ -6037,22 +7015,22 @@ $.fn.CqBtnGroup = function() {
 };
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cq_fields_WysiwygField__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cq_fields_WysiwygField__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Wysiwyg__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cq_sortable_CqSortable__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cq_block_picker_CqBlockPicker__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__CqBlock__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__CqBlockFile__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cq_block_picker_CqBlockPicker__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__CqBlock__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__CqBlockFile__ = __webpack_require__(60);
 /**
  * Une liste d'éléments réorganisables
  */
@@ -6062,8 +7040,8 @@ $.fn.CqBtnGroup = function() {
 
 
 
-const Sortable=__webpack_require__(17);
-__webpack_require__(60);
+const Sortable=__webpack_require__(18);
+__webpack_require__(61);
 
 //todo opti virer tous les attributs et mettre ça dans options
 
@@ -6718,21 +7696,21 @@ $.fn.CqBlocks = function() {
 };
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
 
 
-__webpack_require__(55);
 __webpack_require__(56);
+__webpack_require__(57);
 /**
  * Au click sur un des boutons emet un EVENT.SELECT avec comme paramètre le template path relatif
  */
@@ -6747,7 +7725,7 @@ class CqBlockPicker extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* 
     constructor($main,message="Choisissez",templates){
         //crée à partir du template
         if(!$main){
-            var template = __webpack_require__(57);
+            var template = __webpack_require__(58);
             var html = template(
                 {
                     message: window.pov.utils.decodeHtml(message),
@@ -6932,12 +7910,6 @@ class TemplateItem{
 }
 
 /***/ }),
-/* 55 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
 /* 56 */
 /***/ (function(module, exports) {
 
@@ -6945,24 +7917,30 @@ class TemplateItem{
 
 /***/ }),
 /* 57 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var H = __webpack_require__(6);
 module.exports = function() { var T = new H.Template({code: function (c,p,i) { var t=this;t.b(i=i||"");t.b("<div id=\"cq-style\" cq-block-picker class=\"cq-vars-th-black\">\r");t.b("\n" + i);t.b("    <button class=\"cq-unstyled close\">\r");t.b("\n" + i);t.b("        <svg class=\"svg wysiwyg-icon\">\r");t.b("\n" + i);t.b("            <use class=\"svg\" xlink:href=\"#cq-close\"></use>\r");t.b("\n" + i);t.b("        </svg>\r");t.b("\n" + i);t.b("    </button>\r");t.b("\n" + i);t.b("\r");t.b("\n" + i);t.b("    <div class=\"message\">\r");t.b("\n" + i);t.b("        ");t.b(t.v(t.f("message",c,p,0)));t.b("\r");t.b("\n" + i);t.b("    </div>\r");t.b("\n" + i);t.b("\r");t.b("\n" + i);t.b("    <div class=\"buttons-container\">\r");t.b("\n" + i);t.b("\r");t.b("\n" + i);t.b("    </div>\r");t.b("\n" + i);t.b("</div>");return t.fl(); },partials: {}, subs: {  }}, "<div id=\"cq-style\" cq-block-picker class=\"cq-vars-th-black\">\r\n    <button class=\"cq-unstyled close\">\r\n        <svg class=\"svg wysiwyg-icon\">\r\n            <use class=\"svg\" xlink:href=\"#cq-close\"></use>\r\n        </svg>\r\n    </button>\r\n\r\n    <div class=\"message\">\r\n        {{message}}\r\n    </div>\r\n\r\n    <div class=\"buttons-container\">\r\n\r\n    </div>\r\n</div>", H);return T.render.apply(T, arguments); };
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CqBlock__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cq_progress_circle_CqProgressCircle__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CqBlock__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cq_progress_circle_CqProgressCircle__ = __webpack_require__(20);
 
 
 
@@ -7017,19 +7995,19 @@ class CqBlockFile extends __WEBPACK_IMPORTED_MODULE_0__CqBlock__["a" /* default 
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cq_progress_circle_CqProgressCircle__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__WysiwygField__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cq_progress_circle_CqProgressCircle__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__WysiwygField__ = __webpack_require__(2);
 /**
  * Une image éditable
  */
@@ -7190,20 +8168,20 @@ class WysiwygImage extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* d
 
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_medium_editor__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_medium_editor__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_medium_editor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_medium_editor__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_medium_button__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_medium_button__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_medium_button___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_medium_button__);
 
 
 
-__webpack_require__ (66);
 __webpack_require__ (67);
+__webpack_require__ (68);
 
 
 
@@ -7310,7 +8288,7 @@ class CqFieldRichText extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {var __WEBPACK_AMD_DEFINE_RESULT__;/*global self, document, DOMException */
@@ -15208,10 +16186,10 @@ MediumEditor.version = MediumEditor.parseVersionString.call(this, ({
     return MediumEditor;
 }()));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(64)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(65)))
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -15401,7 +16379,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15539,12 +16517,6 @@ if (true) {
 }
 
 /***/ }),
-/* 66 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
 /* 67 */
 /***/ (function(module, exports) {
 
@@ -15552,14 +16524,20 @@ if (true) {
 
 /***/ }),
 /* 68 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 69 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cq_notification_CqNotification__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cq_notification_CqNotification__ = __webpack_require__(70);
 
 
-__webpack_require__(74);
+__webpack_require__(75);
 
 
 class CqNotifier extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */]{
@@ -15646,7 +16624,7 @@ class CqNotifier extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* def
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15657,7 +16635,7 @@ class CqNotifier extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* def
 
 
 
-__webpack_require__(72);
+__webpack_require__(73);
 
 class CqNotification extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject_js__["a" /* default */]{
 
@@ -15667,7 +16645,7 @@ class CqNotification extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject_js__["a"
 
         //crée à partir du template
         if(!$main){
-            var template = __webpack_require__(73);
+            var template = __webpack_require__(74);
             var html = template(
                 {
                     theme: theme,
@@ -15763,7 +16741,7 @@ $.fn.CqNotification = function() {
 };
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15802,12 +16780,6 @@ class CqProgress extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* def
 
 
 /***/ }),
-/* 71 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
 /* 72 */
 /***/ (function(module, exports) {
 
@@ -15815,25 +16787,31 @@ class CqProgress extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* def
 
 /***/ }),
 /* 73 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var H = __webpack_require__(6);
 module.exports = function() { var T = new H.Template({code: function (c,p,i) { var t=this;t.b(i=i||"");t.b("<div cq-notification class=\"cq-th-");t.b(t.v(t.f("theme",c,p,0)));t.b("\" cq-notification-about-uid=\"");t.b(t.v(t.f("uid",c,p,0)));t.b("\">\r");t.b("\n" + i);t.b("\r");t.b("\n" + i);t.b("    <div class=\"icon\"></div>\r");t.b("\n" + i);t.b("    <main>\r");t.b("\n" + i);t.b("        ");t.b(t.v(t.f("message",c,p,0)));t.b("\r");t.b("\n" + i);t.b("    </main>\r");t.b("\n" + i);t.b("    <div cq-progress-bar value=\"0\" min=\"0\" max=\"100\">\r");t.b("\n" + i);t.b("        <div class=\"bar\"></div>\r");t.b("\n" + i);t.b("    </div>\r");t.b("\n" + i);t.b("</div>");return t.fl(); },partials: {}, subs: {  }}, "<div cq-notification class=\"cq-th-{{theme}}\" cq-notification-about-uid=\"{{uid}}\">\r\n\r\n    <div class=\"icon\"></div>\r\n    <main>\r\n        {{message}}\r\n    </main>\r\n    <div cq-progress-bar value=\"0\" min=\"0\" max=\"100\">\r\n        <div class=\"bar\"></div>\r\n    </div>\r\n</div>", H);return T.render.apply(T, arguments); };
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cq_sortable_CqSortable__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cq_fields_WysiwygField__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cq_fields_WysiwygField__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Wysiwyg__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cq_progress_bar_CqProgressBar__ = __webpack_require__(8);
 
@@ -15913,7 +16891,7 @@ class CqFieldRecords extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /*
             for(let file of $(this).get(0).files){
                 toUpload++;
                 console.log(file.name);
-                let $preview=$(__webpack_require__(76));
+                let $preview=$(__webpack_require__(77));
                 /**
                  *
                  * @type {CqProgressBar}
@@ -15999,19 +16977,19 @@ class CqFieldRecords extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /*
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"preview-record\">\r\n    <span class=\"icon\">\r\n            <svg class=\"svg svg-cq-circle-play\">\r\n                <use class=\"svg svg-cq-cloud-upload\" xlink:href=\"#cq-cloud-upload\"></use>\r\n            </svg>\r\n\r\n    </span>\r\n    <i cq-tip=\"\" class=\"cq-th-danger inline\" data-count=\"0\" title=\"\"></i>\r\n    <div class=\"content\">\r\n        <div class=\"title\" title=\"\">YO</div>\r\n        <span class=\"type\">0%</span>\r\n        <div data-progress-bar=\"<?=$uid?>\" cq-progress-bar progress=\"0\" min=\"0\" max=\"100\">\r\n            <div class=\"bar\"></div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
 
-__webpack_require__(78);
+__webpack_require__(79);
 
 /**
  *
@@ -16135,23 +17113,23 @@ class CqFieldGoogleMap extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" 
 
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_croppr__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_croppr__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_croppr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_croppr__);
 
 //require("./cq-field-crop.less");
 
-__webpack_require__(81);
+__webpack_require__(82);
 /**
  *
  */
@@ -16253,7 +17231,7 @@ class CqFieldCrop extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* de
 
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -17448,17 +18426,17 @@ return Croppr$1;
 
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cq_db_CqDb__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cq_db_CqDb__ = __webpack_require__(84);
 
 
 class CqAdmin{
@@ -17582,7 +18560,7 @@ class CqAdmin{
 
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17616,94 +18594,6 @@ class CqDb{
     }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = CqDb;
-
-
-/***/ }),
-/* 84 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DisplayObject__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__WysiwygField__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cq_progress_bar_CqProgressBar__ = __webpack_require__(8);
-
-
-
-
-__webpack_require__(85);
-class CqFieldUpload extends __WEBPACK_IMPORTED_MODULE_0__DisplayObject__["a" /* default */]{
-    constructor($main){
-        super($main);
-        let me=this;
-
-        if(!$main.is("[wysiwyg-var][wysiwyg-data-type='file']")){
-            let m="wrong CqFieldUpload";
-            alert(m);
-            console.error(m,$main);
-            return;
-        }
-        this.field=new __WEBPACK_IMPORTED_MODULE_1__WysiwygField__["a" /* default */]($main);
-        this.$inputFile=$main.find("input[type='file']");
-        this.$progressText=$main.find("[data-progress-text]");
-        let $progressBar=$main.find("[cq-progress-bar]");
-        if($progressBar.length){
-            this.progressbar=new __WEBPACK_IMPORTED_MODULE_2__cq_progress_bar_CqProgressBar__["a" /* default */]($progressBar);
-        }
-        this._startUpload();
-    }
-
-    _startUpload(){
-        let me=this;
-        me.$main.attr("state","uploading")
-        //1 uploader le fichier
-        window.pov.api.uploadChuncked(
-            me.$inputFile.get(0).files[0],
-            function(progress){ //cbProgress
-                //console.log("uploading file "+progress)
-                me.$progressText.text(String(progress)+"%");
-                me.progressbar.progress=progress;
-            },
-            function(apiResponse){ //cbComplete
-                //receptionner l'uid du Filerecord
-                //console.log("upload okkk json",apiResponse);
-                //3 l'enregistrer dans le champ
-                me.field.$field.attr("wysiwyg-value",apiResponse.json.record.uid);
-                me.field.doSave(true);
-                me.$main.attr("state","")
-            },
-            function(apiResponse){ //cbError
-                //console.error("erreur uploaddddd",apiResponse);
-                me.$main.attr("state","error")
-            }
-        );
-        /*
-        //ancienne méthode (pas chunk)
-        window.pov.api.upload(
-            me.$inputFile.get(0).files[0],
-            function(progress){
-                console.log("uploading file "+progress)
-                me.$progressText.text(String(progress)+"%");
-                me.progressbar.progress=progress;
-            }
-        ).then(
-            function(apiResponse){
-                //2 receptionner l'uid du Filerecord
-                console.log("upload ok json",apiResponse);
-                //3 l'enregistrer dans le champ
-                me.field.$field.attr("wysiwyg-value",apiResponse.json.record.uid);
-                me.field.doSave(true);
-                me.$main.attr("state","")
-            },
-            function(){
-                //failed
-                console.error("erreur upload");
-                me.$main.attr("state","error")
-            }
-        );
-        */
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = CqFieldUpload;
 
 
 /***/ }),
@@ -17772,6 +18662,62 @@ $( document ).ready(function() {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 92 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__WysiwygField__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__WysiwygString__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CqFieldUpload__ = __webpack_require__(21);
+
+
+
+//Event changed....
+
+
+
+
+
+// un changement de type input (textes, select etc...)
+$body.on("input WYSIWYG_EVENT_CHANGED","[wysiwyg-var]",function(e){
+    e.stopPropagation();
+    if($(e.target).is("[wysiwyg-var]")){
+        console.log("Wysiwyg.events.CHANGED")
+        let field=new __WEBPACK_IMPORTED_MODULE_0__WysiwygField__["a" /* default */]($(this));
+        field.mirror();
+        field.doSave();
+    }
+});
+
+// on paste sur des champs texte sans formatage de texte
+$body.on("paste","[wysiwyg-var][contenteditable='true'][wysiwyg-data-type-format='STRING_FORMAT_NO_HTML_SINGLE_LINE'],[wysiwyg-var][contenteditable='true'][wysiwyg-data-type-format='STRING_FORMAT_NO_HTML_MULTI_LINE']",function(e){
+    let $field=$(this);
+    let caret=$field[0].selectionStart;
+    setTimeout(function(){
+        $field.text(__WEBPACK_IMPORTED_MODULE_1__WysiwygString__["a" /* default */].format($field.text(),$field.attr("wysiwyg-data-type-format")));
+    },10);
+});
+
+// click sur un uploader de fichier
+$body.on("change","[wysiwyg-var][wysiwyg-data-type='file'] input[type='file']",function(){
+    new __WEBPACK_IMPORTED_MODULE_2__CqFieldUpload__["a" /* CqFieldUpload */]($(this).closest("[wysiwyg-var][wysiwyg-data-type='file']"));
+});
+
+// changement d'un checkbox
+$body.on("change","[wysiwyg-var][wysiwyg-data-type='list-string'] input[type='checkbox']",function(){
+    let $f=$(this).closest("[wysiwyg-var][wysiwyg-data-type='list-string']");
+    let field=new __WEBPACK_IMPORTED_MODULE_0__WysiwygField__["a" /* default */]($f);
+    field.doSave(true);
+});
+// changement d'une geoloc
+$body.on("input change","[wysiwyg-var][wysiwyg-data-type='geoloc'] input[latlng]",function(){
+    let $f=$(this).closest("[wysiwyg-var][wysiwyg-data-type='geoloc']");
+    let field=new __WEBPACK_IMPORTED_MODULE_0__WysiwygField__["a" /* default */]($f);
+    field.doSave(true);
+});
 
 /***/ })
 /******/ ]);
