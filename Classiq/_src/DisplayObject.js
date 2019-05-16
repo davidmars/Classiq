@@ -26,7 +26,7 @@ export default class DisplayObject extends EventEmitter{
         if(!CLASS_NAME){
             console.warn("pas de this.CLASS_NAME pour "+this.constructor.name)
         }
-        if(CLASS_NAME!=this.constructor.name){
+        if(this.constructor.name!=="t" && CLASS_NAME != this.constructor.name){
             console.error("CLASS_NAME ("+CLASS_NAME+") incorrect pour "+this.constructor.name)
         }
         /**
