@@ -619,15 +619,19 @@ export default class CqBlocks extends CqSortable{
                     me.dispatchChange();
                 });
             }
-            //config ou pas?
+            //bouton + popin de config (ou pas)
             if(template.config()){
                 wysiwyg.contextMenu.btns.cog(function(){
                     openConfig();
                 })
             }
-            //options dans le menu des boutons ou pas?
-            if(template.options()){
-                wysiwyg.contextMenu.showOptions(template.options(),itemUid)
+            //custom buttons dans le menu des boutons volants (ou pas)
+            let customMenu=template.getCustomMenuPath();
+            if(customMenu){
+                wysiwyg.contextMenu.showCustomMenu(
+                    customMenu
+                    ,itemUid
+                )
             }
             //définit l'icone de preview
             wysiwyg.contextMenu.btns.setPreviewIcon(

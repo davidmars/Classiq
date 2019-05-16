@@ -198,7 +198,7 @@ class TemplateItem{
     }
     /**
      *
-     * @returns {string} Chemin vers le template des ui-options/boutons de mnu (ou pas)
+     * @returns {string} Chemin vers le template des custom buttons affichés dans le menu volant (ou pas)
      */
     options(){
         return this.$item.attr("options");

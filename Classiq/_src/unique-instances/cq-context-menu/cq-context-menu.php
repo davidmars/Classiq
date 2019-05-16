@@ -26,7 +26,7 @@
 
 
 
-            <?//menu volant ?>
+            <?//menu volant des blocks?>
             <div cq-btn-group class="is-menu cq-th-white">
 
                 <span style="display:none;"
@@ -35,8 +35,8 @@
                     <?=pov()->svg->use("cq-sad")?>
                 </span>
 
-                <span data-pov-refresh-method="html" class="js-ui-options" cq-btn-sub-group>
-                    <?//bouton de config viennent ici?>
+                <span data-pov-refresh-method="html" class="js-custom-menu" cq-btn-sub-group>
+                    <?//les boutons de config menus customs viennent ici?>
                 </span>
                 <a href="#up"><?=pov()->svg->use("cq-arrow-up")?></a>
                 <a href="#down"><?=pov()->svg->use("cq-arrow-down")?></a>

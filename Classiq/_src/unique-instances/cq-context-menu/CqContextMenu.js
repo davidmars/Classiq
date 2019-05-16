@@ -110,7 +110,11 @@ export default class CqContextMenu{
         });
 
 
-
+        /**
+         * Affiche le bouton donné et déclenchera le callback au click
+         * @param $btn
+         * @param cb
+         */
         function buttonAction($btn,cb){
             $btn.css("display","").on("click",function(e){
                 e.preventDefault();
@@ -156,9 +160,9 @@ export default class CqContextMenu{
              */
             $cog    :$main.find("[href='#cog']"),
             /**
-             * @private Le conteneur pour les boutons de config
+             * @private Le conteneur pour les boutons de config custom
              */
-            $uiOptions    :$main.find(".js-ui-options"),
+            $customMenu    :$main.find(".js-custom-menu"),
             /**
              * @private
              */
@@ -214,14 +218,6 @@ export default class CqContextMenu{
              */
             cog:function(cb){
                 buttonAction(this.$cog,cb);
-            },/**
-             * Active les boutons
-             * @param optionsTemplate
-             */
-            setOptions:function(optionsTemplate){
-                this.$uiOptions.css("display","flex");
-                PovApi.getView(optionsTemplate,)
-                this.$uiOptions.text(optionsTemplate)
             },
             /**
              * Affiche l'icone svg en preview
@@ -619,20 +615,21 @@ export default class CqContextMenu{
         }
     }
     /**
-     * Charge dans le menu des boutons un sous templete (d'autres boutons)
+     * Charge dans le menu des boutons un sous template (d'autres boutons)
      * @param {string} configPath Chemin vers la vue des boutons
      * @param {String} uid identifiant unique du modèle relatif
      */
-    showOptions(configPath,uid){
+    showCustomMenu(configPath,uid){
         //return;
         //this.setAnchor(null);
-        this.btns.$uiOptions.text("...");
-        this.btns.$uiOptions.css("display","flex");
+        let $menu=this.btns.$customMenu;
+        $menu.text("...");
+        $menu.css("display","flex");
         if(configPath){
-            this.btns.$uiOptions.attr("data-pov-v-path",configPath);
-            this.btns.$uiOptions.attr("data-pov-vv-uid",uid);
-            this.btns.$uiOptions.attr("id","options-loader");
-            this.btns.$uiOptions.povRefresh();
+            $menu.attr("data-pov-v-path",configPath);
+            $menu.attr("data-pov-vv-uid",uid);
+            $menu.attr("id","options-loader");
+            $menu.povRefresh();
         }else{
             console.error("pas d'uid ou configPath pour charger la config")
         }
