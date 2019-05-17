@@ -60,7 +60,10 @@
     background: transparent;
     outline: none;
     &[selected='selected']{
-      background-color: var(--cq-color-selected);
+      color: var(--cq-color-success);
+    }
+    svg{
+      pointer-events: none !important;
     }
   }
   >a,>button,.ico{
@@ -90,16 +93,17 @@
     }
   }
 
+  //tous les éléments
   >*{
     flex-shrink: 0;
     flex-grow: 1;
-    //background: inherit;
     border: 0;
     border-right: 1px solid var(--cq-color-fld-bdr);
     margin-right: -1px;
     padding: 2px;
     height: var(--btn-size);
     width: var(--btn-size);
+
     &[cq-btn-sub-group]{
       width: auto;
       padding: 0px;
@@ -108,6 +112,12 @@
     >svg{
       width: var(--svg-size) !important;
       height: var(--svg-size) !important;
+    }
+    &.wide{
+      width: calc( var(--btn-size) * 1.5 );
+      >svg{
+        width:calc( var(--svg-size) * 1.5 ) !important;
+      }
     }
   }
 
