@@ -1,14 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="cq-images-image" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-	 y="0px" viewBox="0 0 147.7 54.6" style="enable-background:new 0 0 147.7 54.6;" xml:space="preserve">
-<path style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;" d="M81.7,1.2c21-0.1,43-0.1,64.3,0"/>
-<path style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;" d="M81.7,14.3c21,0.2,43,0.2,64.3,0"/>
-<path style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;" d="M81.7,27.4c21,0.5,43,0.5,64.3,0"/>
-<path style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;" d="M81.7,40.9c16-0.2,32-0.2,48-0.1"/>
-<path style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;" d="M1.4,1.2c21-0.1,43-0.1,64.3,0"/>
-<path style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;" d="M1.4,40.8c21,0.2,43,0.2,64.3,0"/>
-<path style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;" d="M1.4,54.5c21,0.2,43,0.2,64.3,0"/>
-<path style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;" d="M1.4,27.4c21,0.5,43,0.5,64.3,0"/>
-<path style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;" d="M1.4,14.1c21,0.5,43,0.5,64.3,0"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="142" height="55.7" viewBox="0 0 142 55.7">
+  <g id="texte-texte" transform="translate(-261 -306.5)">
+    <g id="texte" transform="translate(-76.5 161)">
+      <line id="Ligne_1" data-name="Ligne 1" x2="65" transform="translate(337.5 147)" fill="none" stroke="#000" stroke-width="3"/>
+      <line id="Ligne_2" data-name="Ligne 2" x2="65" transform="translate(337.5 199.7)" fill="none" stroke="#000" stroke-width="3"/>
+      <line id="Ligne_3" data-name="Ligne 3" x2="65" transform="translate(337.5 182.133)" fill="none" stroke="#000" stroke-width="3"/>
+      <line id="Ligne_4" data-name="Ligne 4" x2="65" transform="translate(337.5 164.567)" fill="none" stroke="#000" stroke-width="3"/>
+    </g>
+    <g id="texte-2" data-name="texte" transform="translate(0.5 161)">
+      <line id="Ligne_1-2" data-name="Ligne 1" x2="65" transform="translate(337.5 147)" fill="none" stroke="#000" stroke-width="3"/>
+      <line id="Ligne_2-2" data-name="Ligne 2" x2="65" transform="translate(337.5 199.7)" fill="none" stroke="#000" stroke-width="3"/>
+      <line id="Ligne_3-2" data-name="Ligne 3" x2="65" transform="translate(337.5 182.133)" fill="none" stroke="#000" stroke-width="3"/>
+      <line id="Ligne_4-2" data-name="Ligne 4" x2="65" transform="translate(337.5 164.567)" fill="none" stroke="#000" stroke-width="3"/>
+    </g>
+  </g>
 </svg>

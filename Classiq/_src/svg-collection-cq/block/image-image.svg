@@ -1,13 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="cq-images-image" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-	 y="0px" viewBox="0 0 147.7 54.6" style="enable-background:new 0 0 147.7 54.6;" xml:space="preserve">
-<circle cx="50.6" cy="13.1" r="3.9"/>
-<path style="fill:none;stroke:#000000;stroke-width:3;" d="M1.5,0.5h65v52.7h-65V0.5z"/>
-<path style="fill:none;stroke:#000000;stroke-width:3;" d="M11.9,37.4L26,23.3l17.6,17.6"/>
-<path style="fill:none;stroke:#000000;stroke-width:3;" d="M36.5,33.9l5.3-5.3l12.3,12.3"/>
-<circle cx="122.6" cy="13.1" r="3.9"/>
-<path style="fill:none;stroke:#000000;stroke-width:3;" d="M73.5,0.5h65v52.7h-65V0.5z"/>
-<path style="fill:none;stroke:#000000;stroke-width:3;" d="M83.9,37.4L98,23.3l17.6,17.6"/>
-<path style="fill:none;stroke:#000000;stroke-width:3;" d="M108.5,33.9l5.3-5.3l12.3,12.3"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="145" height="55.7" viewBox="0 0 145 55.7">
+  <g id="image-image" transform="translate(-259.5 -383.5)">
+    <g id="image" transform="translate(78 238)">
+      <circle id="Ellipse_2" data-name="Ellipse 2" cx="3.9" cy="3.9" r="3.9" transform="translate(305.2 155.7)"/>
+      <path id="Tracé_4" data-name="Tracé 4" d="M73.5.5h65V53.2h-65Z" transform="translate(186.5 146.5)" fill="none" stroke="#000" stroke-width="3"/>
+      <path id="Tracé_5" data-name="Tracé 5" d="M83.9,37.4,98,23.3l17.6,17.6" transform="translate(186.5 146.5)" fill="none" stroke="#000" stroke-width="3"/>
+      <path id="Tracé_6" data-name="Tracé 6" d="M108.5,33.9l5.3-5.3,12.3,12.3" transform="translate(186.5 146.5)" fill="none" stroke="#000" stroke-width="3"/>
+    </g>
+    <g id="image-2" data-name="image" transform="translate(1 238)">
+      <circle id="Ellipse_2-2" data-name="Ellipse 2" cx="3.9" cy="3.9" r="3.9" transform="translate(305.2 155.7)"/>
+      <path id="Tracé_4-2" data-name="Tracé 4" d="M73.5.5h65V53.2h-65Z" transform="translate(186.5 146.5)" fill="none" stroke="#000" stroke-width="3"/>
+      <path id="Tracé_5-2" data-name="Tracé 5" d="M83.9,37.4,98,23.3l17.6,17.6" transform="translate(186.5 146.5)" fill="none" stroke="#000" stroke-width="3"/>
+      <path id="Tracé_6-2" data-name="Tracé 6" d="M108.5,33.9l5.3-5.3,12.3,12.3" transform="translate(186.5 146.5)" fill="none" stroke="#000" stroke-width="3"/>
+    </g>
+  </g>
 </svg>
