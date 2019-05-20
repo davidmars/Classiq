@@ -5,7 +5,7 @@ use Classiq\Seo\SEO_TRANSLATED;
 
 ?>
 
-<div cq-display-if="seo" class="wysiwyg-config-seo">
+<div cq-display-if="seo" class="wysiwyg-config-seo cq-display-if-block">
     <div>
         <h4>SEO</h4>
         <div class="cq-box ">
