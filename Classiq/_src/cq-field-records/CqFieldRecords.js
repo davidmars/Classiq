@@ -12,7 +12,7 @@ export default class CqFieldRecords extends DisplayObject{
 
     constructor($main){
 
-        super($main);
+        super($main,"CqFieldRecords");
 
         let me=this;
 
