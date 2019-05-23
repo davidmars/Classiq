@@ -5,7 +5,7 @@ import CqProgressBar from "../cq-progress-bar/CqProgressBar";
 require("./cq-field-upload.less");
 export class CqFieldUpload extends DisplayObject{
     constructor($main){
-        super($main);
+        super($main,"CqFieldUpload");
         let me=this;
 
         if(!$main.is("[wysiwyg-var][wysiwyg-data-type='file']")){
