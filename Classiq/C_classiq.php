@@ -39,6 +39,7 @@ class C_classiq extends C_default {
       "^$"=>"classiq/index",
       "^favicon.ico$"=>"classiq/favicon",
       "^robots.txt$"=>"robots/index",
+      "^manifest.webmanifest"=>"classiq/manifest",
       "^sitemap.xml$"=>"sitemap_xml/index",
       "^login$"=>"classiq/login",
       "^dwd/(.*)/(.*)$"=>"default/dwd/$1/$2",
@@ -241,6 +242,19 @@ class C_classiq extends C_default {
     {
         User::logout();
         return View::get("login/login");
+    }
+
+    /**
+     * Renvoie l'url du manifest json
+     * @return \Pov\MVC\ControllerUrl|string
+     */
+    public static function manifest_url()
+    {
+        return self::genUrl("manifest",false,"webmanifest");
+    }
+    public function manifest_run()
+    {
+        return View::get("pwa/manifest");
     }
 
 
