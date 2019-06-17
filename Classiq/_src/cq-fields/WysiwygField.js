@@ -161,7 +161,7 @@ export default class WysiwygField{
 
             case "string":
 
-                if(this.$field.is("input,textarea,select")){
+                if(this.$field.is("input,textarea,select,button")){
                     //en pratique un input, un textarea ou un select
                     return this.$field.val();
 
@@ -277,7 +277,7 @@ export default class WysiwygField{
 
         if(this.dataType==="string"){
             $mirrors.each(function(){
-                if($(this).is("input,textarea,select")){
+                if($(this).is("input,textarea,select,button")){
                     $(this).val(me.value())
                 }else if($(this).is("[contenteditable]")){
                     $(this).html(me.value())

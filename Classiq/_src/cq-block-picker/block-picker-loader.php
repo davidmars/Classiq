@@ -26,12 +26,16 @@ if(is_string($vv)){
 
         $preview=$path.".preview";
         $config=$path.".config";
+        $customMenu=$path.".custom-menu";
         $label=basename($path);
         if(!View::isValid($preview)){
             $preview="";
         }
         if(!View::isValid($config)){
             $config="";
+        }
+        if(!View::isValid($customMenu)){
+            $customMenu="";
         }
     }else{
         $err="$vv n'est pas une vue valide";
@@ -42,7 +46,7 @@ if(is_string($vv)){
 
 ?>
 <?if($path):?>
-    <div cq-ico-txt path="<?=$path?>" config="<?=$config?>">
+    <div cq-ico-txt path="<?=$path?>" config="<?=$config?>" custom-menu="<?=$customMenu?>">
             <?if($preview):?>
                 <?=$view->render($preview)?>
             <?else:?>

@@ -18,7 +18,7 @@ export default class CqBlocks extends CqSortable{
      * @param {JQuery} $main
      */
     constructor($main){
-        super($main);
+        super($main,"CqBlocks");
         let me=this;
         this.$main.on(Pov.events.DOM_CHANGE,function(){
             me._initItems();
@@ -619,12 +619,25 @@ export default class CqBlocks extends CqSortable{
                     me.dispatchChange();
                 });
             }
-            //config ou pas?
+            //bouton + popin de config (ou pas)
             if(template.config()){
                 wysiwyg.contextMenu.btns.cog(function(){
                     openConfig();
                 })
             }
+            //custom buttons dans le menu des boutons volants (ou pas)
+            let customMenu=template.getCustomMenuPath();
+            if(customMenu){
+                wysiwyg.contextMenu.showCustomMenu(
+                    customMenu
+                    ,itemUid
+                )
+            }
+            //définit l'icone de preview
+            wysiwyg.contextMenu.btns.setPreviewIcon(
+                template.$item.find("use").attr("xlink:href"),
+                template.$item.find("label").text()
+            )
 
 
 

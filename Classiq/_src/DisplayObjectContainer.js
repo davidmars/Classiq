@@ -1,8 +1,8 @@
 import DisplayObject from "./DisplayObject";
 
 export default class DisplayObjectContainer extends DisplayObject{
-    constructor($main){
-        super($main);
+    constructor($main,CLASS_NAME){
+        super($main,CLASS_NAME);
     }
 
     /**

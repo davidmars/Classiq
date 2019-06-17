@@ -1,4 +1,4 @@
-#the-cq-layer{
+#the-cq-layer,#cq-style{
 
   [cq-media-mode='thumb']{
     .preview-record{
@@ -24,7 +24,9 @@
     padding-top: 5px;
     padding-bottom: 5px;
     position: relative;
-
+    >.content{
+      flex-grow: 1;
+    }
     >.icon{
       width: var(--icon-size);
       height: var(--icon-size);

@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="144" height="55.7" viewBox="0 0 144 55.7">
-  <g id="image-texte" transform="translate(-258.5 -145.5)">
-    <g id="image">
+  <g id="texte-image" transform="translate(-260.5 -217.5)">
+    <g id="image" transform="translate(78 72)">
       <circle id="Ellipse_2" data-name="Ellipse 2" cx="3.9" cy="3.9" r="3.9" transform="translate(305.2 155.7)"/>
       <path id="Tracé_4" data-name="Tracé 4" d="M73.5.5h65V53.2h-65Z" transform="translate(186.5 146.5)" fill="none" stroke="#000" stroke-width="3"/>
       <path id="Tracé_5" data-name="Tracé 5" d="M83.9,37.4,98,23.3l17.6,17.6" transform="translate(186.5 146.5)" fill="none" stroke="#000" stroke-width="3"/>
       <path id="Tracé_6" data-name="Tracé 6" d="M108.5,33.9l5.3-5.3,12.3,12.3" transform="translate(186.5 146.5)" fill="none" stroke="#000" stroke-width="3"/>
     </g>
-    <g id="texte">
+    <g id="texte" transform="translate(-77 72)">
       <line id="Ligne_1" data-name="Ligne 1" x2="65" transform="translate(337.5 147)" fill="none" stroke="#000" stroke-width="3"/>
       <line id="Ligne_2" data-name="Ligne 2" x2="65" transform="translate(337.5 199.7)" fill="none" stroke="#000" stroke-width="3"/>
       <line id="Ligne_3" data-name="Ligne 3" x2="65" transform="translate(337.5 182.133)" fill="none" stroke="#000" stroke-width="3"/>

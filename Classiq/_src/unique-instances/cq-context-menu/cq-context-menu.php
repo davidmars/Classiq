@@ -9,29 +9,41 @@
 
             <?//menu volant d'ajout ?>
             <div cq-btn-group class="is-menu-add cq-th-white">
-                <a href="#plus"><?=cq()->icoWysiwyg("plus")?></a>
+                <a href="#plus"><?=pov()->svg->use("cq-plus")?></a>
                 <a class="input-file-wrap" href="#plus-upload">
                     <div class="cq-motion alternate">
-                        <?=cq()->icoWysiwyg("plus")?>
-                        <?=cq()->icoWysiwyg("images-photo")?>
+                        <?=pov()->svg->use("cq-plus")?>
+                        <?=pov()->svg->use("cq-images-photo")?>
                     </div>
 
                     <input type="file" multiple="multiple">
                 </a>
                 <a class="input-file-wrap" href="#upload">
-                    <?=cq()->icoWysiwyg("upload")?>
+                    <?=pov()->svg->use("cq-upload")?>
                     <input type="file">
                 </a>
             </div>
 
-            <?//menu volant ?>
+
+
+            <?//menu volant des blocks?>
             <div cq-btn-group class="is-menu cq-th-white">
-                <a href="#up"><?=cq()->icoWysiwyg("arrow-up")?></a>
-                <a href="#down"><?=cq()->icoWysiwyg("arrow-down")?></a>
-                <a href="#left"><?=cq()->icoWysiwyg("arrow-left")?></a>
-                <a href="#right"><?=cq()->icoWysiwyg("arrow-right")?></a>
-                <a href="#cog"><?=cq()->icoWysiwyg("cog")?></a>
-                <a href="#trash"><?=cq()->icoWysiwyg("trash")?></a>
+
+                <span style="display:none;"
+                      title="nom du block"
+                      class="ico js-preview-icon cq-fg-disabled">
+                    <?=pov()->svg->use("cq-sad")?>
+                </span>
+
+                <span data-pov-refresh-method="html" class="js-custom-menu" cq-btn-sub-group>
+                    <?//les boutons de config menus customs viennent ici?>
+                </span>
+                <a href="#up"><?=pov()->svg->use("cq-arrow-up")?></a>
+                <a href="#down"><?=pov()->svg->use("cq-arrow-down")?></a>
+                <a href="#left"><?=pov()->svg->use("cq-arrow-left")?></a>
+                <a href="#right"><?=pov()->svg->use("cq-arrow-right")?></a>
+                <a href="#cog"><?=pov()->svg->use("cq-cog")?></a>
+                <a href="#trash"><?=pov()->svg->use("cq-trash")?></a>
             </div>
 
         </div>
@@ -49,8 +61,8 @@
         ?>
         <div id="config-box" cq-popin-box class="medium">
             <nav>
-                <h4>Configurer</h4>
-                <a href="#hide-stuff"><?=cq()->icoWysiwyg("close")?></a>
+                <h4><?=cq()->tradWysiwyg("Configurer")?></h4>
+                <a href="#hide-stuff"><?=pov()->svg->use("cq-close")?></a>
             </nav>
             <main></main>
         </div>

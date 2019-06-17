@@ -24,7 +24,7 @@ export default class CqBlockPicker extends DisplayObject{
             );
             $main=$(html);
         }
-        super($main);
+        super($main,"CqBlockPicker");
         let me=this;
         /**
          *
@@ -191,9 +191,16 @@ class TemplateItem{
 
     /**
      *
-     * @returns {string} Chemin vers le template de config
+     * @returns {string} Chemin vers le template de config (ou pas)
      */
     config(){
         return this.$item.attr("config");
+    }
+    /**
+     *
+     * @returns {string} Chemin vers le template des custom buttons affichés dans le menu volant (ou pas)
+     */
+    getCustomMenuPath(){
+        return this.$item.attr("custom-menu");
     }
 }

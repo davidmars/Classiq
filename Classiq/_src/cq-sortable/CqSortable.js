@@ -7,9 +7,9 @@ export default class CqSortable extends DisplayObject{
      *
      * @param {JQuery} $main
      */
-    constructor($main){
+    constructor($main,CLASS_NAME="CqSortable"){
 
-        super($main);
+        super($main,CLASS_NAME);
         let me=this;
 
         /**

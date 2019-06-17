@@ -110,7 +110,11 @@ export default class CqContextMenu{
         });
 
 
-
+        /**
+         * Affiche le bouton donné et déclenchera le callback au click
+         * @param $btn
+         * @param cb
+         */
         function buttonAction($btn,cb){
             $btn.css("display","").on("click",function(e){
                 e.preventDefault();
@@ -155,6 +159,14 @@ export default class CqContextMenu{
              * @private
              */
             $cog    :$main.find("[href='#cog']"),
+            /**
+             * @private Le conteneur pour les boutons de config custom
+             */
+            $customMenu    :$main.find(".js-custom-menu"),
+            /**
+             * @private
+             */
+            $previewIcon    :$main.find(".js-preview-icon"),
             /**
              * @private
              */
@@ -206,6 +218,20 @@ export default class CqContextMenu{
              */
             cog:function(cb){
                 buttonAction(this.$cog,cb);
+            },
+            /**
+             * Affiche l'icone svg en preview
+             * @param svgIdentifier
+             */
+            setPreviewIcon:function(svgIdentifier,title){
+                if(svgIdentifier){
+                    this.$previewIcon.css("display","flex");
+                    this.$previewIcon.attr("title",title);
+                    this.$previewIcon.find("svg use").attr("xlink:href",svgIdentifier);
+                }else{
+                    this.$previewIcon.css("display","none")
+                }
+
             },
 
             /**
@@ -261,7 +287,7 @@ export default class CqContextMenu{
              * Tous les boutons
              * @type {JQuery}
              */
-            $all:me.$menu.find("a[href*='#']").add(me.$menuAdd.find("a[href*='#']")),
+            $all:me.$menu.find(">a[href*='#'],>[cq-btn-sub-group]").add(me.$menuAdd.find(">a[href*='#'],>[cq-btn-sub-group]")),
             /**
              * masque et annule toutes les actions sur les boutons
              * @returns {CqContextMenu}
@@ -566,7 +592,7 @@ export default class CqContextMenu{
     }
 
     /**
-     *
+     * Charge dans la popin de config le contenu spécifié
      * @param {string} configPath Chemin vers la vue de la boute de config
      * @param {String} uid identifiant unique du modèle relatif
      */
@@ -584,6 +610,26 @@ export default class CqContextMenu{
             this.configBox.$content.append($configLoader);
             $configLoader.povRefresh();
 
+        }else{
+            console.error("pas d'uid ou configPath pour charger la config")
+        }
+    }
+    /**
+     * Charge dans le menu des boutons un sous template (d'autres boutons)
+     * @param {string} configPath Chemin vers la vue des boutons
+     * @param {String} uid identifiant unique du modèle relatif
+     */
+    showCustomMenu(configPath,uid){
+        //return;
+        //this.setAnchor(null);
+        let $menu=this.btns.$customMenu;
+        $menu.text("...");
+        $menu.css("display","flex");
+        if(configPath){
+            $menu.attr("data-pov-v-path",configPath);
+            $menu.attr("data-pov-vv-uid",uid);
+            $menu.attr("id","options-loader");
+            $menu.povRefresh();
         }else{
             console.error("pas d'uid ou configPath pour charger la config")
         }

@@ -14,7 +14,7 @@ export default class CqPanelSection extends DisplayObject{
      * @param {string} storageName nom du localstorage qui permettra d'enregistrer l'état et le réapliquer quand on recharge le navigateur.
      */
     constructor($main,storageName){
-        super($main);
+        super($main,"CqPanelSection");
         let me=this;
 
         $main.on("click","[cq-panel-section-toggle]",function(e){

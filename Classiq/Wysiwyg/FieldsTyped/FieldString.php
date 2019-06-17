@@ -93,11 +93,17 @@ class FieldString extends FieldTyped
      * Permet d'obtenir un tag Html
      * @param string $tag
      * @param bool $displayIfEmpty Si false et qu'on est pas en wysiwyg et que le texte est vide ne renverra pas de tag
+     * @param bool $fixHtml
      * @return HtmlTag|string
+     * @throws \Pov\PovException
      */
-    public function htmlTag($tag="span",$displayIfEmpty=true){
+    public function htmlTag($tag="span",$displayIfEmpty=true,$fixHtml=false){
         $tag=parent::htmlTag($tag);
-        $tag->setInnerHTML($this->field->value(true,$this->defaultValue));
+        $v=$this->field->value(true,$this->defaultValue);
+        if($fixHtml){
+            $v=pov()->utils->string->fixHtml($v);
+        }
+        $tag->setInnerHTML($v);
         $tag->isRenderable=$displayIfEmpty || $tag->getInnerHTML() || $this->field->wysiwyg->active;
         return $tag;
     }
@@ -160,6 +166,24 @@ class FieldString extends FieldTyped
             $inner.=$o."\n";
         }
         $tag->setInnerHTML($inner);
+        return $tag;
+    }
+    /**
+     * Permet d'obtenir un bouton pour définir une valeur
+     * @param array $options liste des options possibles
+     * @param string $placeholder
+     * @param string $class Classe css (.fld par défaut)
+     * @return HtmlTag|string
+     */
+    public function buttonValueSetter($value){
+        $tag=new HtmlTag("button",$value);
+        $this->attr()["contenteditable"]=null;
+        $this->attr()["value"]=$value;
+
+        $tag->setAttributes($this->attr());
+        if($this->field->value(true,$this->defaultValue)===$value){
+            $this->attr()["selected"]="selected";
+        }
         return $tag;
     }
 

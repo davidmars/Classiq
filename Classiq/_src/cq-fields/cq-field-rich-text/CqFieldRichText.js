@@ -13,7 +13,7 @@ export default class CqFieldRichText extends DisplayObject{
      * @param {JQuery} $main
      */
     constructor($main){
-        super($main);
+        super($main,"CqFieldRichText");
         let ph=$main.attr("placeholder");
         let me=this;
 
@@ -37,7 +37,7 @@ export default class CqFieldRichText extends DisplayObject{
                 buttons: buttons
             },
             placeholder: {
-                text: ph?ph:'Texte ici...',
+                text: ph?ph:'Text...',
                 hideOnClick: false
             },
             extensions: {

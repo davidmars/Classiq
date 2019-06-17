@@ -8,7 +8,7 @@ export default class CqBrowseRecordsList extends DisplayObject{
      * @param {JQuery} $main
      */
     constructor($main){
-        super($main);
+        super($main,"CqBrowseRecordsList");
         let me = this;
         this.xhr=null;
         this.keywords="";

@@ -8,9 +8,10 @@ export default class DisplayObject extends EventEmitter{
 
     /**
      *
-     * @param {JQuery} $main
+     * @param {JQuery} $main Element DOM JQuery relatif
+     * @param {String} CLASS_NAME Nom de la classe en string
      */
-    constructor($main=undefined){
+    constructor($main=undefined,CLASS_NAME){
         super();
         /**
          *
@@ -19,22 +20,20 @@ export default class DisplayObject extends EventEmitter{
         this.$main=$main;
 
 
+        //this.CLASS_NAME=this.constructor.name;//todo important ne fonctionne pas sur ie mais la methode precedente buggue partout.
+        //console.log("CLASS_NAME",this.CLASS_NAME);
 
-        let getClassName = obj => {
-            if (obj.constructor.name) {
-                return obj.constructor.name;
-            }
-            const regex = new RegExp(/^\s*function\s*(\S*)\s*\(/);
-            getClassName = obj => obj.constructor.toString().match(regex)[1];
-            return getClassName(obj);
-        };
+        if(!CLASS_NAME){
+            console.warn("pas de this.CLASS_NAME pour "+this.constructor.name)
+        }
+        if(this.constructor.name!=="t" && CLASS_NAME != this.constructor.name){
+            console.error("CLASS_NAME ("+CLASS_NAME+") incorrect pour "+this.constructor.name)
+        }
         /**
          * Nom de la classe utilisée
          * @type {string}
          */
-        this.CLASS_NAME=getClassName(this);
-        this.CLASS_NAME=this.constructor.name;//todo important ne fonctionne pas sur ie mais la methode precedente buggue partout.
-
+        this.CLASS_NAME=CLASS_NAME;
         /**
          * Pour un composant "MonComposantToto" sera "mon-composant-toto"
          */

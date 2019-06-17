@@ -9,7 +9,7 @@ export default class CqEditRecordBox extends DisplayObject{
      * @param {JQuery} $main
      */
     constructor($main){
-        super($main);
+        super($main,"CqEditRecordBox");
         let me=this;
         this.$container=this.$main.find(">main>.target");
         /**

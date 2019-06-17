@@ -12,7 +12,7 @@ export default class CqBtnGroup extends DisplayObject{
             $main=$("<div cq-btn-group size='normal'></div>")
         }
         
-        super($main);
+        super($main,"CqBtnGroup");
         let me=this;
 
         let preventRecursion=false;

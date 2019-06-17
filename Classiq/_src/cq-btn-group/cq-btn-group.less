@@ -22,15 +22,23 @@
     }
   }
 }
+[cq-btn-sub-group]{
+  //outline: 1px solid red;
+  >*{
+    &:last-child{
+      border-right: 0;
+    }
+  }
+  padding: 0;
+}
 [cq-btn-group]{
-
-
-
-
   overflow: hidden;
   border-radius: var(--btn-size);
   box-shadow: var(--cq-shadow-btn);
   transition: all 0.1s;
+}
+
+[cq-btn-group],[cq-btn-sub-group]{
 
   min-width: 10px;
   min-height: 10px;
@@ -38,31 +46,44 @@
 
   &.empty{
     border: 1px solid red;
-    //opacity: 0.2;
     display: none;
   }
 
-  >a{
+  >a,>button{
+    cursor: pointer;
+    &:hover{
+      background-color: var(--cq-color-selected);
+      color: #fff;
+    }
+  }
+  >button{
+    background: transparent;
+    outline: none;
+    &[selected='selected']{
+      color: var(--cq-color-success);
+    }
+    svg{
+      pointer-events: none !important;
+    }
+  }
+  >a,>button,.ico{
+
     display: flex;
     position: relative;
     align-items: center;
     justify-content: center;
 
-    &:hover{
-      background-color: var(--cq-color-selected);
-      color: #fff;
-    }
     &.first,&.last{
       width: calc( 1.1 * var(--btn-size));
     }
 
     &.first{
       //justify-content: flex-end;
-      padding-left: 6%;
+      padding-left: calc( 0.1 * var(--btn-size));
 
     }
     &.last{
-      padding-right: 6%;
+      padding-right: calc( 0.1 * var(--btn-size));
     }
 
     &.first.last{
@@ -70,19 +91,33 @@
       width:  var(--btn-size);
       height: var(--btn-size);
     }
-
   }
+
+  //tous les éléments
   >*{
+    flex-shrink: 0;
+    flex-grow: 1;
+    border: 0;
     border-right: 1px solid var(--cq-color-fld-bdr);
     margin-right: -1px;
-    flex-shrink: 0;
     padding: 2px;
     height: var(--btn-size);
     width: var(--btn-size);
+
+    &[cq-btn-sub-group]{
+      width: auto;
+      padding: 0px;
+    }
     position: relative;
     >svg{
       width: var(--svg-size) !important;
       height: var(--svg-size) !important;
+    }
+    &.wide{
+      width: calc( var(--btn-size) * 1.5 );
+      >svg{
+        width:calc( var(--svg-size) * 1.5 ) !important;
+      }
     }
   }
 
