@@ -12,12 +12,12 @@ use Classiq\Models\Filerecord;
 
         <?if($vv->isImage()):?>
             <span class="icon image big">
-                <i style="background-image: url('<?=$vv->httpPath()?>')"></i>
+                <img alt="" src="<?=$vv->httpPath()?>">
             </span>
         <?elseif($vv->isVideo()):?>
-            <span class="icon"><?=cq()->icoWysiwyg("circle-play")?></span>
+            <span class="icon"><?=pov()->svg->use("cq-circle-play")?></span>
         <?else:?>
-            <span class="icon"><?=cq()->icoWysiwyg("file")?></span>
+            <span class="icon"><?=pov()->svg->use("cq-file")?></span>
         <?endif?>
 
         <i cq-tip class="cq-th-danger inline" data-count="0"></i>
@@ -35,7 +35,6 @@ use Classiq\Models\Filerecord;
                 <?endif?>
                 <?=$vv->humanFileSize()?>
             </div>
-            <!--<div class="preview-type"><?=$vv->modelType()?>@<?=$vv->id?> </div>-->
         </div>
     <?else:?>
         ...
