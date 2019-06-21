@@ -301,6 +301,7 @@ export default class CqContextMenu{
                 me.btns.$all.find("input[type='file']").removeAttr("accept");
                 me.btns.$all.removeClass("first");
                 me.btns.$all.removeClass("last");
+                me.btns.setPreviewIcon(null);
                 //me.$menu.attr("size","");
                 //me.$menuAdd.attr("size","");
                 return me;
