@@ -20,14 +20,15 @@ export default class UserSection{
         this.recordCreator=new CqNewRecord(this.$main.find("[cq-new-record]"));
 
         //recharge quand il y a une modification sur les utilisateurs
-        window.povSSE.on(EVENTS.SSE_USER_CHANGE,
-            /**
-             * @param {PovSSEevent} e
-             */
-            function(e){
-                me.recordsList.refreshList();
-            }
-        );
+
+
+        window.povSSE.on(EVENTS.SSE_USER_CHANGE,function(e){
+            //me.recordsList.refreshList();
+            me.recordsList.$main.find('[data-pov-v-path][record-type="user"]').each(function(){
+                $(this).povRefresh();
+            })
+        });
+
 
 
 
