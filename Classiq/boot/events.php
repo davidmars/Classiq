@@ -196,7 +196,7 @@ pov()->events->listen(C_povApi::EVENT_UPLOAD,
                     fclose($out);
                 }
                 if($size===$end){
-                    $file=the()->fileSystem->uploadLocalPath(date("Y/m/d/h-i-s-").pov()->utils->string->clean($filename,"-_."));
+                    $file=the()->fileSystem->uploadLocalPath(date("Y/m/d/YmdHis-").pov()->utils->string->clean($filename,"-_."));
                     the()->fileSystem->prepareDir($file);
                     rename($tmpfile,$file);
                 }else{
