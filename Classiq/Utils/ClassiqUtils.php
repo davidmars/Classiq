@@ -242,7 +242,13 @@ class ClassiqUtils extends AbstractSingleton
         if(!$langs || ( cq()->isAdmin() && $allIfAdmin ) ){
             return $default;
         }
-        return $langs;
+        $r=[];
+        foreach ($langs as $lang){
+            if(in_array($lang,$default)){
+                $r[]=$lang;
+            }
+        }
+        return $r;
     }
 
     /**
