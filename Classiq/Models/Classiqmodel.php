@@ -338,12 +338,15 @@ class Classiqmodel extends Classiqbean
         }
         return $bean->box();
     }
+
     /**
      * Retourne le record par son uid ou bien un objet json si l'uid désigne un champ du record
      * @param string $uid modeltype-modelid ou modeltype-modelid.champ.key
-     * @return ClassiqModel|array|null
+     * @param bool $strictType si true vérifiera que le type correspond à la classe appelée
+     * @return ClassiqModel|null|bool
+     * @throws PovException
      */
-    public static function getByUid($uid)
+    public static function getByUid($uid,$strictType=false)
     {
         if(!$uid){
             return null;
@@ -352,6 +355,9 @@ class Classiqmodel extends Classiqbean
             $type=$m[1];
             $id=$m[2];
             $varName=$m[3];
+            if($strictType && $type !== self::modelTypeStatic()){
+                return false;
+            }
             $record=db()->findOne($type,"where id = '$id'");
             if($record){
                 /** @var Classiqmodel $record */
