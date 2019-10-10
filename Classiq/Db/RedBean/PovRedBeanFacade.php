@@ -1275,7 +1275,7 @@ class PovRedBeanFacade extends AbstractSingleton
      */
     public function storeAll( $beans )
     {
-        return self::storeAll($beans);
+        return R::storeAll($beans);
     }
 
     /**
