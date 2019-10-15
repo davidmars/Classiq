@@ -72,11 +72,18 @@ class Page extends Classiqmodel
     }
 
     /**
+     * Renvoue un tag html A HREF
+     * @param bool $absolute si true ce sera un lien http etc...
      * @return HtmlTag une balise A href avec le nom de la page en contenu
      */
-    public function htmlLink(){
+    public function htmlLink($absolute=false){
         $a=new HtmlTag("a",$this->name_lang);
-        $a->setAttribute("href",$this->href());
+        if($absolute){
+            $a->setAttribute("href",$this->href()->absolute());
+        }else{
+            $a->setAttribute("href",$this->href()->relative());
+        }
+
         return $a;
     }
 
