@@ -51,6 +51,7 @@ use RedBeanPHP\Util\Diff as Diff;
  *
  *
  * @method static PovRedBeanFacade inst()
+ * @property PovRedBeanUtils $utils Utilities methods
  *
  */
 class PovRedBeanFacade extends AbstractSingleton
@@ -1953,8 +1954,13 @@ class PovRedBeanFacade extends AbstractSingleton
         throw new PovException("Redbean facade pas implémenté");
     }
 
-
-
-
+    public function __get($property) {
+        switch ($property) {
+            case "utils":
+                return PovRedBeanUtils::inst();
+                break;
+        }
+        return null;
+    }
 }
 
