@@ -189,7 +189,7 @@ class ClassiqUtils extends AbstractSingleton
                 $mail->Port = $m->port;                                    // TCP port to connect to
 
                 //Recipients
-                $mail->setFrom($m->username, $m->username);
+                $mail->setFrom($m->username, $m->displayName);
                 $mail->addAddress($emailTo, $emailTo);     // Add a recipient
                 //$mail->addReplyTo($emailFrom, $nom); //le reply to met le message dans les spams
 
