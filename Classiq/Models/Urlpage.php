@@ -68,6 +68,7 @@ class Urlpage extends Classiqmodel
             $u=$this->url;
         }
         if($withUid){
+            $u=mb_substr($u,0,150,"utf-8");
             $u.=".p".$this->id;
         }
         return $u;
