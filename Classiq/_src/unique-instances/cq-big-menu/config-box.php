@@ -29,6 +29,8 @@ $svgCollections=glob("dist/svg-collection/*.html");
 <label><?=cq()->tradWysiwyg("Liens utiles")?></label>
 <div class="cq-box">
 
+    <?=$view->renderIfValid("cq-admin/cq-big-menu/config/links.before")?>
+
     <?//---------------icone, gfx etc.............?>
 
     <label><?=cq()->tradWysiwyg("icônes")?></label>
@@ -79,4 +81,9 @@ $svgCollections=glob("dist/svg-collection/*.html");
         <?=pov()->svg->use("cq-block")->addClass("start")?>
         Robots.txt
     </a>
+
+    <?=$view->renderIfValid("cq-admin/cq-big-menu/config/links.after")?>
+
 </div>
+
+
