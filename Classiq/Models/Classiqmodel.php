@@ -103,7 +103,7 @@ class Classiqmodel extends Classiqbean
     /**
      * @var string champs de tri par défaut pour ce type de record. Utilisé dans le browser de l'admin par exemple.
      */
-    static public $DEFAULT_ORDER_BY="name";
+    static public $DEFAULT_ORDER_BY="name ASC";
 
     /**
      * @return string nom du type de record lisible par les humains

@@ -18,11 +18,11 @@ if($types){
             $orderBy = $className::$DEFAULT_ORDER_BY;
             $type = strtolower($type);
             if ($keywords) {
-                $collections[$type] = db()->find($type, "name LIKE '%$keywords%' ORDER BY $orderBy asc");
-                $total += db()->count($type, "name LIKE '%$keywords%' ORDER BY $orderBy asc");
+                $collections[$type] = db()->find($type, "name LIKE '%$keywords%' ORDER BY $orderBy ");
+                $total += db()->count($type, "name LIKE '%$keywords%' ORDER BY $orderBy ");
             } else {
-                $collections[$type] = db()->find($type, "ORDER BY $orderBy asc");
-                $total += db()->count($type, "ORDER BY $orderBy asc");
+                $collections[$type] = db()->find($type, "ORDER BY $orderBy ");
+                $total += db()->count($type, "ORDER BY $orderBy ");
             }
         }
 
