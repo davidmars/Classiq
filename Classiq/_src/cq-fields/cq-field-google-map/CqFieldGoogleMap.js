@@ -10,7 +10,7 @@ export default class CqFieldGoogleMap extends DisplayObject{
      * @param {JQuery} $main
      */
     constructor($main){
-        super($main);
+        super($main,"CqFieldGoogleMap");
         let me=this;
 
         this.$lat=$main.find("[latlng='lat']");

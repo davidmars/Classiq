@@ -1,5 +1,5 @@
 import DisplayObject from "../DisplayObject";
-const Sortable=require("sortablejs");
+import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
 require("./cq-sortable.less");
 
 export default class CqSortable extends DisplayObject{
