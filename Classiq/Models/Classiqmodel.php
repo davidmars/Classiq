@@ -268,9 +268,7 @@ class Classiqmodel extends Classiqbean
                 //nom de la table d'associations many to many
                 $localType=strtolower($this::_type());
                 $foreignType=strtolower($matches[1]);
-                $assocTable=[$localType,$foreignType];
-                sort($assocTable);
-                $assocTable=implode("_",$assocTable);
+                $assocTable=self::getAssocTableName($localType,$foreignType);
                 //efface les assocs existantes qui ne sont pas dans la nouvelle liste
                 $assocs=db()->getAll("SELECT * FROM `$assocTable` WHERE ".$localType."_id = ".$this->id);
                 $newIds=[];
@@ -303,9 +301,20 @@ class Classiqmodel extends Classiqbean
 
     }
 
-
-
-
+    /**
+     * Revoie le nom de la table d'association
+     * @param string $recordType1
+     * @param string $recordType2
+     * @return string un truc comme "hashtag_project"
+     */
+    public static function getAssocTableName($recordType1,$recordType2){
+        $recordType1=strtolower($recordType1);
+        $recordType2=strtolower($recordType2);
+        $assocTable=[$recordType1,$recordType2];
+        sort($assocTable); //pour etre certain que dans les deux sens on ait le même nom de table
+        $assocTable=implode("_",$assocTable);
+        return $assocTable;
+    }
 
     /**
      * Permet d'acceder aux methods wysiwyg de ce record
