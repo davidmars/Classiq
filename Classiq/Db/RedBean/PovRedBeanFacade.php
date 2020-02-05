@@ -774,7 +774,7 @@ class PovRedBeanFacade extends AbstractSingleton
      */
     public function exec( $sql, $bindings = [])
     {
-        return exec($sql,$bindings);
+        return R::exec($sql,$bindings);
     }
 
     /**
