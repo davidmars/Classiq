@@ -119,6 +119,9 @@ class FieldString extends FieldTyped
         $tag=new HtmlTag("input");
         $this->attr()["type"]=$type;
         $this->attr()["placeholder"]=$placeholder;
+        if(in_array($type,["date","datetime"])){
+            $this->attr()["placeholder"]="";
+        }
         $tag->setAttributes($this->attr());
         $tag->addClass($class);
         $this->attr()["value"]=$this->field->value(true,$this->defaultValue);
