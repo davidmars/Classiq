@@ -192,8 +192,15 @@ class Filerecord extends Classiqmodel
     public function apiData()
     {
         $r=parent::apiData();
+        $r["httpPathAbsolute"]=$this->httpPath(true);
+        if($this->isImage()){
+            $r["httpPathAbsolute200"]=$this->image()->sizeMax(200,200)->jpg()->href(true);
+            $r["httpPathAbsolute400"]=$this->image()->sizeMax(400,400)->jpg()->href(true);
+            $r["httpPathAbsolute800"]=$this->image()->sizeMax(800,800)->jpg()->href(true);
+        }
         $r["httpPath"]=$this->httpPath();
         $r["localPath"]=$this->localPath();
+
 
         return $r;
     }
