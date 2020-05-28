@@ -830,7 +830,7 @@ class PovRedBeanFacade extends AbstractSingleton
      */
     public function getCol( $sql, $bindings = array() )
     {
-        throw new PovException("Redbean facade pas implémenté");
+        return R::getCol($sql, $bindings);
     }
 
     /**
