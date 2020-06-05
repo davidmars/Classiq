@@ -330,7 +330,11 @@ class Classiqmodel extends Classiqbean
             $bean->name=$name;
             db()->store($bean);
         }
-        return $bean->box();
+        if($bean){
+            return $bean->box();
+        }
+        return null;
+
     }
 
     /**
