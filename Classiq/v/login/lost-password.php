@@ -28,16 +28,16 @@ if($action && $email){
 }
 
 ?>
-<h4><?=$titre?></h4>
+<h4><?php echo $titre?></h4>
 <form method="post">
-    <?if($vv->errors):?>
+    <?php if($vv->errors):?>
         <div class="uk-alert uk-alert-danger">
-            <?foreach ($vv->errors as $err):?>
-                <div><?=$err?></div>
-            <?endforeach;?>
+            <?php foreach ($vv->errors as $err):?>
+                <div><?php echo $err?></div>
+            <?php endforeach; ?>
         </div>
-    <?endif;?>
-    <?if($form):?>
+    <?php endif; ?>
+    <?php if($form):?>
         <div class="uk-form-controls uk-margin">
             <input class="uk-input" name="email" value="" type="email" placeholder="saisissez votre email">
         </div>
@@ -45,10 +45,10 @@ if($action && $email){
         <div class="uk-form-controls uk-margin">
             <input class="uk-button uk-button-secondary uk-width-1-1" type="submit" name="action" value="Modifier mon mot de passe" >
         </div>
-    <?endif?>
+    <?php endif; ?>
     <hr>
     <div class="uk-margin">
-        <a class="uk-button uk-button-default uk-width-1-1" href="<?=\Classiq\C_classiq::login_url()?>">Connexion</a><br><br>
-        <a class="uk-button uk-button-default uk-width-1-1" href="<?=\Classiq\C_classiq::index_url()?>">Retourner sur le site</a>
+        <a class="uk-button uk-button-default uk-width-1-1" href="<?php echo \Classiq\C_classiq::login_url()?>">Connexion</a><br><br>
+        <a class="uk-button uk-button-default uk-width-1-1" href="<?php echo \Classiq\C_classiq::index_url()?>">Retourner sur le site</a>
     </div>
 </form>

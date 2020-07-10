@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Fait le tour des urls pour nettoyer les pas jolies
  */
@@ -42,10 +42,10 @@ function uggly($url,$lang,$bean){
 }
 
 ?>
-<?if(the()->human->isDev(true)):?>
+<?php if(the()->human->isDev(true)):?>
 
 
-    <?=$view->render("./menu")?>
+    <?php echo $view->render("./menu")?>
 
     <?php
         $urls=db()->find("urlpage");
@@ -54,7 +54,7 @@ function uggly($url,$lang,$bean){
         $total=count($urls);
     ?>
 
-    <h4><?=$total?> Urls</h4>
+    <h4><?php echo $total?> Urls</h4>
     <table>
 
         <tr>
@@ -62,62 +62,62 @@ function uggly($url,$lang,$bean){
             <th>uid</th>
             <th>type</th>
             <th>priorité</th>
-            <?foreach (the()->project->languages as $lang):?>
-                <th>url <?=$lang?></th>
-                <th class="replacement">remplacement <?=$lang?></th>
-            <?endforeach;?>
+            <?php foreach (the()->project->languages as $lang):?>
+                <th>url <?php echo $lang?></th>
+                <th class="replacement">remplacement <?php echo $lang?></th>
+            <?php endforeach; ?>
         </tr>
 
 
-        <?foreach ($urls as $f):?>
+        <?php foreach ($urls as $f):?>
             <tr>
                 <td>
-                    <?if(!$f->getPage(false)):?>
+                    <?php if(!$f->getPage(false)):?>
                         <b style='color:red;'>Page introuvable</b><br>
-                    <?else:?>
-                        <?=$f->getPage(false)->name?>
-                    <?endif;?>
+                    <?php else: ?>
+                        <?php echo $f->getPage(false)->name?>
+                    <?php endif; ?>
                 </td>
-                <td><?=$f->uid()?></td>
-                <td><?=$f->related_type?></td>
-                <td><?=$f->seo_priority?></td>
-            <?foreach (the()->project->languages as $lang):?>
+                <td><?php echo $f->uid()?></td>
+                <td><?php echo $f->related_type?></td>
+                <td><?php echo $f->seo_priority?></td>
+            <?php foreach (the()->project->languages as $lang):?>
                 <td>
                     <?php
                     $var="url_$lang";
                     ?>
-                    <?=$f->$var?>
+                    <?php echo $f->$var?>
                 </td>
                 <td class="replacement">
                     <?php
                     $remplacement=uggly($f->$var,$lang,$f);
                     ?>
-                    <?=$remplacement?>
-                    <?if($remplacement):?>
+                    <?php echo $remplacement?>
+                    <?php if($remplacement):?>
                         <?php
                             $totalChange++;
                         ?>
-                        <?if($doit):?>
+                        <?php if($doit):?>
                             <?php
                                 $f->$var=$remplacement;
                                 db()->store($f);
                             ?>
                             <br>L'url A été remplacée !
-                        <?else:?>
+                        <?php else: ?>
                             <br>L'url n'a pas été remplacée
-                        <?endif?>
-                    <?else:?>
+                        <?php endif; ?>
+                    <?php else: ?>
                         <?php
                         $totalOk++;
                         ?>
-                    <?endif?>
+                    <?php endif; ?>
                 </td>
-            <?endforeach?>
+            <?php endforeach; ?>
 
 
             </tr>
 
-        <?endforeach;?>
+        <?php endforeach; ?>
     </table>
 
     <style>
@@ -138,20 +138,20 @@ function uggly($url,$lang,$bean){
 
 
 
-    <?if(!$doit):?>
+    <?php if(!$doit):?>
         <hr>
-        <?=$totalOk?> urls sans soucis.<br>
-        <?=$totalChange?> urls à modifier.<br>
+        <?php echo $totalOk?> urls sans soucis.<br>
+        <?php echo $totalChange?> urls à modifier.<br>
         <hr>
         <form method="post">
             <input type="hidden" name="je-suis-certain" value="1">
-            <input type="submit" value="Modifier les <?=$totalChange?> url">
+            <input type="submit" value="Modifier les <?php echo $totalChange?> url">
         </form>
-    <?endif?>
+    <?php endif; ?>
 
-<?else:?>
+<?php else: ?>
 Il faut être loggué en dev.
-<?endif?>
+<?php endif; ?>
 
 
 

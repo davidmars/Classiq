@@ -7,36 +7,36 @@ use Classiq\Models\Classiqmodel;
 use Classiq\Models\Filerecord;
 
 ?>
-<div class="preview-record" <?=$view->attrRefresh($vv->uid())?> >
-    <?if($vv->id):?>
+<div class="preview-record" <?php echo $view->attrRefresh($vv->uid())?> >
+    <?php if($vv->id):?>
 
-        <?if($vv->isImage()):?>
+        <?php if($vv->isImage()):?>
             <span class="icon image big">
-                <img alt="" src="<?=$vv->httpPath()?>">
+                <img alt="" src="<?php echo $vv->httpPath()?>">
             </span>
-        <?elseif($vv->isVideo()):?>
-            <span class="icon"><?=pov()->svg->use("cq-circle-play")?></span>
-        <?else:?>
-            <span class="icon"><?=pov()->svg->use("cq-file")?></span>
-        <?endif?>
+        <?php elseif($vv->isVideo()):?>
+            <span class="icon"><?php echo pov()->svg->use("cq-circle-play")?></span>
+        <?php else: ?>
+            <span class="icon"><?php echo pov()->svg->use("cq-file")?></span>
+        <?php endif; ?>
 
         <i cq-tip class="cq-th-danger inline" data-count="0"></i>
 
         <div>
 
-            <div class="title" title="<?=$vv->name?>">
-                <?=$vv->name?>
+            <div class="title" title="<?php echo $vv->name?>">
+                <?php echo $vv->name?>
             </div>
 
             <div class="type">
-                <?=$vv->mime?>
-                <?if($vv->isImage()):?>
-                    <?=$vv->image_width?>x<?=$vv->image_height?>px
-                <?endif?>
-                <?=$vv->humanFileSize()?>
+                <?php echo $vv->mime?>
+                <?php if($vv->isImage()):?>
+                    <?php echo $vv->image_width?>x<?php echo $vv->image_height?>px
+                <?php endif; ?>
+                <?php echo $vv->humanFileSize()?>
             </div>
         </div>
-    <?else:?>
+    <?php else: ?>
         ...
-    <?endif?>
+    <?php endif; ?>
 </div>

@@ -12,38 +12,38 @@ $classesHierarchy=array_reverse($classesHierarchy);
 
 
 ?>
-<div cq-edit-record-form="<?=$vv->modelType()?>" big-menu-module="admin-page-<?=$calledModel?>-<?=$vv->id?>" <?=$view->attrRefresh($vv->uid())?>>
+<div cq-edit-record-form="<?php echo $vv->modelType()?>" big-menu-module="admin-page-<?php echo $calledModel?>-<?php echo $vv->id?>" <?php echo $view->attrRefresh($vv->uid())?>>
 
-    <?//main class...ici on prend en compte les custom view?>
-    <?if($vv->view):?>
-        <?
+    <?php //main class...ici on prend en compte les custom view?>
+    <?php if($vv->view):?>
+        <?php
             $path=$vv->views()->getViewPath("config");
             $box=View::get($path,$vv);
         ?>
-        <?=$box->renderIfValid()?>
-    <?endif;?>
+        <?php echo $box->renderIfValid()?>
+    <?php endif; ?>
 
-    <?foreach ($classesHierarchy as $modelClassName):?>
+    <?php foreach ($classesHierarchy as $modelClassName):?>
         <?php
         $boxBefore=$vv->views()->configByClass($modelClassName.".before");
         ?>
-        <?if($boxBefore):?>
-            <?=$boxBefore->render()?>
-        <?endif;?>
+        <?php if($boxBefore):?>
+            <?php echo $boxBefore->render()?>
+        <?php endif; ?>
 
         <?php
             $box=$vv->views()->configByClass($modelClassName);
         ?>
-        <?if($box):?>
-            <?=$box->render()?>
-        <?endif;?>
+        <?php if($box):?>
+            <?php echo $box->render()?>
+        <?php endif; ?>
 
         <?php
         $boxAfter=$vv->views()->configByClass($modelClassName.".after");
         ?>
-        <?if($boxAfter):?>
-            <?=$boxAfter->render()?>
-        <?endif;?>
+        <?php if($boxAfter):?>
+            <?php echo $boxAfter->render()?>
+        <?php endif; ?>
 
-    <?endforeach;?>
+    <?php endforeach; ?>
 </div>    

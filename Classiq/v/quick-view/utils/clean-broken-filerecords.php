@@ -1,5 +1,4 @@
-<?
-/**
+<?php /**
  * Efface tous les files Filerecord qui n'ont pas de fichier relatif
  */
 
@@ -8,7 +7,7 @@
 use Classiq\Models\Filerecord;
 $doit= the()->request("je-suis-certain") === "1";
 ?>
-<?if(the()->human->isDev(true)):?>
+<?php if(the()->human->isDev(true)):?>
 
 
     <?php
@@ -18,48 +17,48 @@ $doit= the()->request("je-suis-certain") === "1";
         $total=count($files);
     ?>
 
-    <h4><?=$total?> Fichiers</h4>
-    <?foreach ($files as $f):?>
+    <h4><?php echo $total?> Fichiers</h4>
+    <?php foreach ($files as $f):?>
 
-        <?=$f->name?><br>
-        <code>(<?=$f->uid()?>)</code><br>
-        <code><?=$f->localPath()?></code><br>
-        <?if(!$f->isOk()):?>
+        <?php echo $f->name?><br>
+        <code>(<?php echo $f->uid()?>)</code><br>
+        <code><?php echo $f->localPath()?></code><br>
+        <?php if(!$f->isOk()):?>
             <?php $totalTodelete++ ?>
             <b style='color:red;'>fichier introuvable</b><br>
-            <?if($doit):?>
-                <? db()->trash($f) ?>
+            <?php if($doit):?>
+                <?php db()->trash($f) ?>
                 <b style='color:red;'>Effacé</b><br>
-            <?else:?>
+            <?php else: ?>
                 <b style='color:blue;'>fichier pas effacé</b><br>
-            <?endif?>
-        <?else:?>
+            <?php endif; ?>
+        <?php else: ?>
             <?php $totalOk++ ?>
-        <?endif;?>
+        <?php endif; ?>
 
         <hr>
 
 
 
-    <?endforeach;?>
+    <?php endforeach; ?>
 
 
 
 
-    <?if(!$doit):?>
+    <?php if(!$doit):?>
         <hr>
-        <?=$totalOk?> records sans soucis.<br>
-        <?=$totalTodelete?> records à effacer.<br>
+        <?php echo $totalOk?> records sans soucis.<br>
+        <?php echo $totalTodelete?> records à effacer.<br>
         <hr>
         <form method="post">
             <input type="hidden" name="je-suis-certain" value="1">
-            <input type="submit" value="Effacer les <?=$totalTodelete?> fichiers">
+            <input type="submit" value="Effacer les <?php echo $totalTodelete?> fichiers">
         </form>
-    <?endif?>
+    <?php endif; ?>
 
-<?else:?>
+<?php else: ?>
 Il faut être loggué en dev.
-<?endif?>
+<?php endif; ?>
 
 
 

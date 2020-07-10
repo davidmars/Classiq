@@ -1,4 +1,4 @@
 <div id="the-cq-notifier" cq-notifier>
-    <?//les templates viennent ici?>
+    <?php //les templates viennent ici?>
 </div>
 

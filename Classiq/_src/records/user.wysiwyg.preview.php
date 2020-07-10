@@ -6,15 +6,15 @@
 use Classiq\Models\User;
 
 ?>
-<div class="preview-record" <?=$view->attrRefresh($vv->uid())?>>
-    <?if($vv->id):?>
-        <span class="icon"><?=pov()->svg->use($vv->roleSvg())?></span>
-        <?=$view->render("./tip-errors")?>
+<div class="preview-record" <?php echo $view->attrRefresh($vv->uid())?>>
+    <?php if($vv->id):?>
+        <span class="icon"><?php echo pov()->svg->use($vv->roleSvg())?></span>
+        <?php echo $view->render("./tip-errors")?>
         <div>
-            <div class="title" title="<?=$vv->name?>"><?=$vv->name?></div>
-            <div class="type"><span class="cq-fg-selected"><?=$vv->role?$vv->role:"Nouveau compte"?></span></div>
+            <div class="title" title="<?php echo $vv->name?>"><?php echo $vv->name?></div>
+            <div class="type"><span class="cq-fg-selected"><?php echo $vv->role?$vv->role:"Nouveau compte"?></span></div>
         </div>
-    <?else:?>
+    <?php else: ?>
         ...
-    <?endif?>
+    <?php endif; ?>
 </div>

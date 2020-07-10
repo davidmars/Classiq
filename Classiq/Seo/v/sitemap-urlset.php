@@ -1,28 +1,27 @@
-<?
-use Classiq\Seo\SitemapXmlUrlset;
+<?php use Classiq\Seo\SitemapXmlUrlset;
 the()->headerOutput->contentTypeXml();
 /* @var $vv SitemapXmlUrlset */
 ?>
-<?='<?xml version="1.0" encoding="utf-8"?>'?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" total="<?=$vv->total?>">
+<?php echo '<?xml version="1.0" encoding="utf-8"?>'?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" total="<?php echo $vv->total?>">
 
-    <? foreach($vv->urls as $url): ?>
+    <?php foreach($vv->urls as $url): ?>
     <url>
-        <loc><![CDATA[<?=$url->loc?>]]></loc>
-        <?if($url->getLasmod()):?>
-            <lastmod><?=$url->getLasmod()?></lastmod>
-        <?endif?>
-        <changefreq><?=$url->getChangeFreq()?></changefreq>
-        <priority><?=$url->priority?></priority>
+        <loc><![CDATA[<?php echo $url->loc?>]]></loc>
+        <?php if($url->getLasmod()):?>
+            <lastmod><?php echo $url->getLasmod()?></lastmod>
+        <?php endif; ?>
+        <changefreq><?php echo $url->getChangeFreq()?></changefreq>
+        <priority><?php echo $url->priority?></priority>
 
 
-        <? foreach($url->getImages() as $im): ?>
+        <?php foreach($url->getImages() as $im): ?>
             <image:image>
-                <image:loc><?=$im?></image:loc>
+                <image:loc><?php echo $im?></image:loc>
             </image:image>
-        <? endforeach; ?>
+        <?php endforeach; ?>
 
 
     </url>
-    <? endforeach; ?>
+    <?php endforeach; ?>
 </urlset>

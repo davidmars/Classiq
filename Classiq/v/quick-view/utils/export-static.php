@@ -26,21 +26,21 @@ $exportDir=the()->request("exportDir","");
 <form>
     <h1>Ce module permet d'exporter les pages du site vers des fichiers statiques</h1>
     <p>
-        Les urls <code><?=$pathToReplace?></code> seront remplacées par <code>"./"</code> dans les pages.<br>
+        Les urls <code><?php echo $pathToReplace?></code> seront remplacées par <code>"./"</code> dans les pages.<br>
         La home page s'apellera index.html.<br>
     </p>
 
     <fieldset>
         <p>Remplacer
-            <code><?=the()->requestUrl->httpAndHost.the()->fmkHttpRoot?></code>
+            <code><?php echo the()->requestUrl->httpAndHost.the()->fmkHttpRoot?></code>
             par...
-            <input name="absoluteUrl" style="display: block;width: 80%;" type="text" value="<?=$replaceAbsolute?>">
+            <input name="absoluteUrl" style="display: block;width: 80%;" type="text" value="<?php echo $replaceAbsolute?>">
         </p>
         <p>Exporter vers le répertoire...
-            <input name="exportDir" style="display: block;width: 80%;" type="text" value="<?=$exportDir?>">
+            <input name="exportDir" style="display: block;width: 80%;" type="text" value="<?php echo $exportDir?>">
         </p>
         <p>query string additifs...
-            <input placeholder="&param=value" name="moreQueryString" style="display: block;width: 80%;" value="<?=$moreQueryString?>" type="text">
+            <input placeholder="&param=value" name="moreQueryString" style="display: block;width: 80%;" value="<?php echo $moreQueryString?>" type="text">
         </p>
     </fieldset>
     <p>Voulez-vous continuer?</p>
@@ -49,7 +49,7 @@ $exportDir=the()->request("exportDir","");
 
 </form>
 
-<?if(the()->request("doIt")):?>
+<?php if(the()->request("doIt")):?>
 <?php
 /** @var Page[] $pages */
 
@@ -99,6 +99,6 @@ foreach ($pages as $p){
 
 }
 ?>
-<?endif?>
+<?php endif; ?>
 <hr>
-<?=$view->render("./menu")?>
+<?php echo $view->render("./menu")?>

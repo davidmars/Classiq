@@ -13,20 +13,20 @@ $db=Classic\Db\RedBean\PovRedBeanFacade::inst();
 <div class="uk-container">
 
     <h1>Modèles de la base de données</h1>
-    <h4><?=$db->prop_currentDB()?> / <?=pov()->debug->type($db->dbType())?> </h4>
+    <h4><?php echo $db->prop_currentDB()?> / <?php echo pov()->debug->type($db->dbType())?> </h4>
 
-<?foreach (\Pov\Db\RedBean\PhpClassGenerator::genAll() as $c):?>
-    <h2><?=$c->tableName?></h2>
-    <code><?=$c->getFilePath()?></code>
-    <pre class="prettyprint lang-php"><?=htmlentities($c->getPhpCode()).PHP_EOL?></pre>
+<?php foreach (\Pov\Db\RedBean\PhpClassGenerator::genAll() as $c):?>
+    <h2><?php echo $c->tableName?></h2>
+    <code><?php echo $c->getFilePath()?></code>
+    <pre class="prettyprint lang-php"><?php echo htmlentities($c->getPhpCode()).PHP_EOL?></pre>
 
     <h4>Indexes (à virer une fois que ce sera géré)</h4>
     <pre>
-    <?foreach ($c->generateRelations() as $idx):?>
-    <?var_dump($idx)?>
-    <?endforeach;?>
+    <?php foreach ($c->generateRelations() as $idx):?>
+    <?php ar_dump($idx)?>
+    <?php endforeach; ?>
     </pre>
-<?endforeach;?>
+<?php endforeach; ?>
 
 
 

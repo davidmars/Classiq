@@ -9,7 +9,7 @@ use Classiq\Models\User;
 
     <fieldset>
         <label>Image avatar</label>
-        <?=$vv->wysiwyg()->field("thumbnail")
+        <?php echo $vv->wysiwyg()->field("thumbnail")
             ->file()
             ->setMimeAcceptImagesOnly()
             ->onSavedRefresh("$(this).closest('[data-pov-v-path]')")
@@ -19,14 +19,14 @@ use Classiq\Models\User;
 
     <fieldset>
         <label>email</label>
-        <?=$vv->wysiwyg()
+        <?php echo $vv->wysiwyg()
         ->field("email")
         ->string()
         ->input("email")?>
     </fieldset>
 
-    <?if($vv->isConnectedUser() || (cq()->isAdmin() && !$vv->password)):?>
-        <?/**
+    <?php if($vv->isConnectedUser() || (cq()->isAdmin() && !$vv->password)):?>
+        <?php /**
          *
          * si l'utilisateur dont on parle est l'utilisateur devant l'écran
          * OU
@@ -35,17 +35,17 @@ use Classiq\Models\User;
          */?>
         <fieldset>
             <label>Mot de passe</label>
-            <?=$vv->wysiwyg()
+            <?php echo $vv->wysiwyg()
                 ->field("cleanPassword")
                 ->string()
                 ->input("password")?>
             <dfn>(si vous souhaitez en changer)</dfn>
         </fieldset>
-    <?endif?>
+    <?php endif; ?>
 
     <fieldset>
         <label>Rôle</label>
-        <?=$vv->wysiwyg()
+        <?php echo $vv->wysiwyg()
             ->field("role")
             ->string()
             ->select(

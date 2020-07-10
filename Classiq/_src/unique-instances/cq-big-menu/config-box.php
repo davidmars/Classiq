@@ -6,83 +6,83 @@ use Pov\Defaults\C_dev;
 
 $svgCollections=glob("dist/svg-collection/*.html");
 ?>
-<label><?=cq()->tradWysiwyg("Options")?></label>
-<?=$view->render("cq-display-if/cq-display-control")?>
+<label><?php echo cq()->tradWysiwyg("Options")?></label>
+<?php echo $view->render("cq-display-if/cq-display-control")?>
 
-<?if(count(the()->project->languages)>1):?>
+<?php if(count(the()->project->languages)>1):?>
     <?php
     $langArray=[];
     foreach (the()->project->languages as $code){
         $langArray[\Localization\Lang::getByCode($code)->name]=$code;
     }
     ?>
-    <label><?=cq()->tradWysiwyg("Activer/désactiver des langues")?></label>
+    <label><?php echo cq()->tradWysiwyg("Activer/désactiver des langues")?></label>
     <div class="cq-box">
-        <?=cq()->configStorage()->wysiwyg()
+        <?php echo cq()->configStorage()->wysiwyg()
             ->field("vars.langActives")
             ->listString()
             ->checkboxes($langArray);?>
     </div>
-<?endif?>
+<?php endif; ?>
 
 
-<label><?=cq()->tradWysiwyg("Liens utiles")?></label>
+<label><?php echo cq()->tradWysiwyg("Liens utiles")?></label>
 <div class="cq-box">
 
-    <?=$view->renderIfValid("cq-admin/cq-big-menu/config/links.before")?>
+    <?php echo $view->renderIfValid("cq-admin/cq-big-menu/config/links.before")?>
 
-    <?//---------------icone, gfx etc.............?>
+    <?php //---------------icone, gfx etc.............?>
 
-    <label><?=cq()->tradWysiwyg("icônes")?></label>
-    <?foreach ($svgCollections as $link):?>
+    <label><?php echo cq()->tradWysiwyg("icônes")?></label>
+    <?php foreach ($svgCollections as $link):?>
     <div>
-        <a class="cq-list-item" href="<?=the()->fmkHttpRoot."/$link"?>" target="_blank">
-        <?=pov()->svg->use("cq-grid")->addClass("start")?>
-        <span><?=$link?></span>
+        <a class="cq-list-item" href="<?php echo the()->fmkHttpRoot."/$link"?>" target="_blank">
+        <?php echo pov()->svg->use("cq-grid")->addClass("start")?>
+        <span><?php echo $link?></span>
         </a>
     </div>
-    <?endforeach;?>
-    <?/*
+    <?php endforeach; ?>
+    <?php /*
     <label>Charte graphique</label>
-    <a class="cq-list-item" href="<?=C_classiq::quickView_url("gfx")?>" target="gfx">
-        <?=pov()->svg->use("cq-art-typo")->addClass("start")?>
+    <a class="cq-list-item" href="<?php echo C_classiq::quickView_url("gfx")?>" target="gfx">
+        <?php echo pov()->svg->use("cq-art-typo")->addClass("start")?>
         <div>Style guide</div>
     </a>
     */?>
-    <?//---------------dev.............?>
+    <?php //---------------dev.............?>
 
     <div cq-display-if="dev">
         <label>Dev</label>
-        <?/*
-        <a class="cq-list-item" href="<?=C_classiq::quickView_url("tests")?>" target="tests">
-            <?=pov()->svg->use("cq-lab")->addClass("start")?>
+        <?php /*
+        <a class="cq-list-item" href="<?php echo C_classiq::quickView_url("tests")?>" target="tests">
+            <?php echo pov()->svg->use("cq-lab")->addClass("start")?>
             La page de tests
         </a>
         */?>
-        <a class="cq-list-item" href="<?=C_dev::page_url("logs")?>" target="dev-logs">
-            <?=pov()->svg->use("cq-device-terminal")->addClass("start")?>
+        <a class="cq-list-item" href="<?php echo C_dev::page_url("logs")?>" target="dev-logs">
+            <?php echo pov()->svg->use("cq-device-terminal")->addClass("start")?>
             Logs
         </a>
         <a title="Efface les entrees de la DB où on ne trouve pas de fichier en relation." class="cq-list-item"
-           href="<?=C_classiq::quickView_url("utils/clean-broken-filerecords")?>" target="dev-logs">
-            <?=pov()->svg->use("cq-trash")->addClass("start")?>
-            <?=cq()->tradWysiwyg("Trash Filrecord(s) corrompus")?>
+           href="<?php echo C_classiq::quickView_url("utils/clean-broken-filerecords")?>" target="dev-logs">
+            <?php echo pov()->svg->use("cq-trash")->addClass("start")?>
+            <?php echo cq()->tradWysiwyg("Trash Filrecord(s) corrompus")?>
         </a>
     </div>
 
-    <?//---------------seo.............?>
+    <?php //---------------seo.............?>
 
     <label>SEO</label>
-    <a class="cq-list-item" href="<?= C_sitemap_xml::index_url()?>" target="sitemap">
-        <?=pov()->svg->use("cq-code")->addClass("start")?>
+    <a class="cq-list-item" href="<?php echo  C_sitemap_xml::index_url()?>" target="sitemap">
+        <?php echo pov()->svg->use("cq-code")->addClass("start")?>
         SiteMap XML
     </a>
-    <a class="cq-list-item" href="<?= C_robots::index_url()?>" target="robots">
-        <?=pov()->svg->use("cq-block")->addClass("start")?>
+    <a class="cq-list-item" href="<?php echo  C_robots::index_url()?>" target="robots">
+        <?php echo pov()->svg->use("cq-block")->addClass("start")?>
         Robots.txt
     </a>
 
-    <?=$view->renderIfValid("cq-admin/cq-big-menu/config/links.after")?>
+    <?php echo $view->renderIfValid("cq-admin/cq-big-menu/config/links.after")?>
 
 </div>
 

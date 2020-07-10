@@ -4,20 +4,20 @@
  */
 
 ?>
-<div class="preview-record" <?=$view->attrRefresh($vv->uid())?>>
-    <?if($vv->id):?>
+<div class="preview-record" <?php echo $view->attrRefresh($vv->uid())?>>
+    <?php if($vv->id):?>
         <span class="icon">
-            <?=pov()->svg->use($vv::$icon)?>
+            <?php echo pov()->svg->use($vv::$icon)?>
         </span>
         <i>&nbsp;</i>
         <div>
-            <div class="title"><?=$vv->uid()?> </div>
+            <div class="title"><?php echo $vv->uid()?> </div>
             <span class="type">
-                <?=$vv->modelType()?>@<?=$vv->id?>
+                <?php echo $vv->modelType()?>@<?php echo $vv->id?>
             </span>
 
         </div>
-    <?else:?>
+    <?php else: ?>
         ...
-    <?endif?>
+    <?php endif; ?>
 </div>

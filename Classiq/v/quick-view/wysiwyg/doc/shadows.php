@@ -1,14 +1,14 @@
 <div class="cq-cols">
-    <?foreach (["","-2","-3"] as $suf): $class="wysiwyg-shadow$suf"; ?>
+    <?php foreach (["","-2","-3"] as $suf): $class="wysiwyg-shadow$suf"; ?>
     <div class="wysiwyg-pad-xy">
-        <div class="wysiwyg-pad-xy cq-th-white <?=$class?>">
-            <h4>.<?=$class?></h4>
-            <code><?=$class?></code><br>
+        <div class="wysiwyg-pad-xy cq-th-white <?php echo $class?>">
+            <h4>.<?php echo $class?></h4>
+            <code><?php echo $class?></code><br>
             <hr>
             <hr>
             <hr>
             <hr>
         </div>
     </div>
-    <? endforeach; ?>
+    <?php endforeach; ?>
 </div>

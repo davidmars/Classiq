@@ -1,5 +1,4 @@
-<?
-/**
+<?php /**
  * @var FieldRecordPicker $vv
  */
 
@@ -13,19 +12,19 @@ if($pages && $vv->multiple===false){
 <div cq-field-records class="cq-cols" >
 
     <div cq-sortable class="cq-col-9" context-menu-size="small">
-        <?if($pages):?>
-            <?foreach ($pages as $page):?>
-                <?=$page->views()->wysiwygPreview()->render()?>
-            <?endforeach;?>
-        <?else:?>
+        <?php if($pages):?>
+            <?php foreach ($pages as $page):?>
+                <?php echo $page->views()->wysiwygPreview()->render()?>
+            <?php endforeach; ?>
+        <?php else: ?>
             ...
-        <?endif?>
+        <?php endif; ?>
     </div>
 
     <div class="cq-col-3" text-right>
         <div class="input-file-wrap cq-btn-file-wrap" >
-            <button class="cq-btn cq-th-white small" <?=$vv->attr()?>><?=pov()->svg->use("cq-cloud-upload")?></button>
-            <input type="file" <?=$vv->mimeTypeAccept?> <?=$vv->multiple?"multiple":""?>
+            <button class="cq-btn cq-th-white small" <?php echo $vv->attr()?>><?php echo pov()->svg->use("cq-cloud-upload")?></button>
+            <input type="file" <?php echo $vv->mimeTypeAccept?> <?php echo $vv->multiple?"multiple":""?>
             >
         </div>
     </div>

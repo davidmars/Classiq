@@ -1,1 +1,1 @@
-<?=cq()->icoWysiwyg("copy")?>
+<?php echo cq()->icoWysiwyg("copy")?>

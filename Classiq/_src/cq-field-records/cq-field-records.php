@@ -1,5 +1,4 @@
-<?
-/**
+<?php /**
  * @var FieldRecordPicker $vv
  */
 
@@ -14,17 +13,17 @@ if($pages && $vv->multiple===false){
 <div cq-field-records class="cq-cols" >
 
     <div cq-sortable class="cq-col-9" context-menu-size="small">
-        <?if($pages):?>
-            <?foreach ($pages as $page):?>
-                <?=$page->views()->wysiwygPreview()->render()?>
-            <?endforeach;?>
-        <?else:?>
+        <?php if($pages):?>
+            <?php foreach ($pages as $page):?>
+                <?php echo $page->views()->wysiwygPreview()->render()?>
+            <?php endforeach; ?>
+        <?php else: ?>
             ...
-        <?endif?>
+        <?php endif; ?>
     </div>
 
     <div class="cq-col-3" text-right>
-        <?=$vv->button(
+        <?php echo $vv->button(
                 "...",
                 "cq-btn small cq-th-white")
                 ->setInnerHTML(

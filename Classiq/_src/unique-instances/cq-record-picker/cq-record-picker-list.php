@@ -10,22 +10,22 @@ foreach (WysiwygConfig::inst()->recordsWeCanSelect as $type){
 }
 
 ?>
-<div class="js-list" <?=$view->attrRefresh()?>>
-    <?foreach ($collections as $type=>$beans):?>
+<div class="js-list" <?php echo $view->attrRefresh()?>>
+    <?php foreach ($collections as $type=>$beans):?>
         <div class="cq-cols">
-            <?foreach ($beans as $bean):?>
+            <?php foreach ($beans as $bean):?>
                 <?php
                 /** @var  ClassiqModel $bean */
                 ?>
                 <div class="cq-col-6">
-                <?if( $bean->id):?>
-                    <div class="fld-chk" record-type="<?=$type?>">
-                        <input class="js-is-record-checker" id="<?=$bean->uid()?>" type="checkbox" name="records" value="<?=$bean->uid()?>">
-                        <label class="unstyled" for="<?=$bean->uid()?>"><?=$bean->views()->wysiwygPreview()->render()?></label>
+                <?php if( $bean->id):?>
+                    <div class="fld-chk" record-type="<?php echo $type?>">
+                        <input class="js-is-record-checker" id="<?php echo $bean->uid()?>" type="checkbox" name="records" value="<?php echo $bean->uid()?>">
+                        <label class="unstyled" for="<?php echo $bean->uid()?>"><?php echo $bean->views()->wysiwygPreview()->render()?></label>
                     </div>
-                <?endif?>
+                <?php endif; ?>
                 </div>
-            <?endforeach;?>
+            <?php endforeach; ?>
         </div>
-    <?endforeach;?>
+    <?php endforeach; ?>
 </div>

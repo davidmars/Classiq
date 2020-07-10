@@ -5,8 +5,8 @@
 
 <hr>
 
-<p>Salut je suis un paragraphe <?=pov()->utils->string->loremIspum(200,200)?></p>
+<p>Salut je suis un paragraphe <?php echo pov()->utils->string->loremIspum(200,200)?></p>
 
 <hr>
-<time><?=date("Y/m/d H:i:s")?></time>
+<time><?php echo date("Y/m/d H:i:s")?></time>
 

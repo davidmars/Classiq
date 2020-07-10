@@ -5,13 +5,13 @@ $iconsList=$iconsList->symbols;
 
 ?>
 <div class="cq-cols">
-    <?foreach ($iconsList as $name):?>
+    <?php foreach ($iconsList as $name):?>
 
         <div text-center class="cq-col-2">
             <div cq-box>
-                <?=pov()->svg->use($name)->addClass("wysiwyg-icon")?>
-                <pre><?=$name?></pre>
+                <?php echo pov()->svg->use($name)->addClass("wysiwyg-icon")?>
+                <pre><?php echo $name?></pre>
             </div>
         </div>
-    <?endforeach;?>
+    <?php endforeach; ?>
 </div>

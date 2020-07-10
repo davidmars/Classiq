@@ -1,38 +1,38 @@
 <?php
 use Classiq\Models\User;
 ?>
-<?if(cq()->isAdmin()):?>
-<section cq-panel-is-section="user" <?=$view->attrRefresh()?>>
+<?php if(cq()->isAdmin()):?>
+<section cq-panel-is-section="user" <?php echo $view->attrRefresh()?>>
 
     <div text-center class="cq-box">
-        <time><?=pov()->utils->date->nowMysql()?></time>
+        <time><?php echo pov()->utils->date->nowMysql()?></time>
         <p>
-            <?=cq()->tradWysiwyg("Vous êtes connecté en tant que")?>
+            <?php echo cq()->tradWysiwyg("Vous êtes connecté en tant que")?>
             <br>
             <b><a title="modifiez votre profil"
-                  cq-on-click="editRecord(<?=User::connected()->uid()?>)"
-                  href="#"><?=ucwords(User::connected()->name)?></a>
+                  cq-on-click="editRecord(<?php echo User::connected()->uid()?>)"
+                  href="#"><?php echo ucwords(User::connected()->name)?></a>
             </b>
             <br>
-            <small><?=User::connected()->email?></small>
+            <small><?php echo User::connected()->email?></small>
         </p>
-        <a target="_self" class="cq-btn cq-th-danger" href="<?=\Classiq\C_classiq::logout_url()?>">
-            <?=pov()->svg->use("cq-sign-out")?>
-            <span><?=cq()->tradWysiwyg("Déconnexion")?></span>
+        <a target="_self" class="cq-btn cq-th-danger" href="<?php echo \Classiq\C_classiq::logout_url()?>">
+            <?php echo pov()->svg->use("cq-sign-out")?>
+            <span><?php echo cq()->tradWysiwyg("Déconnexion")?></span>
         </a>
     </div>
 
 
-    <label><?=cq()->tradWysiwyg("Ajouter un utilisateur")?> :</label>
+    <label><?php echo cq()->tradWysiwyg("Ajouter un utilisateur")?> :</label>
 
-    <?=$view->render("cq-new-record/cq-new-record",[
+    <?php echo $view->render("cq-new-record/cq-new-record",[
         "types"=>["user"],
         "placeholder"=>cq()->tradWysiwyg("Nom de l'utilisateur")
     ])?>
 
 
-    <?//la liste d'utilisateurs qui sera injectée dans l'extension ?>
-    <?=$view->render("cq-browse-records/cq-browse-records-list",["user"])?>
+    <?php //la liste d'utilisateurs qui sera injectée dans l'extension ?>
+    <?php echo $view->render("cq-browse-records/cq-browse-records-list",["user"])?>
 
 </section>
-<?endif?>
+<?php endif; ?>
