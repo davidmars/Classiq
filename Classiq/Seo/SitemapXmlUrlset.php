@@ -20,7 +20,9 @@ class SitemapXmlUrlset
 
         /** @var Page $rec */
         foreach($records as $rec){
-            $this->addUrl($rec);
+            if(!$rec->isdraft){
+                $this->addUrl($rec);
+            }
         }
     }
 
