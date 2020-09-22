@@ -5,9 +5,9 @@
     <table>
         <tr>
             <td><label>lat</label></td>
-            <td><input type="number" name="lat" latlng="lat" class="fld" value="<?=$vv[0]?>"></td>
+            <td><input type="number" name="lat" latlng="lat" class="fld" value="<?php echo $vv[0]?>"></td>
             <td><label>lng</label></td>
-            <td><input type="number" name="lng" latlng="lng"  class="fld" value="<?=$vv[1]?>"></td>
+            <td><input type="number" name="lng" latlng="lng"  class="fld" value="<?php echo $vv[1]?>"></td>
         </tr>
     </table>
 

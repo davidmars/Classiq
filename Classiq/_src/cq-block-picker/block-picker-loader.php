@@ -45,18 +45,18 @@ if(is_string($vv)){
 }
 
 ?>
-<?if($path):?>
-    <div cq-ico-txt path="<?=$path?>" config="<?=$config?>" custom-menu="<?=$customMenu?>">
-            <?if($preview):?>
-                <?=$view->render($preview)?>
-            <?else:?>
-                <?// preview par défaut?>
-                <?=$view->render("./default-block.preview",$label)?>
-            <?endif?>
+<?php if($path):?>
+    <div cq-ico-txt path="<?php echo $path?>" config="<?php echo $config?>" custom-menu="<?php echo $customMenu?>">
+            <?php if($preview):?>
+                <?php echo $view->render($preview)?>
+            <?php else: ?>
+                <?php// preview par défaut?>
+                <?php echo $view->render("./default-block.preview",$label)?>
+            <?php endif; ?>
     </div>
-<?else:?>
+<?php else: ?>
     <div>
-        <div cq-box class="th-danger">oups... <?=$err?></div>
+        <div cq-box class="th-danger">oups... <?php echo $err?></div>
     </div>
-<?endif;?>
+<?php endif; ?>
 

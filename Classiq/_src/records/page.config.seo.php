@@ -11,52 +11,52 @@ use Classiq\Seo\SEO_TRANSLATED;
         <div class="cq-box ">
 
             <fieldset>
-                <label><?=cq()->tradWysiwyg("Titre de page (seo)")?></label>
-                <?foreach (the()->project->languages as $lang):?>
-                    <?=$vv->wysiwyg()->field("meta_title_$lang")
+                <label><?php echo cq()->tradWysiwyg("Titre de page (seo)")?></label>
+                <?php foreach (the()->project->languages as $lang):?>
+                    <?php echo $vv->wysiwyg()->field("meta_title_$lang")
                         ->string()
                         ->isTranslated($lang)
                         ->input("text",cq()->tradWysiwyg("Titre de la page..."))
                         ->setAttribute("oninput","document.title=this.value")
                     ?>
-                <?endforeach;?>
+                <?php endforeach; ?>
             </fieldset>
 
             <fieldset>
-                <label><?=cq()->tradWysiwyg("Description (seo)")?></label>
-                <?foreach (the()->project->languages as $lang):?>
-                    <?=$vv->wysiwyg()->field("meta_description_$lang")
+                <label><?php echo cq()->tradWysiwyg("Description (seo)")?></label>
+                <?php foreach (the()->project->languages as $lang):?>
+                    <?php echo $vv->wysiwyg()->field("meta_description_$lang")
                         ->string()
                         ->isTranslated($lang)
                         ->textarea(cq()->tradWysiwyg(cq()->tradWysiwyg("Description de la page")))
                     ?>
-                <?endforeach;?>
+                <?php endforeach; ?>
             </fieldset>
 
-            <?if(!$vv->is_homepage):?>
+            <?php if(!$vv->is_homepage):?>
                 <fieldset>
 
                     <label>Url</label>
-                    <?foreach (the()->project->languages as $lang):?>
-                        <?=$vv->wysiwyg()->field("url_$lang")
+                    <?php foreach (the()->project->languages as $lang):?>
+                        <?php echo $vv->wysiwyg()->field("url_$lang")
                             ->string()
                             ->isTranslated($lang)
                             ->textarea(cq()->tradWysiwyg("url de la page"))
                         ?>
-                    <?endforeach?>
+                    <?php endforeach; ?>
 
-                    <?=$vv->wysiwyg()->field("stricturl")
+                    <?php echo $vv->wysiwyg()->field("stricturl")
                         ->string()
                         ->select([cq()->tradWysiwyg("avec id (recommandé)")=>"0",cq()->tradWysiwyg("sans id")=>"1"])
                     ?>
                     <small>Url réelle:</small>
-                    <pre title="<?=$vv->href()?>"><?=$vv->href()?></pre>
+                    <pre title="<?php echo $vv->href()?>"><?php echo $vv->href()?></pre>
                 </fieldset>
-            <?endif?>
+            <?php endif; ?>
 
             <fieldset>
-                <label><?=cq()->tradWysiwyg("Priorité (seo)")?></label>
-                <?=$vv->wysiwyg()->field("seo_priority")
+                <label><?php echo cq()->tradWysiwyg("Priorité (seo)")?></label>
+                <?php echo $vv->wysiwyg()->field("seo_priority")
                     ->string()
                     ->setDefaultValue("0.0")
                     ->input("range")
@@ -68,15 +68,15 @@ use Classiq\Seo\SEO_TRANSLATED;
             </fieldset>
 
             <fieldset>
-                <label><?=cq()->tradWysiwyg("Fréquence de mise à jour")?> (seo)</label>
-                <?=$vv->wysiwyg()->field("seo_change_frequency")
+                <label><?php echo cq()->tradWysiwyg("Fréquence de mise à jour")?> (seo)</label>
+                <?php echo $vv->wysiwyg()->field("seo_change_frequency")
                     ->string()
                     ->select(SEO_TRANSLATED::CHANGE_FREQ_ALL())
                 //->setAttribute("list","seo_prority_labels")
                 ?>
             </fieldset>
 
-            <?/* pas encore pris en charge par les navigateurs  :(
+            <?php /* pas encore pris en charge par les navigateurs  :(
         <datalist id="seo_prority_labels">
             <option value="0" label="Pas référencé">
             <option value="10" label="Page sans intérêt">

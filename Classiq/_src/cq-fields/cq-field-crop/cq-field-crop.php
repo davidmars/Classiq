@@ -16,10 +16,10 @@ $domRatioSelector=$vv["domRatioSelector"];
 ?>
 
 <div cq-field-crop
-     data-ratio-target-selector="<?=$domRatioSelector?>"
-     data-ratio="<?=$ratio?>"
+     data-ratio-target-selector="<?php echo $domRatioSelector?>"
+     data-ratio="<?php echo $ratio?>"
     >
 
-    <img  style="max-height: 400px; display: block" src="<?=$imgUrl?>">
-    <textarea class="fld" rows="1"><?=$value?></textarea>
+    <img  style="max-height: 400px; display: block" src="<?php echo $imgUrl?>">
+    <textarea class="fld" rows="1"><?php echo $value?></textarea>
 </div>

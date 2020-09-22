@@ -97,7 +97,7 @@ $colors=["rien-du-tout","white","grey-light","grey-dark","black","danger"];
 
     <section id="elements-dans-le-dom">
         <h1><a name="hors-id-wysiwyg">Eléments hors <code>id='#the-cq-layer'</code></a>  </h1>
-        <?=$view->render("quick-view/wysiwyg/doc/hors-id-wysiwyg")?>
+        <?php echo $view->render("quick-view/wysiwyg/doc/hors-id-wysiwyg")?>
     </section>
 
     <hr>
@@ -112,52 +112,52 @@ $colors=["rien-du-tout","white","grey-light","grey-dark","black","danger"];
                 <div class="wysiwyg-pad-xy">
 
                     <h1><a name="toolbar">Icones</a></h1>
-                    <?=$view->render("quick-view/wysiwyg/doc/icones")?>
+                    <?php echo $view->render("quick-view/wysiwyg/doc/icones")?>
 
                     <hr>
 
                     <h1><a name="la-base">Eléments sans classe (h1,h2,p,hr, etc...)</a></h1>
-                    <?=$view->render("quick-view/wysiwyg/doc/la-base")?>
+                    <?php echo $view->render("quick-view/wysiwyg/doc/la-base")?>
 
                     <hr>
 
                     <h1><a name="la-base">Preview records</a></h1>
-                    <?=$view->render("quick-view/wysiwyg/doc/preview-record")?>
+                    <?php echo $view->render("quick-view/wysiwyg/doc/preview-record")?>
 
                     <hr>
 
                     <h1><a name="la-base">Formulaires</a></h1>
-                    <?=$view->render("quick-view/wysiwyg/doc/forms")?>
+                    <?php echo $view->render("quick-view/wysiwyg/doc/forms")?>
 
                     <hr>
 
                     <h1><a name="popin-box">Popin Box</a></h1>
-                    <?=$view->render("quick-view/wysiwyg/doc/popin-box")?>
+                    <?php echo $view->render("quick-view/wysiwyg/doc/popin-box")?>
 
                     <hr>
 
                     <h1><a name="boutons">Boutons</a></h1>
-                    <?=$view->render("quick-view/wysiwyg/doc/boutons")?>
+                    <?php echo $view->render("quick-view/wysiwyg/doc/boutons")?>
 
                     <hr>
 
                     <h1><a name="alerts">Alerts</a></h1>
-                    <?=$view->render("quick-view/wysiwyg/doc/alerts")?>
+                    <?php echo $view->render("quick-view/wysiwyg/doc/alerts")?>
 
                     <hr>
 
                     <h1><a name="themes">Thèmes</a></h1>
-                    <?=$view->render("quick-view/wysiwyg/doc/themes")?>
+                    <?php echo $view->render("quick-view/wysiwyg/doc/themes")?>
 
                     <hr>
 
                     <h1><a name="shadows">Shadows</a></h1>
-                    <?=$view->render("quick-view/wysiwyg/doc/shadows")?>
+                    <?php echo $view->render("quick-view/wysiwyg/doc/shadows")?>
 
                     <hr>
 
                     <h1><a name="toolbar">Toolbar</a></h1>
-                    <?=$view->render("quick-view/wysiwyg/doc/toolbar")?>
+                    <?php echo $view->render("quick-view/wysiwyg/doc/toolbar")?>
 
                     <hr>
 

@@ -3,20 +3,20 @@
     //document.body.appendChild(new CqLayer());
 </script>
 <cq-layer id="the-cq-layer" class="cq-vars-th-white cq-css" history-hrefs>
-    <?=$view->render("./cq-big-menu/cq-big-menu")?>
-    <?=$view->render("./cq-context-menu/cq-context-menu")?>
-    <?=$view->render("./cq-notifier/wysiwyg-notifier")?>
+    <?php echo $view->render("./cq-big-menu/cq-big-menu")?>
+    <?php echo $view->render("./cq-context-menu/cq-context-menu")?>
+    <?php echo $view->render("./cq-notifier/wysiwyg-notifier")?>
     <div style="display: none">
-        <?=pov()->svg->import("dist/svg-collection/cq.svg")?>
+        <?php echo pov()->svg->import("dist/svg-collection/cq.svg")?>
     </div>
-    <?=$view->render("./cq-edit-record-box/cq-edit-record-box")?>
+    <?php echo $view->render("./cq-edit-record-box/cq-edit-record-box")?>
 </cq-layer>
 
-<?//------css traductions------------------?>
+<?php //------css traductions------------------?>
 <style>
-    <?foreach (the()->project->languages as $lang):?>
-    .fld[data-lang='<?=$lang?>'],label[data-lang='<?=$lang?>']{
-        background-image: url('<?=pov()->utils->lang->flagUrl($lang)?>') !important;
+    <?php foreach (the()->project->languages as $lang):?>
+    .fld[data-lang='<?php echo $lang?>'],label[data-lang='<?php echo $lang?>']{
+        background-image: url('<?php echo pov()->utils->lang->flagUrl($lang)?>') !important;
     }
-    <?endforeach;?>
+    <?php endforeach; ?>
 </style>

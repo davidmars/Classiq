@@ -7,23 +7,23 @@ use Classiq\Models\Classiqmodel;
 use Classiq\Models\Page;
 
 ?>
-<div class="preview-record" <?=$view->attrRefresh($vv->uid())?>>
-    <?if($vv->id):?>
+<div class="preview-record" <?php echo $view->attrRefresh($vv->uid())?>>
+    <?php if($vv->id):?>
 
         <span class="icon image">
-            <i style="background-image: url('<?=$vv->thumbnail()->sizeMax(200,200)->bgColor("EEEEEE")->jpg()->href()?>')"></i>
-            <?=pov()->svg->use($vv::$icon)?>
+            <i style="background-image: url('<?php echo $vv->thumbnail()->sizeMax(200,200)->bgColor("EEEEEE")->jpg()->href()?>')"></i>
+            <?php echo pov()->svg->use($vv::$icon)?>
         </span>
-        <?=$view->render("./tip-errors")?>
+        <?php echo $view->render("./tip-errors")?>
         <div>
-            <div class="title" title="<?=$vv->name?>"><?=$vv->name?></div>
-            <a target="_blank" href="<?=$vv->href()?>" class="type"><?=$vv->modelType()?>@<?=$vv->id?></a>
+            <div class="title" title="<?php echo $vv->name?>"><?php echo $vv->name?></div>
+            <a target="_blank" href="<?php echo $vv->href()?>" class="type"><?php echo $vv->modelType()?>@<?php echo $vv->id?></a>
 
         </div>
 
 
 
-    <?else:?>
+    <?php else: ?>
         ...
-    <?endif?>
+    <?php endif; ?>
 </div>

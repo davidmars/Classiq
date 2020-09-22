@@ -127,71 +127,71 @@ if($action){
 
 
 
-    <h4 class=""><?=$titre?></h4>
+    <h4 class=""><?php echo $titre?></h4>
 
 
 
     <form method="post">
 
-        <?if($vv->errors):?>
+        <?php if($vv->errors):?>
             <div class="uk-alert uk-alert-danger">
-                <?foreach ($vv->errors as $err):?>
-                    <div><?=$err?></div>
-                <?endforeach;?>
+                <?php foreach ($vv->errors as $err):?>
+                    <div><?php echo $err?></div>
+                <?php endforeach; ?>
             </div>
-        <?elseif($vv->messages):?>
+        <?php elseif($vv->messages):?>
             <div class="uk-alert uk-alert-success">
-                <?foreach ($vv->messages as $mess):?>
-                    <div><?=$mess?></div>
-                <?endforeach;?>
+                <?php foreach ($vv->messages as $mess):?>
+                    <div><?php echo $mess?></div>
+                <?php endforeach; ?>
             </div>
-        <?endif;?>
+        <?php endif; ?>
 
-        <?if($user->id):?>
+        <?php if($user->id):?>
             <div class="uk-text-right">
-            <input type="hidden" name="id" value="<?=$user->id?>">
+            <input type="hidden" name="id" value="<?php echo $user->id?>">
             </div>
-        <?endif?>
+        <?php endif; ?>
 
-        <?if($form):?>
+        <?php if($form):?>
 
             <div class="uk-form-controls uk-margin">
-                <input class="uk-input" name="name" value="<?=$user->name?>" type="text" placeholder="Nom d'utilisateur">
+                <input class="uk-input" name="name" value="<?php echo $user->name?>" type="text" placeholder="Nom d'utilisateur">
             </div>
 
             <div class="uk-form-controls uk-margin">
-                <input class="uk-input" name="email" value="<?=$user->email?>" type="email" placeholder="email">
+                <input class="uk-input" name="email" value="<?php echo $user->email?>" type="email" placeholder="email">
             </div>
 
-            <?
+            <?php
             /**
             * Mot de passe si l'utilisateur connecté est l'utilisateur édité ou si on est entrain d'en créer un nouveau
             */
             ?>
-            <?if( ($user && $user->isConnectedUser()) || !$user->id):?>
+            <?php if( ($user && $user->isConnectedUser()) || !$user->id):?>
                 <div class="uk-form-controls uk-margin">
-                    <input class="uk-input" name="cleanPassword" value="<?=$user->cleanPassword?>" type="password" placeholder="Mot de passe" autocomplete="new-password">
+                    <input class="uk-input" name="cleanPassword" value="<?php echo $user->cleanPassword?>" type="password" placeholder="Mot de passe" autocomplete="new-password">
                 </div>
-            <?endif?>
+            <?php endif; ?>
 
 
-            <?
+            <?php
             /**
              * Mot de passe si l'utilisateur connecté est l'utilisateur édité ou si on est entrain d'en créer un nouveau
              */
             ?>
-            <?if( (User::connected() && User::connected()->isAdmin())):?>
+            <?php if( (User::connected() && User::connected()->isAdmin())):?>
                 <div class="uk-margin uk-text-left">
                     <label class="uk-form-label">Peut modifier le contenu du site?</label>
                     <div class="uk-form-controls">
                         <select class="uk-select" name="role">
                             <option value="">Choisissez</option>
-                            <option <?=$user->role==User::ROLE_ADMIN ? "selected":""?> value="<?=User::ROLE_ADMIN?>">Oui</option>
-                            <option <?=$user->role==User::ROLE_SIMPLE_HUMAN ? "selected":""?> value="<?=User::ROLE_SIMPLE_HUMAN?>">Non</option>
+                            <option <?php echo $user->role==User::ROLE_ADMIN ? "selected":""?> value="<?php echo User::ROLE_ADMIN?>">Oui</option>
+                            <option <?php echo $user->role==User::ROLE_SIMPLE_HUMAN ? "selected":""?> value="<?php echo User::ROLE_SIMPLE_HUMAN?>">Non</option>
                         </select>
                     </div>
                 </div>
-            <?endif?>
+            <?php endif; ?>
 
 
 
@@ -201,25 +201,25 @@ if($action){
 
             <hr>
 
-            <?if($user->id && (User::connected() && User::connected()->isAdmin())):?>
+            <?php if($user->id && (User::connected() && User::connected()->isAdmin())):?>
                 <div class="uk-form-controls uk-margin">
                     <input class="uk-button uk-button-danger uk-width-1-1" type="submit" name="delete" value="Supprimer ce compte !" >
                 </div>
-            <?endif?>
-        <?endif?>
+            <?php endif; ?>
+        <?php endif; ?>
 
-        <?if(User::connected()):?>
+        <?php if(User::connected()):?>
             <div class="uk-margin">
-                <a class="uk-button uk-button-danger uk-width-1-1" href="<?=\Classiq\C_classiq::logout_url()?>">Déconnexion</a><br><br>
+                <a class="uk-button uk-button-danger uk-width-1-1" href="<?php echo \Classiq\C_classiq::logout_url()?>">Déconnexion</a><br><br>
             </div>
-        <?else:?>
+        <?php else: ?>
             <div class="uk-margin">
-                <a class="uk-button uk-button-default uk-width-1-1" href="<?=\Classiq\C_classiq::login_url()?>">Connexion</a><br><br>
+                <a class="uk-button uk-button-default uk-width-1-1" href="<?php echo \Classiq\C_classiq::login_url()?>">Connexion</a><br><br>
             </div>
-        <?endif?>
+        <?php endif; ?>
 
         <div class=" uk-margin">
-            <a class="uk-button uk-button-default uk-width-1-1" href="<?=\Classiq\C_classiq::index_url()?>">Retourner sur le site</a>
+            <a class="uk-button uk-button-default uk-width-1-1" href="<?php echo \Classiq\C_classiq::index_url()?>">Retourner sur le site</a>
         </div>
 
     </form>

@@ -5,38 +5,38 @@ use Classiq\Models\Page;
 $record=$vv->box();
 
 ?>
-<div <?=$view->attrRefresh($vv->uid())?> cq-on-model-saved="refresh(this)" class="record" record-type="<?=$record->modelType()?>">
+<div <?php echo $view->attrRefresh($vv->uid())?> cq-on-model-saved="refresh(this)" class="record" record-type="<?php echo $record->modelType()?>">
     <div class=" cq-list-item two-lines" >
 
         <div class="text">
-            <?=$record->views()->wysiwygPreview()->render()?>
+            <?php echo $record->views()->wysiwygPreview()->render()?>
         </div>
 
         <div class="end three-icons">
 
-            <?//lock/delete--------------?>
-            <?if($vv->conf_prevent_trash):?>
-                <span class="cq-fg-danger"><?=pov()->svg->use("cq-lock")?></span>
-            <?else:?>
-                <button cq-on-click="db.trash(<?=$vv->uid()?>)" class="cq-unstyled cq-fg-disabled cq-fg-danger-hover">
-                    <?=pov()->svg->use("cq-trash")?>
+            <?php //lock/delete--------------?>
+            <?php if($vv->conf_prevent_trash):?>
+                <span class="cq-fg-danger"><?php echo pov()->svg->use("cq-lock")?></span>
+            <?php else: ?>
+                <button cq-on-click="db.trash(<?php echo $vv->uid()?>)" class="cq-unstyled cq-fg-disabled cq-fg-danger-hover">
+                    <?php echo pov()->svg->use("cq-trash")?>
                 </button>
-            <?endif?>
+            <?php endif; ?>
 
-            <?//ouvrir la page--------------?>
-            <?if($record::$isPage):?>
+            <?php //ouvrir la page--------------?>
+            <?php if($record::$isPage):?>
                 <a class="cq-fg-disabled cq-fg-1-hover cq-unstyled"
-                   title="Aller sur la page" href="<?=$record->href()?>"
-                   cq-on-click="ui.bigMenu.close()" ><?=pov()->svg->use("cq-forward")?></a>
-            <?else:?>
+                   title="Aller sur la page" href="<?php echo $record->href()?>"
+                   cq-on-click="ui.bigMenu.close()" ><?php echo pov()->svg->use("cq-forward")?></a>
+            <?php else: ?>
                 <span></span>
-            <?endif?>
+            <?php endif; ?>
 
-            <?//éditer dans l'admin--------------?>
+            <?php //éditer dans l'admin--------------?>
             <button  class="cq-fg-disabled cq-fg-1-hover cq-unstyled"
                      title="Éditer"
-                     cq-on-click="editRecord(<?=$record->uid()?>)">
-                <?=pov()->svg->use("cq-edit")?>
+                     cq-on-click="editRecord(<?php echo $record->uid()?>)">
+                <?php echo pov()->svg->use("cq-edit")?>
             </button>
         </div>
     </div>

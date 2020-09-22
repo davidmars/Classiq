@@ -7,9 +7,9 @@ $page=Classiqmodel::getByUid($uid);
 
 /** @var Classiqmodel $vv */
 ?>
-<?if(cq()->wysiwyg() && $page):?>
+<?php if(cq()->wysiwyg() && $page):?>
 <div>
-    <?=$page->views()->wysiwygBoxes()?>
+    <?php echo $page->views()->wysiwygBoxes()?>
 </div>
 
-<?endif;?>
+<?php endif; ?>

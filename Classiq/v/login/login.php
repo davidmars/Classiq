@@ -34,41 +34,41 @@ if(the()->request("action")){
 
     <form class="uk-form" method="post">
 
-        <?if($vv->errors):?>
+        <?php if($vv->errors):?>
             <div class="uk-alert uk-alert-danger">
-                <?foreach ($vv->errors as $err):?>
-                    <div><?=$err?></div>
-                <?endforeach;?>
+                <?php foreach ($vv->errors as $err):?>
+                    <div><?php echo $err?></div>
+                <?php endforeach;?>
             </div>
-        <?endif;?>
+        <?php endif;?>
 
 
 
-        <?if(User::connected()):?>
+        <?php if(User::connected()): ?>
 
-            <?
+            <?php
             /**
              * Connecté....
              */
             ?>
 
-            <div class="uk-alert uk-alert-<?=User::connected()->isAdmin()?"success":"warning"?>">
-                <h4>Hello <?=ucwords(User::connected()->name)?>.</h4>
-                <?if(User::connected()->isAdmin()):?>
-                    Vous pouvez <a href="<?=\Classiq\C_classiq::index_url()?>">éditer le contenu du site</a>.
-                <?else:?>
+            <div class="uk-alert uk-alert-<?php echo User::connected()->isAdmin()?"success":"warning"?>">
+                <h4>Hello <?php echo ucwords(User::connected()->name)?>.</h4>
+                <?php if(User::connected()->isAdmin()):?>
+                    Vous pouvez <a href="<?php echo \Classiq\C_classiq::index_url()?>">éditer le contenu du site</a>.
+                <?php else:?>
                     Vous ne pouvez pas éditer le contenu du site. Il faut qu'un administrateur vous en donne le droit.
-                <?endif?>
+                <?php endif?>
             </div>
 
             <div class="uk-margin">
-                <a class="uk-button uk-button-danger uk-width-1-1" href="<?=\Classiq\C_classiq::logout_url()?>">Déconnexion</a><br><br>
-                <a class="uk-button uk-button-default uk-width-1-1" href="<?=\Classiq\C_classiq::login_url("edit-user")?>?id=<?=User::connected()->id?>">Modifier vos informations</a>
+                <a class="uk-button uk-button-danger uk-width-1-1" href="<?php echo \Classiq\C_classiq::logout_url()?>">Déconnexion</a><br><br>
+                <a class="uk-button uk-button-default uk-width-1-1" href="<?php echo \Classiq\C_classiq::login_url("edit-user")?>?id=<?php echo User::connected()->id?>">Modifier vos informations</a>
             </div>
 
-        <?else:?>
+        <?php else: ?>
 
-            <?
+            <?php
             /**
              * Pas connecté....
              */
@@ -87,17 +87,17 @@ if(the()->request("action")){
             </div>
 
 
-        <?endif?>
+        <?php endif;?>
 
         <hr>
         <div class="uk-form-controls uk-margin">
-            <a class="uk-button uk-button-default uk-width-1-1" href="<?=\Classiq\C_classiq::login_url("lost-password")?>">Mot de passe oublié?</a>
+            <a class="uk-button uk-button-default uk-width-1-1" href="<?php echo \Classiq\C_classiq::login_url("lost-password")?>">Mot de passe oublié?</a>
         </div>
         <div class="uk-form-controls uk-margin">
-            <a class="uk-button uk-button-default uk-width-1-1" href="<?=\Classiq\C_classiq::login_url("edit-user")?>">Créer un nouveau compte</a>
+            <a class="uk-button uk-button-default uk-width-1-1" href="<?php echo \Classiq\C_classiq::login_url("edit-user")?>">Créer un nouveau compte</a>
         </div>
         <div class="uk-form-controls uk-margin">
-            <a class="uk-button uk-button-default uk-width-1-1" href="<?=\Classiq\C_classiq::index_url()?>">Retourner sur le site</a>
+            <a class="uk-button uk-button-default uk-width-1-1" href="<?php echo \Classiq\C_classiq::index_url()?>">Retourner sur le site</a>
         </div>
 
 

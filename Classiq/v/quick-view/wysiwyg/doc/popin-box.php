@@ -11,7 +11,7 @@
         <div cq-popin-box class="open">
             <nav>
                 <h4>Titre de la box</h4> <a href="">
-                    <?=cq()->icoWysiwyg("close")?>
+                    <?php echo cq()->icoWysiwyg("close")?>
                 </a>
             </nav>
             <content>
@@ -28,12 +28,12 @@
         <div cq-popin-box class=" open">
             <nav>
                 <h4>Titre de la box</h4> <a href="">
-                    <?=cq()->icoWysiwyg("close")?>
+                    <?php echo cq()->icoWysiwyg("close")?>
                 </a>
             </nav>
             <content>
                 <h2>Le contenu scrolle au besoin</h2>
-                <?=pov()->utils->string->loremIspum(2000)?>
+                <?php echo pov()->utils->string->loremIspum(2000)?>
             </content>
             <footer>
                 <i></i>
@@ -45,7 +45,7 @@
     <div>
         <div cq-popin-box class=" medium open">
             <nav>
-                <h4>Box medium</h4> <a href=""><?=cq()->icoWysiwyg("close")?></a>
+                <h4>Box medium</h4> <a href=""><?php echo cq()->icoWysiwyg("close")?></a>
             </nav>
             <content>
                 ...

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Efface tous les urlpage qui n'ont pas de pages relative
  */
@@ -8,10 +8,10 @@
 use Classiq\Models\Urlpage;
 $doit= the()->request("je-suis-certain") === "1";
 ?>
-<?if(the()->human->isDev(true)):?>
+<?php if(the()->human->isDev(true)):?>
 
 
-    <?=$view->render("./menu")?>
+    <?php echo $view->render("./menu")?>
 
     <?php
         $urls=db()->find("urlpage");
@@ -20,49 +20,49 @@ $doit= the()->request("je-suis-certain") === "1";
         $total=count($urls);
     ?>
 
-    <h4><?=$total?> Urls</h4>
-    <?foreach ($urls as $f):?>
+    <h4><?php echo $total?> Urls</h4>
+    <?php foreach ($urls as $f):?>
 
-        <?=$f->url_lang?><br>
-        <code>(<?=$f->uid()?>)</code><br>
-        Type de page : <code>(<?=$f->related_type?>)</code><br>
-        <code><?=$f->localPath()?></code><br>
-        <?if(!$f->getPage(false)):?>
+        <?php echo $f->url_lang?><br>
+        <code>(<?php echo $f->uid()?>)</code><br>
+        Type de page : <code>(<?php echo $f->related_type?>)</code><br>
+        <code><?php echo $f->localPath()?></code><br>
+        <?php if(!$f->getPage(false)):?>
             <?php $totalTodelete++ ?>
             <b style='color:red;'>Page introuvable</b><br>
-            <?if($doit):?>
-                <? db()->trash($f) ?>
+            <?php if($doit):?>
+                <?php db()->trash($f) ?>
                 <b style='color:red;'>Effacé</b><br>
-            <?else:?>
+            <?php else: ?>
                 <b style='color:blue;'>url pas effacée</b><br>
-            <?endif?>
-        <?else:?>
+            <?php endif; ?>
+        <?php else: ?>
             <?php $totalOk++ ?>
-        <?endif;?>
+        <?php endif; ?>
 
         <hr>
 
 
 
-    <?endforeach;?>
+    <?php endforeach; ?>
 
 
 
 
-    <?if(!$doit):?>
+    <?php if(!$doit):?>
         <hr>
-        <?=$totalOk?> urls sans soucis.<br>
-        <?=$totalTodelete?> urls à effacer.<br>
+        <?php echo $totalOk?> urls sans soucis.<br>
+        <?php echo $totalTodelete?> urls à effacer.<br>
         <hr>
         <form method="post">
             <input type="hidden" name="je-suis-certain" value="1">
-            <input type="submit" value="Effacer les <?=$totalTodelete?> url">
+            <input type="submit" value="Effacer les <?php echo $totalTodelete?> url">
         </form>
-    <?endif?>
+    <?php endif; ?>
 
-<?else:?>
+<?php else: ?>
 Il faut être loggué en dev.
-<?endif?>
+<?php endif; ?>
 
 
 

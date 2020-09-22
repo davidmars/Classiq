@@ -5,5 +5,5 @@ if(is_string($vv)){
     $label="...";
 }
 ?>
-<label><?=$label?></label>
-<?=pov()->svg->use("cq-plus")?>
+<label><?php echo $label?></label>
+<?php echo pov()->svg->use("cq-plus")?>

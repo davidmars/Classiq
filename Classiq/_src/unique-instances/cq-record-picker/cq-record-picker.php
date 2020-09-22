@@ -2,22 +2,22 @@
 
     <nav>
         <h4>Choisissez</h4>
-        <a href="#hide-closest-box"><?=cq()->icoWysiwyg("close")?></a>
+        <a href="#hide-closest-box"><?php echo cq()->icoWysiwyg("close")?></a>
     </nav>
 
     <main>
-        <?=$view->render("./cq-record-picker-list")?>
+        <?php echo $view->render("./cq-record-picker-list")?>
     </main>
 
     <footer>
         <span></span>
         <span>
             <button href="#hide-closest-box" class="js-btn-cancel cq-btn cq-th-white small">
-                <?=cq()->icoWysiwyg("close")?>
+                <?php echo cq()->icoWysiwyg("close")?>
                 <span>annuler</span>
             </button>
             <button class="js-btn-ok cq-btn cq-th-black small">
-                <?=cq()->icoWysiwyg("check")?>
+                <?php echo cq()->icoWysiwyg("check")?>
                 <span>ok</span>
             </button>
         </span>

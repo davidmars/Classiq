@@ -45,31 +45,31 @@ $nextUrl.="&keywords=".the()->request("keywords");
 
 
 ?>
-<?if(!$start):?>
+<?php if(!$start):?>
 <div class="cq-box">
-<?endif;?>
-    <?foreach ($list as $bean):?>
+<?php endif; ?>
+    <?php foreach ($list as $bean):?>
         <?php
         /** @var  Classiqmodel $record */
         $record=$bean->box();
         ?>
-        <?=$view->render("./browse-records-line",$record)?>
-    <?endforeach;?>
+        <?php echo $view->render("./browse-records-line",$record)?>
+    <?php endforeach; ?>
 
-    <?if($next<$total):?>
-    <div class="cq-box text-center" cq-replace-on-scrollview="<?=$nextUrl?>">
-        <?=number_format($next)?> / <?=number_format($total)?>
+    <?php if($next<$total):?>
+    <div class="cq-box text-center" cq-replace-on-scrollview="<?php echo $nextUrl?>">
+        <?php echo number_format($next)?> / <?php echo number_format($total)?>
         <div class="cq-loading-dots">
             <i class="a"></i>
             <i class="b"></i>
             <i class="c"></i>
         </div>
     </div>
-    <?else:?>
+    <?php else: ?>
 
-    <?endif?>
+    <?php endif; ?>
 
-<?if(!$start):?>
+<?php if(!$start):?>
 </div>
-<?endif;?>
+<?php endif; ?>
 

@@ -6,15 +6,15 @@ $colors=["rien-du-tout","white","grey-light","grey-dark","black","danger"]
     Attention, il ne faut pas imbriquer un thème dans un autre
 </div>
 <div class="cq-cols">
-<?foreach ($colors as $color): $class="wysiwyg-th-$color";?>
+<?php foreach ($colors as $color): $class="wysiwyg-th-$color";?>
 <div class="wysiwyg-pad-xy">
-    <div class="wysiwyg-pad-xy <?=$class?>">
-        <h3><?=$class?></h3>
-        <code><?=$class?></code><br>
-        <p><?=pov()->utils->string->loremIspum(20)?></p>
+    <div class="wysiwyg-pad-xy <?php echo $class?>">
+        <h3><?php echo $class?></h3>
+        <code><?php echo $class?></code><br>
+        <p><?php echo pov()->utils->string->loremIspum(20)?></p>
         <hr>
-        <p><?=pov()->utils->string->loremIspum(20)?></p>
+        <p><?php echo pov()->utils->string->loremIspum(20)?></p>
     </div>
 </div>
-<? endforeach; ?>
+<?php endforeach; ?>
 </div>

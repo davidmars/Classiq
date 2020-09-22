@@ -8,8 +8,8 @@ use Classiq\Seo\SEO_TRANSLATED;
 <div class="cq-box wysiwyg-config-page">
 
     <fieldset>
-        <label><?=cq()->tradWysiwyg("Image de prévisualisation")?></label>
-        <?=$vv->wysiwyg()->field("thumbnail")
+        <label><?php echo cq()->tradWysiwyg("Image de prévisualisation")?></label>
+        <?php echo $vv->wysiwyg()->field("thumbnail")
             ->file()
             ->setMimeAcceptImagesOnly()
             //->onSavedRefresh("$(this).closest('[data-pov-v-path]')")
@@ -19,7 +19,7 @@ use Classiq\Seo\SEO_TRANSLATED;
 
     <fieldset cq-display-if="dev">
         <label>View</label>
-        <?=$vv->wysiwyg()->field("view")
+        <?php echo $vv->wysiwyg()->field("view")
             ->string()
             ->input("text","template spécifique")
         ?>
@@ -27,6 +27,6 @@ use Classiq\Seo\SEO_TRANSLATED;
 
 </div>
 
-<?=$view->render("records/page.config.seo",$vv->urlpage)?>
+<?php echo $view->render("records/page.config.seo",$vv->urlpage)?>
 
 

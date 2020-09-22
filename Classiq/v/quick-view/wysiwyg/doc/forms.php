@@ -17,7 +17,7 @@
 
 
         <textarea class="fld" placeholder="Placeholder"></textarea>
-        <textarea class="fld"><?=pov()->utils->string->loremIspum(200,200)?></textarea>
+        <textarea class="fld"><?php echo pov()->utils->string->loremIspum(200,200)?></textarea>
     </div>
 
     <div>

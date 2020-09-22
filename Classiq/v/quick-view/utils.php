@@ -1,3 +1,3 @@
-<?if(the()->human->isDev(true)):?>
-    <?=$view->render("./utils/menu")?>
-<?endif?>
+<?php if(the()->human->isDev(true)):?>
+    <?php echo $view->render("./utils/menu")?>
+<?php endif; ?>

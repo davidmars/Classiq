@@ -4,7 +4,7 @@ Le texte enrichi utilise medium editor (https://github.com/yabwe/medium-editor#b
 
 Un block texte formaté avec pas mal d'options
 ```php
-<?=$vv->wysiwyg()
+<?php echo $vv->wysiwyg()
     ->field("texte")
     ->string(\Pov\Utils\StringUtils::FORMAT_HTML)
     ->setPlaceholder("Saisissez votre texte")
@@ -22,7 +22,7 @@ Un block texte formaté avec pas mal d'options
 
 Un block texte formaté où on remplace le bouton _italic_ 
 ```php
-<?=$vv->wysiwyg()
+<?php echo $vv->wysiwyg()
     ->field("texte_lang")
     ->string(\Pov\Utils\StringUtils::FORMAT_HTML)
     ->setPlaceholder("Saisissez votre texte")
