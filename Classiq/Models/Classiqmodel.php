@@ -368,17 +368,23 @@ class Classiqmodel extends Classiqbean
         return null;
 
     }
+
     /**
      * Retourne les records obtenus à partir d'une liste d'uids
-     * @param string|String[] $uid modeltype-modelid ou modeltype-modelid.champ.key
+     * @param string|array $uids liste des uids
+     * @param bool $unique si true ne renverra pas les doublons
      * @return ClassiqModel[]
+     * @throws PovException
      */
-    public static function getByUids($uids)
+    public static function getByUids($uids,$unique=false)
     {
         $r=[];
 
         if($uids){
             $uids=pov()->utils->array->fromString($uids);
+            if($unique && $uids){
+                $uids=array_unique($uids);
+            }
             foreach ($uids as $uid){
                 $record=Classiqmodel::getByUid($uid);
                 if($record){
