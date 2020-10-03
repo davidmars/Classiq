@@ -50,7 +50,6 @@ if(is_string($vv)){
             <?php if($preview):?>
                 <?php echo $view->render($preview)?>
             <?php else: ?>
-                <?php// preview par défaut?>
                 <?php echo $view->render("./default-block.preview",$label)?>
             <?php endif; ?>
     </div>
