@@ -15,14 +15,15 @@ $uid=uniqid("uploader")
             <div class="bar"></div>
         </div>
     </div>
-    <div class="cq-col-9">
+    <div class="cq-col-7">
         <?php if($fileRecord):?>
             <?php echo $fileRecord->views()->wysiwygPreview()->render()?>
         <?php else: ?>
             <?php echo Filerecord::getNew()->views()->wysiwygPreview()->render()?>
         <?php endif; ?>
     </div>
-    <div class="cq-col-3" text-right>
+    <div class="cq-col-5" text-right>
+        <button class="cq-btn cq-th-white small"><?php echo pov()->svg->use("cq-trash")?></button>
         <div class="input-file-wrap cq-btn-file-wrap">
             <button class="cq-btn cq-th-white small"><?php echo pov()->svg->use("cq-cloud-upload")?></button>
             <input data-related-progress="<?php echo $uid?>" type="file" <?php echo $vv->mimeTypeAccept?>>
