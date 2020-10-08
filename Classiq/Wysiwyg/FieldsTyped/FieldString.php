@@ -172,6 +172,59 @@ class FieldString extends FieldTyped
         return $tag;
     }
     /**
+     * Permet d'obtenir un tag html SELECT
+     * @param array $options liste des options possibles
+     * @param string $placeholder
+     * @param string $class Classe css (.fld par défaut)
+     * @return HtmlTag|string
+     */
+    public function suggest($options=[], $placeholder="...", $class="fld"){
+        $listName=uniqid();
+        $tag=new HtmlTag("div");
+
+        $input=new HtmlTag("input");
+        $this->attr()["placeholder"]=$placeholder;
+        $this->attr()["type"]="text";
+        $this->attr()["list"]=$listName;
+        $this->attr()["value"]=$this->field->value(true,$this->defaultValue);
+        $input->setAttributes($this->attr());
+        $input->addClass($class);
+        if(!pov()->utils->array->isAssociative($options)){
+            //convertit en associatif
+            $new=[];
+            foreach ($options as $o){
+                $new[$o]=$o;
+            }
+            $options=$new;
+        }
+        $list=new HtmlTag("datalist");
+        $list->setAttribute("id",$listName);
+
+        $optionTags=[];
+        $placeholder=new HtmlTag("option",$placeholder);
+        //$placeholder->setAttribute("disabled","disabled");
+        $optionTags[]=$placeholder;
+
+        foreach ($options as $k=>$v){
+            $tagO=new HtmlTag("option",$k);
+            $tagO->setAttribute("value",$v);
+            if($this->field->value(true,$this->defaultValue)==$v){
+                $tagO->setAttribute("selected","selected");
+            }
+            $optionTags[]=$tagO;
+        }
+
+        $inner="";
+        foreach ($optionTags as $o){
+            $inner.=$o."\n";
+        }
+        $list->setInnerHTML($inner);
+        $tag->setInnerHTML($input."".$list);
+
+
+        return $tag;
+    }
+    /**
      * Permet d'obtenir un bouton pour définir une valeur
      * @param array $options liste des options possibles
      * @param string $placeholder
