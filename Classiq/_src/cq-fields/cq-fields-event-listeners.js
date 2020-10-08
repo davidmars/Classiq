@@ -38,7 +38,14 @@ $body.on("paste","[wysiwyg-var][contenteditable='true'][wysiwyg-data-type-format
 
 // click sur un uploader de fichier
 $body.on("change","[wysiwyg-var][wysiwyg-data-type='file'] input[type='file']",function(){
-    new CqFieldUpload($(this).closest("[wysiwyg-var][wysiwyg-data-type='file']"));
+    let u = new CqFieldUpload($(this).closest("[wysiwyg-var][wysiwyg-data-type='file']"));
+    u._startUpload();
+});
+$body.on("click","[wysiwyg-var][wysiwyg-data-type='file'] [href='#remove']",function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    let u = new CqFieldUpload($(this).closest("[wysiwyg-var][wysiwyg-data-type='file']"));
+    u._removeFile();
 });
 
 // changement d'un checkbox

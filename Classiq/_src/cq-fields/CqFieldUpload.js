@@ -21,9 +21,14 @@ export class CqFieldUpload extends DisplayObject{
         if($progressBar.length){
             this.progressbar=new CqProgressBar($progressBar);
         }
-        this._startUpload();
+        //this._startUpload();
     }
 
+    _removeFile(){
+        let me=this;
+        me.field.$field.attr("wysiwyg-value","");
+        me.field.doSave(true);
+    }
     _startUpload(){
         let me=this;
         me.$main.attr("state","uploading")
