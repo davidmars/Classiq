@@ -7,7 +7,7 @@ import CqSortable from "../cq-sortable/CqSortable";
 import CqBlockPicker from "../cq-block-picker/CqBlockPicker"
 import CqBlock from "./CqBlock";
 import CqBlockFile from "./CqBlockFile";
-import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
+import Sortable from 'sortablejs/Sortable.min.js';
 require("../cq-drag-btn/cq-drag-btn.less");
 
 //todo opti virer tous les attributs et mettre ça dans options
